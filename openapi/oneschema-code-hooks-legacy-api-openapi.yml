@@ -1,0 +1,314 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Code Hooks (Legacy) API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Code Hooks (Legacy)
+  description: Legacy Code Hook operations
+paths:
+  /v1/template-hooks/post-mapping/code:
+    post:
+      operationId: create-post-mapping-code-hook
+      summary: Create post-mapping code hook
+      description: Create a post-mapping code hook.
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post-mapping-code-hook-request'
+  /v1/template-hooks/post-upload/code:
+    post:
+      operationId: create-post-upload-code-hook
+      summary: Create post-upload code hook
+      description: Create a post-upload code hook.
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/code-hook-request'
+  /v1/template-hooks/validation/code:
+    post:
+      operationId: create-validation-code-hook
+      summary: Create validation code hook
+      description: Create a validation code hook.
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/validation-code-hook-request'
+  /v1/template-hooks/post-mapping/code/{key}:
+    delete:
+      operationId: delete-post-mapping-code-hook
+      summary: Delete post-mapping code hook
+      description: Delete a post-mapping code hook by key.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+    get:
+      operationId: get-post-mapping-code-hook
+      summary: Get post-mapping code hook
+      description: Get a post-mapping code hook by key.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+  /v1/template-hooks/post-upload/code/{key}:
+    delete:
+      operationId: delete-post-upload-code-hook
+      summary: Delete post-upload code hook
+      description: Delete a post-upload code hook by key.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+    get:
+      operationId: get-post-upload-hook
+      summary: Get post-upload code hook
+      description: Get a post-upload code hook by key.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+  /v1/template-hooks/validation/code/{key}:
+    delete:
+      operationId: delete-validation-code-hook
+      summary: Delete validation code hook
+      description: Delete a validation code hook by key.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+    get:
+      operationId: get-validation-code-hook
+      summary: Get validation code hook
+      description: Get a validation code hook by key.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Code Hooks (Legacy)
+components:
+  schemas:
+    validation-code-hook-request:
+      type: object
+      required:
+      - key
+      - columns
+      - code
+      properties:
+        key:
+          type: string
+        columns:
+          type: array
+          items:
+            type: string
+        validation_type:
+          type: string
+          enum:
+          - row
+          - column
+          default: row
+        code:
+          type: string
+    empty-response:
+      type: object
+    post-mapping-code-hook-request:
+      type: object
+      required:
+      - key
+      - code
+      properties:
+        key:
+          type: string
+        code:
+          type: string
+        idempotent:
+          type: boolean
+          default: false
+    code-hook-request:
+      type: object
+      required:
+      - key
+      - code
+      properties:
+        key:
+          type: string
+        code:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

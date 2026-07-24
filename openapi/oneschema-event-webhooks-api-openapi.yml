@@ -1,0 +1,513 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Event Webhooks API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Event Webhooks
+  description: Event webhook operations
+paths:
+  /v1/event-webhooks:
+    post:
+      operationId: create-event-webhook
+      summary: Create an event webhook
+      description: Creates an event webhook for a supported product area.
+      parameters: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event-webhook-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Event Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/event-webhook-create-importer-request'
+              - $ref: '#/components/schemas/event-webhook-create-multi-file-feeds-request'
+      x-readme:
+        hidden: true
+    get:
+      operationId: list-event-webhooks
+      summary: List event webhooks
+      description: Lists event webhooks for the organization.
+      parameters:
+      - name: product_area
+        in: query
+        required: false
+        description: Filter event webhooks by product area.
+        schema:
+          $ref: '#/components/schemas/event-webhook-product-area'
+        explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event-webhook-list-response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Event Webhooks
+      x-readme:
+        hidden: true
+  /v1/event-webhooks/{webhook_key}:
+    delete:
+      operationId: delete-event-webhook
+      summary: Delete an event webhook
+      description: Deletes an event webhook. Multi FileFeed event webhooks cannot be deleted while attached to a Multi FileFeed.
+      parameters:
+      - name: webhook_key
+        in: path
+        required: true
+        description: The key of the event webhook.
+        schema:
+          type: string
+      - name: product_area
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/event-webhook-product-area'
+        explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event-webhook-delete-response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Event Webhooks
+      x-readme:
+        hidden: true
+    get:
+      operationId: get-event-webhook
+      summary: Get an event webhook
+      description: Retrieves a single event webhook by key.
+      parameters:
+      - name: webhook_key
+        in: path
+        required: true
+        description: The key of the event webhook.
+        schema:
+          type: string
+      - name: product_area
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/event-webhook-product-area'
+        explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event-webhook-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Event Webhooks
+      x-readme:
+        hidden: true
+    put:
+      operationId: update-event-webhook
+      summary: Update an event webhook
+      description: Updates selected fields on an existing event webhook.
+      parameters:
+      - name: webhook_key
+        in: path
+        required: true
+        description: The key of the event webhook.
+        schema:
+          type: string
+      - name: product_area
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/event-webhook-product-area'
+        explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event-webhook-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Event Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/event-webhook-update-importer-request'
+              - $ref: '#/components/schemas/event-webhook-update-multi-file-feeds-request'
+              - $ref: '#/components/schemas/event-webhook-update-existing-product-area-request'
+      x-readme:
+        hidden: true
+components:
+  schemas:
+    event-webhook-list-response:
+      type: object
+      properties:
+        event_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-resource'
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        param:
+          type: string
+          description: The parameter that caused the error.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
+    event-webhook-product-area:
+      type: string
+      enum:
+      - importer
+      - multi_file_feeds
+      description: Product area that owns the event webhook.
+    event-webhook-importer-event-type:
+      type: string
+      enum:
+      - embed_initialized
+      - embed_resumed
+      - embed_closed
+      - file_uploaded
+      - header_selected
+      - columns_mapped
+      - sheet_operation_performed
+      - import_submitted
+      description: Importer event type delivered to the webhook URL.
+    event-webhook-update-multi-file-feeds-request:
+      type: object
+      properties:
+        product_area:
+          type: string
+          enum:
+          - multi_file_feeds
+          description: Product area that owns the event webhook.
+        new_webhook_key:
+          type: string
+          description: Optional new value for `webhook_key`. The path parameter identifies the existing webhook; this field renames it.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Passing `null` stores an empty string.
+          nullable: true
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication. Passing `null` clears the secret.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-multi-file-feed-event-type'
+          description: Multi FileFeed event types to subscribe to.
+      description: Updates selected fields on a Multi FileFeed event webhook. Only fields provided in the request body are updated; unspecified fields retain their existing values.
+    event-webhook-delete-response:
+      type: object
+      properties:
+        success:
+          type: boolean
+    event-webhook-update-existing-product-area-request:
+      type: object
+      properties:
+        new_webhook_key:
+          type: string
+          description: Optional new value for `webhook_key`. The path parameter identifies the existing webhook; this field renames it.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Passing `null` stores an empty string.
+          nullable: true
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication. Passing `null` clears the secret.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-event-type'
+          description: Event types to subscribe to. Must belong to the existing webhook's product area.
+      description: Updates selected fields on the event webhook identified by the path key. When `product_area` is omitted, `events` are validated against the existing webhook's product area.
+      not:
+        required:
+        - product_area
+    event-webhook-update-importer-request:
+      type: object
+      properties:
+        product_area:
+          type: string
+          enum:
+          - importer
+          description: Product area that owns the event webhook.
+        new_webhook_key:
+          type: string
+          description: Optional new value for `webhook_key`. The path parameter identifies the existing webhook; this field renames it.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Passing `null` stores an empty string.
+          nullable: true
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication. Passing `null` clears the secret.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-importer-event-type'
+          description: Importer event types to subscribe to.
+      description: Updates selected fields on an Importer event webhook. Only fields provided in the request body are updated; unspecified fields retain their existing values.
+    event-webhook-create-importer-request:
+      type: object
+      required:
+      - webhook_key
+      - product_area
+      - url
+      properties:
+        webhook_key:
+          type: string
+          description: A unique (per-org) key identifying this event webhook.
+        product_area:
+          type: string
+          enum:
+          - importer
+          description: Product area that owns the event webhook.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Defaults to an empty string.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-importer-event-type'
+          description: Importer event types to subscribe to. Defaults to an empty array.
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication.
+          nullable: true
+    event-webhook-multi-file-feed-event-type:
+      type: string
+      enum:
+      - multi_file_feed_import_success
+      - multi_file_feed_import_error
+      - multi_file_feed_s3_read_success
+      - multi_file_feed_s3_read_error
+      - multi_file_feed_s3_write_success
+      - multi_file_feed_s3_write_error
+      description: Multi FileFeed event type delivered to the webhook URL.
+    event-webhook-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the event webhook.
+        webhook_key:
+          type: string
+          description: The org-unique key identifying this event webhook.
+        product_area:
+          $ref: '#/components/schemas/event-webhook-product-area'
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description.
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-event-type'
+          description: Event types subscribed to by this webhook.
+    event-webhook-event-type:
+      type: string
+      enum:
+      - embed_initialized
+      - embed_resumed
+      - embed_closed
+      - file_uploaded
+      - header_selected
+      - columns_mapped
+      - sheet_operation_performed
+      - import_submitted
+      - multi_file_feed_import_success
+      - multi_file_feed_import_error
+      - multi_file_feed_s3_read_success
+      - multi_file_feed_s3_read_error
+      - multi_file_feed_s3_write_success
+      - multi_file_feed_s3_write_error
+      description: Event type delivered to the webhook URL.
+    event-webhook-create-multi-file-feeds-request:
+      type: object
+      required:
+      - webhook_key
+      - product_area
+      - url
+      properties:
+        webhook_key:
+          type: string
+          description: A unique (per-org) key identifying this event webhook.
+        product_area:
+          type: string
+          enum:
+          - multi_file_feeds
+          description: Product area that owns the event webhook.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Defaults to an empty string.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-multi-file-feed-event-type'
+          description: Multi FileFeed event types to subscribe to. Defaults to an empty array.
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication.
+          nullable: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

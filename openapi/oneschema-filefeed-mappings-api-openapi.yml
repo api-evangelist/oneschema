@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeed Mappings API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: FileFeed Mappings
+  description: Saved column mappings for FileFeeds
+paths:
+  /v0/file-feeds/{file_feed_id}/saved-mappings:
+    get:
+      summary: Get saved mappings for a FileFeed
+      description: Get the saved mappings for a given FileFeed
+      operationId: get-file-feed-saved-mappings
+      tags:
+      - FileFeed Mappings
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mappings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uploaded_column_name:
+                          type: string
+                        target_column_name:
+                          type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - code
+                - message
+        '422':
+          description: Unprocessable Entity — the file feed's pipeline is missing commits or required configuration steps.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - message
+    put:
+      summary: Update FileFeed saved mappings
+      description: Update saved mappings for a given FileFeed. Note that any uncommitted changes to FileFeed transforms will be overwritten.
+      operationId: update-file-feed-saved-mappings
+      tags:
+      - FileFeed Mappings
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mappings:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      uploaded_column_name:
+                        type: string
+                      target_column_name:
+                        type: string
+                    required:
+                    - uploaded_column_name
+                    - target_column_name
+              required:
+              - mappings
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mappings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uploaded_column_name:
+                          type: string
+                        target_column_name:
+                          type: string
+        '400':
+          description: Bad request — invalid mappings or the file feed's pipeline is missing commits or required configuration steps.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - code
+                - message
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

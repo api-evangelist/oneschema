@@ -1,0 +1,201 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeed Folders API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: FileFeed Folders
+  description: FileFeed Folder operations
+paths:
+  /v0/file-feed-folders:
+    post:
+      summary: Create FileFeed folder
+      description: Create a new FileFeed folder.
+      operationId: create-file-feed-folder
+      tags:
+      - FileFeed Folders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-folder-post-request'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: List FileFeed folders
+      description: Returns a list of FileFeed folders for the organization.
+      operationId: get-file-feed-folders
+      tags:
+      - FileFeed Folders
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feed-folders/{folder_id}:
+    delete:
+      summary: Delete FileFeed folder
+      description: Delete a specific FileFeed folder by ID.
+      operationId: delete-file-feed-folder
+      tags:
+      - FileFeed Folders
+      parameters:
+      - name: folder_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: Get FileFeed folder
+      description: Retrieve a specific FileFeed folder by ID.
+      operationId: get-file-feed-folder
+      tags:
+      - FileFeed Folders
+      parameters:
+      - name: folder_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    patch:
+      summary: Update FileFeed folder
+      description: Update a specific FileFeed folder by ID. Only the fields that need to be updated should be provided.
+      operationId: update-file-feed-folder
+      tags:
+      - FileFeed Folders
+      parameters:
+      - name: folder_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-folder-base'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+components:
+  schemas:
+    file-feed-folder-resource:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-folder-base'
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the folder
+    file-feed-folder-base:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        custom_metadata:
+          type: object
+    file-feed-folder-post-request:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-folder-base'
+      required:
+      - name
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

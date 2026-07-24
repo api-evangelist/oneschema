@@ -1,0 +1,355 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: FileFeeds
+  description: FileFeeds operations
+paths:
+  /v0/file-feeds:
+    post:
+      summary: Create FileFeed
+      description: Create a new FileFeed
+      operationId: create-file-feed
+      tags:
+      - FileFeeds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-post-request'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: List FileFeeds
+      description: Returns a list of FileFeeds for the organization.
+      operationId: get-file-feeds
+      tags:
+      - FileFeeds
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feeds/{file_feed_id}:
+    delete:
+      summary: Delete FileFeed
+      description: Delete a specific FileFeed by ID
+      operationId: delete-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the FileFeed
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: Get FileFeed
+      description: Retrieve a specific FileFeed by ID
+      operationId: get-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the FileFeed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    patch:
+      summary: Update FileFeed
+      description: Update a specific FileFeed by ID. Only the fields that need to be updated should be provided.
+      operationId: update-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the FileFeed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-base'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feeds/{file_feed_id}/duplicate:
+    post:
+      summary: Duplicate FileFeed
+      description: Duplicate an existing FileFeed
+      operationId: duplicate-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: name
+        in: query
+        description: Unique name of the duplicated FileFeed
+        schema:
+          type: string
+        required: false
+      - name: template_id
+        in: query
+        description: Template id for the duplicated FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+components:
+  schemas:
+    destination-sftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+          required:
+          - sftp_account_id
+          - path
+    file-feed-source:
+      oneOf:
+      - $ref: '#/components/schemas/source-sftp'
+    file-feed-post-request:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-base'
+      required:
+      - name
+      - template_key
+    file-feed-resource:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-base'
+      type: object
+      properties:
+        id:
+          type: string
+    destination-webhook:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - import_webhook
+        data:
+          type: object
+          properties:
+            webhook_key:
+              type: string
+              format: object_key
+          required:
+          - webhook_key
+    file-feed-destination:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/destination-sftp'
+      - $ref: '#/components/schemas/destination-webhook'
+    file-feed-base:
+      type: object
+      properties:
+        name:
+          type: string
+        template_key:
+          type: string
+          format: object_key
+        is_active:
+          type: boolean
+        config:
+          type: object
+          properties:
+            export_format:
+              type: string
+              enum:
+              - csv
+              - json
+            file_filter:
+              type: string
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-source'
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-destination'
+        custom_metadata:
+          type: object
+        event_webhook_key:
+          type: string
+          format: object_key
+        folder_id:
+          type: integer
+          description: ID of the folder containing this FileFeed
+    source-sftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
+          required:
+          - sftp_account_id
+          - path
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

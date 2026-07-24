@@ -1,0 +1,574 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeeds API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Multi FileFeeds
+  description: Multi FileFeed operations
+paths:
+  /v0/multi-file-feeds:
+    post:
+      x-readme:
+        hidden: true
+      summary: Create a Multi FileFeed
+      description: 'Creates a new Multi FileFeed with the specified templates.
+
+        At least one template must be provided. Template keys must be unique
+
+        within the request.
+
+
+        Optional parameters allow configuring a source (SFTP or S3), destination (SFTP or S3),
+
+        event webhook, post-validation transform, and custom metadata at creation time.
+
+
+        If `folder_id` is not provided, the Multi FileFeed is placed in the
+
+        organization''s default Multi FileFeed folder.
+
+        '
+      operationId: create-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name for the new Multi FileFeed. Must be unique within the organization.
+                folder_id:
+                  type: integer
+                  description: ID of the folder to place this Multi FileFeed in. If not provided, the default Multi FileFeed folder is used.
+                workflow_templates:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/WorkflowTemplateInput'
+                  description: List of templates to associate with the Multi FileFeed. At least one is required. Template keys must be unique.
+                  minItems: 1
+                source:
+                  anyOf:
+                  - $ref: '#/components/schemas/SourceSftp'
+                  - $ref: '#/components/schemas/SourceS3'
+                  - type: 'null'
+                  description: Configuration for the source connection (e.g. SFTP or S3). S3 sources must be enabled for the organization.
+                destination:
+                  anyOf:
+                  - $ref: '#/components/schemas/DestinationSftp'
+                  - $ref: '#/components/schemas/DestinationS3'
+                  - type: 'null'
+                  description: Configuration for the destination connection (e.g. SFTP or S3). S3 destinations must be enabled for the organization.
+                multi_filefeed_event_webhook_key:
+                  type: string
+                  minLength: 1
+                  description: Key of an existing event webhook to attach to this Multi FileFeed
+                post_validation_transform_key:
+                  type: string
+                  nullable: true
+                  description: Key of an existing post-validation transform to apply
+                custom_metadata:
+                  type:
+                  - object
+                  - 'null'
+                  description: JSON object with custom metadata to associate with the Multi FileFeed
+              required:
+              - name
+              - workflow_templates
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+        '400':
+          description: Bad request (e.g. missing name, empty templates, duplicate template keys, invalid webhook key)
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Forbidden (the required feature is not enabled for this organization)
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: List Multi FileFeeds
+      description: Returns a list of Multi FileFeeds for the organization. Optionally filter by folder ID.
+      operationId: list-multi-file-feeds
+      tags:
+      - Multi FileFeeds
+      parameters:
+      - name: folder_id
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Optional folder ID to filter Multi FileFeeds by folder
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MultiFileFeedSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    delete:
+      summary: Delete a Multi FileFeed
+      description: Permanently deletes a Multi FileFeed
+      operationId: delete-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: Get a Multi FileFeed
+      description: Retrieves a single Multi FileFeed by ID, including its source and destination connections, and attached event webhooks.
+      operationId: get-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      summary: Update a Multi FileFeed
+      description: Updates an existing Multi FileFeed's configuration
+      operationId: update-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: At least one field must be provided. If a field is not provided, it will not be updated. If a field is provided with a null value, it will be removed.
+              properties:
+                name:
+                  type: string
+                  description: New name for the Multi FileFeed
+                source:
+                  anyOf:
+                  - $ref: '#/components/schemas/SourceSftp'
+                  - $ref: '#/components/schemas/SourceS3'
+                  - type: 'null'
+                  description: Configuration for the source connection (SFTP or S3). Set to null to remove the source. S3 sources must be enabled for the organization.
+                destination:
+                  anyOf:
+                  - $ref: '#/components/schemas/DestinationSftp'
+                  - $ref: '#/components/schemas/DestinationS3'
+                  - type: 'null'
+                  description: Configuration for the destination connection (SFTP or S3). Set to null to remove the destination. S3 destinations must be enabled for the organization.
+                post_validation_transform_key:
+                  type: string
+                  description: Key of an existing post-validation transform to apply
+                multi_filefeed_event_webhook_key:
+                  type:
+                  - string
+                  - 'null'
+                  minLength: 1
+                  description: Key of an existing event webhook to attach to this Multi FileFeed. Pass `null` to detach the current event webhook.
+                folder_id:
+                  type: integer
+                  description: ID of the folder to move this Multi FileFeed into. The folder must belong to the same organization.
+                custom_metadata:
+                  type:
+                  - object
+                  - 'null'
+                  description: JSON object with custom metadata to associate with the Multi FileFeed
+                workflow_templates:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/WorkflowTemplateInput'
+                  description: 'Declarative list of templates for this Multi FileFeed. When provided,
+
+                    the system computes a diff against the current templates:
+
+                    - Templates in the request but not currently associated are **added**.
+
+                    - Templates already associated whose `is_required` flag changed are **updated**.
+
+                    - Templates currently associated but not in the request are **removed**.
+
+
+                    At least one template must be provided (empty arrays are rejected).
+
+                    Template keys must be unique within the request.
+
+                    '
+                  minItems: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Forbidden (the required feature is not enabled for this organization)
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/duplicate:
+    post:
+      summary: Duplicate a Multi FileFeed
+      description: Duplicates a Multi FileFeed and returns the new Multi FileFeed. The copy includes both the builder (editable) version and the source's latest saved version, so the duplicate can run user imports immediately rather than only builder imports. The carried-over saved version's change history notes that it came from duplicating the source Multi FileFeed and when that source's latest version was saved.
+      operationId: duplicate-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed that's being duplicated
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name for the duplicated Multi FileFeed
+              required:
+              - name
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+components:
+  schemas:
+    SourceSftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      multipleOf: 5
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
+          required:
+          - sftp_account_id
+          - path
+    WorkflowTemplateInput:
+      type: object
+      description: 'A template to associate with a Multi FileFeed.
+
+        At least one of `template_key` or `template_id` must be provided.
+
+        If both are provided, they must refer to the same template;
+
+        otherwise the request is rejected with a validation error.
+
+        '
+      anyOf:
+      - required:
+        - template_key
+      - required:
+        - template_id
+      properties:
+        template_key:
+          type: string
+          description: The unique key of the template to associate
+        template_id:
+          type: integer
+          description: The numeric ID of the template to associate
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+      required:
+      - is_required
+    SourceS3:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - s3
+        data:
+          type: object
+          properties:
+            s3_account_id:
+              type: integer
+            bucket:
+              type: string
+            prefix:
+              type: string
+              nullable: true
+              description: Key prefix within the bucket to scope listing/pulling to. Defaults to empty (whole bucket).
+            file_filter:
+              type: string
+              nullable: true
+              description: 'Optional regular expression applied to object keys. When set, only matching keys are ingested.
+
+                Note: changing `file_filter` does not retroactively re-ingest objects that already passed the
+
+                cursor watermark; only newly listed objects are evaluated against the new pattern. Changing
+
+                `bucket` or `prefix`, by contrast, resets the cursor and dedupe ledger because they reference
+
+                a different object namespace.
+
+                '
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      multipleOf: 5
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
+          required:
+          - s3_account_id
+          - bucket
+    MultiFileFeed:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        folder_id:
+          type: integer
+          description: ID of the folder containing this Multi FileFeed
+        custom_metadata:
+          type: object
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiFileFeedTemplate'
+        source:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/SourceSftp'
+            - $ref: '#/components/schemas/SourceS3'
+        destination:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/DestinationSftp'
+            - $ref: '#/components/schemas/DestinationS3'
+        event_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventWebhook'
+        post_validation_transform_key:
+          type: string
+          nullable: true
+          description: Key of the post-validation transform applied to this Multi FileFeed
+    EventWebhook:
+      type: object
+      properties:
+        webhook_key:
+          type: string
+          description: Unique key identifying the webhook
+        events:
+          type: array
+          items:
+            type: string
+          description: List of event types the webhook is subscribed to
+    MultiFileFeedSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed
+        name:
+          type: string
+          description: The name of the Multi FileFeed
+        folder:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The ID of the folder containing this Multi FileFeed
+            name:
+              type: string
+              description: The name of the folder
+        templates:
+          type: array
+          items:
+            type: object
+            properties:
+              template_key:
+                type: string
+                description: The unique key of the template
+              is_required:
+                type: boolean
+                description: Whether this template is required for the Multi FileFeed
+    MultiFileFeedTemplate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        key:
+          type: string
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+    DestinationS3:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - s3
+        data:
+          type: object
+          properties:
+            s3_account_id:
+              type: integer
+            bucket:
+              type: string
+            prefix:
+              type: string
+              nullable: true
+              description: Key prefix within the bucket. Output files are written to `{prefix}/{file_name}`. Defaults to empty (write to bucket root).
+          required:
+          - s3_account_id
+          - bucket
+    DestinationSftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+          required:
+          - sftp_account_id
+          - path
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

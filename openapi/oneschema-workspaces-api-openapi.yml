@@ -1,0 +1,341 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Workspaces API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Workspaces
+  description: Workspace operations
+paths:
+  /v1/workspaces:
+    post:
+      operationId: create-workspace
+      summary: Create a Workspace
+      description: Create a new Workspace in the organization.
+      tags:
+      - Workspaces
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceCreateRequest'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: list-workspaces
+      summary: List Workspaces
+      description: Returns a list of all Workspaces that the authenticated user can access. Supports pagination via `offset` and `count` query parameters.
+      tags:
+      - Workspaces
+      parameters:
+      - name: containing_workspace_id
+        in: query
+        required: false
+        description: Filter Workspaces by the ID of the containing Workspace. Pass `null` or an empty value to return only root-level Workspaces (those with no containing Workspace); omitting the parameter returns all accessible Workspaces.
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        explode: false
+      - name: offset
+        in: query
+        required: false
+        description: The number of Workspaces to skip before starting to collect the result set. Must be non-negative. Defaults to 0.
+        schema:
+          type: integer
+          minimum: 0
+        explode: false
+      - name: count
+        in: query
+        required: false
+        description: The maximum number of Workspaces to return. Must be non-negative. Defaults to and is capped at 100.
+        schema:
+          type: integer
+          minimum: 0
+        explode: false
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspacesListResponse'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/workspaces/{workspace_id}:
+    parameters:
+    - name: workspace_id
+      in: path
+      required: true
+      description: The id of the Workspace.
+      schema:
+        type: integer
+        format: int32
+    delete:
+      operationId: delete-workspace
+      summary: Delete a Workspace
+      description: Delete a Workspace. The default Workspace cannot be deleted.
+      tags:
+      - Workspaces
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: get-workspace
+      summary: Get a Workspace
+      description: Retrieve a single Workspace by its id, including the sheets it contains.
+      tags:
+      - Workspaces
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      operationId: update-workspace
+      summary: Update a Workspace
+      description: Update a Workspace's name, description, color, custom metadata, or containing workspace.
+      tags:
+      - Workspaces
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceUpdateRequest'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    WorkspacesListResponse:
+      type: object
+      properties:
+        workspaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
+        total_count:
+          type: integer
+          description: The total number of Workspaces available for the current filter.
+    WorkspaceSheet:
+      type: object
+      required:
+      - id
+      - workspace_id
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique identifier of the sheet.
+        workspace_id:
+          type: integer
+          format: int32
+          description: The ID of the Workspace that contains the sheet.
+        name:
+          type: string
+          description: The name of the sheet.
+        template_key:
+          type:
+          - string
+          - 'null'
+          description: The unique key of the template assigned to the sheet, if any.
+        custom_metadata:
+          type:
+          - object
+          - 'null'
+          description: Custom metadata associated with the sheet.
+        columns:
+          type: array
+          description: The columns of the sheet, included when the sheet's headers have been set.
+          items:
+            $ref: '#/components/schemas/WorkspaceSheetColumn'
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    WorkspaceUpdateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The new name for the Workspace. Must be unique within the organization. Cannot be changed for the default Workspace.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the Workspace.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color of the Workspace.
+        custom_metadata:
+          type:
+          - object
+          - 'null'
+          description: Custom metadata to associate with the Workspace.
+        containing_workspace_id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          description: The ID of the Workspace to move this Workspace under. Pass `null` to move it to the root.
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique identifier of the Workspace.
+        name:
+          type: string
+          description: The name of the Workspace.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the Workspace.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color of the Workspace.
+        custom_metadata:
+          type:
+          - object
+          - 'null'
+          description: Custom metadata associated with the Workspace.
+        containing_workspace_id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          description: The ID of the Workspace that contains this Workspace, if any.
+        sheets:
+          type: array
+          description: The sheets contained in the Workspace, included when retrieving a single Workspace.
+          items:
+            $ref: '#/components/schemas/WorkspaceSheet'
+    WorkspaceSheetColumn:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique identifier of the column.
+        name:
+          type: string
+          description: The label of the column.
+        template_column_key:
+          type:
+          - string
+          - 'null'
+          description: The key of the template column this sheet column is mapped to, if any.
+        is_custom:
+          type: boolean
+          description: Whether the column is a custom column not present in the assigned template.
+    WorkspaceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name for the new Workspace. Must be unique within the organization.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the Workspace.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color of the Workspace.
+        custom_metadata:
+          type:
+          - object
+          - 'null'
+          description: Custom metadata to associate with the Workspace.
+        containing_workspace_id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          description: The ID of the Workspace to create this Workspace under, if any.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

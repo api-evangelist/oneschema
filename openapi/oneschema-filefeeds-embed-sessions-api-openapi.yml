@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds Embed Sessions API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: FileFeeds Embed Sessions
+  description: FileFeeds Embed Sessions operations
+paths:
+  /v0/file-feed-embed-sessions:
+    post:
+      summary: Create FileFeed embed session
+      description: Create a new embed session for a FileFeed
+      operationId: create-file-feed-embed-session
+      tags:
+      - FileFeeds Embed Sessions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  format: uuid
+                  description: Client ID for the environment the import is being initiated from
+                file_feed_id:
+                  type: integer
+                  description: The ID of the FileFeed
+                user_jwt:
+                  description: Encoded JWT for the user initiating the import
+                  type: string
+                  format: jwt
+              required:
+              - client_id
+              - file_feed_id
+              - user_jwt
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-embed-session'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feed-embed-sessions/files:
+    post:
+      summary: Upload file to the FileFeed embed session
+      description: 'Upload a file to a FileFeed embed session, to be used as a sample file
+
+        when editing the FileFeed transforms.
+
+        '
+      operationId: upload-file-to-embed-session
+      tags:
+      - FileFeeds Embed Sessions
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                session_token:
+                  type: string
+                  description: The token of the FileFeed embed session
+                file:
+                  type: string
+                  format: binary
+                  description: The contents of the file to be imported.
+              required:
+              - session_token
+              - file
+      responses:
+        '202':
+          description: 'Accepted.
+
+            The file is scheduled to be processed and added to the session.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-embed-session'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+components:
+  schemas:
+    file-feed-embed-session-file:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        original_file_name:
+          type: string
+          format: file_name
+    file-feed-embed-session:
+      type: object
+      properties:
+        id:
+          type: integer
+        file_feed_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        token:
+          type: string
+        template_key:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-embed-session-file'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

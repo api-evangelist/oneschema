@@ -1,0 +1,472 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds Imports API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: FileFeeds Imports
+  description: FileFeeds Imports operations
+paths:
+  /v0/file-feeds/{file_feed_id}/imports:
+    post:
+      summary: Create FileFeed import
+      description: Create a new import for a FileFeed
+      operationId: create-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: client_id
+        in: query
+        description: Client ID for the environment the import is being initiated from
+        schema:
+          type: string
+          format: uuid
+        required: false
+      - name: user_jwt
+        in: query
+        description: Encoded JWT for the user initiating the import
+        schema:
+          type: string
+          format: jwt
+        required: false
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The contents of the file to be imported.
+              required:
+              - file
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-import'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    get:
+      summary: List FileFeed imports
+      description: Returns a list of imports for the specified FileFeed. Supports pagination via `start_row` and `count` parameters.
+      operationId: get-file-feed-imports
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: start_row
+        in: query
+        schema:
+          type: integer
+          format: int32
+        required: false
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 500
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imports:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/file-feed-import'
+                  row_count:
+                    type: integer
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}:
+    delete:
+      summary: Delete FileFeed import
+      description: Delete a specific FileFeed import for a given FileFeed
+      operationId: delete-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        description: The id of the FileFeed import
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    get:
+      summary: Get FileFeed import
+      description: Get the FileFeed imports for a given FileFeed
+      operationId: get-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        description: The id of the FileFeed import
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-import'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/attempts/{file_feed_import_attempt_id}/error-details:
+    post:
+      summary: Generate error details report
+      description: Generate a CSV of every cell error remaining in the import, broken down by row. Returns a presigned URL to download the file.
+      operationId: generate-file-feed-import-error-details
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_attempt_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/presigned-url'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/import-download-url:
+    get:
+      summary: Get import download url
+      description: Get a download url for a successful FileFeed import
+      operationId: get-import-download-url
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - csv
+          - json
+          default: csv
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: url
+                    example: https://example.com/abc.json
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/attempts/{file_feed_import_attempt_id}/imported-rows:
+    get:
+      summary: Get imported rows for a given FileFeed attempt
+      description: Get imported JSON rows for a successful FileFeed import attempt
+      operationId: imported-rows
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_attempt_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: start_row
+        in: query
+        schema:
+          type: integer
+          format: int32
+        required: false
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int32
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  template_key:
+                    type: string
+                  workspace_id:
+                    type: integer
+                  sheet_id:
+                    type: integer
+                  sheet_metadata:
+                    type: object
+                  columns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sheet_column_name:
+                          type: string
+                        template_column_key:
+                          type: string
+                        template_column_name:
+                          type: string
+                        is_custom:
+                          type: boolean
+                        custom_column_name:
+                          type: string
+                        is_unmapped:
+                          type: boolean
+                        is_multi_mappable:
+                          type: boolean
+                  source_type:
+                    type: string
+                  source_metadata:
+                    type: object
+                  file_feed_metadata:
+                    type: object
+                  file_feed_id:
+                    type: integer
+                  file_feed_import_id:
+                    type: integer
+                  records:
+                    type: array
+                    items:
+                      type: object
+                  error_records:
+                    type: array
+                    items:
+                      type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/retry:
+    post:
+      summary: Retry FileFeed import
+      description: Retry a failed import for a FileFeed
+      operationId: retry-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-import'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  schemas:
+    presigned-url:
+      type: object
+      properties:
+        url:
+          type: string
+    file-feed-import:
+      type: object
+      properties:
+        id:
+          type: integer
+        file_feed_id:
+          type: integer
+        file_feed_metadata:
+          type: object
+        last_import_attempt:
+          type: object
+          properties:
+            id:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+            original_file_name:
+              type: string
+            status:
+              type: string
+            completed_at:
+              type: string
+              format: date-time
+            imported_row_count:
+              type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

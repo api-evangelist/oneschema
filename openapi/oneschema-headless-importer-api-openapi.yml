@@ -1,0 +1,567 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Headless Importer API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Headless Importer
+  description: Headless Importer operations
+paths:
+  /v1/embeds:
+    post:
+      operationId: create-embed
+      summary: Create an embed session
+      description: Create an Importer embed session.
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedCreatedResponse'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Headless Importer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEmbedRequest'
+  /v1/embeds/{embed_id}/import:
+    post:
+      operationId: import-embed-file
+      summary: Import an embed file
+      description: 'Import the validated embed file. The import behavior is defined by the [import_config](https://docs.oneschema.co/docs/importing-validated-data) object used to initialized the embed. An embed must be in the `columns_mapped` state to enable import, and an embed is returned in one of the following states depending on import config: `import-pending` or `imported`.'
+      parameters:
+      - $ref: '#/components/parameters/EmbedIdPath'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedDetail'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Headless Importer
+  /v1/embeds/{embed_id}/map:
+    post:
+      operationId: set-column-mapping-on-an-embed-file
+      summary: Set column mapping on an embed file
+      description: Set column mapping for an embed file. Mapping strategy can be defined in customizations. An embed must be in the `headers_set` state to support column mapping, and an embed is returned in `columns_mapped` state.
+      parameters:
+      - $ref: '#/components/parameters/EmbedIdPath'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedDetail'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Headless Importer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetColumnMappingRequest'
+  /v1/embeds/{embed_id}/set-header:
+    post:
+      operationId: set-header-row-on-an-embed-file
+      summary: Set header row on an embed file
+      description: 'Set the header row either automatically or by index on an embed file. An embed must be in the `uploaded` state to enable setting headers, and an embed is returned in one of the following states: `headers_set` or `columns_mapped`.'
+      parameters:
+      - $ref: '#/components/parameters/EmbedIdPath'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedDetail'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Headless Importer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetHeaderRequest'
+  /v1/embeds/{embed_id}/upload:
+    post:
+      operationId: upload-a-csv-or-excel-file
+      summary: Upload a CSV or excel file to an embed
+      description: 'Upload a CSV (.csv) or Excel (.xlsx) file into OneSchema. An embed must be in the `initialized` state to support an upload, and an embed is returned in one of the following states: `uploaded`, `headers_set`, or `columns_mapped`.'
+      parameters:
+      - $ref: '#/components/parameters/EmbedIdPath'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedUploadResponse'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+      tags:
+      - Headless Importer
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadFileRequest'
+            encoding:
+              file:
+                contentType: application/octet-stream
+components:
+  schemas:
+    import-config-headers:
+      type: object
+      properties: {}
+    ImportConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of OneSchema import that should be triggered for the embed
+        key:
+          type: string
+          description: Only applicable for "webhook" import type. Specifies the key for the importer webhook that should be called with import data.
+        metadata_only:
+          type: boolean
+          description: Only applicable for the "local" import type. Specifies whether the import should only include metadata.
+        url:
+          type: string
+          description: Only applicable for "file-upload" import type. This is the URL the importer data will be sent to.
+        format:
+          type: string
+          description: Only applicable for "file-upload" import type. This is the file format in which the importer data will be sent as. Either `csv` or `json`.
+        headers:
+          allOf:
+          - $ref: '#/components/schemas/import-config-headers'
+          description: Only applicable for the "file-upload" import type. The provided object should specify header keys and values.
+        format_options:
+          $ref: '#/components/schemas/ImportConfigFormatOptions'
+    SetHeaderRequest:
+      type: object
+      required:
+      - index
+      properties:
+        index:
+          oneOf:
+          - type: integer
+            format: int32
+          - type: string
+            enum:
+            - auto
+          description: Set to the 0-based index of the header row, or "auto" to automatically detect and set the header row.
+    EmbedDetail:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbedColumn'
+      allOf:
+      - $ref: '#/components/schemas/EmbedSummary'
+    EmbedSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 41559
+          default: 0
+        token:
+          type: string
+          examples:
+          - 5fd6a161-86f1-4514-9e92-0660e19ad5c2
+        template_key:
+          type: string
+          examples:
+          - employees
+        status:
+          type: string
+          examples:
+          - columns_mapped
+        user_jwt:
+          type: string
+          examples:
+          - REPLACE_WITH_JWT
+        imported_row_count:
+          type: integer
+          description: Total number of imported rows. Only present when the embed status is "imported".
+          examples:
+          - 995
+    EmbedColumn:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 227897
+          default: 0
+        name:
+          type: string
+          examples:
+          - DD/MM/YYYY
+        template_column_key:
+          type: string
+          examples:
+          - ddmmyyyy
+        is_custom:
+          type: boolean
+          examples:
+          - false
+          default: true
+    CreateEmbedRequest:
+      type: object
+      required:
+      - embed_client_id
+      - template_key
+      - embed_user_jwt
+      properties:
+        embed_client_id:
+          type: string
+          description: The Importer client Id from the OneSchema dashboard.
+        template_key:
+          type: string
+          description: The key for the template that should be used in the import.
+        embed_user_jwt:
+          type: string
+          description: The JWT to be used for authentication.
+        webhook_key:
+          type: string
+          description: '[Legacy] The key for the webhook that data should be sent to after import. This field should now be passed via the `import_config` parameter.'
+        event_webhook_keys:
+          type: array
+          items:
+            type: string
+          description: The keys of event webhooks which should listen to events in this embed session.
+        dev_mode:
+          type: boolean
+          description: Whether the Embed is initialized in developer mode.
+          default: false
+        customization_key:
+          type: string
+          description: An optional key for a customization made in OneSchema the importer should be styled with. If not provided, will use your default customization.
+        customization_overrides:
+          allOf:
+          - $ref: '#/components/schemas/CustomizationOverrides'
+          description: The customization overrides to be used on this importer.
+        template_overrides:
+          allOf:
+          - $ref: '#/components/schemas/TemplateOverrides'
+          description: The template column overrides on the default template.
+        import_config:
+          allOf:
+          - $ref: '#/components/schemas/ImportConfig'
+          description: Configuration for how data will be imported out of OneSchema when the import is complete.
+    CustomizationOverrides:
+      type: object
+      properties:
+        primary_color:
+          type: string
+        background_primary_color:
+          type: string
+        background_secondary_color:
+          type: string
+        header_color:
+          type: string
+        footer_color:
+          type: string
+        border_color:
+          type: string
+        success_color:
+          type: string
+        warning_color:
+          type: string
+        error_color:
+          type: string
+        modal_fullscreen:
+          type: boolean
+        modal_mask_color:
+          type: string
+        modal_border_radius:
+          type: string
+        button_border_radius:
+          type: string
+        button_primary_fill_color:
+          type: string
+        button_primary_stroke_color:
+          type: string
+        button_primary_text_color:
+          type: string
+        button_secondary_fill_color:
+          type: string
+        button_secondary_stroke_color:
+          type: string
+        button_secondary_text_color:
+          type: string
+        button_tertiary_fill_color:
+          type: string
+        button_tertiary_stroke_color:
+          type: string
+        button_tertiary_text_color:
+          type: string
+        button_alert_fill_color:
+          type: string
+        button_alert_stroke_color:
+          type: string
+        button_alert_text_color:
+          type: string
+        font_url:
+          type: string
+        font_family:
+          type: string
+        font_color_primary:
+          type: string
+        font_color_secondary:
+          type: string
+        font_color_placeholder:
+          type: string
+        hide_logo:
+          type: boolean
+        illustration_url:
+          type: string
+        uploader_header_text:
+          type: string
+        uploader_subheader_text:
+          type: string
+        uploader_show_sidebar:
+          type: boolean
+        uploader_sidebar_details:
+          type: string
+          description: '"required" | "all"'
+        uploader_show_sidebar_banner:
+          type: boolean
+        uploader_sidebar_banner_text:
+          type: string
+        include_excel_template:
+          type: boolean
+        import_experience:
+          type: string
+          description: '"blockIfErrors" | "promptIfErrors" | "ignoreErrors"'
+        import_unmapped_columns:
+          type: boolean
+        mapping_strategy:
+          type: array
+          items:
+            type: string
+          description: '"exact" | "fuzzy" | "historical"'
+        skip_mapping:
+          type: array
+          items:
+            type: string
+          description: '"exact" | "fuzzy" | "historical"'
+        accept_code_hook_suggestions:
+          type: boolean
+        autofix_after_mapping:
+          type: boolean
+        file_size_limit:
+          type: integer
+          format: int32
+    MappingOverride:
+      type: object
+      required:
+      - template_column_key
+      properties:
+        column_id:
+          type: integer
+          format: int32
+          description: The id of the sheet column.
+        column_name:
+          type: string
+          description: The label of the sheet column.
+        template_column_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The key of the template column, or null to unmap the column.
+    SetColumnMappingRequest:
+      type: object
+      properties:
+        overrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/MappingOverride'
+          description: These mappings will override detected mappings. Either column_id or column_name must be specified. If template_column_key is null, the column will not be mapped.
+    UploadFileRequest:
+      type: object
+      properties:
+        file:
+          description: The contents of the file to be imported.
+          format: binary
+          type: string
+        sheet_name:
+          type: string
+          description: The name of the sheet that should be imported if you are uploading a spreadsheet with multiple tabs.
+      required:
+      - file
+    ImportConfigFormatOptions:
+      type: object
+      properties:
+        header_style:
+          type: string
+          enum:
+          - names
+          - keys
+          description: Whether uploaded csv file should have the uploaded template column names as headers or template column keys.
+    EmbedCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 42197
+          default: 0
+        token:
+          type: string
+          examples:
+          - 3f82e2c1-7657-441a-a93d-5e8f25c7ac61
+        status:
+          type: string
+          examples:
+          - initialized
+        user_jwt:
+          type: string
+          examples:
+          - REPLACE_WITH_JWT
+    TemplateOverrides:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateColumnOverride'
+    empty-response:
+      type: object
+      properties: {}
+    EmbedUploadResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 41963
+          default: 0
+        token:
+          type: string
+          examples:
+          - 812f66e4-76c3-4e1e-9e85-5c1374f15c6a
+        status:
+          type: string
+          examples:
+          - uploaded
+        user_jwt:
+          type: string
+          examples:
+          - REPLACE_WITH_JWT
+    TemplateColumnOverride:
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          type: string
+        label:
+          type: string
+        data_type:
+          type: string
+        validation_options:
+          type: array
+          items:
+            type: object
+          default: []
+        description:
+          type: string
+        is_custom:
+          type: boolean
+        is_required:
+          type: boolean
+        is_unique:
+          type: boolean
+        is_locked:
+          type: boolean
+          description: Users will not be able to edit data mapped to this column on the Review & finalize step.
+        is_multi_mappable:
+          type: boolean
+          description: Users will be able to map multiple columns to this template column.
+        is_hidden:
+          type: boolean
+          description: This column will be hidden in the Review & finalize step.
+        is_unmappable:
+          type: boolean
+          description: Users will not be able to map to this column.
+        letter_case:
+          type: string
+        min_char_limit:
+          type: integer
+          format: int32
+        max_char_limit:
+          type: integer
+          format: int32
+        delimiter:
+          type: string
+        must_exist:
+          type: boolean
+        default_value:
+          type: string
+        mapping_hints:
+          type: array
+          items:
+            type: string
+          default: []
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

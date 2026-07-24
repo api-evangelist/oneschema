@@ -1,0 +1,429 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Azure Key Vault Accounts API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Azure Key Vault Accounts
+  description: Manage Azure Key Vault account connections
+paths:
+  /v0/azure-key-vault/accounts:
+    post:
+      operationId: create-azure-key-vault-account
+      summary: Create Azure Key Vault Account
+      description: Create a new Azure Key Vault account connection for the organization.
+      parameters: []
+      responses:
+        '201':
+          description: Account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/azure-key-vault-account-resource'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Azure Key Vault Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/azure-key-vault-account-post-request'
+    get:
+      operationId: list-azure-key-vault-accounts
+      summary: List Azure Key Vault Accounts
+      description: Returns a list of Azure Key Vault account connections for the organization.
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/azure-key-vault-account-resource'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Azure Key Vault Accounts
+  /v0/azure-key-vault/accounts/{account-id}:
+    delete:
+      operationId: delete-azure-key-vault-account
+      summary: Delete Azure Key Vault Account
+      description: Delete a specific Azure Key Vault account connection. The account cannot be deleted while it has managed secrets attached.
+      parameters:
+      - name: account-id
+        in: path
+        required: true
+        description: The ID of the Azure Key Vault account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty-response'
+        '400':
+          description: Cannot delete account with managed secrets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Azure Key Vault Accounts
+    get:
+      operationId: get-azure-key-vault-account
+      summary: Get Azure Key Vault Account
+      description: Get a specific Azure Key Vault account connection.
+      parameters:
+      - name: account-id
+        in: path
+        required: true
+        description: The ID of the Azure Key Vault account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/azure-key-vault-account-resource'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Azure Key Vault Accounts
+    patch:
+      operationId: update-azure-key-vault-account
+      summary: Update Azure Key Vault Account
+      description: Update a specific Azure Key Vault account connection.
+      parameters:
+      - name: account-id
+        in: path
+        required: true
+        description: The ID of the Azure Key Vault account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/azure-key-vault-account-resource'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Azure Key Vault Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/azure-key-vault-account-patch-request'
+  /v0/azure-key-vault/accounts/{account-id}/test:
+    post:
+      operationId: test-azure-key-vault-account
+      summary: Test Azure Key Vault Connection
+      description: Test that OneSchema can authenticate via the configured App Registration and retrieve a specific secret. The secret value is not returned.
+      parameters:
+      - name: account-id
+        in: path
+        required: true
+        description: The ID of the Azure Key Vault account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Test result (check the `success` field)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/test-connection-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Azure Key Vault Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/azure-test-connection-request'
+components:
+  schemas:
+    azure-key-vault-account-patch-request:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Azure Key Vault account connection
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: An optional description of the account connection
+        tenant_id:
+          type: string
+          description: The Azure AD (Microsoft Entra) tenant ID
+        client_id:
+          type: string
+          description: The Azure AD application (client) ID
+        client_secret:
+          type: string
+          description: The Azure AD application client secret
+    azure-key-vault-account-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the account connection
+        name:
+          type: string
+          description: The name of the account connection
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: An optional description
+        tenant_id:
+          type: string
+          description: The Azure AD tenant ID
+        client_id:
+          type: string
+          description: The Azure AD application (client) ID
+        has_client_secret:
+          type: boolean
+          description: Whether a client secret is configured (value never exposed)
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        param:
+          type: string
+          description: The parameter that caused the error
+        message:
+          type: string
+          description: A human-readable error message
+        data:
+          type: object
+          description: Additional error context
+    azure-key-vault-account-post-request:
+      type: object
+      required:
+      - name
+      - tenant_id
+      - client_id
+      - client_secret
+      properties:
+        name:
+          type: string
+          description: The name of the Azure Key Vault account connection
+        tenant_id:
+          type: string
+          description: The Azure AD (Microsoft Entra) tenant ID
+        client_id:
+          type: string
+          description: The Azure AD application (client) ID
+        client_secret:
+          type: string
+          description: The Azure AD application client secret
+      allOf:
+      - $ref: '#/components/schemas/azure-key-vault-account-base'
+    azure-key-vault-account-base:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Azure Key Vault account connection
+        tenant_id:
+          type: string
+          description: The Azure AD (Microsoft Entra) tenant ID
+        client_id:
+          type: string
+          description: The Azure AD application (client) ID
+        client_secret:
+          type: string
+          description: The Azure AD application client secret
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: An optional description of the account connection
+    azure-test-connection-request:
+      type: object
+      required:
+      - secret_identifier
+      - vault
+      properties:
+        secret_identifier:
+          type: string
+          description: The identifier of the secret to test retrieval for
+        vault:
+          type: string
+          description: The full Azure Key Vault URL (e.g. https://myvault.vault.azure.net)
+        secret_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: A specific version to test (omit for latest)
+    empty-response:
+      type: object
+      additionalProperties: false
+    test-connection-response:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+          description: Present when success is false
+        error_category:
+          type: string
+          enum:
+          - account
+          - secret
+          - provider
+          description: Broad classification of the failure. "account" means the account credentials or permissions are wrong; "secret" means the secret identifier or version could not be found; "provider" means a transient infrastructure issue. Present when success is false.
+        error_message:
+          type: string
+          description: Present when success is false
+        request_id:
+          type: string
+        transaction_id:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

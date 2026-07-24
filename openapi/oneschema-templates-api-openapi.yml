@@ -1,0 +1,616 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Templates API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Templates
+  description: Template operations
+paths:
+  /v1/templates/{key}/sample-file:
+    delete:
+      operationId: delete-template-sample-file
+      summary: Clear the custom sample file
+      description: Remove the custom sample file previously attached to the template. After removal, the importer falls back to the sample file that OneSchema auto-generates from the template's columns.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: The key of the template whose sample file should be cleared.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Successful response. The primary way to verify the request''s success or failure is the response status code.
+
+            In a future API version this endpoint may not return any response body at all.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+    get:
+      operationId: get-template-sample-file
+      summary: Download the template's sample file
+      description: Download the template's sample file. If a custom file has been uploaded via `POST /v1/templates/{key}/sample-file` it is returned verbatim; otherwise OneSchema generates a sample file on the fly from the template's columns.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: The key of the template to download the sample file from.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Successful response. The response''s `Content-Type` matches the file format: xlsx when no custom file has been uploaded (or an xlsx custom file was uploaded), and the corresponding MIME type for other allowed extensions (xls, xlsm, xlsb, csv).'
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                $ref: '#/components/schemas/BinaryString'
+            application/vnd.ms-excel:
+              schema:
+                $ref: '#/components/schemas/BinaryString'
+            application/vnd.ms-excel.sheet.macroEnabled.12:
+              schema:
+                $ref: '#/components/schemas/BinaryString'
+            application/vnd.ms-excel.sheet.binary.macroEnabled.12:
+              schema:
+                $ref: '#/components/schemas/BinaryString'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/BinaryString'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+    post:
+      operationId: upload-template-sample-file
+      summary: Upload a custom sample file
+      description: 'Upload a file to serve as the downloadable sample file shown to end users in the importer''s upload pane. When set, this file replaces the sample file that OneSchema otherwise auto-generates from the template''s columns. Subject to a 5 MiB file size limit. Accepted extensions: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv`. Requires `multipart/form-data` with a single `file` field.'
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: The key of the template to attach the sample file to.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadTemplateSampleFileResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TemplateSampleFileUploadRequest'
+            encoding:
+              file:
+                contentType: application/octet-stream
+  /v1/templates/{key}:
+    delete:
+      operationId: delete-template
+      summary: Delete a template
+      description: Delete a template.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: The key of the template to delete.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Successful response. The primary way to verify the request''s success or failure is the response status code.
+
+            In a future API version this endpoint may not return any response body at all.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+    get:
+      operationId: export-template
+      summary: Export a template as JSON
+      description: Export a template as JSON.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: The key of the template to export.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+    put:
+      operationId: update-template
+      summary: Update a template
+      description: Update a template.
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: The key of the template to update.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+        description: Template JSON
+  /v1/templates:
+    get:
+      operationId: get-templates
+      summary: List templates
+      description: Returns a list of templates for the organization. Supports pagination via `offset` and `count` parameters.
+      parameters:
+      - name: offset
+        in: query
+        required: false
+        description: The number of items to skip before starting to collect the result set
+        schema:
+          type: integer
+        explode: false
+      - name: count
+        in: query
+        required: false
+        description: The numbers of items to return
+        schema:
+          type: integer
+        explode: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplatesListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+    post:
+      operationId: import-template
+      summary: Import a template as JSON
+      description: Import a template as JSON.
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportTemplateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostTemplateRequest'
+        description: Template JSON
+  /v1/templates/{key}/environment-push:
+    post:
+      operationId: push-template-environment
+      summary: Push template to environment(s)
+      description: Push template to environment(s).
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: The key of the template to push.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Successful response. The primary way to verify the request''s success or failure is the response status code.
+
+            In a future API version this endpoint may not return any response body at all.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentPushRequest'
+        description: Environment push configuration.
+components:
+  schemas:
+    ValidationHook:
+      type: object
+      required:
+      - name
+      - url
+      properties:
+        name:
+          type: string
+          examples:
+          - validation_hook_name
+        url:
+          type: string
+          description: The endpoint for the validation hook.
+          examples:
+          - https://example.com
+        secret_key:
+          type: string
+          description: An optional secret for authenticating the validation hook.
+        column_keys:
+          type: array
+          items:
+            type: string
+          description: The keys for the columns that are being validated by the validation hook.
+          default: []
+        custom_column_keys:
+          type: array
+          items:
+            type: string
+          description: The keys for the custom columns that are being validated by the validation hook.
+          default: []
+        include_unmapped:
+          type: boolean
+          description: Include columns that were not mapped to the template.
+          default: false
+        hook_type:
+          type: string
+          enum:
+          - row
+          - column
+          description: Whether to send the data by row or by column. See [docs](https://docs.oneschema.co/docs/validation-webhook) for more information on hook type.
+          default: row
+        batch_size:
+          type: integer
+          description: The number of rows of data to include in each call; only applicable for validation webhooks with a `row` hook_type.
+          default: 1000
+    TemplateColumn:
+      type: object
+      required:
+      - label
+      - key
+      properties:
+        label:
+          type: string
+          examples:
+          - template_column_name
+        key:
+          type: string
+          examples:
+          - template_column_key
+        data_type:
+          type: string
+          enum:
+          - PICKLIST
+          - NUMBER
+          - PERCENTAGE
+          - DATE_MDY
+          - DATE_DMY
+          - DATE_ISO
+          - DATETIME_ISO
+          - DATETIME_MDYHM
+          - DATETIME_DMYHM
+          - DATE_YMD
+          - DATE_DMMMY
+          - TIME_HHMM
+          - UNIX_TIMESTAMP
+          - URL
+          - DOMAIN
+          - FULL_NAME
+          - EMAIL
+          - UNIT_OF_MEASURE
+          - CURRENCY_CODE
+          - PHONE_NUMBER
+          - US_PHONE_NUMBER_EXT
+          - MONEY
+          - IANA_TIMEZONE
+          - CUSTOM_REGEX
+          - ALPHABETICAL
+          - TEXT
+          - SSN_MASKED
+          - SSN_UNMASKED
+          - FILE_NAME
+          - UUID
+          - JSON
+          - BOOLEAN
+          - UPC_A
+          - EAN
+          - IMEI
+          - ENUM_US_STATE_TERRITORY
+          - ENUM_COUNTRY
+          description: Validation type to check all values in the column.
+        description:
+          type: string
+          description: A free-form description of this template column.
+        must_exist:
+          type: boolean
+          description: Validation to check if a template column does not exist in the spreadsheet.
+          default: false
+        is_required:
+          type: boolean
+          description: Validation to check that a column has no empty values.
+          default: false
+        is_unique:
+          type: boolean
+          description: Validation to check that a column has no duplicate values.
+          default: false
+        is_custom:
+          type: boolean
+          description: Specification for whether the template column is a custom column. Custom Columns can be mapped multiple times and will retain the initial sheet header on import (as opposed to being replaced with the template column name).
+          default: false
+        is_locked:
+          type: boolean
+          description: Users will not be able to edit data mapped to this column on the Review & finalize step.
+          default: false
+        is_multi_mappable:
+          type: boolean
+          description: Users will be able to map multiple columns to this template column.
+          default: false
+        is_hidden:
+          type: boolean
+          description: This column will be hidden in the Review & finalize step.
+          default: false
+        is_unmappable:
+          type: boolean
+          description: Users will not be able to map to this column.
+          default: false
+        validation_options:
+          type: object
+          description: Configuration options specific to the data type. Possible options include an array of picklist options or a format for ENUM_COUNTRY or ENUM_US_STATE_TERRITORY.
+        letter_case:
+          type: string
+          enum:
+          - LETTER_CASE_TITLE
+          - LETTER_CASE_UPPER
+          - LETTER_CASE_LOWER
+          description: Validation to check that a value is upper, lower, or proper cased.
+        min_char_limit:
+          type: integer
+          description: Validation to check that the number of characters is at least min_char_limit.
+        max_char_limit:
+          type: integer
+          description: Validation to check that the number of characters does not exceed max_char_limit.
+        delimiter:
+          type: string
+          description: Column configuration to tell the system that there are multiple values per cell separated by the given delimiter. Example delimiters are semicolon, comma, etc.
+        default_value:
+          type: string
+          description: A default value if uploaded values in the column are empty.
+        mapping_hints:
+          type: array
+          items:
+            type: string
+          description: Array of sheet column names to automatically map this column to.
+    Template:
+      type: object
+      required:
+      - name
+      - template_key
+      - columns
+      properties:
+        name:
+          type: string
+          examples:
+          - template_name
+        template_key:
+          type: string
+          examples:
+          - template_key
+        description:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateColumn'
+          description: The template columns that define the template schema.
+        validation_hooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationHook'
+          description: The webhook definitions for any validation webhooks attached to this template.
+        code_hooks:
+          type: array
+          items:
+            type: string
+          description: Template hooks attached to the template. Note this format will soon be deprecated in favor of the `hooks` field.
+        hooks:
+          allOf:
+          - $ref: '#/components/schemas/TemplateHooksByStage'
+          description: Template hooks attached to the template. Note this format will take precedence over the `code_hooks` field.
+    TemplateSampleFileUploadRequest:
+      type: object
+      properties:
+        file:
+          description: The file that end users will download when the `includeExcelTemplate` importer customization is enabled. Must be one of `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv` and at most 5 MiB.
+          format: binary
+          type: string
+      required:
+      - file
+    EnvironmentPushRequest:
+      type: object
+      required:
+      - environments
+      properties:
+        environments:
+          type: array
+          items:
+            type: string
+          description: Pushing to `Production` will trigger a push to all other environments.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+    UploadTemplateSampleFileResponse:
+      type: object
+      properties:
+        template_key:
+          type: string
+          description: The key of the template the file was attached to.
+        sample_file_name:
+          type: string
+          description: The original filename of the uploaded file.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    ImportTemplateResponse:
+      type: object
+      properties:
+        id:
+          type: number
+    PostTemplateRequest:
+      type: object
+      properties:
+        push_to_environments:
+          type: array
+          items:
+            type: string
+          description: Optional array of environment names that the template is pushed to. If this param is not set, the template will be pushed to all environments by default.
+      allOf:
+      - $ref: '#/components/schemas/Template'
+    TemplatesListResponse:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+    TemplateHookSummary:
+      type: object
+      required:
+      - key
+      - type
+      properties:
+        key:
+          type: string
+          examples:
+          - hook_key
+        type:
+          type: string
+          examples:
+          - code-postmapping
+    BinaryString:
+      type: string
+      format: binary
+    TemplateHooksByStage:
+      type: object
+      properties:
+        preparsing:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+        postupload:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+        postmapping:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+        validation:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

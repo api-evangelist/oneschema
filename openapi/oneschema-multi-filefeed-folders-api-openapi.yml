@@ -1,0 +1,213 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Folders API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Multi FileFeed Folders
+  description: Multi FileFeed Folder operations
+paths:
+  /v0/multi-file-feed-folders:
+    post:
+      summary: Create a Multi FileFeed Folder
+      description: Create a new Multi FileFeed folder.
+      operationId: create-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiFileFeedFolderPostRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: List all Multi FileFeed Folders
+      description: Returns a list of all Multi FileFeed folders for the organization.
+      operationId: list-multi-file-feed-folders
+      tags:
+      - Multi FileFeed Folders
+      parameters:
+      - name: containing_folder_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+        description: Filter folders by the ID of the folder that contains them. Omit to return all folders.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feed-folders/{folder_id}:
+    parameters:
+    - name: folder_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed folder
+    delete:
+      summary: Delete a Multi FileFeed Folder
+      description: Delete a specific Multi FileFeed folder by ID.
+      operationId: delete-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: Get a Multi FileFeed Folder
+      description: Retrieves a single Multi FileFeed folder by ID.
+      operationId: get-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      summary: Update a Multi FileFeed Folder
+      description: Update a specific Multi FileFeed folder by ID. Only the fields that need to be updated should be provided.
+      operationId: update-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiFileFeedFolderRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    MultiFileFeedFolder:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed folder
+        name:
+          type: string
+          description: The name of the Multi FileFeed folder
+        description:
+          type: string
+          nullable: true
+          description: The description of the Multi FileFeed folder
+        color:
+          type: string
+          nullable: true
+          description: Color associated with the folder
+        custom_metadata:
+          type: object
+          nullable: true
+          description: Custom metadata associated with the folder
+        containing_folder_id:
+          type: integer
+          nullable: true
+          description: ID of the folder that contains this folder. Null for root folders.
+    MultiFileFeedFolderRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Multi FileFeed folder
+        description:
+          type: string
+          nullable: true
+          description: The description of the Multi FileFeed folder
+        color:
+          type: string
+          nullable: true
+          description: Color associated with the folder
+        custom_metadata:
+          type: object
+          nullable: true
+          description: Custom metadata associated with the folder
+        containing_folder_id:
+          type: integer
+          nullable: true
+          description: ID of the folder that should contain this folder. Null for root folders.
+    MultiFileFeedFolderPostRequest:
+      allOf:
+      - $ref: '#/components/schemas/MultiFileFeedFolderRequest'
+      required:
+      - name
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

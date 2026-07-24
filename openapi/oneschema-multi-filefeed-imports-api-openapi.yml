@@ -1,0 +1,737 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Imports API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Multi FileFeed Imports
+  description: 'Multi FileFeed Imports operations.
+
+
+    NOTE: These endpoints are served under the `/v0/multi-file-feeds/` path prefix.
+
+    The legacy `/v0/workflows/` prefix is still supported for backward compatibility
+
+    but is deprecated and should not be used for new integrations.
+
+    '
+paths:
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/direct-uploads:
+    post:
+      summary: Create a direct file upload for a Multi FileFeed import
+      description: 'Creates a direct upload for a Multi FileFeed import. Returns an `upload_id`,
+
+        a `presigned_url`, and a `content_type`. The client must PUT the file directly
+
+        to the `presigned_url`, setting the returned `content_type` as the `Content-Type`
+
+        header on the PUT request (the file store will reject the upload otherwise).
+
+
+        The direct upload flow consists of three steps:
+
+        1. **Create** (this endpoint): creates a tracking record and returns the presigned URL, content type, and upload ID.
+
+        2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.
+
+        3. **Submit** (`direct-uploads/{upload_id}/submit`): verifies the upload succeeded and links the file to the import.
+
+        '
+      operationId: create-direct-upload-multi-file-feed-import-file
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                  description: The name of the file to upload (e.g. "data.csv"). Must be unique within this import.
+              required:
+              - filename
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  upload_id:
+                    type: integer
+                    description: Unique identifier for this upload. Pass this to the `direct-uploads/{upload_id}/submit` endpoint after uploading.
+                  presigned_url:
+                    type: string
+                    format: uri
+                    description: Presigned PUT URL for uploading the file directly to the file store. Expires in 1 hour.
+                  content_type:
+                    type: string
+                    description: The Content-Type that MUST be set as the `Content-Type` header on the PUT request to the presigned URL.
+                required:
+                - upload_id
+                - presigned_url
+                - content_type
+        '400':
+          description: Bad request (e.g. duplicate filename, import already submitted, import does not belong to workflow)
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports:
+    post:
+      summary: Create a Multi FileFeed import
+      description: Creates a new Multi FileFeed import for the specified Multi FileFeed
+      operationId: create-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: List Multi FileFeed imports
+      description: 'Returns a list of imports for the specified Multi FileFeed, ordered by
+
+        most recent first. At most 200 imports are returned.
+
+
+        Builder and workflow-called imports are excluded from the results.
+
+        '
+      operationId: list-multi-file-feed-imports
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - initialized
+          - submitted
+          - running
+          - failed_runtime
+          - failed_transforms
+          - failed_validations
+          - run_succeeded
+        description: Optional status filter to return only imports with this status
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/errors:
+    get:
+      summary: Get Multi FileFeed import errors
+      description: 'Returns all errors for a completed Multi FileFeed import as a unified,
+
+        node-centric payload. Each errored node in the workflow is represented as
+
+        an entry in `node_errors` with per-list error details and presigned CSV
+
+        download URLs.
+
+
+        For v1 flowgraphs (import node), errors are synthesized from the
+
+        flowgraph run''s validation_result. For v2 flowgraphs
+
+        (validate-against-template node), errors come directly from the node
+
+        run''s details.
+
+        '
+      operationId: get-multi-file-feed-import-errors
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  node_errors:
+                    type: array
+                    description: 'One entry per errored node in the flowgraph run. The shape of each entry depends on the node type.
+
+                      '
+                    items:
+                      type: object
+                      required:
+                      - node_key
+                      - node_type
+                      - status
+                      properties:
+                        node_key:
+                          type: string
+                          description: UUID key of the flowgraph node
+                        node_type:
+                          type: string
+                          description: 'Node type identifier. Known values include "import" (v1 flowgraphs), "validate-against-template" (v2 flowgraphs), and "join-lists", but other types may appear as the flowgraph engine evolves.
+
+                            '
+                          example: validate-against-template
+                        status:
+                          type: string
+                          enum:
+                          - error
+                        missing_templates:
+                          type: array
+                          description: Templates referenced by the workflow but not found. Present only for import (v1) nodes.
+                          items:
+                            type: object
+                            properties:
+                              template_key:
+                                type: string
+                              label:
+                                type: string
+                        error_reports:
+                          type: array
+                          description: 'Per-file error summaries with optional presigned CSV download URLs. Present for import and validate-against-template nodes. Includes all files processed by the node; files without errors have a null error_report_url.
+
+                            '
+                          items:
+                            type: object
+                            properties:
+                              list_id:
+                                type: integer
+                              template_key:
+                                type: string
+                                description: Key of the template associated with this file
+                              error_row_count:
+                                type: integer
+                                description: Number of rows with validation errors
+                              unmapped_required_column_count:
+                                type: integer
+                                description: Number of required template columns not mapped
+                              error_report_url:
+                                type: string
+                                nullable: true
+                                description: Presigned URL to download a CSV of row-level validation errors. Null when error_row_count is 0.
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Import not yet submitted or still running
+          content:
+            application/json:
+              schema:
+                type: object
+  ? /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/imported-files/{imported_file_id}/download-url
+  : get:
+      summary: Get download URL for imported file
+      description: Retrieves a download URL for a specific imported file
+      operationId: get-multi-file-feed-import-file-download-url
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      - name: imported_file_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the imported file
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: Presigned URL to download the file
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/imported-files:
+    get:
+      summary: Get imported files
+      description: Retrieves the list of imported files for a Multi FileFeed import
+      operationId: get-multi-file-feed-import-files
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ImportedFile'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}:
+    get:
+      summary: Get a Multi FileFeed import
+      description: Retrieves details about a specific Multi FileFeed import
+      operationId: get-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/direct-uploads/{upload_id}/submit:
+    post:
+      summary: Submit a direct file upload for a Multi FileFeed import
+      description: 'Submits (finalizes) a direct upload that was previously created via the
+
+        `direct-uploads` endpoint. The `upload_id` is provided as a path parameter.
+
+        The server verifies that the file was actually uploaded to the file store,
+
+        updates the file size from storage metadata, and creates the record linking
+
+        the file to this import.
+
+
+        The direct upload flow consists of three steps:
+
+        1. **Create** (`direct-uploads`): creates a tracking record and returns the presigned URL, content type, and upload ID.
+
+        2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.
+
+        3. **Submit** (this endpoint): verifies the upload succeeded and links the file to the import.
+
+        '
+      operationId: submit-direct-upload-multi-file-feed-import-file
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      - name: upload_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the direct upload (returned from the create endpoint)
+      responses:
+        '200':
+          description: Successful response — the file has been verified and linked to the import
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request (e.g. invalid upload_id, file not found in store, import already submitted)
+          content:
+            application/json:
+              schema:
+                type: object
+        '409':
+          description: Conflict (e.g. a file with the same name already exists in this import)
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Unprocessable entity (e.g. this upload has already been submitted)
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/submit:
+    post:
+      summary: Submit a Multi FileFeed import
+      description: Submits the Multi FileFeed import for processing
+      operationId: submit-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      - name: prioritize
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: 'When `true`, this import''s run is placed at the front of the processing queue so it is picked up ahead of other Multi FileFeed imports already waiting in the queue. Omit it or send `false` to use the default first-in, first-out ordering.
+
+
+          This option must be enabled for your organization. If it is not enabled and you send `true`, the request is rejected with a `403` and no run is scheduled.
+
+
+          Front-of-queue ordering only affects imports that are still waiting. It does not preempt runs that are already executing and does not bypass concurrency limits, so a prepended run still waits its turn against any active throttle.
+
+          '
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: 'Forbidden — `prioritize=true` was sent but front-of-queue submission is not enabled for the organization.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/upload-from-s3:
+    post:
+      summary: Upload a file from S3 to a Multi FileFeed import
+      description: 'Uploads a file from a customer''s S3 bucket into a Multi FileFeed import.
+
+        The server assumes an IAM role to read the specified S3 object, verifies
+
+        it exists and is within the file size limit, downloads it, and stores it
+
+        as an uploaded file on the import.
+
+
+        The `object_uri` must be a valid S3 URI in the format `s3://bucket/key`.
+
+        The `s3_account_id` identifies which S3 account credentials (role ARN and
+
+        external ID) to use for the STS AssumeRole call. The referenced bucket
+
+        and object must be accessible to the IAM role configured on that S3 account.
+
+
+        Both the object URI and the file basename (derived from the S3 key) must
+
+        be unique within the import. If either already exists, a 409 Conflict is
+
+        returned.
+
+        '
+      operationId: upload-from-s3-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                s3_account_id:
+                  type: integer
+                  description: 'The ID of the S3 account to use for accessing the S3 object.
+
+                    The S3 account stores the IAM role ARN and external ID used
+
+                    for the STS AssumeRole call.
+
+                    '
+                object_uri:
+                  type: string
+                  description: 'The S3 URI of the file to upload (e.g. `s3://bucket/path/to/file.csv`).
+
+                    The bucket and object must be accessible to the IAM role
+
+                    configured on the specified S3 account.
+
+                    '
+              required:
+              - s3_account_id
+              - object_uri
+      responses:
+        '200':
+          description: Successful response. The file has been downloaded from S3 and stored on the import. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may return additional metadata about the uploaded file.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties: false
+        '400':
+          description: 'Bad request. Possible causes: invalid S3 URI format, S3 object not accessible (not found, forbidden, or access denied), object exceeds the file size limit, import already submitted, or import does not belong to the specified Multi FileFeed.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          description: Conflict. A file with the same object URI or the same filename (basename of the S3 key) has already been uploaded to this import.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal server error. A platform-level failure occurred during the S3 upload flow (e.g. STS role assumption failed due to a misconfigured intermediate role, or an unexpected AWS service error). These errors indicate an infrastructure issue rather than a problem with the request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/uploaded-files:
+    post:
+      summary: Upload a file for Multi FileFeed import
+      description: Uploads a file to be used in the Multi FileFeed import
+      operationId: upload-multi-file-feed-import-file
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload
+              required:
+              - file
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    MultiFileFeedImport:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed import
+        multi_file_feed_id:
+          type: integer
+          description: The ID of the associated Multi FileFeed
+        environment:
+          type: string
+          description: The name of the environment
+        status:
+          type: string
+          description: The current status of the Multi FileFeed import
+        created_at:
+          type: string
+          format: date-time
+          description: When the Multi FileFeed import was created
+    ImportedFile:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the imported file
+        name:
+          type: string
+          description: The name of the imported file
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

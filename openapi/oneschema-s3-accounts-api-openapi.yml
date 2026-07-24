@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts S3 Accounts API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: S3 Accounts
+  description: S3 Accounts connected to OneSchema
+paths:
+  /v0/s3-accounts:
+    post:
+      operationId: create-s3-account
+      summary: Create S3 Account
+      description: Create a new S3 Account connected to OneSchema.
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/s3-account-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - S3 Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/s3-account-post-request'
+      x-readme:
+        hidden: true
+    get:
+      operationId: list-s3-accounts
+      summary: List S3 Accounts
+      description: Returns a list of S3 Accounts connected to the organization.
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/s3-account-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - S3 Accounts
+      x-readme:
+        hidden: true
+  /v0/s3-accounts/{s3-account-id}:
+    delete:
+      operationId: delete-s3-account
+      summary: Delete S3 Account
+      description: Delete a specific S3 Account connected to the organization.
+      parameters:
+      - name: s3-account-id
+        in: path
+        required: true
+        description: The ID of the S3 Account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: 'Successful response. The primary way to verify the request''s success or failure is the response status code.
+
+            In a future API version this endpoint may not return any response body at all.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/delete-s3-account-response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - S3 Accounts
+      x-readme:
+        hidden: true
+    get:
+      operationId: get-s3-account
+      summary: Get S3 Account
+      description: Get a specific S3 Account connected to the organization.
+      parameters:
+      - name: s3-account-id
+        in: path
+        required: true
+        description: The ID of the S3 Account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/s3-account-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - S3 Accounts
+      x-readme:
+        hidden: true
+components:
+  schemas:
+    delete-s3-account-response:
+      type: object
+      additionalProperties: false
+    s3-account-post-request:
+      type: object
+      required:
+      - name
+      - role_arn
+      - external_id
+      properties:
+        name:
+          type: string
+          description: The name of the S3 Account
+        role_arn:
+          type: string
+          description: The IAM role ARN used to access S3 buckets via STS AssumeRole
+        external_id:
+          type: string
+          description: The external ID used for secure cross-account role assumption
+    s3-account-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the S3 Account
+        name:
+          type: string
+          description: The name of the S3 Account
+        role_arn:
+          type: string
+          description: The IAM role ARN used to access S3 buckets via STS AssumeRole
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        param:
+          type: string
+          description: The parameter that caused the error
+        message:
+          type: string
+          description: A human-readable error message
+        data:
+          type: object
+          description: Additional error context
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

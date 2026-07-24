@@ -1,0 +1,489 @@
+openapi: 3.1.0
+info:
+  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Commits API
+  version: '1'
+  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Multi FileFeed Commits
+  description: 'Manage immutable commit snapshots of a Multi FileFeed''s transforms.
+
+
+    Commits are created by sending a transforms payload. The endpoint
+
+    atomically replaces the HEAD and creates an immutable snapshot.
+
+    Imports run against the latest commit.
+
+    '
+paths:
+  /v0/multi-file-feeds/{multi_file_feed_id}/commits:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    post:
+      x-readme:
+        hidden: true
+      summary: Create a commit
+      description: 'Creates an immutable commit (snapshot) of the Multi FileFeed''s transforms.
+
+        A request body with the transforms payload is required.
+
+
+        The endpoint atomically:
+
+        1. Checks that the HEAD is not dirty (rejects with 422 if it is)
+
+        2. Replaces all nodes on the HEAD with the supplied payload
+
+        3. Creates an immutable commit snapshot
+
+
+        The dirty check prevents accidentally overwriting in-progress UI edits.
+
+        If the HEAD has uncommitted changes, the API consumer must coordinate
+
+        with the UI user before proceeding.
+
+
+        This is the primary endpoint for programmatic transform management.
+
+        Imports run against the latest commit. Immediately after this call,
+
+        the new commit becomes the latest commit unless another commit is
+
+        created before `POST /imports`.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: create-multi-file-feed-commit
+      tags:
+      - Multi FileFeed Commits
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: 'Portable flowgraph payload. Uses portable identifiers
+
+                (template_key, workflow_name, code_action_key) instead of
+
+                internal numeric IDs.
+
+                '
+              properties:
+                flowgraph:
+                  type: object
+                  properties:
+                    nodes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          node_key:
+                            type: string
+                          type:
+                            type: string
+                          config:
+                            type: object
+                          position_x:
+                            type: number
+                          position_y:
+                            type: number
+                          pipeline:
+                            type: object
+                            nullable: true
+                    edges:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          from_node_key:
+                            type: string
+                          to_node_key:
+                            type: string
+      responses:
+        '200':
+          description: Successful response — returns the created commit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commit_id:
+                    type: integer
+                    description: Unique identifier of the created commit
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the commit was created (ISO 8601)
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export of the commit
+                    properties:
+                      version:
+                        type: integer
+                      exported_at:
+                        type: string
+                        format: date-time
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                required:
+                - commit_id
+                - created_at
+                - transforms
+        '400':
+          description: Bad request (e.g. request body is not valid JSON or JSON is not an object)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: 'Unprocessable entity. Possible reasons:
+
+            - HEAD flowgraph has uncommitted changes (dirty)
+
+            - Import validation failed
+
+            - Unresolved template/workflow references
+
+            - Workflow has no recurring flowgraph
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Human-readable error message
+    get:
+      x-readme:
+        hidden: true
+      summary: List commits
+      description: 'Returns a paginated list of commits (immutable snapshots) for the
+
+        Multi FileFeed, ordered newest-first.
+
+
+        Each entry contains the commit ID and creation timestamp.
+
+        To retrieve a commit''s full transforms, use
+
+        `GET /commits/{commit_id}`.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: list-multi-file-feed-commits
+      tags:
+      - Multi FileFeed Commits
+      parameters:
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        description: The number of items to skip before starting to collect the result set
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        description: The number of items to return (default 20, max 100)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commits:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        commit_id:
+                          type: integer
+                          description: Unique identifier of the commit
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: When the commit was created (ISO 8601)
+                      required:
+                      - commit_id
+                      - created_at
+                  total_count:
+                    type: integer
+                    description: Total number of commits (before pagination)
+                required:
+                - commits
+                - total_count
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: Unprocessable entity (e.g. workflow has no recurring flowgraph)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/commits/{commit_id}:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    - name: commit_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the commit
+    get:
+      x-readme:
+        hidden: true
+      summary: Get a commit
+      description: 'Returns the transforms for a specific commit. The commit must
+
+        belong to this Multi FileFeed''s recurring flowgraph.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: get-multi-file-feed-commit
+      tags:
+      - Multi FileFeed Commits
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commit_id:
+                    type: integer
+                    description: Unique identifier of the commit
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the commit was created (ISO 8601)
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export of the commit
+                    properties:
+                      version:
+                        type: integer
+                      exported_at:
+                        type: string
+                        format: date-time
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                required:
+                - commit_id
+                - created_at
+                - transforms
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: 'Unprocessable entity. Possible reasons:
+
+            - Commit not found for this workflow
+
+            - Workflow has no recurring flowgraph
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/commits/{commit_id}/revert:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    - name: commit_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the commit to revert to
+    post:
+      x-readme:
+        hidden: true
+      summary: Revert to a commit
+      description: 'Reverts the HEAD flowgraph to the state of a specific commit,
+
+        then creates a new commit from the reverted HEAD.
+
+
+        The target commit must belong to this Multi FileFeed''s recurring
+
+        flowgraph. The response contains the newly created commit (not
+
+        the original target commit).
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: revert-multi-file-feed-commit
+      tags:
+      - Multi FileFeed Commits
+      responses:
+        '200':
+          description: Successful response — returns the newly created commit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commit_id:
+                    type: integer
+                    description: Unique identifier of the newly created commit
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the new commit was created (ISO 8601)
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export of the new commit
+                    properties:
+                      version:
+                        type: integer
+                      exported_at:
+                        type: string
+                        format: date-time
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                required:
+                - commit_id
+                - created_at
+                - transforms
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: 'Unprocessable entity. Possible reasons:
+
+            - HEAD flowgraph has uncommitted changes (dirty)
+
+            - Commit not found for this workflow
+
+            - Workflow has no recurring flowgraph
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
