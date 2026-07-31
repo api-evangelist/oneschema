@@ -1,0 +1,84 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/*.yml (path nesting + id-reference fields)
+entities:
+- template
+- template-hook
+- embed
+- sheet
+- workspace
+- importer-webhook
+- event-webhook
+- multi-filefeed
+- multi-filefeed-folder
+- multi-filefeed-import
+- filefeed
+- filefeed-folder
+- filefeed-import
+- s3-account
+- sftp-account
+- aws-secrets-manager-account
+- aws-managed-secret
+- azure-key-vault-account
+- azure-managed-secret
+relationships:
+- from: embed
+  type: belongs_to
+  to: template
+  via: template_key
+- from: sheet
+  type: belongs_to
+  to: workspace
+  via: workspace_id
+- from: sheet
+  type: belongs_to
+  to: template
+  via: template_key
+- from: workspace
+  type: has_many
+  to: sheet
+  via: sheets
+- from: template
+  type: has_many
+  to: template-hook
+  via: template_hooks
+- from: multi-filefeed
+  type: belongs_to
+  to: multi-filefeed-folder
+  via: folder_id
+- from: multi-filefeed
+  type: has_many
+  to: multi-filefeed-import
+  via: imports
+- from: multi-filefeed
+  type: has_many
+  to: template
+  via: templates
+- from: multi-filefeed
+  type: has_one
+  to: s3-account
+  via: source/destination
+- from: multi-filefeed
+  type: has_one
+  to: sftp-account
+  via: source/destination
+- from: multi-filefeed
+  type: has_many
+  to: event-webhook
+  via: event_webhooks
+- from: filefeed
+  type: belongs_to
+  to: filefeed-folder
+  via: folder_id
+- from: filefeed
+  type: has_many
+  to: filefeed-import
+  via: imports
+- from: aws-managed-secret
+  type: belongs_to
+  to: aws-secrets-manager-account
+  via: account_id
+- from: azure-managed-secret
+  type: belongs_to
+  to: azure-key-vault-account
+  via: account_id

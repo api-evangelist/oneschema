@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for OneSchema Importer Webhooks API
+  version: 1.0.0
+extends: openapi/oneschema-importer-webhooks-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-apievangelist-source: https://docs.oneschema.co/reference (per-operation OpenAPI blocks, harvested)
+    x-api-evangelist-provider: oneschema

@@ -1,0 +1,564 @@
+{
+  "info": {
+    "_postman_id": "37adde09-5ae6-4f17-8689-2cc39425730a",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Importer Embed Events API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:53.000Z",
+    "updatedAt": "2026-07-28T02:25:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37adde09-5ae6-4f17-8689-2cc39425730a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "embeds",
+          "item": [
+            {
+              "name": "{embed_id}",
+              "item": [
+                {
+                  "name": "events",
+                  "item": [
+                    {
+                      "name": "{embed_event_id}",
+                      "item": [
+                        {
+                          "name": "file-url",
+                          "item": [
+                            {
+                              "name": "Get file URL for an embed event",
+                              "id": "ee98d2f0-648f-49b1-a164-3c04a4130e17",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/embeds/:embed_id/events/:embed_event_id/file-url?file_format=parquet",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "embeds",
+                                    ":embed_id",
+                                    "events",
+                                    ":embed_event_id",
+                                    "file-url"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "file_format",
+                                      "value": "parquet"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "47a0556b-7ccc-416d-bdb3-6eb9a82ecdd3",
+                                      "key": "embed_id"
+                                    },
+                                    {
+                                      "id": "2dc3eaae-8a0a-40d9-9fdf-2fc51a86757c",
+                                      "key": "embed_event_id"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a pre-signed URL for the specified embed event file."
+                              },
+                              "response": [
+                                {
+                                  "id": "93b06255-fade-4521-866f-76b6c2caea78",
+                                  "name": "200",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/embeds/:embed_id/events/:embed_event_id/file-url?file_format=parquet",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "embeds",
+                                        ":embed_id",
+                                        "events",
+                                        ":embed_event_id",
+                                        "file-url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) ",
+                                          "key": "file_format",
+                                          "value": "parquet"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "embed_id"
+                                        },
+                                        {
+                                          "key": "embed_event_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"url\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:25:54.000Z",
+                                  "updatedAt": "2026-07-28T02:25:54.000Z",
+                                  "uid": "35240-93b06255-fade-4521-866f-76b6c2caea78"
+                                },
+                                {
+                                  "id": "62d16a15-6e3c-4a4e-9767-dd3b849a8132",
+                                  "name": "422",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/embeds/:embed_id/events/:embed_event_id/file-url?file_format=parquet",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "embeds",
+                                        ":embed_id",
+                                        "events",
+                                        ":embed_event_id",
+                                        "file-url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) ",
+                                          "key": "file_format",
+                                          "value": "parquet"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "embed_id"
+                                        },
+                                        {
+                                          "key": "embed_event_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:25:54.000Z",
+                                  "updatedAt": "2026-07-28T02:25:54.000Z",
+                                  "uid": "35240-62d16a15-6e3c-4a4e-9767-dd3b849a8132"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:25:54.000Z",
+                              "updatedAt": "2026-07-28T02:25:54.000Z",
+                              "uid": "35240-ee98d2f0-648f-49b1-a164-3c04a4130e17"
+                            }
+                          ],
+                          "id": "b62e5636-b461-4151-a2cc-8e0e6e1dc3e2",
+                          "createdAt": "2026-07-28T02:25:54.000Z",
+                          "updatedAt": "2026-07-28T02:25:54.000Z",
+                          "uid": "35240-b62e5636-b461-4151-a2cc-8e0e6e1dc3e2"
+                        },
+                        {
+                          "name": "Get an embed event",
+                          "id": "57fbebe6-df3b-46d0-bcbc-b41965c9da5b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/events/:embed_event_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "events",
+                                ":embed_event_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a6deeb5e-9194-474f-935b-04c0309f312d",
+                                  "key": "embed_id"
+                                },
+                                {
+                                  "id": "499e2a30-ae57-4e7c-87a8-dc927eb1d8aa",
+                                  "key": "embed_event_id"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve a single event that occurred for an embed."
+                          },
+                          "response": [
+                            {
+                              "id": "b5eb807e-b6cb-4f77-a3b2-b8c2f0be11fc",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/embeds/:embed_id/events/:embed_event_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "embeds",
+                                    ":embed_id",
+                                    "events",
+                                    ":embed_event_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "embed_id"
+                                    },
+                                    {
+                                      "key": "embed_event_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"uuid\": \"<string>\",\n  \"event_type\": \"header_selected\",\n  \"trigger_type\": \"user\",\n  \"created_at\": \"<double>\",\n  \"has_snapshot\": false,\n  \"id\": \"<integer>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:25:54.000Z",
+                              "updatedAt": "2026-07-28T02:25:54.000Z",
+                              "uid": "35240-b5eb807e-b6cb-4f77-a3b2-b8c2f0be11fc"
+                            },
+                            {
+                              "id": "c974a1e9-1819-44e4-8a6f-9b2562477ce7",
+                              "name": "422",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/embeds/:embed_id/events/:embed_event_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "embeds",
+                                    ":embed_id",
+                                    "events",
+                                    ":embed_event_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "embed_id"
+                                    },
+                                    {
+                                      "key": "embed_event_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:54.000Z",
+                              "updatedAt": "2026-07-28T02:25:54.000Z",
+                              "uid": "35240-c974a1e9-1819-44e4-8a6f-9b2562477ce7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:54.000Z",
+                          "updatedAt": "2026-07-28T02:25:54.000Z",
+                          "uid": "35240-57fbebe6-df3b-46d0-bcbc-b41965c9da5b"
+                        }
+                      ],
+                      "id": "a76bb73c-8516-4349-8720-1ea6e0320493",
+                      "createdAt": "2026-07-28T02:25:54.000Z",
+                      "updatedAt": "2026-07-28T02:25:54.000Z",
+                      "uid": "35240-a76bb73c-8516-4349-8720-1ea6e0320493"
+                    },
+                    {
+                      "name": "List events for an embed",
+                      "id": "934bfb35-353d-4c7e-9d63-f785881ac1fe",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f4f575f8-fdb6-4291-8de7-e58bb2476af0",
+                              "key": "embed_id"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of events that occurred for the specified embed session."
+                      },
+                      "response": [
+                        {
+                          "id": "b821476a-f8b6-4af6-8c8a-4ce4b2380c2a",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/events",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "events"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"event_type\": \"header_selected\",\n    \"trigger_type\": \"user\",\n    \"created_at\": \"<double>\",\n    \"has_snapshot\": false,\n    \"id\": \"<integer>\",\n    \"data\": {}\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"event_type\": \"import_submitted\",\n    \"trigger_type\": \"api\",\n    \"created_at\": \"<double>\",\n    \"has_snapshot\": false,\n    \"id\": \"<integer>\",\n    \"data\": {}\n  }\n]",
+                          "createdAt": "2026-07-28T02:25:54.000Z",
+                          "updatedAt": "2026-07-28T02:25:54.000Z",
+                          "uid": "35240-b821476a-f8b6-4af6-8c8a-4ce4b2380c2a"
+                        },
+                        {
+                          "id": "2a375272-913a-4894-8d80-07b292319290",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/events",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "events"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:54.000Z",
+                          "updatedAt": "2026-07-28T02:25:54.000Z",
+                          "uid": "35240-2a375272-913a-4894-8d80-07b292319290"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:54.000Z",
+                      "updatedAt": "2026-07-28T02:25:54.000Z",
+                      "uid": "35240-934bfb35-353d-4c7e-9d63-f785881ac1fe"
+                    }
+                  ],
+                  "id": "c2d90636-1857-418e-9359-1f1440681b0e",
+                  "createdAt": "2026-07-28T02:25:54.000Z",
+                  "updatedAt": "2026-07-28T02:25:54.000Z",
+                  "uid": "35240-c2d90636-1857-418e-9359-1f1440681b0e"
+                }
+              ],
+              "id": "3b351e37-7884-4689-bdbf-a87253e547d5",
+              "createdAt": "2026-07-28T02:25:54.000Z",
+              "updatedAt": "2026-07-28T02:25:54.000Z",
+              "uid": "35240-3b351e37-7884-4689-bdbf-a87253e547d5"
+            }
+          ],
+          "id": "d8a2b84e-e897-46ce-a44e-8b0e4bcc1a20",
+          "createdAt": "2026-07-28T02:25:54.000Z",
+          "updatedAt": "2026-07-28T02:25:54.000Z",
+          "uid": "35240-d8a2b84e-e897-46ce-a44e-8b0e4bcc1a20"
+        }
+      ],
+      "id": "bec9af20-ff72-4a5b-bad8-b845969258b9",
+      "createdAt": "2026-07-28T02:25:54.000Z",
+      "updatedAt": "2026-07-28T02:25:54.000Z",
+      "uid": "35240-bec9af20-ff72-4a5b-bad8-b845969258b9"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

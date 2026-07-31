@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.oneschema.co/docs/javascript, https://github.com/oneschema/sdk
+note: OneSchema ships an embeddable, iframe-based Importer UI (embed.oneschema.co) with framework wrappers.
+  Distinct from server-side SDKs.
+families:
+- family: Embeddable Importer
+  surface: iframe (embed.oneschema.co)
+  loaders:
+  - framework: JavaScript
+    package: '@oneschema/importer'
+    docs: https://docs.oneschema.co/docs/javascript
+  - framework: React
+    package: '@oneschema/react'
+    docs: https://docs.oneschema.co/docs/react
+  - framework: Angular
+    package: '@oneschema/angular'
+    docs: https://docs.oneschema.co/docs/angular
+  - framework: Vue
+    package: '@oneschema/vue'
+    docs: https://docs.oneschema.co/docs/vue
+  features:
+  - guided upload/mapping/validation panes
+  - custom branding suite
+  - localization/i18n
+  - 1-Click mode
+  - fullscreen or inline iframe
+  - per-customer customization overrides

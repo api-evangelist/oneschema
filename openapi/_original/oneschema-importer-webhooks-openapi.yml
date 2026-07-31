@@ -1,0 +1,380 @@
+openapi: 3.1.0
+info:
+  title: OneSchema Importer Webhooks API
+  version: '1'
+  description: Create, list, read, update, and delete Importer Webhooks that push validated data from
+    OneSchema into your database.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Importer Webhooks
+  description: Importer Webhook operations
+paths:
+  /v1/importer-webhooks:
+    post:
+      operationId: create-importer-webhook
+      summary: Create Importer Webhook
+      description: Create a new Importer Webhook for the organization.
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importer-webhook-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Importer Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/importer-webhook-create-request'
+      x-readme:
+        hidden: true
+    get:
+      operationId: list-importer-webhooks
+      summary: List Importer Webhooks
+      description: Returns the list of Importer Webhooks for the organization.
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list-importer-webhooks-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Importer Webhooks
+      x-readme:
+        hidden: true
+  /v1/importer-webhooks/{webhook_key}:
+    delete:
+      operationId: delete-importer-webhook
+      summary: Delete Importer Webhook
+      description: Delete an Importer Webhook by its `webhook_key`.
+      parameters:
+      - name: webhook_key
+        in: path
+        required: true
+        description: The org-unique key identifying the webhook.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/delete-importer-webhook-response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Importer Webhooks
+      x-readme:
+        hidden: true
+    get:
+      operationId: get-importer-webhook
+      summary: Get Importer Webhook
+      description: Returns a single Importer Webhook by its `webhook_key`.
+      parameters:
+      - name: webhook_key
+        in: path
+        required: true
+        description: The org-unique key identifying the webhook.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importer-webhook-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Importer Webhooks
+      x-readme:
+        hidden: true
+    put:
+      operationId: update-importer-webhook
+      summary: Update Importer Webhook
+      description: Update fields on an Importer Webhook. All body fields are optional; only provided fields
+        are updated.
+      parameters:
+      - name: webhook_key
+        in: path
+        required: true
+        description: The org-unique key identifying the webhook.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importer-webhook-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '401':
+          description: Unauthorized (missing or invalid API key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - Importer Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/importer-webhook-update-request'
+      x-readme:
+        hidden: true
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        param:
+          type: string
+          description: The parameter that caused the error.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
+    importer-webhook-create-request:
+      type: object
+      required:
+      - url
+      - webhook_key
+      - type
+      properties:
+        url:
+          type: string
+          description: The URL that the importer will POST to.
+        webhook_key:
+          type: string
+          description: A unique (per-org) key identifying this webhook.
+        type:
+          type: string
+          enum:
+          - batch
+          - metadata
+          description: The delivery mode for the webhook. `batch` delivers rows in batches; `metadata`
+            delivers only the import metadata.
+        auth_type:
+          anyOf:
+          - type: string
+            enum:
+            - basic
+            - bearer_user_jwt
+          - type: 'null'
+          description: The authentication mode for requests to the webhook URL. `basic` requires a `secret_key`.
+            `bearer_user_jwt` attaches the end-user JWT as a bearer token. Omit (`null`) for unauthenticated
+            delivery.
+        secret_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Required when `auth_type` is `basic`. Ignored for other auth types.
+        batch_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
+    importer-webhook-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the importer webhook.
+        webhook_key:
+          type: string
+          description: The org-unique key identifying this webhook.
+        type:
+          type: string
+          enum:
+          - batch
+          - metadata
+          description: The delivery mode for the webhook. `batch` delivers rows in batches; `metadata`
+            delivers only the import metadata.
+        url:
+          type: string
+          description: The URL that the importer will POST to.
+        auth_type:
+          anyOf:
+          - type: string
+            enum:
+            - basic
+            - bearer_user_jwt
+          - type: 'null'
+          description: The authentication mode for requests to the webhook URL. `basic` requires a `secret_key`.
+            `bearer_user_jwt` attaches the end-user JWT as a bearer token. Omit (`null`) for unauthenticated
+            delivery.
+        secret_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The shared secret used for `basic` auth. Only returned to admin and developer API
+            key users.
+        batch_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
+    delete-importer-webhook-response:
+      type: object
+      properties:
+        success:
+          type: boolean
+    list-importer-webhooks-response:
+      type: object
+      properties:
+        importer_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/importer-webhook-resource'
+    importer-webhook-update-request:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The URL that the importer will POST to.
+        type:
+          type: string
+          enum:
+          - batch
+          - metadata
+          description: The delivery mode for the webhook. `batch` delivers rows in batches; `metadata`
+            delivers only the import metadata.
+        new_webhook_key:
+          type: string
+          description: Optional new value for `webhook_key`. The path parameter identifies the existing
+            webhook; this field renames it.
+        auth_type:
+          anyOf:
+          - type: string
+            enum:
+            - basic
+            - bearer_user_jwt
+          - type: 'null'
+          description: The authentication mode for requests to the webhook URL. `basic` requires a `secret_key`.
+            `bearer_user_jwt` attaches the end-user JWT as a bearer token. Omit (`null`) for unauthenticated
+            delivery.
+        secret_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The shared secret used for `basic` auth. Cleared automatically if `auth_type` is
+            changed to a non-`basic` value.
+        batch_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+      description: All fields are optional. Only fields provided in the request body are updated; unspecified
+        fields retain their existing values.

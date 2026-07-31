@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.oneschema.co/changelog
+scheme: dated-entries
+url: https://docs.oneschema.co/changelog
+entries:
+- title: Easier Conversation Reset and Input Updates for the File Agent Node
+  type: improvement
+  url: https://docs.oneschema.co/changelog/easier-conversation-reset-and-input-updates-for-the-file-agent-node
+- title: Restrict Accepted File Types in the Importer
+  type: addition
+  url: https://docs.oneschema.co/changelog/restrict-accepted-file-types-in-the-importer
+- title: Manage Transforms via API
+  type: addition
+  url: https://docs.oneschema.co/changelog/manage-transforms-via-api
+- title: Search and Filter Transforms in the Builder
+  type: improvement
+  url: https://docs.oneschema.co/changelog/search-and-filter-transforms-in-the-builder
+- title: Prioritize Time-Sensitive Imports
+  type: improvement
+  url: https://docs.oneschema.co/changelog/prioritize-time-sensitive-imports

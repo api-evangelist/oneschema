@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: derived
+format: custom
+source: openapi/*.yml (4xx/5xx responses)
+envelope:
+  schema: ErrorResponse
+  content_type: application/json
+  note: Custom JSON error envelope; not RFC 9457 application/problem+json.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Malformed request body or invalid parameters.
+  remediation: Validate request payload against the endpoint schema.
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid X-API-KEY (or, for embeds, invalid JWT).
+  remediation: Send a valid API key in the X-API-KEY header; regenerate if revoked.
+- status: 403
+  title: Forbidden
+  meaning: Authenticated but not permitted for this resource/organization.
+  remediation: Confirm the API key belongs to the org owning the resource.
+- status: 404
+  title: Not Found
+  meaning: Resource (embed, template, sheet, feed, account) does not exist.
+  remediation: Verify the resource key/id.
+- status: 409
+  title: Conflict
+  meaning: Duplicate or optimistic-lock conflict (e.g. non-unique object_uri/basename on Multi FileFeed
+    import, or stale last_known_commit_id on transforms).
+  remediation: Use a unique file identifier or re-fetch the latest commit id before retrying.
+- status: 422
+  title: Unprocessable Entity
+  meaning: Semantic validation failed (e.g. committing while HEAD is dirty, invalid transform graph).
+  remediation: Resolve the described validation condition and retry.
+- status: 500
+  title: Internal Server Error
+  meaning: Unexpected server-side error.
+  remediation: Retry with backoff; contact support@oneschema.co if persistent.

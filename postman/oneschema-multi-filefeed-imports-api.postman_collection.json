@@ -1,0 +1,2476 @@
+{
+  "info": {
+    "_postman_id": "2c3df000-6c48-4e67-b08d-cf64ab627e33",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Imports API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:26:16.000Z",
+    "updatedAt": "2026-07-28T02:26:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2c3df000-6c48-4e67-b08d-cf64ab627e33"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "multi-file-feeds",
+          "item": [
+            {
+              "name": "{multi_file_feed_id}",
+              "item": [
+                {
+                  "name": "imports",
+                  "item": [
+                    {
+                      "name": "{multi_file_feed_import_id}",
+                      "item": [
+                        {
+                          "name": "direct-uploads",
+                          "item": [
+                            {
+                              "name": "{upload_id}",
+                              "item": [
+                                {
+                                  "name": "submit",
+                                  "item": [
+                                    {
+                                      "name": "Submit a direct file upload for a Multi FileFeed import",
+                                      "id": "2dd0c706-1f3d-4d52-9cb1-d00994b65a30",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads/:upload_id/submit",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v0",
+                                            "multi-file-feeds",
+                                            ":multi_file_feed_id",
+                                            "imports",
+                                            ":multi_file_feed_import_id",
+                                            "direct-uploads",
+                                            ":upload_id",
+                                            "submit"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "d0102e8f-e20a-4b8d-afe4-0786091f04ae",
+                                              "key": "multi_file_feed_id",
+                                              "value": "<integer>",
+                                              "description": "(Required) ID of the Multi FileFeed"
+                                            },
+                                            {
+                                              "id": "99843310-2c8b-4b25-a1c3-ce3b71d4202f",
+                                              "key": "multi_file_feed_import_id",
+                                              "value": "<integer>",
+                                              "description": "(Required) ID of the Multi FileFeed import"
+                                            },
+                                            {
+                                              "id": "ed39ca4e-702c-42a4-bbc8-b1fd05e9b184",
+                                              "key": "upload_id",
+                                              "value": "<integer>",
+                                              "description": "(Required) ID of the direct upload (returned from the create endpoint)"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Submits (finalizes) a direct upload that was previously created via the\n`direct-uploads` endpoint. The `upload_id` is provided as a path parameter.\nThe server verifies that the file was actually uploaded to the file store,\nupdates the file size from storage metadata, and creates the record linking\nthe file to this import.\n\nThe direct upload flow consists of three steps:\n1. **Create** (`direct-uploads`): creates a tracking record and returns the presigned URL, content type, and upload ID.\n2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.\n3. **Submit** (this endpoint): verifies the upload succeeded and links the file to the import.\n"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "e2c65017-74b4-4733-b332-73cafd5083b7",
+                                          "name": "Successful response \u2014 the file has been verified and linked to the import",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-API-KEY",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads/:upload_id/submit",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v0",
+                                                "multi-file-feeds",
+                                                ":multi_file_feed_id",
+                                                "imports",
+                                                ":multi_file_feed_import_id",
+                                                "direct-uploads",
+                                                ":upload_id",
+                                                "submit"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "multi_file_feed_id"
+                                                },
+                                                {
+                                                  "key": "multi_file_feed_import_id"
+                                                },
+                                                {
+                                                  "key": "upload_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-07-28T02:26:16.000Z",
+                                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                                          "uid": "35240-e2c65017-74b4-4733-b332-73cafd5083b7"
+                                        },
+                                        {
+                                          "id": "b0dc389a-b3b7-4d88-a9fe-8076b4fd5ef1",
+                                          "name": "Bad request (e.g. invalid upload_id, file not found in store, import already submitted)",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-API-KEY",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads/:upload_id/submit",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v0",
+                                                "multi-file-feeds",
+                                                ":multi_file_feed_id",
+                                                "imports",
+                                                ":multi_file_feed_import_id",
+                                                "direct-uploads",
+                                                ":upload_id",
+                                                "submit"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "multi_file_feed_id"
+                                                },
+                                                {
+                                                  "key": "multi_file_feed_import_id"
+                                                },
+                                                {
+                                                  "key": "upload_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-07-28T02:26:16.000Z",
+                                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                                          "uid": "35240-b0dc389a-b3b7-4d88-a9fe-8076b4fd5ef1"
+                                        },
+                                        {
+                                          "id": "697ef05e-3da4-4538-a27e-4e65c42f9a6d",
+                                          "name": "Conflict (e.g. a file with the same name already exists in this import)",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-API-KEY",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads/:upload_id/submit",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v0",
+                                                "multi-file-feeds",
+                                                ":multi_file_feed_id",
+                                                "imports",
+                                                ":multi_file_feed_import_id",
+                                                "direct-uploads",
+                                                ":upload_id",
+                                                "submit"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "multi_file_feed_id"
+                                                },
+                                                {
+                                                  "key": "multi_file_feed_import_id"
+                                                },
+                                                {
+                                                  "key": "upload_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Conflict",
+                                          "code": 409,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-07-28T02:26:16.000Z",
+                                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                                          "uid": "35240-697ef05e-3da4-4538-a27e-4e65c42f9a6d"
+                                        },
+                                        {
+                                          "id": "d65048b3-5d78-4443-93ee-1f1dce4d6cc6",
+                                          "name": "Unprocessable entity (e.g. this upload has already been submitted)",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-API-KEY",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads/:upload_id/submit",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v0",
+                                                "multi-file-feeds",
+                                                ":multi_file_feed_id",
+                                                "imports",
+                                                ":multi_file_feed_import_id",
+                                                "direct-uploads",
+                                                ":upload_id",
+                                                "submit"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "multi_file_feed_id"
+                                                },
+                                                {
+                                                  "key": "multi_file_feed_import_id"
+                                                },
+                                                {
+                                                  "key": "upload_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                          "code": 422,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-07-28T02:26:16.000Z",
+                                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                                          "uid": "35240-d65048b3-5d78-4443-93ee-1f1dce4d6cc6"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:26:16.000Z",
+                                      "updatedAt": "2026-07-28T02:26:16.000Z",
+                                      "uid": "35240-2dd0c706-1f3d-4d52-9cb1-d00994b65a30"
+                                    }
+                                  ],
+                                  "id": "5bdebf00-e670-411e-9593-b7bbbff0dc41",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-5bdebf00-e670-411e-9593-b7bbbff0dc41"
+                                }
+                              ],
+                              "id": "8332f26a-e25b-445e-bdf9-58c51e01f0b7",
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-8332f26a-e25b-445e-bdf9-58c51e01f0b7"
+                            },
+                            {
+                              "name": "Create a direct file upload for a Multi FileFeed import",
+                              "id": "201b5a61-174e-4eaa-ab83-3fcf5197f17b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"filename\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id",
+                                    "direct-uploads"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f4546664-0a52-40ad-994d-325da7fc729f",
+                                      "key": "multi_file_feed_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed"
+                                    },
+                                    {
+                                      "id": "ae70409d-9975-4512-b1d2-5ec5a34b7f9e",
+                                      "key": "multi_file_feed_import_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed import"
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a direct upload for a Multi FileFeed import. Returns an `upload_id`,\na `presigned_url`, and a `content_type`. The client must PUT the file directly\nto the `presigned_url`, setting the returned `content_type` as the `Content-Type`\nheader on the PUT request (the file store will reject the upload otherwise).\n\nThe direct upload flow consists of three steps:\n1. **Create** (this endpoint): creates a tracking record and returns the presigned URL, content type, and upload ID.\n2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.\n3. **Submit** (`direct-uploads/{upload_id}/submit`): verifies the upload succeeded and links the file to the import.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "c87381b0-a908-463d-84c5-2e2fa38ce5c7",
+                                  "name": "Successful response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"filename\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "direct-uploads"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"upload_id\": \"<integer>\",\n  \"presigned_url\": \"<uri>\",\n  \"content_type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-c87381b0-a908-463d-84c5-2e2fa38ce5c7"
+                                },
+                                {
+                                  "id": "33628d86-1c56-46a7-aef1-b2cdc74acecb",
+                                  "name": "Bad request (e.g. duplicate filename, import already submitted, import does not belong to workflow)",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"filename\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "direct-uploads"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-33628d86-1c56-46a7-aef1-b2cdc74acecb"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-201b5a61-174e-4eaa-ab83-3fcf5197f17b"
+                            }
+                          ],
+                          "id": "6dcc540f-012e-4b2f-95d0-4e6152dd1f93",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-6dcc540f-012e-4b2f-95d0-4e6152dd1f93"
+                        },
+                        {
+                          "name": "errors",
+                          "item": [
+                            {
+                              "name": "Get Multi FileFeed import errors",
+                              "id": "c22a3642-215f-4708-b9b6-c0987468e0ae",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/errors",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id",
+                                    "errors"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2a8e7703-902d-497a-b8de-b1542c9d3841",
+                                      "key": "multi_file_feed_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed"
+                                    },
+                                    {
+                                      "id": "5e28b865-5cf7-4aae-8530-f27b55d45e74",
+                                      "key": "multi_file_feed_import_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed import"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns all errors for a completed Multi FileFeed import as a unified,\nnode-centric payload. Each errored node in the workflow is represented as\nan entry in `node_errors` with per-list error details and presigned CSV\ndownload URLs.\n\nFor v1 flowgraphs (import node), errors are synthesized from the\nflowgraph run's validation_result. For v2 flowgraphs\n(validate-against-template node), errors come directly from the node\nrun's details.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "eecc5668-3c25-4ae9-893d-9ad45edadb14",
+                                  "name": "Successful response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/errors",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "errors"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"node_errors\": [\n    {\n      \"node_key\": \"<string>\",\n      \"node_type\": \"<string>\",\n      \"status\": \"error\",\n      \"missing_templates\": [\n        {\n          \"template_key\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"template_key\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ],\n      \"error_reports\": [\n        {\n          \"list_id\": \"<integer>\",\n          \"template_key\": \"<string>\",\n          \"error_row_count\": \"<integer>\",\n          \"unmapped_required_column_count\": \"<integer>\",\n          \"error_report_url\": \"<string>\"\n        },\n        {\n          \"list_id\": \"<integer>\",\n          \"template_key\": \"<string>\",\n          \"error_row_count\": \"<integer>\",\n          \"unmapped_required_column_count\": \"<integer>\",\n          \"error_report_url\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"node_key\": \"<string>\",\n      \"node_type\": \"<string>\",\n      \"status\": \"error\",\n      \"missing_templates\": [\n        {\n          \"template_key\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"template_key\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ],\n      \"error_reports\": [\n        {\n          \"list_id\": \"<integer>\",\n          \"template_key\": \"<string>\",\n          \"error_row_count\": \"<integer>\",\n          \"unmapped_required_column_count\": \"<integer>\",\n          \"error_report_url\": \"<string>\"\n        },\n        {\n          \"list_id\": \"<integer>\",\n          \"template_key\": \"<string>\",\n          \"error_row_count\": \"<integer>\",\n          \"unmapped_required_column_count\": \"<integer>\",\n          \"error_report_url\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-eecc5668-3c25-4ae9-893d-9ad45edadb14"
+                                },
+                                {
+                                  "id": "8bf04895-1c8f-4340-b5c0-4b1bbf0644d1",
+                                  "name": "Bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/errors",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "errors"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-8bf04895-1c8f-4340-b5c0-4b1bbf0644d1"
+                                },
+                                {
+                                  "id": "8a6506e6-a11d-44f9-a369-328daad57ac5",
+                                  "name": "Import not yet submitted or still running",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/errors",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "errors"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-8a6506e6-a11d-44f9-a369-328daad57ac5"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-c22a3642-215f-4708-b9b6-c0987468e0ae"
+                            }
+                          ],
+                          "id": "1ea9d701-2ed4-4122-bb55-c2c00519d32a",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-1ea9d701-2ed4-4122-bb55-c2c00519d32a"
+                        },
+                        {
+                          "name": "imported-files",
+                          "item": [
+                            {
+                              "name": "{imported_file_id}",
+                              "item": [
+                                {
+                                  "name": "download-url",
+                                  "item": [
+                                    {
+                                      "name": "Get download URL for imported file",
+                                      "id": "cf1e8080-7dd5-437b-9929-5bde1f920d10",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files/:imported_file_id/download-url",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v0",
+                                            "multi-file-feeds",
+                                            ":multi_file_feed_id",
+                                            "imports",
+                                            ":multi_file_feed_import_id",
+                                            "imported-files",
+                                            ":imported_file_id",
+                                            "download-url"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "3e795876-26e6-4b80-933d-7bed375fac4e",
+                                              "key": "multi_file_feed_id",
+                                              "value": "<integer>",
+                                              "description": "(Required) ID of the Multi FileFeed"
+                                            },
+                                            {
+                                              "id": "be6158e0-f26e-44d9-adce-824ed1b95a6b",
+                                              "key": "multi_file_feed_import_id",
+                                              "value": "<integer>",
+                                              "description": "(Required) ID of the Multi FileFeed import"
+                                            },
+                                            {
+                                              "id": "6ff0291e-058d-4add-814d-175ba0e43925",
+                                              "key": "imported_file_id",
+                                              "value": "<integer>",
+                                              "description": "(Required) ID of the imported file"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Retrieves a download URL for a specific imported file"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "2da0638d-9930-4af7-bf04-c04de730a620",
+                                          "name": "Successful response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-API-KEY",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files/:imported_file_id/download-url",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v0",
+                                                "multi-file-feeds",
+                                                ":multi_file_feed_id",
+                                                "imports",
+                                                ":multi_file_feed_import_id",
+                                                "imported-files",
+                                                ":imported_file_id",
+                                                "download-url"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "multi_file_feed_id"
+                                                },
+                                                {
+                                                  "key": "multi_file_feed_import_id"
+                                                },
+                                                {
+                                                  "key": "imported_file_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"url\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:26:16.000Z",
+                                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                                          "uid": "35240-2da0638d-9930-4af7-bf04-c04de730a620"
+                                        },
+                                        {
+                                          "id": "027ec25c-9e8e-44e3-9970-e42fc954489e",
+                                          "name": "Bad request",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-API-KEY",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files/:imported_file_id/download-url",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v0",
+                                                "multi-file-feeds",
+                                                ":multi_file_feed_id",
+                                                "imports",
+                                                ":multi_file_feed_import_id",
+                                                "imported-files",
+                                                ":imported_file_id",
+                                                "download-url"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "multi_file_feed_id"
+                                                },
+                                                {
+                                                  "key": "multi_file_feed_import_id"
+                                                },
+                                                {
+                                                  "key": "imported_file_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-07-28T02:26:16.000Z",
+                                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                                          "uid": "35240-027ec25c-9e8e-44e3-9970-e42fc954489e"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:26:16.000Z",
+                                      "updatedAt": "2026-07-28T02:26:16.000Z",
+                                      "uid": "35240-cf1e8080-7dd5-437b-9929-5bde1f920d10"
+                                    }
+                                  ],
+                                  "id": "490b647a-adcb-4cb8-a920-448c10b4f049",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-490b647a-adcb-4cb8-a920-448c10b4f049"
+                                }
+                              ],
+                              "id": "b6246264-87f3-4595-9c0b-6a1da6601fb9",
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-b6246264-87f3-4595-9c0b-6a1da6601fb9"
+                            },
+                            {
+                              "name": "Get imported files",
+                              "id": "2a51834e-c14c-4296-9937-84a28e475388",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id",
+                                    "imported-files"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e6ccc2a6-eb2d-4346-af1e-398f55647495",
+                                      "key": "multi_file_feed_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed"
+                                    },
+                                    {
+                                      "id": "073d64aa-0949-4c81-83a0-bf7df07fae4e",
+                                      "key": "multi_file_feed_import_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed import"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves the list of imported files for a Multi FileFeed import"
+                              },
+                              "response": [
+                                {
+                                  "id": "afd6c014-3606-43cb-a794-bb3788d7a89e",
+                                  "name": "Successful response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "imported-files"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"files\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-afd6c014-3606-43cb-a794-bb3788d7a89e"
+                                },
+                                {
+                                  "id": "9f870755-6b8e-498f-a9bd-89eca970b4f3",
+                                  "name": "Bad request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "imported-files"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-9f870755-6b8e-498f-a9bd-89eca970b4f3"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-2a51834e-c14c-4296-9937-84a28e475388"
+                            }
+                          ],
+                          "id": "5ef72b44-c789-4f21-b4d6-0566b0a8bc7f",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-5ef72b44-c789-4f21-b4d6-0566b0a8bc7f"
+                        },
+                        {
+                          "name": "submit",
+                          "item": [
+                            {
+                              "name": "Submit a Multi FileFeed import",
+                              "id": "35a3077a-6257-4d31-8802-461802a10c91",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/submit?prioritize=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id",
+                                    "submit"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "When `true`, this import's run is placed at the front of the processing queue so it is picked up ahead of other Multi FileFeed imports already waiting in the queue. Omit it or send `false` to use the default first-in, first-out ordering.\n\nThis option must be enabled for your organization. If it is not enabled and you send `true`, the request is rejected with a `403` and no run is scheduled.\n\nFront-of-queue ordering only affects imports that are still waiting. It does not preempt runs that are already executing and does not bypass concurrency limits, so a prepended run still waits its turn against any active throttle.\n",
+                                      "key": "prioritize",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "8b2bf19d-7a7d-471f-aedb-e512e9cfcac6",
+                                      "key": "multi_file_feed_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed"
+                                    },
+                                    {
+                                      "id": "17d6fe45-a0f0-42ee-b25f-8e6abfb0e374",
+                                      "key": "multi_file_feed_import_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed import"
+                                    }
+                                  ]
+                                },
+                                "description": "Submits the Multi FileFeed import for processing"
+                              },
+                              "response": [
+                                {
+                                  "id": "c2069f34-c429-4664-a250-15ba7a3d257b",
+                                  "name": "Successful response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/submit?prioritize=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "submit"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When `true`, this import's run is placed at the front of the processing queue so it is picked up ahead of other Multi FileFeed imports already waiting in the queue. Omit it or send `false` to use the default first-in, first-out ordering.\n\nThis option must be enabled for your organization. If it is not enabled and you send `true`, the request is rejected with a `403` and no run is scheduled.\n\nFront-of-queue ordering only affects imports that are still waiting. It does not preempt runs that are already executing and does not bypass concurrency limits, so a prepended run still waits its turn against any active throttle.\n",
+                                          "key": "prioritize",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<integer>\",\n  \"multi_file_feed_id\": \"<integer>\",\n  \"environment\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-c2069f34-c429-4664-a250-15ba7a3d257b"
+                                },
+                                {
+                                  "id": "1a7a0ab0-5c0b-4a44-b5b8-3589a8419f09",
+                                  "name": "Bad request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/submit?prioritize=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "submit"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When `true`, this import's run is placed at the front of the processing queue so it is picked up ahead of other Multi FileFeed imports already waiting in the queue. Omit it or send `false` to use the default first-in, first-out ordering.\n\nThis option must be enabled for your organization. If it is not enabled and you send `true`, the request is rejected with a `403` and no run is scheduled.\n\nFront-of-queue ordering only affects imports that are still waiting. It does not preempt runs that are already executing and does not bypass concurrency limits, so a prepended run still waits its turn against any active throttle.\n",
+                                          "key": "prioritize",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-1a7a0ab0-5c0b-4a44-b5b8-3589a8419f09"
+                                },
+                                {
+                                  "id": "b4593778-589d-4f4d-8de6-389a6c3b7cdf",
+                                  "name": "Forbidden \u2014 `prioritize=true` was sent but front-of-queue submission is not enabled for the organization.\n",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/submit?prioritize=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "submit"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When `true`, this import's run is placed at the front of the processing queue so it is picked up ahead of other Multi FileFeed imports already waiting in the queue. Omit it or send `false` to use the default first-in, first-out ordering.\n\nThis option must be enabled for your organization. If it is not enabled and you send `true`, the request is rejected with a `403` and no run is scheduled.\n\nFront-of-queue ordering only affects imports that are still waiting. It does not preempt runs that are already executing and does not bypass concurrency limits, so a prepended run still waits its turn against any active throttle.\n",
+                                          "key": "prioritize",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-b4593778-589d-4f4d-8de6-389a6c3b7cdf"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-35a3077a-6257-4d31-8802-461802a10c91"
+                            }
+                          ],
+                          "id": "50f2379f-eaca-4ec3-97bc-11a103c05cf0",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-50f2379f-eaca-4ec3-97bc-11a103c05cf0"
+                        },
+                        {
+                          "name": "upload-from-s3",
+                          "item": [
+                            {
+                              "name": "Upload a file from S3 to a Multi FileFeed import",
+                              "id": "bbfdce5d-46f1-4378-8d1d-2c7f34244151",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"s3_account_id\": \"<integer>\",\n  \"object_uri\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/upload-from-s3",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id",
+                                    "upload-from-s3"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b9571318-f932-42b1-b31b-fb5318cc1808",
+                                      "key": "multi_file_feed_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed"
+                                    },
+                                    {
+                                      "id": "eea8a771-2672-467e-9519-07477c4c6b46",
+                                      "key": "multi_file_feed_import_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed import"
+                                    }
+                                  ]
+                                },
+                                "description": "Uploads a file from a customer's S3 bucket into a Multi FileFeed import.\nThe server assumes an IAM role to read the specified S3 object, verifies\nit exists and is within the file size limit, downloads it, and stores it\nas an uploaded file on the import.\n\nThe `object_uri` must be a valid S3 URI in the format `s3://bucket/key`.\nThe `s3_account_id` identifies which S3 account credentials (role ARN and\nexternal ID) to use for the STS AssumeRole call. The referenced bucket\nand object must be accessible to the IAM role configured on that S3 account.\n\nBoth the object URI and the file basename (derived from the S3 key) must\nbe unique within the import. If either already exists, a 409 Conflict is\nreturned.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "516e83a2-1393-416f-805d-731bf354b162",
+                                  "name": "Successful response. The file has been downloaded from S3 and stored on the import. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may return additional metadata about the uplo",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"s3_account_id\": \"<integer>\",\n  \"object_uri\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/upload-from-s3",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "upload-from-s3"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-516e83a2-1393-416f-805d-731bf354b162"
+                                },
+                                {
+                                  "id": "bd71a8bf-b63e-422e-8605-9b1d897b0ff6",
+                                  "name": "Bad request. Possible causes: invalid S3 URI format, S3 object not accessible (not found, forbidden, or access denied), object exceeds the file size limit, import already submitted, or import does not belong to the specified Multi FileFeed.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"s3_account_id\": \"<integer>\",\n  \"object_uri\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/upload-from-s3",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "upload-from-s3"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-bd71a8bf-b63e-422e-8605-9b1d897b0ff6"
+                                },
+                                {
+                                  "id": "e784b9e6-7f32-45cb-b97a-abce8ff49f06",
+                                  "name": "Conflict. A file with the same object URI or the same filename (basename of the S3 key) has already been uploaded to this import.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"s3_account_id\": \"<integer>\",\n  \"object_uri\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/upload-from-s3",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "upload-from-s3"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Conflict",
+                                  "code": 409,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-e784b9e6-7f32-45cb-b97a-abce8ff49f06"
+                                },
+                                {
+                                  "id": "39a5f228-8ce9-4e67-92f5-e5ef9c1f2ccc",
+                                  "name": "Internal server error. A platform-level failure occurred during the S3 upload flow (e.g. STS role assumption failed due to a misconfigured intermediate role, or an unexpected AWS service error). These errors indicate an infrastructure issue rather than a ",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"s3_account_id\": \"<integer>\",\n  \"object_uri\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/upload-from-s3",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "upload-from-s3"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-39a5f228-8ce9-4e67-92f5-e5ef9c1f2ccc"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-bbfdce5d-46f1-4378-8d1d-2c7f34244151"
+                            }
+                          ],
+                          "id": "c66d4686-1a75-4aa0-ab7c-a812e792f50f",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-c66d4686-1a75-4aa0-ab7c-a812e792f50f"
+                        },
+                        {
+                          "name": "uploaded-files",
+                          "item": [
+                            {
+                              "name": "Upload a file for Multi FileFeed import",
+                              "id": "e5a17c66-c07f-45cd-8090-a80b5a03cf05",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) The file to upload",
+                                      "key": "file",
+                                      "type": "file",
+                                      "value": null
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/uploaded-files",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id",
+                                    "uploaded-files"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c86bfdaa-d886-424e-a3be-2b3e70088720",
+                                      "key": "multi_file_feed_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed"
+                                    },
+                                    {
+                                      "id": "9c5e913e-5b6a-4d68-ab7a-d7672299ea57",
+                                      "key": "multi_file_feed_import_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) ID of the Multi FileFeed import"
+                                    }
+                                  ]
+                                },
+                                "description": "Uploads a file to be used in the Multi FileFeed import"
+                              },
+                              "response": [
+                                {
+                                  "id": "d6234d11-7b27-47b9-bd35-91f6eba6e893",
+                                  "name": "Successful response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "multipart/form-data"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "formdata",
+                                      "formdata": [
+                                        {
+                                          "description": "(Required) The file to upload",
+                                          "key": "file",
+                                          "type": "file"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/uploaded-files",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "uploaded-files"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-d6234d11-7b27-47b9-bd35-91f6eba6e893"
+                                },
+                                {
+                                  "id": "6b2bd3b3-b2f0-4ec6-84a6-d5444dab6a03",
+                                  "name": "Bad request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "multipart/form-data"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-KEY",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "formdata",
+                                      "formdata": [
+                                        {
+                                          "description": "(Required) The file to upload",
+                                          "key": "file",
+                                          "type": "file"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/uploaded-files",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v0",
+                                        "multi-file-feeds",
+                                        ":multi_file_feed_id",
+                                        "imports",
+                                        ":multi_file_feed_import_id",
+                                        "uploaded-files"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "multi_file_feed_id"
+                                        },
+                                        {
+                                          "key": "multi_file_feed_import_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:26:16.000Z",
+                                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                                  "uid": "35240-6b2bd3b3-b2f0-4ec6-84a6-d5444dab6a03"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-e5a17c66-c07f-45cd-8090-a80b5a03cf05"
+                            }
+                          ],
+                          "id": "1fe77a99-f9fd-4219-afd0-def3957d2fbd",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-1fe77a99-f9fd-4219-afd0-def3957d2fbd"
+                        },
+                        {
+                          "name": "Get a Multi FileFeed import",
+                          "id": "d58e5a82-02b3-41e8-9db4-11addd003847",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "imports",
+                                ":multi_file_feed_import_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "24fc53eb-474e-48c1-a49e-1853e0254161",
+                                  "key": "multi_file_feed_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) ID of the Multi FileFeed"
+                                },
+                                {
+                                  "id": "6965e411-ddc0-414f-ab6a-b7f0e4e38217",
+                                  "key": "multi_file_feed_import_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) ID of the Multi FileFeed import"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves details about a specific Multi FileFeed import"
+                          },
+                          "response": [
+                            {
+                              "id": "dc8dafd1-d628-42ff-8394-6dd429ad9e4e",
+                              "name": "Successful response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "multi_file_feed_id"
+                                    },
+                                    {
+                                      "key": "multi_file_feed_import_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<integer>\",\n  \"multi_file_feed_id\": \"<integer>\",\n  \"environment\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-dc8dafd1-d628-42ff-8394-6dd429ad9e4e"
+                            },
+                            {
+                              "id": "5e0a3c9d-d533-4761-bc24-0b4f4fc81a68",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "imports",
+                                    ":multi_file_feed_import_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "multi_file_feed_id"
+                                    },
+                                    {
+                                      "key": "multi_file_feed_import_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:26:16.000Z",
+                              "updatedAt": "2026-07-28T02:26:16.000Z",
+                              "uid": "35240-5e0a3c9d-d533-4761-bc24-0b4f4fc81a68"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-d58e5a82-02b3-41e8-9db4-11addd003847"
+                        }
+                      ],
+                      "id": "fc9078f6-0e7e-4387-b312-f6659ae038da",
+                      "createdAt": "2026-07-28T02:26:16.000Z",
+                      "updatedAt": "2026-07-28T02:26:16.000Z",
+                      "uid": "35240-fc9078f6-0e7e-4387-b312-f6659ae038da"
+                    },
+                    {
+                      "name": "Create a Multi FileFeed import",
+                      "id": "674d54a2-f7d0-492a-ab2b-807dd22d4b9f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id",
+                            "imports"
+                          ],
+                          "variable": [
+                            {
+                              "id": "aaf91e27-a816-4076-a096-ac55fb82f4a5",
+                              "key": "multi_file_feed_id",
+                              "value": "<integer>",
+                              "description": "(Required) ID of the Multi FileFeed"
+                            }
+                          ]
+                        },
+                        "description": "Creates a new Multi FileFeed import for the specified Multi FileFeed"
+                      },
+                      "response": [
+                        {
+                          "id": "dd2e65e9-aeed-45e1-942a-5a15624898e7",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "imports"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"multi_file_feed_id\": \"<integer>\",\n  \"environment\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-dd2e65e9-aeed-45e1-942a-5a15624898e7"
+                        },
+                        {
+                          "id": "9de57e2d-f192-4e6f-a620-0b06d03c3331",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "imports"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-9de57e2d-f192-4e6f-a620-0b06d03c3331"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:16.000Z",
+                      "updatedAt": "2026-07-28T02:26:16.000Z",
+                      "uid": "35240-674d54a2-f7d0-492a-ab2b-807dd22d4b9f"
+                    },
+                    {
+                      "name": "List Multi FileFeed imports",
+                      "id": "21a1aeda-6f51-4853-8f2f-4fe28ccf3d14",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports?status=submitted",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id",
+                            "imports"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional status filter to return only imports with this status",
+                              "key": "status",
+                              "value": "submitted"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "362226d0-5cf9-46ec-853c-49e83af6e3b9",
+                              "key": "multi_file_feed_id",
+                              "value": "<integer>",
+                              "description": "(Required) ID of the Multi FileFeed"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of imports for the specified Multi FileFeed, ordered by\nmost recent first. At most 200 imports are returned.\n\nBuilder and workflow-called imports are excluded from the results.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "026f87e2-5c41-40fc-8adf-9ea2914f8c7e",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports?status=submitted",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "imports"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional status filter to return only imports with this status",
+                                  "key": "status",
+                                  "value": "submitted"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"multi_file_feed_id\": \"<integer>\",\n    \"environment\": \"<string>\",\n    \"status\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"multi_file_feed_id\": \"<integer>\",\n    \"environment\": \"<string>\",\n    \"status\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-026f87e2-5c41-40fc-8adf-9ea2914f8c7e"
+                        },
+                        {
+                          "id": "2948c6dd-deda-4fb1-9dfd-2bd6ba15dc83",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/imports?status=submitted",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "imports"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional status filter to return only imports with this status",
+                                  "key": "status",
+                                  "value": "submitted"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:26:16.000Z",
+                          "updatedAt": "2026-07-28T02:26:16.000Z",
+                          "uid": "35240-2948c6dd-deda-4fb1-9dfd-2bd6ba15dc83"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:16.000Z",
+                      "updatedAt": "2026-07-28T02:26:16.000Z",
+                      "uid": "35240-21a1aeda-6f51-4853-8f2f-4fe28ccf3d14"
+                    }
+                  ],
+                  "id": "6ae1dbe5-681b-4830-90d2-ed57b3c8d4c1",
+                  "createdAt": "2026-07-28T02:26:16.000Z",
+                  "updatedAt": "2026-07-28T02:26:16.000Z",
+                  "uid": "35240-6ae1dbe5-681b-4830-90d2-ed57b3c8d4c1"
+                }
+              ],
+              "id": "bb60ff55-e08e-4715-bd32-a152da021eca",
+              "createdAt": "2026-07-28T02:26:16.000Z",
+              "updatedAt": "2026-07-28T02:26:16.000Z",
+              "uid": "35240-bb60ff55-e08e-4715-bd32-a152da021eca"
+            }
+          ],
+          "id": "cea57b7e-6e43-4dcc-bb97-e50daa585076",
+          "createdAt": "2026-07-28T02:26:16.000Z",
+          "updatedAt": "2026-07-28T02:26:16.000Z",
+          "uid": "35240-cea57b7e-6e43-4dcc-bb97-e50daa585076"
+        }
+      ],
+      "id": "bec4cb09-09d6-4ce6-9ff9-5281bee522f9",
+      "createdAt": "2026-07-28T02:26:16.000Z",
+      "updatedAt": "2026-07-28T02:26:16.000Z",
+      "uid": "35240-bec4cb09-09d6-4ce6-9ff9-5281bee522f9"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

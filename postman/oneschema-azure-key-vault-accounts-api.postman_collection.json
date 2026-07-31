@@ -1,0 +1,1756 @@
+{
+  "info": {
+    "_postman_id": "6741361d-c24f-46e8-8440-dfb2092c6d36",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Azure Key Vault Accounts API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:16.000Z",
+    "updatedAt": "2026-07-28T02:25:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6741361d-c24f-46e8-8440-dfb2092c6d36"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "azure-key-vault",
+          "item": [
+            {
+              "name": "accounts",
+              "item": [
+                {
+                  "name": "{account-id}",
+                  "item": [
+                    {
+                      "name": "test",
+                      "item": [
+                        {
+                          "name": "Test Azure Key Vault Connection",
+                          "id": "81b2962e-ed69-4af2-943c-e1fa476587b5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"secret_identifier\": \"<string>\",\n  \"vault\": \"<string>\",\n  \"secret_version\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id",
+                                "test"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "caff9611-f7ba-4bd4-bfbd-e994ea5f2d70",
+                                  "key": "account-id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The ID of the Azure Key Vault account"
+                                }
+                              ]
+                            },
+                            "description": "Test that OneSchema can authenticate via the configured App Registration and retrieve a specific secret. The secret value is not returned."
+                          },
+                          "response": [
+                            {
+                              "id": "a4f75ffb-96de-4d43-b229-498d410eb0c9",
+                              "name": "Test result (check the `success` field)",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"secret_identifier\": \"<string>\",\n  \"vault\": \"<string>\",\n  \"secret_version\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id/test",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "azure-key-vault",
+                                    "accounts",
+                                    ":account-id",
+                                    "test"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"error_code\": \"<string>\",\n  \"error_category\": \"provider\",\n  \"error_message\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"transaction_id\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:17.000Z",
+                              "updatedAt": "2026-07-28T02:25:17.000Z",
+                              "uid": "35240-a4f75ffb-96de-4d43-b229-498d410eb0c9"
+                            },
+                            {
+                              "id": "cbe50720-8aa5-45cf-846f-010ea86f7ded",
+                              "name": "Unauthorized (missing or invalid API key)",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"secret_identifier\": \"<string>\",\n  \"vault\": \"<string>\",\n  \"secret_version\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id/test",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "azure-key-vault",
+                                    "accounts",
+                                    ":account-id",
+                                    "test"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:25:17.000Z",
+                              "updatedAt": "2026-07-28T02:25:17.000Z",
+                              "uid": "35240-cbe50720-8aa5-45cf-846f-010ea86f7ded"
+                            },
+                            {
+                              "id": "142543ba-5a0b-4d96-8904-e0b76931bda9",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"secret_identifier\": \"<string>\",\n  \"vault\": \"<string>\",\n  \"secret_version\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id/test",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "azure-key-vault",
+                                    "accounts",
+                                    ":account-id",
+                                    "test"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:25:17.000Z",
+                              "updatedAt": "2026-07-28T02:25:17.000Z",
+                              "uid": "35240-142543ba-5a0b-4d96-8904-e0b76931bda9"
+                            },
+                            {
+                              "id": "6b12bd7c-ef3a-4b0b-af53-7268332906b4",
+                              "name": "Not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"secret_identifier\": \"<string>\",\n  \"vault\": \"<string>\",\n  \"secret_version\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id/test",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "azure-key-vault",
+                                    "accounts",
+                                    ":account-id",
+                                    "test"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:25:17.000Z",
+                              "updatedAt": "2026-07-28T02:25:17.000Z",
+                              "uid": "35240-6b12bd7c-ef3a-4b0b-af53-7268332906b4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-81b2962e-ed69-4af2-943c-e1fa476587b5"
+                        }
+                      ],
+                      "id": "d7870bd4-cdcf-460a-840b-87fcf29e770e",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-d7870bd4-cdcf-460a-840b-87fcf29e770e"
+                    },
+                    {
+                      "name": "Delete Azure Key Vault Account",
+                      "id": "f6a28404-a176-4a45-a5b6-b319f2fc61e6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts",
+                            ":account-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8493ebb0-6681-4fe6-89fb-7cf4762052a8",
+                              "key": "account-id",
+                              "value": "<integer>",
+                              "description": "(Required) The ID of the Azure Key Vault account"
+                            }
+                          ]
+                        },
+                        "description": "Delete a specific Azure Key Vault account connection. The account cannot be deleted while it has managed secrets attached."
+                      },
+                      "response": [
+                        {
+                          "id": "da8204c8-e0d7-4975-a8e0-01a7bd9e2c15",
+                          "name": "Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-da8204c8-e0d7-4975-a8e0-01a7bd9e2c15"
+                        },
+                        {
+                          "id": "6de39c65-5154-4b2c-ae0f-c1df26d3c9e5",
+                          "name": "Cannot delete account with managed secrets",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-6de39c65-5154-4b2c-ae0f-c1df26d3c9e5"
+                        },
+                        {
+                          "id": "fd57d03a-38d2-4b53-9073-183a88c7b078",
+                          "name": "Unauthorized (missing or invalid API key)",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-fd57d03a-38d2-4b53-9073-183a88c7b078"
+                        },
+                        {
+                          "id": "45da78cf-004f-4cec-9f78-5315bd98bf4d",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-45da78cf-004f-4cec-9f78-5315bd98bf4d"
+                        },
+                        {
+                          "id": "bcd60159-646e-478f-b09e-021ccc2e1e46",
+                          "name": "Not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-bcd60159-646e-478f-b09e-021ccc2e1e46"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-f6a28404-a176-4a45-a5b6-b319f2fc61e6"
+                    },
+                    {
+                      "name": "Get Azure Key Vault Account",
+                      "id": "7d293557-7418-4370-a323-68dc1ed828af",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts",
+                            ":account-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ec82ce6c-a124-451a-977a-4c313b3132ef",
+                              "key": "account-id",
+                              "value": "<integer>",
+                              "description": "(Required) The ID of the Azure Key Vault account"
+                            }
+                          ]
+                        },
+                        "description": "Get a specific Azure Key Vault account connection."
+                      },
+                      "response": [
+                        {
+                          "id": "7dfaa156-ed77-4311-a8cc-3108ddfbb409",
+                          "name": "The request has succeeded.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"has_client_secret\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-7dfaa156-ed77-4311-a8cc-3108ddfbb409"
+                        },
+                        {
+                          "id": "24666ede-f44f-45c9-a6ba-01fe8c0ad36f",
+                          "name": "Unauthorized (missing or invalid API key)",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-24666ede-f44f-45c9-a6ba-01fe8c0ad36f"
+                        },
+                        {
+                          "id": "df4ba4ec-c1fa-4575-877b-9c76ae8a15db",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-df4ba4ec-c1fa-4575-877b-9c76ae8a15db"
+                        },
+                        {
+                          "id": "bb0642e6-f19b-419b-bf2d-a72a43232003",
+                          "name": "Not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-bb0642e6-f19b-419b-bf2d-a72a43232003"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-7d293557-7418-4370-a323-68dc1ed828af"
+                    },
+                    {
+                      "name": "Update Azure Key Vault Account",
+                      "id": "109ceb08-7ee6-4a3f-97fd-68191211bff0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts",
+                            ":account-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cd922da4-09d4-425c-acb0-5f30f5e86b80",
+                              "key": "account-id",
+                              "value": "<integer>",
+                              "description": "(Required) The ID of the Azure Key Vault account"
+                            }
+                          ]
+                        },
+                        "description": "Update a specific Azure Key Vault account connection."
+                      },
+                      "response": [
+                        {
+                          "id": "46da67db-fad8-481e-b82f-8c6fb20b0e21",
+                          "name": "The request has succeeded.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"has_client_secret\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-46da67db-fad8-481e-b82f-8c6fb20b0e21"
+                        },
+                        {
+                          "id": "f9097395-324e-4c65-b65e-c75a93f2481a",
+                          "name": "Validation error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-f9097395-324e-4c65-b65e-c75a93f2481a"
+                        },
+                        {
+                          "id": "5f5bbc80-8e31-4e19-a62b-c532a593bdfc",
+                          "name": "Unauthorized (missing or invalid API key)",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-5f5bbc80-8e31-4e19-a62b-c532a593bdfc"
+                        },
+                        {
+                          "id": "5f052920-9c02-4719-93c0-49014f2e79aa",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-5f052920-9c02-4719-93c0-49014f2e79aa"
+                        },
+                        {
+                          "id": "e779463b-5d4b-43d7-a2ba-6e748a866292",
+                          "name": "Not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/azure-key-vault/accounts/:account-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "azure-key-vault",
+                                "accounts",
+                                ":account-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:25:17.000Z",
+                          "updatedAt": "2026-07-28T02:25:17.000Z",
+                          "uid": "35240-e779463b-5d4b-43d7-a2ba-6e748a866292"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-109ceb08-7ee6-4a3f-97fd-68191211bff0"
+                    }
+                  ],
+                  "id": "549a2c5c-79ab-4a24-819f-cd9db1eecb2a",
+                  "createdAt": "2026-07-28T02:25:17.000Z",
+                  "updatedAt": "2026-07-28T02:25:17.000Z",
+                  "uid": "35240-549a2c5c-79ab-4a24-819f-cd9db1eecb2a"
+                },
+                {
+                  "name": "Create Azure Key Vault Account",
+                  "id": "89479532-8271-4e2e-976e-2e2f0709b99d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "azure-key-vault",
+                        "accounts"
+                      ]
+                    },
+                    "description": "Create a new Azure Key Vault account connection for the organization."
+                  },
+                  "response": [
+                    {
+                      "id": "3abd7a3e-3050-4abe-a532-c0c3c581b05e",
+                      "name": "Account created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"has_client_secret\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-3abd7a3e-3050-4abe-a532-c0c3c581b05e"
+                    },
+                    {
+                      "id": "a62b435f-09fd-4a28-a9d8-f4bdd37600ef",
+                      "name": "Validation error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-a62b435f-09fd-4a28-a9d8-f4bdd37600ef"
+                    },
+                    {
+                      "id": "40fe8c22-952b-4d1e-b428-df45d31cf15b",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-40fe8c22-952b-4d1e-b428-df45d31cf15b"
+                    },
+                    {
+                      "id": "4c1c36cd-2dcc-4eb7-b469-2cb440c51048",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-4c1c36cd-2dcc-4eb7-b469-2cb440c51048"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:17.000Z",
+                  "updatedAt": "2026-07-28T02:25:17.000Z",
+                  "uid": "35240-89479532-8271-4e2e-976e-2e2f0709b99d"
+                },
+                {
+                  "name": "List Azure Key Vault Accounts",
+                  "id": "f90f0cec-6408-402a-afbc-d17b852376d8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "azure-key-vault",
+                        "accounts"
+                      ]
+                    },
+                    "description": "Returns a list of Azure Key Vault account connections for the organization."
+                  },
+                  "response": [
+                    {
+                      "id": "59798946-97d5-45f8-a6d6-eccf9f7fea09",
+                      "name": "The request has succeeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tenant_id\": \"<string>\",\n    \"client_id\": \"<string>\",\n    \"has_client_secret\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tenant_id\": \"<string>\",\n    \"client_id\": \"<string>\",\n    \"has_client_secret\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-59798946-97d5-45f8-a6d6-eccf9f7fea09"
+                    },
+                    {
+                      "id": "860f0c17-dd2f-4701-b247-ca80369b43ed",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-860f0c17-dd2f-4701-b247-ca80369b43ed"
+                    },
+                    {
+                      "id": "c972f6ba-8ae2-44fe-8da3-6ba69fdba44f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/azure-key-vault/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "azure-key-vault",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:17.000Z",
+                      "updatedAt": "2026-07-28T02:25:17.000Z",
+                      "uid": "35240-c972f6ba-8ae2-44fe-8da3-6ba69fdba44f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:17.000Z",
+                  "updatedAt": "2026-07-28T02:25:17.000Z",
+                  "uid": "35240-f90f0cec-6408-402a-afbc-d17b852376d8"
+                }
+              ],
+              "id": "34e022e5-4485-469b-ac8c-ba15026b156e",
+              "createdAt": "2026-07-28T02:25:17.000Z",
+              "updatedAt": "2026-07-28T02:25:17.000Z",
+              "uid": "35240-34e022e5-4485-469b-ac8c-ba15026b156e"
+            }
+          ],
+          "id": "ca4766df-e85b-40e6-88a7-1c119c2d8952",
+          "createdAt": "2026-07-28T02:25:17.000Z",
+          "updatedAt": "2026-07-28T02:25:17.000Z",
+          "uid": "35240-ca4766df-e85b-40e6-88a7-1c119c2d8952"
+        }
+      ],
+      "id": "3362ec7f-f337-4270-9d5f-7c97a469a6ec",
+      "createdAt": "2026-07-28T02:25:17.000Z",
+      "updatedAt": "2026-07-28T02:25:17.000Z",
+      "uid": "35240-3362ec7f-f337-4270-9d5f-7c97a469a6ec"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

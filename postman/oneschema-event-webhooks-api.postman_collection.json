@@ -1,0 +1,1506 @@
+{
+  "info": {
+    "_postman_id": "363ec153-96e4-4f86-9ad5-83989618833e",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Event Webhooks API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:45.000Z",
+    "updatedAt": "2026-07-28T02:25:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-363ec153-96e4-4f86-9ad5-83989618833e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "event-webhooks",
+          "item": [
+            {
+              "name": "{webhook_key}",
+              "item": [
+                {
+                  "name": "Delete an event webhook",
+                  "id": "833d7eec-04a2-4b7b-929c-d12d499e67df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks",
+                        ":webhook_key"
+                      ],
+                      "query": [
+                        {
+                          "key": "product_area",
+                          "value": "multi_file_feeds"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7ff67ede-adc4-45f0-acf1-0b078b4bce00",
+                          "key": "webhook_key",
+                          "value": "<string>",
+                          "description": "(Required) The key of the event webhook."
+                        }
+                      ]
+                    },
+                    "description": "Deletes an event webhook. Multi FileFeed event webhooks cannot be deleted while attached to a Multi FileFeed."
+                  },
+                  "response": [
+                    {
+                      "id": "fae7dfd9-73f6-4eb9-a565-aab1a22d14a3",
+                      "name": "The request has succeeded.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-fae7dfd9-73f6-4eb9-a565-aab1a22d14a3"
+                    },
+                    {
+                      "id": "f361be03-09ca-446c-b798-9addba3c21e5",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-f361be03-09ca-446c-b798-9addba3c21e5"
+                    },
+                    {
+                      "id": "4de6d345-37dc-4a1c-afb3-f220b91fae04",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-4de6d345-37dc-4a1c-afb3-f220b91fae04"
+                    },
+                    {
+                      "id": "1b9035e5-0aa0-4139-b9f0-25e28da4096f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-1b9035e5-0aa0-4139-b9f0-25e28da4096f"
+                    },
+                    {
+                      "id": "10563685-2369-4e45-a1cc-ff88d8e1f5eb",
+                      "name": "Unprocessable entity",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-10563685-2369-4e45-a1cc-ff88d8e1f5eb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-833d7eec-04a2-4b7b-929c-d12d499e67df"
+                },
+                {
+                  "name": "Get an event webhook",
+                  "id": "89bf93b8-7916-423b-a2c4-942244317169",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks",
+                        ":webhook_key"
+                      ],
+                      "query": [
+                        {
+                          "key": "product_area",
+                          "value": "multi_file_feeds"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "9f4be30d-420e-43e2-8bd1-8b86aad3cba0",
+                          "key": "webhook_key",
+                          "value": "<string>",
+                          "description": "(Required) The key of the event webhook."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a single event webhook by key."
+                  },
+                  "response": [
+                    {
+                      "id": "47fb050c-5007-47a2-a2fd-2d37f5519939",
+                      "name": "The request has succeeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"multi_file_feeds\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"embed_initialized\",\n    \"columns_mapped\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-47fb050c-5007-47a2-a2fd-2d37f5519939"
+                    },
+                    {
+                      "id": "9f66c5f2-ddc1-40cd-8123-3f7e2e164753",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-9f66c5f2-ddc1-40cd-8123-3f7e2e164753"
+                    },
+                    {
+                      "id": "f259b5a4-2b2a-4e23-928b-a225dd0b767d",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-f259b5a4-2b2a-4e23-928b-a225dd0b767d"
+                    },
+                    {
+                      "id": "33c0d0bc-0a75-4633-8c96-58ed842438af",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-33c0d0bc-0a75-4633-8c96-58ed842438af"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-89bf93b8-7916-423b-a2c4-942244317169"
+                },
+                {
+                  "name": "Update an event webhook",
+                  "id": "20820cfc-7749-4fcd-9259-d527162ac665",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"product_area\": \"importer\",\n  \"new_webhook_key\": \"<string>\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"events\": [\n    \"import_submitted\",\n    \"columns_mapped\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks",
+                        ":webhook_key"
+                      ],
+                      "query": [
+                        {
+                          "key": "product_area",
+                          "value": "multi_file_feeds"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "84bce823-0acd-4932-8e53-9cee65f626c3",
+                          "key": "webhook_key",
+                          "value": "<string>",
+                          "description": "(Required) The key of the event webhook."
+                        }
+                      ]
+                    },
+                    "description": "Updates selected fields on an existing event webhook."
+                  },
+                  "response": [
+                    {
+                      "id": "7de15919-40e5-469d-b7e9-130dda5a9b18",
+                      "name": "The request has succeeded.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"product_area\": \"importer\",\n  \"new_webhook_key\": \"<string>\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"events\": [\n    \"import_submitted\",\n    \"columns_mapped\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"multi_file_feeds\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"embed_initialized\",\n    \"columns_mapped\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-7de15919-40e5-469d-b7e9-130dda5a9b18"
+                    },
+                    {
+                      "id": "42bf54a0-7fd7-43c9-b8f2-31cc6a39ab87",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"product_area\": \"importer\",\n  \"new_webhook_key\": \"<string>\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"events\": [\n    \"import_submitted\",\n    \"columns_mapped\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-42bf54a0-7fd7-43c9-b8f2-31cc6a39ab87"
+                    },
+                    {
+                      "id": "d6869d29-0390-46ba-aa23-52d54d462913",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"product_area\": \"importer\",\n  \"new_webhook_key\": \"<string>\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"events\": [\n    \"import_submitted\",\n    \"columns_mapped\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-d6869d29-0390-46ba-aa23-52d54d462913"
+                    },
+                    {
+                      "id": "0e0dc82c-b24f-491c-9755-090e36bf7462",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"product_area\": \"importer\",\n  \"new_webhook_key\": \"<string>\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"events\": [\n    \"import_submitted\",\n    \"columns_mapped\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-webhooks/:webhook_key?product_area=multi_file_feeds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-webhooks",
+                            ":webhook_key"
+                          ],
+                          "query": [
+                            {
+                              "key": "product_area",
+                              "value": "multi_file_feeds"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:46.000Z",
+                      "updatedAt": "2026-07-28T02:25:46.000Z",
+                      "uid": "35240-0e0dc82c-b24f-491c-9755-090e36bf7462"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-20820cfc-7749-4fcd-9259-d527162ac665"
+                }
+              ],
+              "id": "127426d4-c6fb-4765-816f-1cf7a30e98c8",
+              "createdAt": "2026-07-28T02:25:46.000Z",
+              "updatedAt": "2026-07-28T02:25:46.000Z",
+              "uid": "35240-127426d4-c6fb-4765-816f-1cf7a30e98c8"
+            },
+            {
+              "name": "Create an event webhook",
+              "id": "5a411f5c-2c9b-4db1-88f8-267890437559",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"importer\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"header_selected\",\n    \"header_selected\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/event-webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "event-webhooks"
+                  ]
+                },
+                "description": "Creates an event webhook for a supported product area."
+              },
+              "response": [
+                {
+                  "id": "53dea920-6c96-476f-893a-5dcb5e5f33a1",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"importer\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"header_selected\",\n    \"header_selected\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"multi_file_feeds\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"embed_initialized\",\n    \"columns_mapped\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-53dea920-6c96-476f-893a-5dcb5e5f33a1"
+                },
+                {
+                  "id": "238afdb5-2d1e-478c-9840-e2dda3d81092",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"importer\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"header_selected\",\n    \"header_selected\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-238afdb5-2d1e-478c-9840-e2dda3d81092"
+                },
+                {
+                  "id": "4238d5fe-03e1-4bff-a7bd-fe4b4ca6b851",
+                  "name": "Unauthorized (missing or invalid API key)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"importer\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"header_selected\",\n    \"header_selected\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-4238d5fe-03e1-4bff-a7bd-fe4b4ca6b851"
+                },
+                {
+                  "id": "ea1b4017-eda5-4502-8315-0e9c5385891a",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"webhook_key\": \"<string>\",\n  \"product_area\": \"importer\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"events\": [\n    \"header_selected\",\n    \"header_selected\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-ea1b4017-eda5-4502-8315-0e9c5385891a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:46.000Z",
+              "updatedAt": "2026-07-28T02:25:46.000Z",
+              "uid": "35240-5a411f5c-2c9b-4db1-88f8-267890437559"
+            },
+            {
+              "name": "List event webhooks",
+              "id": "8c3fbbb7-c164-4c78-8729-91ff77445105",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/event-webhooks?product_area=multi_file_feeds",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "event-webhooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter event webhooks by product area.",
+                      "key": "product_area",
+                      "value": "multi_file_feeds"
+                    }
+                  ]
+                },
+                "description": "Lists event webhooks for the organization."
+              },
+              "response": [
+                {
+                  "id": "771a8f5b-bdec-410f-a624-b61ad23ed09c",
+                  "name": "The request has succeeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks?product_area=multi_file_feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter event webhooks by product area.",
+                          "key": "product_area",
+                          "value": "multi_file_feeds"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"event_webhooks\": [\n    {\n      \"id\": \"<integer>\",\n      \"webhook_key\": \"<string>\",\n      \"product_area\": \"importer\",\n      \"url\": \"<string>\",\n      \"description\": \"<string>\",\n      \"events\": [\n        \"multi_file_feed_s3_read_success\",\n        \"header_selected\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"webhook_key\": \"<string>\",\n      \"product_area\": \"importer\",\n      \"url\": \"<string>\",\n      \"description\": \"<string>\",\n      \"events\": [\n        \"multi_file_feed_s3_write_error\",\n        \"multi_file_feed_import_success\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-771a8f5b-bdec-410f-a624-b61ad23ed09c"
+                },
+                {
+                  "id": "cc4343a4-c828-435c-bef4-6639ab9f1cea",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks?product_area=multi_file_feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter event webhooks by product area.",
+                          "key": "product_area",
+                          "value": "multi_file_feeds"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-cc4343a4-c828-435c-bef4-6639ab9f1cea"
+                },
+                {
+                  "id": "7ac496c2-f050-4b73-ab37-2fb040f647b3",
+                  "name": "Unauthorized (missing or invalid API key)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks?product_area=multi_file_feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter event webhooks by product area.",
+                          "key": "product_area",
+                          "value": "multi_file_feeds"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-7ac496c2-f050-4b73-ab37-2fb040f647b3"
+                },
+                {
+                  "id": "c19bd8f1-8bea-40b8-b6f2-997cc50adde0",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-webhooks?product_area=multi_file_feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-webhooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter event webhooks by product area.",
+                          "key": "product_area",
+                          "value": "multi_file_feeds"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:46.000Z",
+                  "updatedAt": "2026-07-28T02:25:46.000Z",
+                  "uid": "35240-c19bd8f1-8bea-40b8-b6f2-997cc50adde0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:46.000Z",
+              "updatedAt": "2026-07-28T02:25:46.000Z",
+              "uid": "35240-8c3fbbb7-c164-4c78-8729-91ff77445105"
+            }
+          ],
+          "id": "b67eb305-9009-4062-b0c5-56e233a1b9fb",
+          "createdAt": "2026-07-28T02:25:46.000Z",
+          "updatedAt": "2026-07-28T02:25:46.000Z",
+          "uid": "35240-b67eb305-9009-4062-b0c5-56e233a1b9fb"
+        }
+      ],
+      "id": "8484d2ed-4c98-44e9-9854-24e15d2437ee",
+      "createdAt": "2026-07-28T02:25:46.000Z",
+      "updatedAt": "2026-07-28T02:25:46.000Z",
+      "uid": "35240-8484d2ed-4c98-44e9-9854-24e15d2437ee"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

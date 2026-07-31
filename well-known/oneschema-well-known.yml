@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+host: https://api.oneschema.co
+documents:
+- path: /.well-known/security.txt
+  status: 200
+  file: oneschema-security.txt
+  host: https://api.oneschema.co
+- path: /.well-known/openid-configuration
+  status: 401
+  note: auth-gated
+- path: /.well-known/oauth-authorization-server
+  status: 401
+  note: auth-gated
+- path: /.well-known/api-catalog
+  status: 401
+  note: auth-gated
+- path: /.well-known/security.txt
+  status: 404
+  host: https://www.oneschema.co
+  note: Canonical served at api host; www returns 404

@@ -1,0 +1,2531 @@
+openapi: 3.1.0
+info:
+  title: OneSchema Multi FileFeeds API
+  version: '1'
+  description: 'Manage OneSchema Multi FileFeeds: folders, feeds, imports, direct/S3 uploads, and versioned
+    transform flowgraphs (HEAD, commits, history, revert).'
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Multi FileFeed Imports
+  description: 'Multi FileFeed Imports operations.
+
+
+    NOTE: These endpoints are served under the `/v0/multi-file-feeds/` path prefix.
+
+    The legacy `/v0/workflows/` prefix is still supported for backward compatibility
+
+    but is deprecated and should not be used for new integrations.
+
+    '
+- name: Multi FileFeed Commits
+  description: 'Manage immutable commit snapshots of a Multi FileFeed''s transforms.
+
+
+    Commits are created by sending a transforms payload. The endpoint
+
+    atomically replaces the HEAD and creates an immutable snapshot.
+
+    Imports run against the latest commit.
+
+    '
+- name: Multi FileFeed Folders
+  description: Multi FileFeed Folder operations
+- name: Multi FileFeeds
+  description: Multi FileFeed operations
+- name: Multi FileFeed Transforms
+  description: 'Manage the transforms (flowgraph nodes) of a Multi FileFeed.
+
+
+    The HEAD is the mutable, editable version of the flowgraph.
+
+    Commits are immutable snapshots of the HEAD at a point in time.
+
+    Imports run against the latest commit.
+
+    '
+paths:
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/direct-uploads:
+    post:
+      summary: Create a direct file upload for a Multi FileFeed import
+      description: 'Creates a direct upload for a Multi FileFeed import. Returns an `upload_id`,
+
+        a `presigned_url`, and a `content_type`. The client must PUT the file directly
+
+        to the `presigned_url`, setting the returned `content_type` as the `Content-Type`
+
+        header on the PUT request (the file store will reject the upload otherwise).
+
+
+        The direct upload flow consists of three steps:
+
+        1. **Create** (this endpoint): creates a tracking record and returns the presigned URL, content
+        type, and upload ID.
+
+        2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.
+
+        3. **Submit** (`direct-uploads/{upload_id}/submit`): verifies the upload succeeded and links the
+        file to the import.
+
+        '
+      operationId: create-direct-upload-multi-file-feed-import-file
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                  description: The name of the file to upload (e.g. "data.csv"). Must be unique within
+                    this import.
+              required:
+              - filename
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  upload_id:
+                    type: integer
+                    description: Unique identifier for this upload. Pass this to the `direct-uploads/{upload_id}/submit`
+                      endpoint after uploading.
+                  presigned_url:
+                    type: string
+                    format: uri
+                    description: Presigned PUT URL for uploading the file directly to the file store.
+                      Expires in 1 hour.
+                  content_type:
+                    type: string
+                    description: The Content-Type that MUST be set as the `Content-Type` header on the
+                      PUT request to the presigned URL.
+                required:
+                - upload_id
+                - presigned_url
+                - content_type
+        '400':
+          description: Bad request (e.g. duplicate filename, import already submitted, import does not
+            belong to workflow)
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/commits:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    post:
+      x-readme:
+        hidden: true
+      summary: Create a commit
+      description: 'Creates an immutable commit (snapshot) of the Multi FileFeed''s transforms.
+
+        A request body with the transforms payload is required.
+
+
+        The endpoint atomically:
+
+        1. Checks that the HEAD is not dirty (rejects with 422 if it is)
+
+        2. Replaces all nodes on the HEAD with the supplied payload
+
+        3. Creates an immutable commit snapshot
+
+
+        The dirty check prevents accidentally overwriting in-progress UI edits.
+
+        If the HEAD has uncommitted changes, the API consumer must coordinate
+
+        with the UI user before proceeding.
+
+
+        This is the primary endpoint for programmatic transform management.
+
+        Imports run against the latest commit. Immediately after this call,
+
+        the new commit becomes the latest commit unless another commit is
+
+        created before `POST /imports`.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: create-multi-file-feed-commit
+      tags:
+      - Multi FileFeed Commits
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: 'Portable flowgraph payload. Uses portable identifiers
+
+                (template_key, workflow_name, code_action_key) instead of
+
+                internal numeric IDs.
+
+                '
+              properties:
+                flowgraph:
+                  type: object
+                  properties:
+                    nodes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          node_key:
+                            type: string
+                          type:
+                            type: string
+                          config:
+                            type: object
+                          position_x:
+                            type: number
+                          position_y:
+                            type: number
+                          pipeline:
+                            type: object
+                            nullable: true
+                    edges:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          from_node_key:
+                            type: string
+                          to_node_key:
+                            type: string
+      responses:
+        '200':
+          description: Successful response — returns the created commit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commit_id:
+                    type: integer
+                    description: Unique identifier of the created commit
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the commit was created (ISO 8601)
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export of the commit
+                    properties:
+                      version:
+                        type: integer
+                      exported_at:
+                        type: string
+                        format: date-time
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                required:
+                - commit_id
+                - created_at
+                - transforms
+        '400':
+          description: Bad request (e.g. request body is not valid JSON or JSON is not an object)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: 'Unprocessable entity. Possible reasons:
+
+            - HEAD flowgraph has uncommitted changes (dirty)
+
+            - Import validation failed
+
+            - Unresolved template/workflow references
+
+            - Workflow has no recurring flowgraph
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Human-readable error message
+    get:
+      x-readme:
+        hidden: true
+      summary: List commits
+      description: 'Returns a paginated list of commits (immutable snapshots) for the
+
+        Multi FileFeed, ordered newest-first.
+
+
+        Each entry contains the commit ID and creation timestamp.
+
+        To retrieve a commit''s full transforms, use
+
+        `GET /commits/{commit_id}`.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: list-multi-file-feed-commits
+      tags:
+      - Multi FileFeed Commits
+      parameters:
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        description: The number of items to skip before starting to collect the result set
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        description: The number of items to return (default 20, max 100)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commits:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        commit_id:
+                          type: integer
+                          description: Unique identifier of the commit
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: When the commit was created (ISO 8601)
+                      required:
+                      - commit_id
+                      - created_at
+                  total_count:
+                    type: integer
+                    description: Total number of commits (before pagination)
+                required:
+                - commits
+                - total_count
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: Unprocessable entity (e.g. workflow has no recurring flowgraph)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feed-folders:
+    post:
+      summary: Create a Multi FileFeed Folder
+      description: Create a new Multi FileFeed folder.
+      operationId: create-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiFileFeedFolderPostRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: List all Multi FileFeed Folders
+      description: Returns a list of all Multi FileFeed folders for the organization.
+      operationId: list-multi-file-feed-folders
+      tags:
+      - Multi FileFeed Folders
+      parameters:
+      - name: containing_folder_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+        description: Filter folders by the ID of the folder that contains them. Omit to return all folders.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports:
+    post:
+      summary: Create a Multi FileFeed import
+      description: Creates a new Multi FileFeed import for the specified Multi FileFeed
+      operationId: create-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: List Multi FileFeed imports
+      description: 'Returns a list of imports for the specified Multi FileFeed, ordered by
+
+        most recent first. At most 200 imports are returned.
+
+
+        Builder and workflow-called imports are excluded from the results.
+
+        '
+      operationId: list-multi-file-feed-imports
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - initialized
+          - submitted
+          - running
+          - failed_runtime
+          - failed_transforms
+          - failed_validations
+          - run_succeeded
+        description: Optional status filter to return only imports with this status
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds:
+    post:
+      x-readme:
+        hidden: true
+      summary: Create a Multi FileFeed
+      description: 'Creates a new Multi FileFeed with the specified templates.
+
+        At least one template must be provided. Template keys must be unique
+
+        within the request.
+
+
+        Optional parameters allow configuring a source (SFTP or S3), destination (SFTP or S3),
+
+        event webhook, post-validation transform, and custom metadata at creation time.
+
+
+        If `folder_id` is not provided, the Multi FileFeed is placed in the
+
+        organization''s default Multi FileFeed folder.
+
+        '
+      operationId: create-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name for the new Multi FileFeed. Must be unique within the organization.
+                folder_id:
+                  type: integer
+                  description: ID of the folder to place this Multi FileFeed in. If not provided, the
+                    default Multi FileFeed folder is used.
+                workflow_templates:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/WorkflowTemplateInput'
+                  description: List of templates to associate with the Multi FileFeed. At least one is
+                    required. Template keys must be unique.
+                  minItems: 1
+                source:
+                  anyOf:
+                  - $ref: '#/components/schemas/SourceSftp'
+                  - $ref: '#/components/schemas/SourceS3'
+                  - type: 'null'
+                  description: Configuration for the source connection (e.g. SFTP or S3). S3 sources must
+                    be enabled for the organization.
+                destination:
+                  anyOf:
+                  - $ref: '#/components/schemas/DestinationSftp'
+                  - $ref: '#/components/schemas/DestinationS3'
+                  - type: 'null'
+                  description: Configuration for the destination connection (e.g. SFTP or S3). S3 destinations
+                    must be enabled for the organization.
+                multi_filefeed_event_webhook_key:
+                  type: string
+                  minLength: 1
+                  description: Key of an existing event webhook to attach to this Multi FileFeed
+                post_validation_transform_key:
+                  type: string
+                  nullable: true
+                  description: Key of an existing post-validation transform to apply
+                custom_metadata:
+                  type:
+                  - object
+                  - 'null'
+                  description: JSON object with custom metadata to associate with the Multi FileFeed
+              required:
+              - name
+              - workflow_templates
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+        '400':
+          description: Bad request (e.g. missing name, empty templates, duplicate template keys, invalid
+            webhook key)
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Forbidden (the required feature is not enabled for this organization)
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: List Multi FileFeeds
+      description: Returns a list of Multi FileFeeds for the organization. Optionally filter by folder
+        ID.
+      operationId: list-multi-file-feeds
+      tags:
+      - Multi FileFeeds
+      parameters:
+      - name: folder_id
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Optional folder ID to filter Multi FileFeeds by folder
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MultiFileFeedSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feed-folders/{folder_id}:
+    parameters:
+    - name: folder_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed folder
+    delete:
+      summary: Delete a Multi FileFeed Folder
+      description: Delete a specific Multi FileFeed folder by ID.
+      operationId: delete-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure
+            is the response status code. In a future API version this endpoint may not return any response
+            body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: Get a Multi FileFeed Folder
+      description: Retrieves a single Multi FileFeed folder by ID.
+      operationId: get-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      summary: Update a Multi FileFeed Folder
+      description: Update a specific Multi FileFeed folder by ID. Only the fields that need to be updated
+        should be provided.
+      operationId: update-multi-file-feed-folder
+      tags:
+      - Multi FileFeed Folders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiFileFeedFolderRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedFolder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    delete:
+      summary: Delete a Multi FileFeed
+      description: Permanently deletes a Multi FileFeed
+      operationId: delete-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure
+            is the response status code. In a future API version this endpoint may not return any response
+            body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: Get a Multi FileFeed
+      description: Retrieves a single Multi FileFeed by ID, including its source and destination connections,
+        and attached event webhooks.
+      operationId: get-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      summary: Update a Multi FileFeed
+      description: Updates an existing Multi FileFeed's configuration
+      operationId: update-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: At least one field must be provided. If a field is not provided, it will not
+                be updated. If a field is provided with a null value, it will be removed.
+              properties:
+                name:
+                  type: string
+                  description: New name for the Multi FileFeed
+                source:
+                  anyOf:
+                  - $ref: '#/components/schemas/SourceSftp'
+                  - $ref: '#/components/schemas/SourceS3'
+                  - type: 'null'
+                  description: Configuration for the source connection (SFTP or S3). Set to null to remove
+                    the source. S3 sources must be enabled for the organization.
+                destination:
+                  anyOf:
+                  - $ref: '#/components/schemas/DestinationSftp'
+                  - $ref: '#/components/schemas/DestinationS3'
+                  - type: 'null'
+                  description: Configuration for the destination connection (SFTP or S3). Set to null
+                    to remove the destination. S3 destinations must be enabled for the organization.
+                post_validation_transform_key:
+                  type: string
+                  description: Key of an existing post-validation transform to apply
+                multi_filefeed_event_webhook_key:
+                  type:
+                  - string
+                  - 'null'
+                  minLength: 1
+                  description: Key of an existing event webhook to attach to this Multi FileFeed. Pass
+                    `null` to detach the current event webhook.
+                folder_id:
+                  type: integer
+                  description: ID of the folder to move this Multi FileFeed into. The folder must belong
+                    to the same organization.
+                custom_metadata:
+                  type:
+                  - object
+                  - 'null'
+                  description: JSON object with custom metadata to associate with the Multi FileFeed
+                workflow_templates:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/WorkflowTemplateInput'
+                  description: 'Declarative list of templates for this Multi FileFeed. When provided,
+
+                    the system computes a diff against the current templates:
+
+                    - Templates in the request but not currently associated are **added**.
+
+                    - Templates already associated whose `is_required` flag changed are **updated**.
+
+                    - Templates currently associated but not in the request are **removed**.
+
+
+                    At least one template must be provided (empty arrays are rejected).
+
+                    Template keys must be unique within the request.
+
+                    '
+                  minItems: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Forbidden (the required feature is not enabled for this organization)
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/duplicate:
+    post:
+      summary: Duplicate a Multi FileFeed
+      description: Duplicates a Multi FileFeed and returns the new Multi FileFeed. The copy includes both
+        the builder (editable) version and the source's latest saved version, so the duplicate can run
+        user imports immediately rather than only builder imports. The carried-over saved version's change
+        history notes that it came from duplicating the source Multi FileFeed and when that source's latest
+        version was saved.
+      operationId: duplicate-multi-file-feed
+      tags:
+      - Multi FileFeeds
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed that's being duplicated
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name for the duplicated Multi FileFeed
+              required:
+              - name
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeed'
+  /v0/multi-file-feeds/{multi_file_feed_id}/commits/{commit_id}:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    - name: commit_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the commit
+    get:
+      x-readme:
+        hidden: true
+      summary: Get a commit
+      description: 'Returns the transforms for a specific commit. The commit must
+
+        belong to this Multi FileFeed''s recurring flowgraph.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: get-multi-file-feed-commit
+      tags:
+      - Multi FileFeed Commits
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commit_id:
+                    type: integer
+                    description: Unique identifier of the commit
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the commit was created (ISO 8601)
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export of the commit
+                    properties:
+                      version:
+                        type: integer
+                      exported_at:
+                        type: string
+                        format: date-time
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                required:
+                - commit_id
+                - created_at
+                - transforms
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: 'Unprocessable entity. Possible reasons:
+
+            - Commit not found for this workflow
+
+            - Workflow has no recurring flowgraph
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/head:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    get:
+      x-readme:
+        hidden: true
+      summary: Get HEAD state
+      description: 'Returns the current HEAD (draft) flowgraph state along with its
+
+        dirty status. The HEAD is the mutable, editable version of the
+
+        flowgraph — it may differ from the latest commit if edits have
+
+        been made but not yet committed.
+
+
+        The `is_dirty` flag indicates whether the HEAD has changes that
+
+        are newer than the latest commit. If `true`, `POST /commits`
+
+        will reject requests to prevent overwriting in-progress UI edits.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: get-multi-file-feed-head
+      tags:
+      - Multi FileFeed Transforms
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_dirty:
+                    type: boolean
+                    description: Whether the HEAD has uncommitted changes newer than the latest commit
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export
+                    properties:
+                      version:
+                        type: integer
+                        description: Export format version
+                        example: 0
+                      exported_at:
+                        type: string
+                        format: date-time
+                        description: When the export was generated
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                node_key:
+                                  type: string
+                                type:
+                                  type: string
+                                config:
+                                  type: object
+                                position_x:
+                                  type: number
+                                position_y:
+                                  type: number
+                                pipeline:
+                                  type: object
+                                  nullable: true
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                from_node_key:
+                                  type: string
+                                to_node_key:
+                                  type: string
+                required:
+                - is_dirty
+                - transforms
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: Unprocessable entity (e.g. workflow has no recurring flowgraph)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/errors:
+    get:
+      summary: Get Multi FileFeed import errors
+      description: 'Returns all errors for a completed Multi FileFeed import as a unified,
+
+        node-centric payload. Each errored node in the workflow is represented as
+
+        an entry in `node_errors` with per-list error details and presigned CSV
+
+        download URLs.
+
+
+        For v1 flowgraphs (import node), errors are synthesized from the
+
+        flowgraph run''s validation_result. For v2 flowgraphs
+
+        (validate-against-template node), errors come directly from the node
+
+        run''s details.
+
+        '
+      operationId: get-multi-file-feed-import-errors
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  node_errors:
+                    type: array
+                    description: 'One entry per errored node in the flowgraph run. The shape of each entry
+                      depends on the node type.
+
+                      '
+                    items:
+                      type: object
+                      required:
+                      - node_key
+                      - node_type
+                      - status
+                      properties:
+                        node_key:
+                          type: string
+                          description: UUID key of the flowgraph node
+                        node_type:
+                          type: string
+                          description: 'Node type identifier. Known values include "import" (v1 flowgraphs),
+                            "validate-against-template" (v2 flowgraphs), and "join-lists", but other types
+                            may appear as the flowgraph engine evolves.
+
+                            '
+                          example: validate-against-template
+                        status:
+                          type: string
+                          enum:
+                          - error
+                        missing_templates:
+                          type: array
+                          description: Templates referenced by the workflow but not found. Present only
+                            for import (v1) nodes.
+                          items:
+                            type: object
+                            properties:
+                              template_key:
+                                type: string
+                              label:
+                                type: string
+                        error_reports:
+                          type: array
+                          description: 'Per-file error summaries with optional presigned CSV download
+                            URLs. Present for import and validate-against-template nodes. Includes all
+                            files processed by the node; files without errors have a null error_report_url.
+
+                            '
+                          items:
+                            type: object
+                            properties:
+                              list_id:
+                                type: integer
+                              template_key:
+                                type: string
+                                description: Key of the template associated with this file
+                              error_row_count:
+                                type: integer
+                                description: Number of rows with validation errors
+                              unmapped_required_column_count:
+                                type: integer
+                                description: Number of required template columns not mapped
+                              error_report_url:
+                                type: string
+                                nullable: true
+                                description: Presigned URL to download a CSV of row-level validation errors.
+                                  Null when error_row_count is 0.
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Import not yet submitted or still running
+          content:
+            application/json:
+              schema:
+                type: object
+  ? /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/imported-files/{imported_file_id}/download-url
+  : get:
+      summary: Get download URL for imported file
+      description: Retrieves a download URL for a specific imported file
+      operationId: get-multi-file-feed-import-file-download-url
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      - name: imported_file_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the imported file
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: Presigned URL to download the file
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/imported-files:
+    get:
+      summary: Get imported files
+      description: Retrieves the list of imported files for a Multi FileFeed import
+      operationId: get-multi-file-feed-import-files
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ImportedFile'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}:
+    get:
+      summary: Get a Multi FileFeed import
+      description: Retrieves details about a specific Multi FileFeed import
+      operationId: get-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/transforms/history:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    - name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of commits to skip (for pagination)
+    - name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+      description: Maximum number of commits to return (1–100)
+    get:
+      summary: Get transforms history
+      description: 'Returns the paginated commit history for the Multi FileFeed''s transforms,
+
+        ordered by most recent first.
+
+
+        Each entry includes the commit ID, timestamp, and optional creator label
+
+        and change descriptions.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: get-multi-file-feed-transforms-history
+      tags:
+      - Multi FileFeed Transforms
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - history
+                - total_count
+                properties:
+                  history:
+                    type: array
+                    description: Ordered list of commits, most recent first
+                    items:
+                      type: object
+                      required:
+                      - commit_id
+                      - created_at
+                      properties:
+                        commit_id:
+                          type: integer
+                          description: Unique identifier of the commit
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: When the commit was created (ISO 8601)
+                        creator_label:
+                          type: string
+                          description: Label of the API key or user that created the commit (omitted if
+                            not set)
+                        change_descriptions:
+                          type: array
+                          description: Human-readable descriptions of changes in this commit (omitted
+                            if empty)
+                          items:
+                            type: string
+                  total_count:
+                    type: integer
+                    description: Total number of commits across all pages
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (feature not enabled)
+        '422':
+          description: Workflow has no recurring flowgraph
+  /v0/multi-file-feeds/{multi_file_feed_id}/transforms:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    get:
+      summary: Get transforms
+      description: "Returns the current HEAD flowgraph state using the v1 transforms format.\n\nThe response\
+        \ includes the portable flowgraph export (nodes, edges, pipelines),\nthe dirty status (and the\
+        \ last commit ID if there is at least one commit) \nfor optimistic locking.\n\nRequires Multi\
+        \ FileFeed transforms to be enabled for the organization.\n"
+      operationId: get-multi-file-feed-transforms
+      tags:
+      - Multi FileFeed Transforms
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_dirty:
+                    type: boolean
+                    description: Whether the HEAD has uncommitted changes
+                  last_commit_id:
+                    type: integer
+                    description: ID of the latest commit (for optimistic locking)
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export in v1 format
+                    properties:
+                      version:
+                        type: integer
+                        description: Export format version (always 1)
+                        example: 1
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                      workflow:
+                        type: object
+                        description: 'Workflow-level metadata. Present on every response.
+
+                          `workspace_key` is read-only and not accepted by PATCH.
+
+                          '
+                        properties:
+                          name:
+                            type: string
+                            description: Workflow display name
+                          workspace_key:
+                            type: string
+                            description: Name of the workspace this workflow belongs to (read-only)
+                          workflow_event_webhook_key:
+                            type: string
+                            description: Key of the event webhook attached to this workflow
+                          workflow_code_action_key:
+                            type: string
+                            description: Key of the code action attached to this workflow
+                          custom_metadata:
+                            type: object
+                            description: Arbitrary JSON metadata stored on the workflow
+                      templates:
+                        type: array
+                        description: 'Template associations for this workflow. Controls which templates
+
+                          appear in the Multi FileFeed template selector.
+
+                          Distinct from node-level `pipeline.template_key`.
+
+                          '
+                        items:
+                          type: object
+                          properties:
+                            template_key:
+                              type: string
+                              description: Portable key of the associated template
+                            is_required:
+                              type: boolean
+                              description: Whether this template is required for the workflow to run
+                required:
+                - is_dirty
+                - transforms
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (feature not enabled)
+        '422':
+          description: Workflow has no recurring flowgraph
+    patch:
+      summary: Patch transforms
+      description: "Replaces the Multi FileFeed's HEAD flowgraph with the supplied state.\n\nThe `flowgraph.nodes`\
+        \ and `flowgraph.edges` arrays represent the complete\ndesired state — nodes absent from the payload\
+        \ are deleted, and edges are\nfully replaced. Every call must include a `source` node and an `import`\
+        \ or\n`import-v2` node or the request will be rejected. Represent the complete\nworkflow as a\
+        \ single graph.\n\nWithin an individual node, `config` uses merge semantics:\n\nIf a key is not\
+        \ specified, the current value is left unchanged.\nIf a key takes a scalar value\n- a supplied\
+        \ value replaces the current value\n- a null value deletes the key\nIf a key takes an array value\n\
+        - supplied value replaces the current array\n- a null value deletes the key\nIf a key takes a\
+        \ hash/object value\n- the supplied hash is recursively merged with the current hash (same rules\
+        \ apply at each nested level)\n- a null value deletes the key\n\nAuto-commits by default. Use\
+        \ `commit_now: false` to defer committing.\n\nConcurrency guards:\n  - `last_known_commit_id`\
+        \ — optimistic lock; 409 if commits changed\n  - Dirty-state check — 409 if HEAD has uncommitted\
+        \ UI edits (override with `force: true`)\n\nRequires Multi FileFeed transforms to be enabled for\
+        \ the organization.\n"
+      operationId: patch-multi-file-feed-transforms
+      tags:
+      - Multi FileFeed Transforms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - version
+              - flowgraph
+              properties:
+                version:
+                  type: integer
+                  description: Payload format version (must be 1)
+                  example: 1
+                commit_now:
+                  type: boolean
+                  description: Whether to auto-commit after applying (default true)
+                  default: true
+                force:
+                  type: boolean
+                  description: Override dirty-state check when commit_now is true
+                  default: false
+                last_known_commit_id:
+                  type: integer
+                  description: Optimistic lock — rejects if latest commit differs
+                workflow:
+                  type: object
+                  description: 'Optional workflow-level metadata to update. Object-merge semantics:
+
+                    only keys present are updated; absent keys leave current values
+
+                    unchanged. `workspace_key` is read-only and ignored if supplied.
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      description: New display name for the workflow
+                    workflow_event_webhook_key:
+                      type: string
+                      description: Key of the event webhook to attach (null to detach)
+                    workflow_code_action_key:
+                      type: string
+                      description: Key of the code action to attach (null to detach)
+                    custom_metadata:
+                      type: object
+                      description: Arbitrary JSON metadata (null to clear)
+                templates:
+                  type: array
+                  description: 'Optional full-replace list of template associations for this workflow.
+
+                    When present, replaces all existing associations — entries absent from
+
+                    the array are removed. Omit the field entirely to leave associations
+
+                    unchanged.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - template_key
+                    - is_required
+                    properties:
+                      template_key:
+                        type: string
+                        description: Portable key of the template to associate
+                      is_required:
+                        type: boolean
+                        description: Whether this template is required for the workflow to run
+                flowgraph:
+                  type: object
+                  required:
+                  - nodes
+                  - edges
+                  properties:
+                    nodes:
+                      type: array
+                      description: 'Complete desired set of nodes. Every call must include a `source`
+
+                        node and at least one `import` or `import-v2` node. Nodes absent
+
+                        from this array are deleted.
+
+                        '
+                      items:
+                        type: object
+                        required:
+                        - node_key
+                        - type
+                        - config
+                        properties:
+                          node_key:
+                            type: string
+                            description: Unique identifier for the node within this flowgraph
+                          type:
+                            type: string
+                            description: Node type (e.g. source, import-v2, sheet-transforms)
+                          config:
+                            type: object
+                            description: Node-specific configuration (merge semantics — see above)
+                          position_x:
+                            type: number
+                            description: X coordinate in the visual editor
+                          position_y:
+                            type: number
+                            description: Y coordinate in the visual editor
+                          pipeline:
+                            type: object
+                            description: Pipeline configuration (for single-list nodes only)
+                            properties:
+                              template_key:
+                                type: string
+                                description: Template key reference
+                              config:
+                                type: object
+                                description: Pipeline step configuration
+                              prompt_generated_code_actions:
+                                type: array
+                                items:
+                                  type: object
+                                  required:
+                                  - key
+                                  - label
+                                  - user_prompt
+                                  - code
+                                  properties:
+                                    key:
+                                      type: string
+                                    label:
+                                      type: string
+                                    user_prompt:
+                                      type: string
+                                    code:
+                                      type: string
+                    edges:
+                      type: array
+                      description: Complete desired set of edges. Fully replaced on every call.
+                      items:
+                        type: object
+                        required:
+                        - from_node_key
+                        - to_node_key
+                        properties:
+                          from_node_key:
+                            type: string
+                            description: Source node key
+                          to_node_key:
+                            type: string
+                            description: Target node key
+            examples:
+              minimal_two_node_graph:
+                summary: Minimal valid graph (source → import-v2)
+                value:
+                  version: 1
+                  flowgraph:
+                    nodes:
+                    - node_key: source
+                      type: source
+                      config: {}
+                    - node_key: import
+                      type: import-v2
+                      config: {}
+                    edges:
+                    - from_node_key: source
+                      to_node_key: import
+      responses:
+        '200':
+          description: Successfully patched transforms
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transforms:
+                    type: object
+                    description: Full transforms state after patch
+                  commit_id:
+                    type: integer
+                    description: ID of the created commit (if commit_now was true)
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the commit was created
+        '400':
+          description: Bad request (invalid JSON or not an object)
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (feature not enabled or wrong org)
+        '409':
+          description: Conflict — concurrent modification detected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      last_known_commit_id:
+                        type: integer
+                      current_commit_id:
+                        type: integer
+                      is_dirty:
+                        type: boolean
+        '422':
+          description: Validation failed (schema, references, or graph errors)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      errors:
+                        type: array
+                        items:
+                          type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/commits/{commit_id}/revert:
+    parameters:
+    - name: multi_file_feed_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the Multi FileFeed
+    - name: commit_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the commit to revert to
+    post:
+      x-readme:
+        hidden: true
+      summary: Revert to a commit
+      description: 'Reverts the HEAD flowgraph to the state of a specific commit,
+
+        then creates a new commit from the reverted HEAD.
+
+
+        The target commit must belong to this Multi FileFeed''s recurring
+
+        flowgraph. The response contains the newly created commit (not
+
+        the original target commit).
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.
+
+        '
+      operationId: revert-multi-file-feed-commit
+      tags:
+      - Multi FileFeed Commits
+      responses:
+        '200':
+          description: Successful response — returns the newly created commit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commit_id:
+                    type: integer
+                    description: Unique identifier of the newly created commit
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the new commit was created (ISO 8601)
+                  transforms:
+                    type: object
+                    description: The portable flowgraph export of the new commit
+                    properties:
+                      version:
+                        type: integer
+                      exported_at:
+                        type: string
+                        format: date-time
+                      flowgraph:
+                        type: object
+                        properties:
+                          nodes:
+                            type: array
+                            items:
+                              type: object
+                          edges:
+                            type: array
+                            items:
+                              type: object
+                required:
+                - commit_id
+                - created_at
+                - transforms
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized (missing or invalid API key)
+        '403':
+          description: Forbidden (wrong organization or required feature not enabled)
+        '422':
+          description: 'Unprocessable entity. Possible reasons:
+
+            - HEAD flowgraph has uncommitted changes (dirty)
+
+            - Commit not found for this workflow
+
+            - Workflow has no recurring flowgraph
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/direct-uploads/{upload_id}/submit:
+    post:
+      summary: Submit a direct file upload for a Multi FileFeed import
+      description: 'Submits (finalizes) a direct upload that was previously created via the
+
+        `direct-uploads` endpoint. The `upload_id` is provided as a path parameter.
+
+        The server verifies that the file was actually uploaded to the file store,
+
+        updates the file size from storage metadata, and creates the record linking
+
+        the file to this import.
+
+
+        The direct upload flow consists of three steps:
+
+        1. **Create** (`direct-uploads`): creates a tracking record and returns the presigned URL, content
+        type, and upload ID.
+
+        2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.
+
+        3. **Submit** (this endpoint): verifies the upload succeeded and links the file to the import.
+
+        '
+      operationId: submit-direct-upload-multi-file-feed-import-file
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      - name: upload_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the direct upload (returned from the create endpoint)
+      responses:
+        '200':
+          description: Successful response — the file has been verified and linked to the import
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request (e.g. invalid upload_id, file not found in store, import already submitted)
+          content:
+            application/json:
+              schema:
+                type: object
+        '409':
+          description: Conflict (e.g. a file with the same name already exists in this import)
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Unprocessable entity (e.g. this upload has already been submitted)
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/submit:
+    post:
+      summary: Submit a Multi FileFeed import
+      description: Submits the Multi FileFeed import for processing
+      operationId: submit-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      - name: prioritize
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: 'When `true`, this import''s run is placed at the front of the processing queue so
+          it is picked up ahead of other Multi FileFeed imports already waiting in the queue. Omit it
+          or send `false` to use the default first-in, first-out ordering.
+
+
+          This option must be enabled for your organization. If it is not enabled and you send `true`,
+          the request is rejected with a `403` and no run is scheduled.
+
+
+          Front-of-queue ordering only affects imports that are still waiting. It does not preempt runs
+          that are already executing and does not bypass concurrency limits, so a prepended run still
+          waits its turn against any active throttle.
+
+          '
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiFileFeedImport'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: 'Forbidden — `prioritize=true` was sent but front-of-queue submission is not enabled
+            for the organization.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/upload-from-s3:
+    post:
+      summary: Upload a file from S3 to a Multi FileFeed import
+      description: 'Uploads a file from a customer''s S3 bucket into a Multi FileFeed import.
+
+        The server assumes an IAM role to read the specified S3 object, verifies
+
+        it exists and is within the file size limit, downloads it, and stores it
+
+        as an uploaded file on the import.
+
+
+        The `object_uri` must be a valid S3 URI in the format `s3://bucket/key`.
+
+        The `s3_account_id` identifies which S3 account credentials (role ARN and
+
+        external ID) to use for the STS AssumeRole call. The referenced bucket
+
+        and object must be accessible to the IAM role configured on that S3 account.
+
+
+        Both the object URI and the file basename (derived from the S3 key) must
+
+        be unique within the import. If either already exists, a 409 Conflict is
+
+        returned.
+
+        '
+      operationId: upload-from-s3-multi-file-feed-import
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                s3_account_id:
+                  type: integer
+                  description: 'The ID of the S3 account to use for accessing the S3 object.
+
+                    The S3 account stores the IAM role ARN and external ID used
+
+                    for the STS AssumeRole call.
+
+                    '
+                object_uri:
+                  type: string
+                  description: 'The S3 URI of the file to upload (e.g. `s3://bucket/path/to/file.csv`).
+
+                    The bucket and object must be accessible to the IAM role
+
+                    configured on the specified S3 account.
+
+                    '
+              required:
+              - s3_account_id
+              - object_uri
+      responses:
+        '200':
+          description: Successful response. The file has been downloaded from S3 and stored on the import.
+            The primary way to verify the request's success or failure is the response status code. In
+            a future API version this endpoint may return additional metadata about the uploaded file.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties: false
+        '400':
+          description: 'Bad request. Possible causes: invalid S3 URI format, S3 object not accessible
+            (not found, forbidden, or access denied), object exceeds the file size limit, import already
+            submitted, or import does not belong to the specified Multi FileFeed.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          description: Conflict. A file with the same object URI or the same filename (basename of the
+            S3 key) has already been uploaded to this import.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal server error. A platform-level failure occurred during the S3 upload flow
+            (e.g. STS role assumption failed due to a misconfigured intermediate role, or an unexpected
+            AWS service error). These errors indicate an infrastructure issue rather than a problem with
+            the request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/uploaded-files:
+    post:
+      summary: Upload a file for Multi FileFeed import
+      description: Uploads a file to be used in the Multi FileFeed import
+      operationId: upload-multi-file-feed-import-file
+      tags:
+      - Multi FileFeed Imports
+      parameters:
+      - name: multi_file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed
+      - name: multi_file_feed_import_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of the Multi FileFeed import
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload
+              required:
+              - file
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    MultiFileFeedFolder:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed folder
+        name:
+          type: string
+          description: The name of the Multi FileFeed folder
+        description:
+          type: string
+          nullable: true
+          description: The description of the Multi FileFeed folder
+        color:
+          type: string
+          nullable: true
+          description: Color associated with the folder
+        custom_metadata:
+          type: object
+          nullable: true
+          description: Custom metadata associated with the folder
+        containing_folder_id:
+          type: integer
+          nullable: true
+          description: ID of the folder that contains this folder. Null for root folders.
+    MultiFileFeedFolderRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Multi FileFeed folder
+        description:
+          type: string
+          nullable: true
+          description: The description of the Multi FileFeed folder
+        color:
+          type: string
+          nullable: true
+          description: Color associated with the folder
+        custom_metadata:
+          type: object
+          nullable: true
+          description: Custom metadata associated with the folder
+        containing_folder_id:
+          type: integer
+          nullable: true
+          description: ID of the folder that should contain this folder. Null for root folders.
+    MultiFileFeedFolderPostRequest:
+      allOf:
+      - $ref: '#/components/schemas/MultiFileFeedFolderRequest'
+      required:
+      - name
+    MultiFileFeedImport:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed import
+        multi_file_feed_id:
+          type: integer
+          description: The ID of the associated Multi FileFeed
+        environment:
+          type: string
+          description: The name of the environment
+        status:
+          type: string
+          description: The current status of the Multi FileFeed import
+        created_at:
+          type: string
+          format: date-time
+          description: When the Multi FileFeed import was created
+    MultiFileFeedTemplate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        key:
+          type: string
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+    SourceSftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      multipleOf: 5
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults
+                        to 0 (top of the hour).
+          required:
+          - sftp_account_id
+          - path
+    SourceS3:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - s3
+        data:
+          type: object
+          properties:
+            s3_account_id:
+              type: integer
+            bucket:
+              type: string
+            prefix:
+              type: string
+              nullable: true
+              description: Key prefix within the bucket to scope listing/pulling to. Defaults to empty
+                (whole bucket).
+            file_filter:
+              type: string
+              nullable: true
+              description: 'Optional regular expression applied to object keys. When set, only matching
+                keys are ingested.
+
+                Note: changing `file_filter` does not retroactively re-ingest objects that already passed
+                the
+
+                cursor watermark; only newly listed objects are evaluated against the new pattern. Changing
+
+                `bucket` or `prefix`, by contrast, resets the cursor and dedupe ledger because they reference
+
+                a different object namespace.
+
+                '
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      multipleOf: 5
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults
+                        to 0 (top of the hour).
+          required:
+          - s3_account_id
+          - bucket
+    DestinationSftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+          required:
+          - sftp_account_id
+          - path
+    DestinationS3:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - s3
+        data:
+          type: object
+          properties:
+            s3_account_id:
+              type: integer
+            bucket:
+              type: string
+            prefix:
+              type: string
+              nullable: true
+              description: Key prefix within the bucket. Output files are written to `{prefix}/{file_name}`.
+                Defaults to empty (write to bucket root).
+          required:
+          - s3_account_id
+          - bucket
+    WorkflowTemplateInput:
+      type: object
+      description: 'A template to associate with a Multi FileFeed.
+
+        At least one of `template_key` or `template_id` must be provided.
+
+        If both are provided, they must refer to the same template;
+
+        otherwise the request is rejected with a validation error.
+
+        '
+      anyOf:
+      - required:
+        - template_key
+      - required:
+        - template_id
+      properties:
+        template_key:
+          type: string
+          description: The unique key of the template to associate
+        template_id:
+          type: integer
+          description: The numeric ID of the template to associate
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+      required:
+      - is_required
+    EventWebhook:
+      type: object
+      properties:
+        webhook_key:
+          type: string
+          description: Unique key identifying the webhook
+        events:
+          type: array
+          items:
+            type: string
+          description: List of event types the webhook is subscribed to
+    MultiFileFeed:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        folder_id:
+          type: integer
+          description: ID of the folder containing this Multi FileFeed
+        custom_metadata:
+          type: object
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiFileFeedTemplate'
+        source:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/SourceSftp'
+            - $ref: '#/components/schemas/SourceS3'
+        destination:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/DestinationSftp'
+            - $ref: '#/components/schemas/DestinationS3'
+        event_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventWebhook'
+        post_validation_transform_key:
+          type: string
+          nullable: true
+          description: Key of the post-validation transform applied to this Multi FileFeed
+    ImportedFile:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the imported file
+        name:
+          type: string
+          description: The name of the imported file
+    MultiFileFeedSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed
+        name:
+          type: string
+          description: The name of the Multi FileFeed
+        folder:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The ID of the folder containing this Multi FileFeed
+            name:
+              type: string
+              description: The name of the folder
+        templates:
+          type: array
+          items:
+            type: object
+            properties:
+              template_key:
+                type: string
+                description: The unique key of the template
+              is_required:
+                type: boolean
+                description: Whether this template is required for the Multi FileFeed

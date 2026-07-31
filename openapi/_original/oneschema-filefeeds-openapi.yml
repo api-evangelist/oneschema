@@ -1,0 +1,1231 @@
+openapi: 3.1.0
+info:
+  title: OneSchema FileFeeds API
+  version: '1'
+  description: 'Manage OneSchema (legacy) FileFeeds: folders, feeds, imports, embed sessions, and saved
+    mappings for automated recurring file ingestion.'
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: FileFeeds Embed Sessions
+  description: FileFeeds Embed Sessions operations
+- name: FileFeed Folders
+  description: FileFeed Folder operations
+- name: FileFeeds Imports
+  description: FileFeeds Imports operations
+- name: FileFeeds
+  description: FileFeeds operations
+- name: FileFeed Mappings
+  description: Saved column mappings for FileFeeds
+paths:
+  /v0/file-feed-embed-sessions:
+    post:
+      summary: Create FileFeed embed session
+      description: Create a new embed session for a FileFeed
+      operationId: create-file-feed-embed-session
+      tags:
+      - FileFeeds Embed Sessions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  format: uuid
+                  description: Client ID for the environment the import is being initiated from
+                file_feed_id:
+                  type: integer
+                  description: The ID of the FileFeed
+                user_jwt:
+                  description: Encoded JWT for the user initiating the import
+                  type: string
+                  format: jwt
+              required:
+              - client_id
+              - file_feed_id
+              - user_jwt
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-embed-session'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feed-folders:
+    post:
+      summary: Create FileFeed folder
+      description: Create a new FileFeed folder.
+      operationId: create-file-feed-folder
+      tags:
+      - FileFeed Folders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-folder-post-request'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: List FileFeed folders
+      description: Returns a list of FileFeed folders for the organization.
+      operationId: get-file-feed-folders
+      tags:
+      - FileFeed Folders
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feeds/{file_feed_id}/imports:
+    post:
+      summary: Create FileFeed import
+      description: Create a new import for a FileFeed
+      operationId: create-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: client_id
+        in: query
+        description: Client ID for the environment the import is being initiated from
+        schema:
+          type: string
+          format: uuid
+        required: false
+      - name: user_jwt
+        in: query
+        description: Encoded JWT for the user initiating the import
+        schema:
+          type: string
+          format: jwt
+        required: false
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The contents of the file to be imported.
+              required:
+              - file
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-import'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    get:
+      summary: List FileFeed imports
+      description: Returns a list of imports for the specified FileFeed. Supports pagination via `start_row`
+        and `count` parameters.
+      operationId: get-file-feed-imports
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: start_row
+        in: query
+        schema:
+          type: integer
+          format: int32
+        required: false
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 500
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imports:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/file-feed-import'
+                  row_count:
+                    type: integer
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds:
+    post:
+      summary: Create FileFeed
+      description: Create a new FileFeed
+      operationId: create-file-feed
+      tags:
+      - FileFeeds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-post-request'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: List FileFeeds
+      description: Returns a list of FileFeeds for the organization.
+      operationId: get-file-feeds
+      tags:
+      - FileFeeds
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feed-folders/{folder_id}:
+    delete:
+      summary: Delete FileFeed folder
+      description: Delete a specific FileFeed folder by ID.
+      operationId: delete-file-feed-folder
+      tags:
+      - FileFeed Folders
+      parameters:
+      - name: folder_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure
+            is the response status code. In a future API version this endpoint may not return any response
+            body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: Get FileFeed folder
+      description: Retrieve a specific FileFeed folder by ID.
+      operationId: get-file-feed-folder
+      tags:
+      - FileFeed Folders
+      parameters:
+      - name: folder_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    patch:
+      summary: Update FileFeed folder
+      description: Update a specific FileFeed folder by ID. Only the fields that need to be updated should
+        be provided.
+      operationId: update-file-feed-folder
+      tags:
+      - FileFeed Folders
+      parameters:
+      - name: folder_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-folder-base'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-folder-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}:
+    delete:
+      summary: Delete FileFeed import
+      description: Delete a specific FileFeed import for a given FileFeed
+      operationId: delete-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        description: The id of the FileFeed import
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure
+            is the response status code. In a future API version this endpoint may not return any response
+            body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    get:
+      summary: Get FileFeed import
+      description: Get the FileFeed imports for a given FileFeed
+      operationId: get-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        description: The id of the FileFeed import
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-import'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}:
+    delete:
+      summary: Delete FileFeed
+      description: Delete a specific FileFeed by ID
+      operationId: delete-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the FileFeed
+      responses:
+        '200':
+          description: Successful response. The primary way to verify the request's success or failure
+            is the response status code. In a future API version this endpoint may not return any response
+            body at all.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: Get FileFeed
+      description: Retrieve a specific FileFeed by ID
+      operationId: get-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the FileFeed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    patch:
+      summary: Update FileFeed
+      description: Update a specific FileFeed by ID. Only the fields that need to be updated should be
+        provided.
+      operationId: update-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the FileFeed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file-feed-base'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feeds/{file_feed_id}/duplicate:
+    post:
+      summary: Duplicate FileFeed
+      description: Duplicate an existing FileFeed
+      operationId: duplicate-file-feed
+      tags:
+      - FileFeeds
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: name
+        in: query
+        description: Unique name of the duplicated FileFeed
+        schema:
+          type: string
+        required: false
+      - name: template_id
+        in: query
+        description: Template id for the duplicated FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/attempts/{file_feed_import_attempt_id}/error-details:
+    post:
+      summary: Generate error details report
+      description: Generate a CSV of every cell error remaining in the import, broken down by row. Returns
+        a presigned URL to download the file.
+      operationId: generate-file-feed-import-error-details
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_attempt_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/presigned-url'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/saved-mappings:
+    get:
+      summary: Get saved mappings for a FileFeed
+      description: Get the saved mappings for a given FileFeed
+      operationId: get-file-feed-saved-mappings
+      tags:
+      - FileFeed Mappings
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mappings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uploaded_column_name:
+                          type: string
+                        target_column_name:
+                          type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - code
+                - message
+        '422':
+          description: Unprocessable Entity — the file feed's pipeline is missing commits or required
+            configuration steps.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - message
+    put:
+      summary: Update FileFeed saved mappings
+      description: Update saved mappings for a given FileFeed. Note that any uncommitted changes to FileFeed
+        transforms will be overwritten.
+      operationId: update-file-feed-saved-mappings
+      tags:
+      - FileFeed Mappings
+      parameters:
+      - name: file_feed_id
+        in: path
+        description: The id of the FileFeed
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mappings:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      uploaded_column_name:
+                        type: string
+                      target_column_name:
+                        type: string
+                    required:
+                    - uploaded_column_name
+                    - target_column_name
+              required:
+              - mappings
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mappings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uploaded_column_name:
+                          type: string
+                        target_column_name:
+                          type: string
+        '400':
+          description: Bad request — invalid mappings or the file feed's pipeline is missing commits or
+            required configuration steps.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  param:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - code
+                - message
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/import-download-url:
+    get:
+      summary: Get import download url
+      description: Get a download url for a successful FileFeed import
+      operationId: get-import-download-url
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - csv
+          - json
+          default: csv
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: url
+                    example: https://example.com/abc.json
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/attempts/{file_feed_import_attempt_id}/imported-rows:
+    get:
+      summary: Get imported rows for a given FileFeed attempt
+      description: Get imported JSON rows for a successful FileFeed import attempt
+      operationId: imported-rows
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_attempt_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: start_row
+        in: query
+        schema:
+          type: integer
+          format: int32
+        required: false
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int32
+        required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  template_key:
+                    type: string
+                  workspace_id:
+                    type: integer
+                  sheet_id:
+                    type: integer
+                  sheet_metadata:
+                    type: object
+                  columns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sheet_column_name:
+                          type: string
+                        template_column_key:
+                          type: string
+                        template_column_name:
+                          type: string
+                        is_custom:
+                          type: boolean
+                        custom_column_name:
+                          type: string
+                        is_unmapped:
+                          type: boolean
+                        is_multi_mappable:
+                          type: boolean
+                  source_type:
+                    type: string
+                  source_metadata:
+                    type: object
+                  file_feed_metadata:
+                    type: object
+                  file_feed_id:
+                    type: integer
+                  file_feed_import_id:
+                    type: integer
+                  records:
+                    type: array
+                    items:
+                      type: object
+                  error_records:
+                    type: array
+                    items:
+                      type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feeds/{file_feed_id}/imports/{file_feed_import_id}/retry:
+    post:
+      summary: Retry FileFeed import
+      description: Retry a failed import for a FileFeed
+      operationId: retry-file-feed-import
+      tags:
+      - FileFeeds Imports
+      parameters:
+      - name: file_feed_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: file_feed_import_id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-import'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /v0/file-feed-embed-sessions/files:
+    post:
+      summary: Upload file to the FileFeed embed session
+      description: 'Upload a file to a FileFeed embed session, to be used as a sample file
+
+        when editing the FileFeed transforms.
+
+        '
+      operationId: upload-file-to-embed-session
+      tags:
+      - FileFeeds Embed Sessions
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                session_token:
+                  type: string
+                  description: The token of the FileFeed embed session
+                file:
+                  type: string
+                  format: binary
+                  description: The contents of the file to be imported.
+              required:
+              - session_token
+              - file
+      responses:
+        '202':
+          description: 'Accepted.
+
+            The file is scheduled to be processed and added to the session.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file-feed-embed-session'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    file-feed-embed-session:
+      type: object
+      properties:
+        id:
+          type: integer
+        file_feed_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        token:
+          type: string
+        template_key:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-embed-session-file'
+    file-feed-embed-session-file:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        original_file_name:
+          type: string
+          format: file_name
+    file-feed-folder-base:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        custom_metadata:
+          type: object
+    file-feed-folder-resource:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-folder-base'
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the folder
+    file-feed-folder-post-request:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-folder-base'
+      required:
+      - name
+    file-feed-import:
+      type: object
+      properties:
+        id:
+          type: integer
+        file_feed_id:
+          type: integer
+        file_feed_metadata:
+          type: object
+        last_import_attempt:
+          type: object
+          properties:
+            id:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+            original_file_name:
+              type: string
+            status:
+              type: string
+            completed_at:
+              type: string
+              format: date-time
+            imported_row_count:
+              type: integer
+    source-sftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults
+                        to 0 (top of the hour).
+          required:
+          - sftp_account_id
+          - path
+    file-feed-source:
+      oneOf:
+      - $ref: '#/components/schemas/source-sftp'
+    destination-sftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+          required:
+          - sftp_account_id
+          - path
+    destination-webhook:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - import_webhook
+        data:
+          type: object
+          properties:
+            webhook_key:
+              type: string
+              format: object_key
+          required:
+          - webhook_key
+    file-feed-destination:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/destination-sftp'
+      - $ref: '#/components/schemas/destination-webhook'
+    file-feed-base:
+      type: object
+      properties:
+        name:
+          type: string
+        template_key:
+          type: string
+          format: object_key
+        is_active:
+          type: boolean
+        config:
+          type: object
+          properties:
+            export_format:
+              type: string
+              enum:
+              - csv
+              - json
+            file_filter:
+              type: string
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-source'
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-destination'
+        custom_metadata:
+          type: object
+        event_webhook_key:
+          type: string
+          format: object_key
+        folder_id:
+          type: integer
+          description: ID of the folder containing this FileFeed
+    file-feed-resource:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-base'
+      type: object
+      properties:
+        id:
+          type: string
+    file-feed-post-request:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-base'
+      required:
+      - name
+      - template_key
+    presigned-url:
+      type: object
+      properties:
+        url:
+          type: string

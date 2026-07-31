@@ -1,0 +1,1283 @@
+{
+  "info": {
+    "_postman_id": "56aa0f1a-aa13-4154-a1c9-db1b8c38b0dd",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Importer Webhooks API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:57.000Z",
+    "updatedAt": "2026-07-28T02:25:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-56aa0f1a-aa13-4154-a1c9-db1b8c38b0dd"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "importer-webhooks",
+          "item": [
+            {
+              "name": "{webhook_key}",
+              "item": [
+                {
+                  "name": "Delete Importer Webhook",
+                  "id": "f84fc8ef-574d-4416-a7f6-3881ba16f438",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks",
+                        ":webhook_key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "08ecab00-4510-4a24-98cc-13821e00825f",
+                          "key": "webhook_key",
+                          "value": "<string>",
+                          "description": "(Required) The org-unique key identifying the webhook."
+                        }
+                      ]
+                    },
+                    "description": "Delete an Importer Webhook by its `webhook_key`."
+                  },
+                  "response": [
+                    {
+                      "id": "174a7257-e680-49b7-b7b2-cdbbb85c33cb",
+                      "name": "The request has succeeded.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-174a7257-e680-49b7-b7b2-cdbbb85c33cb"
+                    },
+                    {
+                      "id": "f9ef44f0-6362-4b82-8daf-cb94f3920b0c",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-f9ef44f0-6362-4b82-8daf-cb94f3920b0c"
+                    },
+                    {
+                      "id": "fc8b45f8-5ae5-4d29-bdec-82635330be67",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-fc8b45f8-5ae5-4d29-bdec-82635330be67"
+                    },
+                    {
+                      "id": "441cb5c3-e07d-47c5-b5d4-6a5e82fded87",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-441cb5c3-e07d-47c5-b5d4-6a5e82fded87"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-f84fc8ef-574d-4416-a7f6-3881ba16f438"
+                },
+                {
+                  "name": "Get Importer Webhook",
+                  "id": "b3695577-9983-4fe2-aa52-dbc6119d9e73",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks",
+                        ":webhook_key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "533e6e3a-d972-42cd-a51b-19fdab2edb59",
+                          "key": "webhook_key",
+                          "value": "<string>",
+                          "description": "(Required) The org-unique key identifying the webhook."
+                        }
+                      ]
+                    },
+                    "description": "Returns a single Importer Webhook by its `webhook_key`."
+                  },
+                  "response": [
+                    {
+                      "id": "995f59fc-9b01-433a-8607-1046ec934c2d",
+                      "name": "The request has succeeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"url\": \"<string>\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-995f59fc-9b01-433a-8607-1046ec934c2d"
+                    },
+                    {
+                      "id": "2b5978a8-af76-4596-9758-312935d0a3d8",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-2b5978a8-af76-4596-9758-312935d0a3d8"
+                    },
+                    {
+                      "id": "eb0b120b-c9e4-40e1-82c1-4fdc82dae318",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-eb0b120b-c9e4-40e1-82c1-4fdc82dae318"
+                    },
+                    {
+                      "id": "7dab9ef2-5bb4-4a3a-bee0-cbb2a5809644",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-7dab9ef2-5bb4-4a3a-bee0-cbb2a5809644"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-b3695577-9983-4fe2-aa52-dbc6119d9e73"
+                },
+                {
+                  "name": "Update Importer Webhook",
+                  "id": "673a8325-d03a-4254-b090-1f927122e2bb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<string>\",\n  \"type\": \"metadata\",\n  \"new_webhook_key\": \"<string>\",\n  \"auth_type\": \"basic\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks",
+                        ":webhook_key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0a46c0f2-6a06-40ee-be4e-6cff6f022950",
+                          "key": "webhook_key",
+                          "value": "<string>",
+                          "description": "(Required) The org-unique key identifying the webhook."
+                        }
+                      ]
+                    },
+                    "description": "Update fields on an Importer Webhook. All body fields are optional; only provided fields are updated."
+                  },
+                  "response": [
+                    {
+                      "id": "32951e28-6ad4-44b8-9c28-64e168428736",
+                      "name": "The request has succeeded.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<string>\",\n  \"type\": \"metadata\",\n  \"new_webhook_key\": \"<string>\",\n  \"auth_type\": \"basic\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"url\": \"<string>\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-32951e28-6ad4-44b8-9c28-64e168428736"
+                    },
+                    {
+                      "id": "9296a87e-53ff-4b2e-9088-cc7ee9374a43",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<string>\",\n  \"type\": \"metadata\",\n  \"new_webhook_key\": \"<string>\",\n  \"auth_type\": \"basic\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-9296a87e-53ff-4b2e-9088-cc7ee9374a43"
+                    },
+                    {
+                      "id": "893ae213-031d-4e56-9c41-c201bc3b4769",
+                      "name": "Unauthorized (missing or invalid API key)",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<string>\",\n  \"type\": \"metadata\",\n  \"new_webhook_key\": \"<string>\",\n  \"auth_type\": \"basic\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-893ae213-031d-4e56-9c41-c201bc3b4769"
+                    },
+                    {
+                      "id": "523dbff0-59e7-4913-8201-aada83f167a2",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<string>\",\n  \"type\": \"metadata\",\n  \"new_webhook_key\": \"<string>\",\n  \"auth_type\": \"basic\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/importer-webhooks/:webhook_key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "importer-webhooks",
+                            ":webhook_key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:57.000Z",
+                      "updatedAt": "2026-07-28T02:25:57.000Z",
+                      "uid": "35240-523dbff0-59e7-4913-8201-aada83f167a2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-673a8325-d03a-4254-b090-1f927122e2bb"
+                }
+              ],
+              "id": "6e6c0d89-e769-4900-97e9-6038cd6bced7",
+              "createdAt": "2026-07-28T02:25:57.000Z",
+              "updatedAt": "2026-07-28T02:25:57.000Z",
+              "uid": "35240-6e6c0d89-e769-4900-97e9-6038cd6bced7"
+            },
+            {
+              "name": "Create Importer Webhook",
+              "id": "db57e9b4-5492-4b66-914b-a209729cc07d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/importer-webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "importer-webhooks"
+                  ]
+                },
+                "description": "Create a new Importer Webhook for the organization."
+              },
+              "response": [
+                {
+                  "id": "2a922729-367b-432f-a552-8ed9eb0acde1",
+                  "name": "The request has succeeded and a new resource has been created as a result.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"url\": \"<string>\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-2a922729-367b-432f-a552-8ed9eb0acde1"
+                },
+                {
+                  "id": "be79b8b3-0ec7-40b5-9f82-eac9b9819a64",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-be79b8b3-0ec7-40b5-9f82-eac9b9819a64"
+                },
+                {
+                  "id": "69a7c0ce-6e00-4aec-a43d-b93a662f3cb1",
+                  "name": "Unauthorized (missing or invalid API key)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-69a7c0ce-6e00-4aec-a43d-b93a662f3cb1"
+                },
+                {
+                  "id": "aa9e3869-5b31-4a8b-bac9-c16aca96c46a",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"type\": \"batch\",\n  \"auth_type\": \"bearer_user_jwt\",\n  \"secret_key\": \"<string>\",\n  \"batch_size\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-aa9e3869-5b31-4a8b-bac9-c16aca96c46a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:57.000Z",
+              "updatedAt": "2026-07-28T02:25:57.000Z",
+              "uid": "35240-db57e9b4-5492-4b66-914b-a209729cc07d"
+            },
+            {
+              "name": "List Importer Webhooks",
+              "id": "1d4063cf-9bf0-4fab-881c-3ab680064e13",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/importer-webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "importer-webhooks"
+                  ]
+                },
+                "description": "Returns the list of Importer Webhooks for the organization."
+              },
+              "response": [
+                {
+                  "id": "90cd313b-fbb5-4096-93e5-e281d3233696",
+                  "name": "The request has succeeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"importer_webhooks\": [\n    {\n      \"id\": \"<integer>\",\n      \"webhook_key\": \"<string>\",\n      \"type\": \"batch\",\n      \"url\": \"<string>\",\n      \"auth_type\": \"bearer_user_jwt\",\n      \"secret_key\": \"<string>\",\n      \"batch_size\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"webhook_key\": \"<string>\",\n      \"type\": \"batch\",\n      \"url\": \"<string>\",\n      \"auth_type\": \"bearer_user_jwt\",\n      \"secret_key\": \"<string>\",\n      \"batch_size\": \"<integer>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-90cd313b-fbb5-4096-93e5-e281d3233696"
+                },
+                {
+                  "id": "a53e532a-4cee-4457-b968-d7d877c91b22",
+                  "name": "Unauthorized (missing or invalid API key)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-a53e532a-4cee-4457-b968-d7d877c91b22"
+                },
+                {
+                  "id": "7d082d42-3ff1-4a6f-8322-34b53cbbeabf",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/importer-webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "importer-webhooks"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"param\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T02:25:57.000Z",
+                  "updatedAt": "2026-07-28T02:25:57.000Z",
+                  "uid": "35240-7d082d42-3ff1-4a6f-8322-34b53cbbeabf"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:57.000Z",
+              "updatedAt": "2026-07-28T02:25:57.000Z",
+              "uid": "35240-1d4063cf-9bf0-4fab-881c-3ab680064e13"
+            }
+          ],
+          "id": "53590fbb-6f36-47d3-8c09-9e645088f79f",
+          "createdAt": "2026-07-28T02:25:57.000Z",
+          "updatedAt": "2026-07-28T02:25:57.000Z",
+          "uid": "35240-53590fbb-6f36-47d3-8c09-9e645088f79f"
+        }
+      ],
+      "id": "b9159be5-fda0-4ebf-842c-71d0a7f4ed3a",
+      "createdAt": "2026-07-28T02:25:57.000Z",
+      "updatedAt": "2026-07-28T02:25:57.000Z",
+      "uid": "35240-b9159be5-fda0-4ebf-842c-71d0a7f4ed3a"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

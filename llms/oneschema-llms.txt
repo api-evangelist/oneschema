@@ -1,0 +1,268 @@
+# OneSchema Documentation
+
+> OneSchema is the #1 embeddable CSV import for developers. Launch CSV import in a day and get customers importing CSV data 10x faster.
+
+## Guides
+- [Introduction](https://docs.oneschema.co/docs/intro.md): A starting point for OneSchema products, APIs, MCP, guides, and API references
+- [MCP Server](https://docs.oneschema.co/docs/mcp-server.md): Connect AI coding assistants to OneSchema's API documentation via the Model Context Protocol (MCP)
+- [Getting Started with Importer](https://docs.oneschema.co/docs/getting-started.md): An overview of how to setup the OneSchema Embeddable Importer
+- [Pane 1: Upload a file](https://docs.oneschema.co/docs/1-upload-a-file.md)
+- [Step 1: Validating with Templates](https://docs.oneschema.co/docs/creating-and-editing-templates.md): Templates are your output schema, and the validation rules for what you want clean data to look like.
+- [JavaScript](https://docs.oneschema.co/docs/javascript.md): <a href="https://github.com/oneschema/sdk"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/oneschema/sdk"></a> <a href="https://www.npmjs.com/package/@oneschema/importer"><img src="https://img.shields.io/npm/v/@oneschema/importer" /> <img alt="NPM Downloads" src="https://img.shields.io/npm/dy/%40oneschema%2Fimporter"></a>
+- [React](https://docs.oneschema.co/docs/react.md): <a href="https://github.com/oneschema/sdk"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/oneschema/sdk"></a> <a href="https://www.npmjs.com/package/@oneschema/react"><img src="https://img.shields.io/npm/v/@oneschema/react" /> <img alt="NPM Downloads" src="https://img.shields.io/npm/dy/%40oneschema%2Freact"></a>
+- [Angular](https://docs.oneschema.co/docs/angular.md): <a href="https://github.com/oneschema/sdk"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/oneschema/sdk"></a> <a href="https://www.npmjs.com/package/@oneschema/angular"><img src="https://img.shields.io/npm/v/@oneschema/angular" /> <img alt="NPM Downloads" src="https://img.shields.io/npm/dy/%40oneschema%2Fangular"></a>
+- [Vue](https://docs.oneschema.co/docs/vue.md): <a href="https://github.com/oneschema/sdk"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/oneschema/sdk"></a> <a href="https://www.npmjs.com/package/@oneschema/vue"><img src="https://img.shields.io/npm/v/@oneschema/vue" /> <img alt="NPM Downloads" src="https://img.shields.io/npm/dy/%40oneschema%2Fvue"></a>
+- [Step 3: Customizing your Importer](https://docs.oneschema.co/docs/customizations.md): Customize the OneSchema Importer to make it blend with your brand
+- [Using Branding Suite](https://docs.oneschema.co/docs/custom-branding.md)
+- [Using Per-Customer Customization Overrides](https://docs.oneschema.co/docs/configuring-customizations-via-sdk.md): How to set up OneSchema customizations via the SDK
+- [Using Localization / i18n](https://docs.oneschema.co/docs/translate-importer-into-different-language.md)
+- [Using the iFrame inline](https://docs.oneschema.co/docs/using-fullscreen-mode.md)
+- [Configuring Import Destinations](https://docs.oneschema.co/docs/importing-validated-data.md): Retrieve the validated and transformed output data from OneSchema
+- [Configuring Importer Webhook](https://docs.oneschema.co/docs/importer-webhook.md): Importer webhooks allow you to process data from OneSchema and insert data directly into your database.
+- [Configuring File Upload URL](https://docs.oneschema.co/docs/file-upload-url.md)
+- [Importing Warnings](https://docs.oneschema.co/docs/importing-warnings.md)
+- [Authenticating User Sessions](https://docs.oneschema.co/docs/generating-jwts.md): OneSchema uses JWTs (JSON Web Tokens) for authenticating your end users.
+- [Next Steps](https://docs.oneschema.co/docs/next-steps.md): Advanced Importer workflows common across our customers and where to find more information
+- [Dashboard Importer](https://docs.oneschema.co/docs/dashboard-importer.md): Start importer sessions directly from the OneSchema dashboard.
+- [Getting Started with Multi FileFeeds](https://docs.oneschema.co/docs/getting-started-filefeeds.md): An overview of how to set up a OneSchema Multi FileFeed.
+- [Core concepts](https://docs.oneschema.co/docs/core-concepts.md): The four ideas (templates, the transform builder, saved versions, and environments) that everything else in Multi FileFeeds builds on.
+- [Build your first Multi FileFeed](https://docs.oneschema.co/docs/build-your-first-multi-filefeed.md): A five-minute end-to-end walkthrough that takes you from a sample CSV to a working Multi FileFeed with validated output.
+- [The transform library](https://docs.oneschema.co/docs/transform-library.md): A catalog of every capability the agent can express in a Multi FileFeed, grouped by what they do.
+- [Process with AI](https://docs.oneschema.co/docs/process-with-ai.md): Use AI or custom code to interpret, generate, or reshape files.
+- [File transforms agent](https://docs.oneschema.co/docs/file-transforms-agent.md): Use an AI agent to write and run custom code that transforms files or lists.
+- [Template transforms agent](https://docs.oneschema.co/docs/template-transforms-agent.md): Use an AI agent to draft a JSON template from sample files or lists.
+- [Custom file transforms](https://docs.oneschema.co/docs/custom-file-transforms.md): Write your own code to transform files or lists with full control over the logic.
+- [Custom SQL transforms](https://docs.oneschema.co/docs/custom-sql-transforms.md): Transform files or lists into CSV output by running a custom SQL query.
+- [CSV transforms agent](https://docs.oneschema.co/docs/csv-transforms-agent.md): Use an AI agent to reshape CSV lists to match your template's requirements.
+- [Runtime CSV transforms agent](https://docs.oneschema.co/docs/runtime-csv-transforms-agent.md): Use an AI agent to reshape CSV lists to match your template's requirements, re-run fresh on every file.
+- [Sheet transforms](https://docs.oneschema.co/docs/sheet-transforms.md): Validate and transform a CSV list against a OneSchema template's rules.
+- [Extract & Convert](https://docs.oneschema.co/docs/extract-and-convert.md): Pull data out of PDFs, Excel, archives, and other formats.
+- [Extract PDF data](https://docs.oneschema.co/docs/extract-pdf-data.md): Extract structured data from PDFs and scanned images into a CSV using AI.
+- [Extract PDF to Markdown](https://docs.oneschema.co/docs/extract-pdf-to-markdown.md): Convert PDFs into markdown files with embedded HTML to preserve complex document structure.
+- [Split PDF by content](https://docs.oneschema.co/docs/split-pdf-by-content.md): Split a single PDF into multiple PDFs using AI to detect logical sections.
+- [Split PDF by page](https://docs.oneschema.co/docs/split-pdf-by-page.md): Split a PDF file into separate single-page PDF files.
+- [Convert to PDF](https://docs.oneschema.co/docs/convert-to-pdf.md): Convert Word documents and other file types into PDF files.
+- [Extract Excel worksheets](https://docs.oneschema.co/docs/extract-excel-worksheets.md): Extract one or more worksheets from an Excel workbook into separate files.
+- [Extract data](https://docs.oneschema.co/docs/extract-data.md): Use AI to extract new values out of existing columns in a CSV list.
+- [Decrypt file](https://docs.oneschema.co/docs/decrypt-file.md): Decrypt GPG/PGP-encrypted files as part of your MFF pipeline using a managed secret.
+- [Convert to Unicode (UTF-8)](https://docs.oneschema.co/docs/convert-to-unicode-utf-8.md): Convert plain text files from a known source encoding into Unicode (UTF-8).
+- [Organize](https://docs.oneschema.co/docs/organize.md): Split, combine, join, rename, or categorize files and sheets.
+- [Split CSV into multiple sheets](https://docs.oneschema.co/docs/split-csv-into-multiple-sheets.md): Split one or more CSV lists into multiple files that share the same header row.
+- [Combine sheets by row](https://docs.oneschema.co/docs/combine-sheets-by-row.md): Concatenate any number of CSVs with matching headers into a single file.
+- [Join sheets by column](https://docs.oneschema.co/docs/join-sheets-by-column.md): Join two sheets on matching key columns, similar to a SQL join.
+- [Rename](https://docs.oneschema.co/docs/rename.md): Rename incoming files or sheets before downstream steps.
+- [Categorize data](https://docs.oneschema.co/docs/categorize-data.md): Use AI to classify values in a column into a set of categories.
+- [Breakpoint](https://docs.oneschema.co/docs/breakpoint.md): Pause a run for human review before it continues.
+- [Validate](https://docs.oneschema.co/docs/validate.md): Check files against templates or custom rules.
+- [Validate files](https://docs.oneschema.co/docs/validate-files.md): Map output files to a template to ensure columns and data formatting are accurate.
+- [Custom validation](https://docs.oneschema.co/docs/custom-validation.md): Apply custom rules to files with AI.
+- [Connectors](https://docs.oneschema.co/docs/connectors.md): Fetch from or push to external systems and services.
+- [Call Multi FileFeed](https://docs.oneschema.co/docs/call-multi-filefeed.md): Run another FileFeed's transforms as a reusable sub-step inside a Multi FileFeed.
+- [Fetch from Google Sheets](https://docs.oneschema.co/docs/fetch-from-google-sheets.md): Pull selected Google Sheets into a Multi FileFeed as CSV files.
+- [Pull from Google Drive](https://docs.oneschema.co/docs/pull-from-google-drive.md): Fetch selected files from Google Drive into a Multi FileFeed.
+- [Pull from Azure SharePoint](https://docs.oneschema.co/docs/pull-from-azure-sharepoint.md): Pull selected files from Azure SharePoint into a Multi FileFeed.
+- [Fetch from Google Cloud Storage](https://docs.oneschema.co/docs/fetch-from-google-cloud-storage.md): Fetch selected objects from a Google Cloud Storage bucket into a Multi FileFeed.
+- [Fetch from SFTP](https://docs.oneschema.co/docs/fetch-from-sftp.md): Fetch selected files from an SFTP server into a Multi FileFeed.
+- [Fetch from SQL Server](https://docs.oneschema.co/docs/fetch-from-sql-server.md): Fetch selected SQL Server tables into a Multi FileFeed as CSV files.
+- [Fetch Salesforce Data](https://docs.oneschema.co/docs/fetch-salesforce-data.md): Query Salesforce records with SOQL and pull the results into a Multi FileFeed.
+- [Fetch Salesforce Schema](https://docs.oneschema.co/docs/fetch-salesforce-schema.md): Fetch sObject field metadata from Salesforce into a Multi FileFeed.
+- [Push to Salesforce](https://docs.oneschema.co/docs/push-to-salesforce.md): Push CSV data from a Multi FileFeed into Salesforce using the Bulk API.
+- [Push to S3](https://docs.oneschema.co/docs/push-to-s3.md): Push files from a Multi FileFeed to an S3 bucket.
+- [File handling in custom transforms](https://docs.oneschema.co/docs/custom-transform-file-api.md): API reference for reading, writing, and parsing files in Custom file transforms and Custom file validations.
+- [Bringing files in (Sources)](https://docs.oneschema.co/docs/sources-overview.md): Every Multi FileFeed starts at a Source. This is the menu of every way OneSchema can take delivery of a file.
+- [Validating and importing](https://docs.oneschema.co/docs/validating-and-importing.md): How the Import files transform turns validated rows into your final, schema-compliant payload, including required vs. optional templates, partial imports, and per-customer overrides.
+- [Delivering outputs (Destinations)](https://docs.oneschema.co/docs/destinations-overview.md): Once the agent has produced clean, validated data, the Destination decides where it goes. This page covers the default output formats and every destination type.
+- [Connections and security](https://docs.oneschema.co/docs/connections-and-security.md): Every external system a Multi FileFeed talks to (SFTP servers, S3 buckets, secrets managers, webhooks) is configured once as a connection and reused. This page is the directory.
+- [Running Multi FileFeeds in production](https://docs.oneschema.co/docs/running-in-production.md): The day-2 operations side of Multi FileFeeds: saving versions, promoting across environments, scheduling, triggering from your app, event webhooks, and monitoring.
+- [Step 1: Validating with Templates](https://docs.oneschema.co/docs/step-1-validating-with-templates-copy.md): Templates are your output schema, and the validation rules for what you want clean data to look like.
+- [Step 2: Creating a FileFeed](https://docs.oneschema.co/docs/step-2-creating-a-filefeed.md): Use the right settings for your specific FileFeed configuration
+- [Step 3: Using the Transform Builder](https://docs.oneschema.co/docs/step-3-using-the-filefeed-transform-builder.md): The transform builder is the most powerful part of the FileFeeds experience.
+- [Uploading large files into Multi FileFeeds](https://docs.oneschema.co/docs/efficient-file-uploads-onto-multi-filefeeds.md): This guide walks you through uploading files to a Multi FileFeed (MFF) import using direct uploads. Direct uploads let your client send files straight to cloud storage via presigned URLs, avoiding the need to proxy large files through the API server.
+- [Upload files from S3 into Multi FileFeeds](https://docs.oneschema.co/docs/upload-from-s3.md): Read files from your Amazon S3 bucket and add them to a Multi FileFeed import using a saved S3 connection.
+- [Import files into S3 from Multi FileFeeds](https://docs.oneschema.co/docs/import-into-s3.md): Write processed Multi FileFeed output files into your Amazon S3 bucket using a saved S3 connection.
+- [Import Node v2](https://docs.oneschema.co/docs/import-node-v2.md)
+- [Using Per-Customer Template Overrides](https://docs.oneschema.co/docs/per-customer-overrides-v2.md)
+- [Using Validation Webhooks](https://docs.oneschema.co/docs/validation-webhook.md): OneSchema’s validation API allows you to use your own API endpoint to create a column validator.
+- [Using Code Hooks](https://docs.oneschema.co/docs/code-hooks.md)
+- [Using Template Data Types](https://docs.oneschema.co/docs/validation-types.md)
+- [Using Custom Columns](https://docs.oneschema.co/docs/custom-columns.md): Columns of a specified data type for which a fixed header is not pre-defined in the template
+- [Using Multi-Mappable Columns](https://docs.oneschema.co/docs/using-multi-mappable-columns.md): Use the multi-mappable column setting to allow a template column to validate multiple uploaded columns.
+- [OneSchema Performance](https://docs.oneschema.co/docs/oneschema-performance.md)
+- [SOC 2](https://docs.oneschema.co/docs/soc-2.md)
+- [HIPAA](https://docs.oneschema.co/docs/hipaa.md)
+- [Data retention policies](https://docs.oneschema.co/docs/data-retention-policies.md)
+- [Enterprise SSO](https://docs.oneschema.co/docs/enabling-sso-for-your-organization.md): How to enable SSO (e.g Okta) authentication to OneSchema for your organization
+- [Tracking Importer File Usage](https://docs.oneschema.co/docs/tracking-file-usage.md): How to configure your importer to track and manage file usage.
+- [Using Importer Headless](https://docs.oneschema.co/docs/initialize-importer-through-api.md)
+- [Using Environments](https://docs.oneschema.co/docs/environments.md)
+- [Using Event Webhooks](https://docs.oneschema.co/docs/using-events.md): Events allow you to be alerted when certain events occur in OneSchema's processing pipeline.
+- [Using OneSchema AI](https://docs.oneschema.co/docs/ai-bundle.md): Documentation for OneSchema’s AI product suite. All AI features can be disabled instance-wide.
+- [Using Importer 1-Click Mode](https://docs.oneschema.co/docs/1-click-mode.md): Importer 1-Click Mode enables pane skipping for Importer panes that don't have any errors.
+- [Excel to CSV Conversions](https://docs.oneschema.co/docs/excel-to-oneschema-conversions.md)
+- [Custom Validations](https://docs.oneschema.co/docs/new-configuring-custom-validations.md)
+- [Types of Columns](https://docs.oneschema.co/docs/types-of-columns.md): Required, optional, and custom columns
+
+## API Reference
+- [List template hooks](https://docs.oneschema.co/reference/get-template-hooks.md): Returns a list of template hooks for the organization. Supports pagination via `offset` and `count` parameters.
+- [Create a new template hook](https://docs.oneschema.co/reference/create-template-hook.md): Create a new template hook.
+- [Get a template hook](https://docs.oneschema.co/reference/get-template-hook.md): Get a template hook.
+- [Update an existing template hook](https://docs.oneschema.co/reference/update-template-hook.md): Update an existing template hook. Note that updates to template hooks are live instantly.
+- [Delete a template hook](https://docs.oneschema.co/reference/delete-template-hook.md): Delete a template hook. A template hook attached to a template cannot be deleted.
+- [List templates](https://docs.oneschema.co/reference/get-templates.md): Returns a list of templates for the organization. Supports pagination via `offset` and `count` parameters.
+- [Import a template as JSON](https://docs.oneschema.co/reference/import-template.md): Import a template as JSON.
+- [Update a template](https://docs.oneschema.co/reference/update-template.md): Update a template.
+- [Export a template as JSON](https://docs.oneschema.co/reference/export-template.md): Export a template as JSON.
+- [Delete a template](https://docs.oneschema.co/reference/delete-template.md): Delete a template.
+- [Push template to environment(s)](https://docs.oneschema.co/reference/push-template-environment.md): Push template to environment(s).
+- [Upload a custom sample file](https://docs.oneschema.co/reference/upload-template-sample-file.md): Upload a file to serve as the downloadable sample file shown to end users in the importer's upload pane. When set, this file replaces the sample file that OneSchema otherwise auto-generates from the template's columns. Subject to a 5 MiB file size limit. Accepted extensions: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv`. Requires `multipart/form-data` with a single `file` field.
+- [Download the template's sample file](https://docs.oneschema.co/reference/get-template-sample-file.md): Download the template's sample file. If a custom file has been uploaded via `POST /v1/templates/{key}/sample-file` it is returned verbatim; otherwise OneSchema generates a sample file on the fly from the template's columns.
+- [Clear the custom sample file](https://docs.oneschema.co/reference/delete-template-sample-file.md): Remove the custom sample file previously attached to the template. After removal, the importer falls back to the sample file that OneSchema auto-generates from the template's columns.
+- [Create post-upload code hook](https://docs.oneschema.co/reference/create-post-upload-code-hook.md): Create a post-upload code hook.
+- [Get post-upload code hook](https://docs.oneschema.co/reference/get-post-upload-hook.md): Get a post-upload code hook by key.
+- [Delete post-upload code hook](https://docs.oneschema.co/reference/delete-post-upload-code-hook.md): Delete a post-upload code hook by key.
+- [Create post-mapping code hook](https://docs.oneschema.co/reference/create-post-mapping-code-hook.md): Create a post-mapping code hook.
+- [Get post-mapping code hook](https://docs.oneschema.co/reference/get-post-mapping-code-hook.md): Get a post-mapping code hook by key.
+- [Delete post-mapping code hook](https://docs.oneschema.co/reference/delete-post-mapping-code-hook.md): Delete a post-mapping code hook by key.
+- [Create validation code hook](https://docs.oneschema.co/reference/create-validation-code-hook.md): Create a validation code hook.
+- [Get validation code hook](https://docs.oneschema.co/reference/get-validation-code-hook.md): Get a validation code hook by key.
+- [Delete validation code hook](https://docs.oneschema.co/reference/delete-validation-code-hook.md): Delete a validation code hook by key.
+- [Get embed](https://docs.oneschema.co/reference/get-embed.md): Retrieve a detailed representation of the embed resource.
+- [List embeds](https://docs.oneschema.co/reference/get-embeds.md): Returns a list of Importer embed sessions for the organization in a summarized representation.
+- [Get imported rows for an embed file](https://docs.oneschema.co/reference/get-imported-rows-for-embed.md): Retrieve validated data from an embed file with optional pagination.
+- [Get imported file url for an embed](https://docs.oneschema.co/reference/get-imported-file-url-for-an-embed.md): Retrieve a URL linking to the imported csv file for an embed. The returned URL is valid for 15 minutes.
+- [Get error summary for an embed file](https://docs.oneschema.co/reference/get-error-summary-for-an-embed-file.md): Retrieve an error summary for an embed file.
+- [Get uploaded file url for an embed](https://docs.oneschema.co/reference/get-uploaded-file-url-for-an-embed.md): Retrieve a URL linking to the uploaded file for an embed.  The returned URL is valid for 15 minutes.
+- [Delete an embed](https://docs.oneschema.co/reference/delete-embed.md): Deletes an embed from OneSchema.
+- [List events for an embed](https://docs.oneschema.co/reference/get-embed-events.md): Returns a list of events that occurred for the specified embed session.
+- [Get an embed event](https://docs.oneschema.co/reference/get-embed-event.md): Retrieve a single event that occurred for an embed.
+- [Get file URL for an embed event](https://docs.oneschema.co/reference/get-embed-event-file-url.md): Retrieve a pre-signed URL for the specified embed event file.
+- [Create Importer Webhook](https://docs.oneschema.co/reference/create-importer-webhook.md): Create a new Importer Webhook for the organization.
+- [List Importer Webhooks](https://docs.oneschema.co/reference/list-importer-webhooks.md): Returns the list of Importer Webhooks for the organization.
+- [Get Importer Webhook](https://docs.oneschema.co/reference/get-importer-webhook.md): Returns a single Importer Webhook by its `webhook_key`.
+- [Update Importer Webhook](https://docs.oneschema.co/reference/update-importer-webhook.md): Update fields on an Importer Webhook. All body fields are optional; only provided fields are updated.
+- [Delete Importer Webhook](https://docs.oneschema.co/reference/delete-importer-webhook.md): Delete an Importer Webhook by its `webhook_key`.
+- [Create an embed session](https://docs.oneschema.co/reference/create-embed.md): Create an Importer embed session.
+- [Upload a CSV or excel file to an embed](https://docs.oneschema.co/reference/upload-a-csv-or-excel-file.md): Upload a CSV (.csv) or Excel (.xlsx) file into OneSchema. An embed must be in the `initialized` state to support an upload, and an embed is returned in one of the following states: `uploaded`, `headers_set`, or `columns_mapped`.
+- [Set header row on an embed file](https://docs.oneschema.co/reference/set-header-row-on-an-embed-file.md): Set the header row either automatically or by index on an embed file. An embed must be in the `uploaded` state to enable setting headers, and an embed is returned in one of the following states: `headers_set` or `columns_mapped`.
+- [Import an embed file](https://docs.oneschema.co/reference/import-embed-file.md): Import the validated embed file. The import behavior is defined by the [import_config](https://docs.oneschema.co/docs/importing-validated-data) object used to initialized the embed. An embed must be in the `columns_mapped` state to enable import, and an embed is returned in one of the following states depending on import config: `import-pending` or `imported`.
+- [Set column mapping on an embed file](https://docs.oneschema.co/reference/set-column-mapping-on-an-embed-file.md): Set column mapping for an embed file. Mapping strategy can be defined in customizations. An embed must be in the `headers_set` state to support column mapping, and an embed is returned in `columns_mapped` state.
+- [List all Multi FileFeed Folders](https://docs.oneschema.co/reference/list-multi-file-feed-folders.md): Returns a list of all Multi FileFeed folders for the organization.
+- [Get a Multi FileFeed Folder](https://docs.oneschema.co/reference/get-multi-file-feed-folder.md): Retrieves a single Multi FileFeed folder by ID.
+- [Create a Multi FileFeed Folder](https://docs.oneschema.co/reference/create-multi-file-feed-folder.md): Create a new Multi FileFeed folder.
+- [Delete a Multi FileFeed Folder](https://docs.oneschema.co/reference/delete-multi-file-feed-folder.md): Delete a specific Multi FileFeed folder by ID.
+- [Update a Multi FileFeed Folder](https://docs.oneschema.co/reference/update-multi-file-feed-folder.md): Update a specific Multi FileFeed folder by ID. Only the fields that need to be updated should be provided.
+- [List Multi FileFeeds](https://docs.oneschema.co/reference/list-multi-file-feeds.md): Returns a list of Multi FileFeeds for the organization. Optionally filter by folder ID.
+- [Get a Multi FileFeed](https://docs.oneschema.co/reference/get-multi-file-feed.md): Retrieves a single Multi FileFeed by ID, including its source and destination connections, and attached event webhooks.
+- [Duplicate a Multi FileFeed](https://docs.oneschema.co/reference/duplicate-multi-file-feed.md): Duplicates a Multi FileFeed and returns the new Multi FileFeed. The copy includes both the builder (editable) version and the source's latest saved version, so the duplicate can run user imports immediately rather than only builder imports. The carried-over saved version's change history notes that it came from duplicating the source Multi FileFeed and when that source's latest version was saved.
+- [Update a Multi FileFeed](https://docs.oneschema.co/reference/update-multi-file-feed.md): Updates an existing Multi FileFeed's configuration
+- [Delete a Multi FileFeed](https://docs.oneschema.co/reference/delete-multi-file-feed.md): Permanently deletes a Multi FileFeed
+- [Create a Multi FileFeed](https://docs.oneschema.co/reference/create-multi-file-feed.md): Creates a new Multi FileFeed with the specified templates. At least one template must be provided. Template keys must be unique within the request.  Optional parameters allow configuring a source (SFTP or S3), destination (SFTP or S3), event webhook, post-validation transform, and custom metadata at creation time.  If `folder_id` is not provided, the Multi FileFeed is placed in the organization's default Multi FileFeed folder.
+- [Get a Multi FileFeed import](https://docs.oneschema.co/reference/get-multi-file-feed-import.md): Retrieves details about a specific Multi FileFeed import
+- [Create a Multi FileFeed import](https://docs.oneschema.co/reference/create-multi-file-feed-import.md): Creates a new Multi FileFeed import for the specified Multi FileFeed
+- [Upload a file for Multi FileFeed import](https://docs.oneschema.co/reference/upload-multi-file-feed-import-file.md): Uploads a file to be used in the Multi FileFeed import
+- [Create a direct file upload for a Multi FileFeed import](https://docs.oneschema.co/reference/create-direct-upload-multi-file-feed-import-file.md): Creates a direct upload for a Multi FileFeed import. Returns an `upload_id`, a `presigned_url`, and a `content_type`. The client must PUT the file directly to the `presigned_url`, setting the returned `content_type` as the `Content-Type` header on the PUT request (the file store will reject the upload otherwise).  The direct upload flow consists of three steps: 1. **Create** (this endpoint): creates a tracking record and returns the presigned URL, content type, and upload ID. 2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL. 3. **Submit** (`direct-uploads/{upload_id}/submit`): verifies the upload succeeded and links the file to the import.
+- [Submit a direct file upload for a Multi FileFeed import](https://docs.oneschema.co/reference/submit-direct-upload-multi-file-feed-import-file.md): Submits (finalizes) a direct upload that was previously created via the `direct-uploads` endpoint. The `upload_id` is provided as a path parameter. The server verifies that the file was actually uploaded to the file store, updates the file size from storage metadata, and creates the record linking the file to this import.  The direct upload flow consists of three steps: 1. **Create** (`direct-uploads`): creates a tracking record and returns the presigned URL, content type, and upload ID. 2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL. 3. **Submit** (this endpoint): verifies the upload succeeded and links the file to the import.
+- [Upload a file from S3 to a Multi FileFeed import](https://docs.oneschema.co/reference/upload-from-s3-multi-file-feed-import.md): Uploads a file from a customer's S3 bucket into a Multi FileFeed import. The server assumes an IAM role to read the specified S3 object, verifies it exists and is within the file size limit, downloads it, and stores it as an uploaded file on the import.  The `object_uri` must be a valid S3 URI in the format `s3://bucket/key`. The `s3_account_id` identifies which S3 account credentials (role ARN and external ID) to use for the STS AssumeRole call. The referenced bucket and object must be accessible to the IAM role configured on that S3 account.  Both the object URI and the file basename (derived from the S3 key) must be unique within the import. If either already exists, a 409 Conflict is returned.
+- [Submit a Multi FileFeed import](https://docs.oneschema.co/reference/submit-multi-file-feed-import.md): Submits the Multi FileFeed import for processing
+- [Get imported files](https://docs.oneschema.co/reference/get-multi-file-feed-import-files.md): Retrieves the list of imported files for a Multi FileFeed import
+- [Get download URL for imported file](https://docs.oneschema.co/reference/get-multi-file-feed-import-file-download-url.md): Retrieves a download URL for a specific imported file
+- [List Multi FileFeed imports](https://docs.oneschema.co/reference/list-multi-file-feed-imports.md): Returns a list of imports for the specified Multi FileFeed, ordered by most recent first. At most 200 imports are returned.  Builder and workflow-called imports are excluded from the results.
+- [Get Multi FileFeed import errors](https://docs.oneschema.co/reference/get-multi-file-feed-import-errors.md): Returns all errors for a completed Multi FileFeed import as a unified, node-centric payload. Each errored node in the workflow is represented as an entry in `node_errors` with per-list error details and presigned CSV download URLs.  For v1 flowgraphs (import node), errors are synthesized from the flowgraph run's validation_result. For v2 flowgraphs (validate-against-template node), errors come directly from the node run's details.
+- [Get HEAD state](https://docs.oneschema.co/reference/get-multi-file-feed-head.md): Returns the current HEAD (draft) flowgraph state along with its dirty status. The HEAD is the mutable, editable version of the flowgraph — it may differ from the latest commit if edits have been made but not yet committed.  The `is_dirty` flag indicates whether the HEAD has changes that are newer than the latest commit. If `true`, `POST /commits` will reject requests to prevent overwriting in-progress UI edits.  Requires Multi FileFeed transforms to be enabled for the organization.
+- [Get transforms](https://docs.oneschema.co/reference/get-multi-file-feed-transforms.md): Returns the current HEAD flowgraph state using the v1 transforms format.  The response includes the portable flowgraph export (nodes, edges, pipelines), the dirty status (and the last commit ID if there is at least one commit)  for optimistic locking.  Requires Multi FileFeed transforms to be enabled for the organization.
+- [Patch transforms](https://docs.oneschema.co/reference/patch-multi-file-feed-transforms.md): Replaces the Multi FileFeed's HEAD flowgraph with the supplied state.  The `flowgraph.nodes` and `flowgraph.edges` arrays represent the complete desired state — nodes absent from the payload are deleted, and edges are fully replaced. Every call must include a `source` node and an `import` or `import-v2` node or the request will be rejected. Represent the complete workflow as a single graph.  Within an individual node, `config` uses merge semantics:  If a key is not specified, the current value is left unchanged. If a key takes a scalar value - a supplied value replaces the current value - a null value deletes the key If a key takes an array value - supplied value replaces the current array - a null value deletes the key If a key takes a hash/object value - the supplied hash is recursively merged with the current hash (same rules apply at each nested level) - a null value deletes the key  Auto-commits by default. Use `commit_now: false` to defer committing.  Concurrency guards:   - `last_known_commit_id` — optimistic lock; 409 if commits changed   - Dirty-state check — 409 if HEAD has uncommitted UI edits (override with `force: true`)  Requires Multi FileFeed transforms to be enabled for the organization.
+- [Get transforms history](https://docs.oneschema.co/reference/get-multi-file-feed-transforms-history.md): Returns the paginated commit history for the Multi FileFeed's transforms, ordered by most recent first.  Each entry includes the commit ID, timestamp, and optional creator label and change descriptions.  Requires Multi FileFeed transforms to be enabled for the organization.
+- [Create a commit](https://docs.oneschema.co/reference/create-multi-file-feed-commit.md): Creates an immutable commit (snapshot) of the Multi FileFeed's transforms. A request body with the transforms payload is required.  The endpoint atomically: 1. Checks that the HEAD is not dirty (rejects with 422 if it is) 2. Replaces all nodes on the HEAD with the supplied payload 3. Creates an immutable commit snapshot  The dirty check prevents accidentally overwriting in-progress UI edits. If the HEAD has uncommitted changes, the API consumer must coordinate with the UI user before proceeding.  This is the primary endpoint for programmatic transform management. Imports run against the latest commit. Immediately after this call, the new commit becomes the latest commit unless another commit is created before `POST /imports`.  Requires Multi FileFeed transforms to be enabled for the organization.
+- [List commits](https://docs.oneschema.co/reference/list-multi-file-feed-commits.md): Returns a paginated list of commits (immutable snapshots) for the Multi FileFeed, ordered newest-first.  Each entry contains the commit ID and creation timestamp. To retrieve a commit's full transforms, use `GET /commits/{commit_id}`.  Requires Multi FileFeed transforms to be enabled for the organization.
+- [Get a commit](https://docs.oneschema.co/reference/get-multi-file-feed-commit.md): Returns the transforms for a specific commit. The commit must belong to this Multi FileFeed's recurring flowgraph.  Requires Multi FileFeed transforms to be enabled for the organization.
+- [Revert to a commit](https://docs.oneschema.co/reference/revert-multi-file-feed-commit.md): Reverts the HEAD flowgraph to the state of a specific commit, then creates a new commit from the reverted HEAD.  The target commit must belong to this Multi FileFeed's recurring flowgraph. The response contains the newly created commit (not the original target commit).  Requires Multi FileFeed transforms to be enabled for the organization.
+- [Create Azure Key Vault Account](https://docs.oneschema.co/reference/create-azure-key-vault-account.md): Create a new Azure Key Vault account connection for the organization.
+- [List Azure Key Vault Accounts](https://docs.oneschema.co/reference/list-azure-key-vault-accounts.md): Returns a list of Azure Key Vault account connections for the organization.
+- [Get Azure Key Vault Account](https://docs.oneschema.co/reference/get-azure-key-vault-account.md): Get a specific Azure Key Vault account connection.
+- [Update Azure Key Vault Account](https://docs.oneschema.co/reference/update-azure-key-vault-account.md): Update a specific Azure Key Vault account connection.
+- [Delete Azure Key Vault Account](https://docs.oneschema.co/reference/delete-azure-key-vault-account.md): Delete a specific Azure Key Vault account connection. The account cannot be deleted while it has managed secrets attached.
+- [Test Azure Key Vault Connection](https://docs.oneschema.co/reference/test-azure-key-vault-account.md): Test that OneSchema can authenticate via the configured App Registration and retrieve a specific secret. The secret value is not returned.
+- [List All Managed Secrets](https://docs.oneschema.co/reference/list-azure-key-vault-secrets.md): Returns all Azure managed secrets across all accounts in the organization.
+- [List Managed Secrets for Account](https://docs.oneschema.co/reference/list-azure-key-vault-account-secrets.md): Returns all managed secrets belonging to a specific Azure Key Vault account.
+- [Create Managed Secret](https://docs.oneschema.co/reference/create-azure-key-vault-secret.md): Create a new managed secret reference within an Azure Key Vault account.
+- [Get Managed Secret](https://docs.oneschema.co/reference/get-azure-key-vault-secret.md): Get a specific managed secret.
+- [Update Managed Secret](https://docs.oneschema.co/reference/update-azure-key-vault-secret.md): Update a specific managed secret.
+- [Delete Managed Secret](https://docs.oneschema.co/reference/delete-azure-key-vault-secret.md): Delete a specific managed secret.
+- [Create AWS Secrets Manager Account](https://docs.oneschema.co/reference/create-aws-secrets-manager-account.md): Create a new AWS Secrets Manager account connection for the organization.
+- [List AWS Secrets Manager Accounts](https://docs.oneschema.co/reference/list-aws-secrets-manager-accounts.md): Returns a list of AWS Secrets Manager account connections for the organization.
+- [Get AWS Secrets Manager Account](https://docs.oneschema.co/reference/get-aws-secrets-manager-account.md): Get a specific AWS Secrets Manager account connection.
+- [Update AWS Secrets Manager Account](https://docs.oneschema.co/reference/update-aws-secrets-manager-account.md): Update a specific AWS Secrets Manager account connection.
+- [Delete AWS Secrets Manager Account](https://docs.oneschema.co/reference/delete-aws-secrets-manager-account.md): Delete a specific AWS Secrets Manager account connection. The account cannot be deleted while it has managed secrets attached.
+- [Test AWS Secrets Manager Connection](https://docs.oneschema.co/reference/test-aws-secrets-manager-account.md): Test that OneSchema can authenticate via the configured IAM role and retrieve a specific secret. The secret value is not returned.
+- [List All Managed Secrets](https://docs.oneschema.co/reference/list-aws-secrets-manager-secrets.md): Returns all AWS managed secrets across all accounts in the organization.
+- [List Managed Secrets for Account](https://docs.oneschema.co/reference/list-aws-secrets-manager-account-secrets.md): Returns all managed secrets belonging to a specific AWS Secrets Manager account.
+- [Create Managed Secret](https://docs.oneschema.co/reference/create-aws-secrets-manager-secret.md): Create a new managed secret reference within an AWS Secrets Manager account.
+- [Get Managed Secret](https://docs.oneschema.co/reference/get-aws-secrets-manager-secret.md): Get a specific managed secret.
+- [Update Managed Secret](https://docs.oneschema.co/reference/update-aws-secrets-manager-secret.md): Update a specific managed secret.
+- [Delete Managed Secret](https://docs.oneschema.co/reference/delete-aws-secrets-manager-secret.md): Delete a specific managed secret.
+- [Create S3 Account](https://docs.oneschema.co/reference/create-s3-account.md): Create a new S3 Account connected to OneSchema.
+- [List S3 Accounts](https://docs.oneschema.co/reference/list-s3-accounts.md): Returns a list of S3 Accounts connected to the organization.
+- [Get S3 Account](https://docs.oneschema.co/reference/get-s3-account.md): Get a specific S3 Account connected to the organization.
+- [Delete S3 Account](https://docs.oneschema.co/reference/delete-s3-account.md): Delete a specific S3 Account connected to the organization.
+- [Create SFTP Account](https://docs.oneschema.co/reference/create-sftp-account.md): Create a new SFTP Account.
+- [List SFTP Accounts](https://docs.oneschema.co/reference/list-sftp-accounts.md): Returns a list of SFTP Accounts for the organization.
+- [Get SFTP Account](https://docs.oneschema.co/reference/get-sftp-account.md): Get a specific SFTP Account.
+- [Delete SFTP Account](https://docs.oneschema.co/reference/delete-sftp-account.md): Delete a specific SFTP Account.
+- [Upload a CSV or Excel file](https://docs.oneschema.co/reference/upload-file.md): Upload a CSV (.csv) or Excel (.xlsx) file into OneSchema. The file should be sent as `multipart/form-data` and include the filename and the file's media type.  If no `embed_id` is provided, the file is uploaded into the Workspaces product. Without a `workspace_id`, it goes into your default team workspace; pass a `workspace_id` to target a specific workspace. Provide `embed_id` only when you want to import the file into a specific Embed instead.
+- [Set the header row](https://docs.oneschema.co/reference/set-header-row.md): Set which row of the sheet contains column headers, or use auto-detection.
+- [Map sheet columns](https://docs.oneschema.co/reference/map-columns.md): Map the sheet columns to template columns and trigger validation for the mapped columns.
+- [Get rows](https://docs.oneschema.co/reference/get-rows.md): Return paginated rows from the sheet.
+- [Delete a sheet](https://docs.oneschema.co/reference/delete-sheet.md): Delete a sheet with the given sheet_id.
+- [Export as CSV file](https://docs.oneschema.co/reference/export-file-csv.md): Create a CSV file with the contents of the sheet.
+- [Export as Excel file](https://docs.oneschema.co/reference/export-file-excel.md): Create an Excel file with the contents of the sheet.
+- [Export as JSON file](https://docs.oneschema.co/reference/export-file-json.md): Create a JSON file with the contents of the sheet.
+- [Export as JSONL file](https://docs.oneschema.co/reference/export-file-jsonlines.md): Create a JSONL file with the contents of the sheet.
+- [Export as file (async)](https://docs.oneschema.co/reference/export-file-async.md): Create an asynchronous job to export the sheet in the given format.
+- [Get export job status](https://docs.oneschema.co/reference/get-export-job-status.md): Retrieve the status of an asynchronous export job.
+- [Get export download URL](https://docs.oneschema.co/reference/get-export-download-url.md): Retrieve a pre-signed download URL for an exported file.
+- [List event webhooks](https://docs.oneschema.co/reference/list-event-webhooks.md): Lists event webhooks for the organization.
+- [Create an event webhook](https://docs.oneschema.co/reference/create-event-webhook.md): Creates an event webhook for a supported product area.
+- [Get an event webhook](https://docs.oneschema.co/reference/get-event-webhook.md): Retrieves a single event webhook by key.
+- [Update an event webhook](https://docs.oneschema.co/reference/update-event-webhook.md): Updates selected fields on an existing event webhook.
+- [Delete an event webhook](https://docs.oneschema.co/reference/delete-event-webhook.md): Deletes an event webhook. Multi FileFeed event webhooks cannot be deleted while attached to a Multi FileFeed.
+- [Create FileFeed](https://docs.oneschema.co/reference/create-file-feed.md): Create a new FileFeed
+- [List FileFeeds](https://docs.oneschema.co/reference/get-file-feeds.md): Returns a list of FileFeeds for the organization.
+- [Get FileFeed](https://docs.oneschema.co/reference/get-file-feed.md): Retrieve a specific FileFeed by ID
+- [Delete FileFeed](https://docs.oneschema.co/reference/delete-file-feed.md): Delete a specific FileFeed by ID
+- [Update FileFeed](https://docs.oneschema.co/reference/update-file-feed.md): Update a specific FileFeed by ID. Only the fields that need to be updated should be provided.
+- [Duplicate FileFeed](https://docs.oneschema.co/reference/duplicate-file-feed.md): Duplicate an existing FileFeed
+- [Create FileFeed import](https://docs.oneschema.co/reference/create-file-feed-import.md): Create a new import for a FileFeed
+- [Retry FileFeed import](https://docs.oneschema.co/reference/retry-file-feed-import.md): Retry a failed import for a FileFeed
+- [List FileFeed imports](https://docs.oneschema.co/reference/get-file-feed-imports.md): Returns a list of imports for the specified FileFeed. Supports pagination via `start_row` and `count` parameters.
+- [Get import download url](https://docs.oneschema.co/reference/get-import-download-url.md): Get a download url for a successful FileFeed import
+- [Get FileFeed import](https://docs.oneschema.co/reference/get-file-feed-import.md): Get the FileFeed imports for a given FileFeed
+- [Delete FileFeed import](https://docs.oneschema.co/reference/delete-file-feed-import.md): Delete a specific FileFeed import for a given FileFeed
+- [Get imported rows for a given FileFeed attempt](https://docs.oneschema.co/reference/imported-rows.md): Get imported JSON rows for a successful FileFeed import attempt
+- [Generate error details report](https://docs.oneschema.co/reference/generate-file-feed-import-error-details.md): Generate a CSV of every cell error remaining in the import, broken down by row. Returns a presigned URL to download the file.
+- [Create FileFeed embed session](https://docs.oneschema.co/reference/create-file-feed-embed-session.md): Create a new embed session for a FileFeed
+- [Upload file to the FileFeed embed session](https://docs.oneschema.co/reference/upload-file-to-embed-session.md): Upload a file to a FileFeed embed session, to be used as a sample file when editing the FileFeed transforms.
+- [Create FileFeed folder](https://docs.oneschema.co/reference/create-file-feed-folder.md): Create a new FileFeed folder.
+- [List FileFeed folders](https://docs.oneschema.co/reference/get-file-feed-folders.md): Returns a list of FileFeed folders for the organization.
+- [Get FileFeed folder](https://docs.oneschema.co/reference/get-file-feed-folder.md): Retrieve a specific FileFeed folder by ID.
+- [Delete FileFeed folder](https://docs.oneschema.co/reference/delete-file-feed-folder.md): Delete a specific FileFeed folder by ID.
+- [Update FileFeed folder](https://docs.oneschema.co/reference/update-file-feed-folder.md): Update a specific FileFeed folder by ID. Only the fields that need to be updated should be provided.
+- [Get saved mappings for a FileFeed](https://docs.oneschema.co/reference/get-file-feed-saved-mappings.md): Get the saved mappings for a given FileFeed
+- [Update FileFeed saved mappings](https://docs.oneschema.co/reference/update-file-feed-saved-mappings.md): Update saved mappings for a given FileFeed. Note that any uncommitted changes to FileFeed transforms will be overwritten.
+- [Send an MCP JSON-RPC request](https://docs.oneschema.co/reference/send-mcp-json-rpc.md): Send a JSON-RPC 2.0 request to the OneSchema MCP server. MCP clients use this endpoint to initialize the connection, list available tools and resources, call read-only tools, and read resources.  Notifications that do not require a response return `202 Accepted` with an empty body. Requests return a JSON-RPC response object.
+- [List Workspaces](https://docs.oneschema.co/reference/list-workspaces.md): Returns a list of all Workspaces that the authenticated user can access. Supports pagination via `offset` and `count` query parameters.
+- [Create a Workspace](https://docs.oneschema.co/reference/create-workspace.md): Create a new Workspace in the organization.
+- [Get a Workspace](https://docs.oneschema.co/reference/get-workspace.md): Retrieve a single Workspace by its id, including the sheets it contains.
+- [Update a Workspace](https://docs.oneschema.co/reference/update-workspace.md): Update a Workspace's name, description, color, custom metadata, or containing workspace.
+- [Delete a Workspace](https://docs.oneschema.co/reference/delete-workspace.md): Delete a Workspace. The default Workspace cannot be deleted.
+- [Assign a template to a Workspace sheet](https://docs.oneschema.co/reference/assign-sheet-template.md): Assign or unassign a template for a Workspace sheet. Pass `template_key: null` to unassign the current template.  Set `auto_set_header_row` to `true` to automatically detect and set the header row before applying the template. If the sheet's headers are already set, `auto_set_header_row` is ignored.
+- [Get a sheet](https://docs.oneschema.co/reference/get-sheet.md): Retrieve a sheet with the given sheet_id.
+- [Update a sheet](https://docs.oneschema.co/reference/update-sheet.md): Update the name and/or custom_metadata of a sheet.
+- [Get a sheet's mapping](https://docs.oneschema.co/reference/get-mapping.md): Retrieve the current mapping of the sheet's columns to the template's columns.
+- [Unmap a sheet](https://docs.oneschema.co/reference/unmap-sheet.md): Entirely unmap the sheet from its template.
+
+## Changelog
+- [Easier Conversation Reset and Input Updates for the File Agent Node](https://docs.oneschema.co/changelog/easier-conversation-reset-and-input-updates-for-the-file-agent-node.md)
+- [Restrict Accepted File Types in the Importer](https://docs.oneschema.co/changelog/restrict-accepted-file-types-in-the-importer.md)
+- [Manage Transforms via API](https://docs.oneschema.co/changelog/manage-transforms-via-api.md)
+- [Search and Filter Transforms in the Builder](https://docs.oneschema.co/changelog/search-and-filter-transforms-in-the-builder.md)
+- [Prioritize Time-Sensitive Imports](https://docs.oneschema.co/changelog/prioritize-time-sensitive-imports.md)

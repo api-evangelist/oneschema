@@ -1,0 +1,1514 @@
+{
+  "info": {
+    "_postman_id": "cb79bc64-22ab-47ce-bd2c-e53cf94ac94f",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Templates API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:26:29.000Z",
+    "updatedAt": "2026-07-28T02:26:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cb79bc64-22ab-47ce-bd2c-e53cf94ac94f"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "templates",
+          "item": [
+            {
+              "name": "{key}",
+              "item": [
+                {
+                  "name": "sample-file",
+                  "item": [
+                    {
+                      "name": "Clear the custom sample file",
+                      "id": "e270660e-2777-4676-9f5b-1d0a0c4bb12f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key",
+                            "sample-file"
+                          ],
+                          "variable": [
+                            {
+                              "id": "143d2880-e404-4a44-9b7e-65de1bc6d2c1",
+                              "key": "key",
+                              "value": "<string>",
+                              "description": "(Required) The key of the template whose sample file should be cleared."
+                            }
+                          ]
+                        },
+                        "description": "Remove the custom sample file previously attached to the template. After removal, the importer falls back to the sample file that OneSchema auto-generates from the template's columns."
+                      },
+                      "response": [
+                        {
+                          "id": "f42ce9b7-b4bd-4daa-872d-165738034d64",
+                          "name": "Successful response. The primary way to verify the request's success or failure is the response status code.\nIn a future API version this endpoint may not return any response body at all.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "sample-file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-f42ce9b7-b4bd-4daa-872d-165738034d64"
+                        },
+                        {
+                          "id": "7fed5508-1fa6-4030-8fec-abbdffc99e33",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "sample-file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-7fed5508-1fa6-4030-8fec-abbdffc99e33"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-e270660e-2777-4676-9f5b-1d0a0c4bb12f"
+                    },
+                    {
+                      "name": "Download the template's sample file",
+                      "id": "c8233a1a-0c9b-4a0f-ad7c-1c687bf9d404",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key",
+                            "sample-file"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8b90f49d-adad-4f55-b50e-92d71fc184c0",
+                              "key": "key",
+                              "value": "<string>",
+                              "description": "(Required) The key of the template to download the sample file from."
+                            }
+                          ]
+                        },
+                        "description": "Download the template's sample file. If a custom file has been uploaded via `POST /v1/templates/{key}/sample-file` it is returned verbatim; otherwise OneSchema generates a sample file on the fly from the template's columns."
+                      },
+                      "response": [
+                        {
+                          "id": "7d545f82-9767-4742-865b-c886100db853",
+                          "name": "Successful response. The response's `Content-Type` matches the file format: xlsx when no custom file has been uploaded (or an xlsx custom file was uploaded), and the corresponding MIME type for other allowed extensions (xls, xlsm, xlsb, csv).",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "sample-file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-7d545f82-9767-4742-865b-c886100db853"
+                        },
+                        {
+                          "id": "802a1d03-378a-440c-908e-d2e383772656",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "sample-file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-802a1d03-378a-440c-908e-d2e383772656"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-c8233a1a-0c9b-4a0f-ad7c-1c687bf9d404"
+                    },
+                    {
+                      "name": "Upload a custom sample file",
+                      "id": "931ffb6a-8cca-448b-bab2-07fe309190c3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The file that end users will download when the `includeExcelTemplate` importer customization is enabled. Must be one of `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv` and at most 5 MiB.",
+                              "key": "file",
+                              "type": "file",
+                              "contentType": "application/octet-stream",
+                              "value": null
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key",
+                            "sample-file"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fe41d906-7f05-4b1b-ba00-ac7f1e249f0b",
+                              "key": "key",
+                              "value": "<string>",
+                              "description": "(Required) The key of the template to attach the sample file to."
+                            }
+                          ]
+                        },
+                        "description": "Upload a file to serve as the downloadable sample file shown to end users in the importer's upload pane. When set, this file replaces the sample file that OneSchema otherwise auto-generates from the template's columns. Subject to a 5 MiB file size limit. Accepted extensions: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv`. Requires `multipart/form-data` with a single `file` field."
+                      },
+                      "response": [
+                        {
+                          "id": "b2971444-c02b-4963-80c7-95bdfbb95351",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) The file that end users will download when the `includeExcelTemplate` importer customization is enabled. Must be one of `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv` and at most 5 MiB.",
+                                  "key": "file",
+                                  "type": "file",
+                                  "contentType": "application/octet-stream"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "sample-file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"template_key\": \"<string>\",\n  \"sample_file_name\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-b2971444-c02b-4963-80c7-95bdfbb95351"
+                        },
+                        {
+                          "id": "8066e48c-1579-44af-964b-8e99b859f5dc",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) The file that end users will download when the `includeExcelTemplate` importer customization is enabled. Must be one of `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv` and at most 5 MiB.",
+                                  "key": "file",
+                                  "type": "file",
+                                  "contentType": "application/octet-stream"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/sample-file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "sample-file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-8066e48c-1579-44af-964b-8e99b859f5dc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-931ffb6a-8cca-448b-bab2-07fe309190c3"
+                    }
+                  ],
+                  "id": "200db68f-d5f0-4b06-8454-8d752e0289f8",
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-200db68f-d5f0-4b06-8454-8d752e0289f8"
+                },
+                {
+                  "name": "environment-push",
+                  "item": [
+                    {
+                      "name": "Push template to environment(s)",
+                      "id": "d1a8c1be-186f-493e-bb1f-10ca721d41a9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"environments\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key/environment-push",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key",
+                            "environment-push"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c8fe2c7d-e0cb-4457-a6c4-510a98daa580",
+                              "key": "key",
+                              "value": "<string>",
+                              "description": "(Required) The key of the template to push."
+                            }
+                          ]
+                        },
+                        "description": "Push template to environment(s)."
+                      },
+                      "response": [
+                        {
+                          "id": "ec4c1861-5fcc-4d37-a93c-1f1887b68352",
+                          "name": "Successful response. The primary way to verify the request's success or failure is the response status code.\nIn a future API version this endpoint may not return any response body at all.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"environments\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/environment-push",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "environment-push"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-ec4c1861-5fcc-4d37-a93c-1f1887b68352"
+                        },
+                        {
+                          "id": "9eac9845-0730-4024-a4b7-cc7238bac3d2",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"environments\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/templates/:key/environment-push",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "templates",
+                                ":key",
+                                "environment-push"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:26:30.000Z",
+                          "updatedAt": "2026-07-28T02:26:30.000Z",
+                          "uid": "35240-9eac9845-0730-4024-a4b7-cc7238bac3d2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-d1a8c1be-186f-493e-bb1f-10ca721d41a9"
+                    }
+                  ],
+                  "id": "17d173c8-e28f-4d43-9da6-3cfe4687109c",
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-17d173c8-e28f-4d43-9da6-3cfe4687109c"
+                },
+                {
+                  "name": "Delete a template",
+                  "id": "8242d90b-8a48-4a87-9ccd-43a996139df6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/templates/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "templates",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9091e5b3-b08d-443e-8e6a-d833c52e6d78",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) The key of the template to delete."
+                        }
+                      ]
+                    },
+                    "description": "Delete a template."
+                  },
+                  "response": [
+                    {
+                      "id": "12c3e38d-450b-4e7b-8ee8-4d006b0f5268",
+                      "name": "Successful response. The primary way to verify the request's success or failure is the response status code.\nIn a future API version this endpoint may not return any response body at all.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-12c3e38d-450b-4e7b-8ee8-4d006b0f5268"
+                    },
+                    {
+                      "id": "f6413d5a-683e-49da-b084-4bdfab428526",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-f6413d5a-683e-49da-b084-4bdfab428526"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-8242d90b-8a48-4a87-9ccd-43a996139df6"
+                },
+                {
+                  "name": "Export a template as JSON",
+                  "id": "7eb66c8d-1d37-486f-99bd-0378408ace1c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/templates/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "templates",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "94eebbe3-8501-4533-9e53-5b1d15280148",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) The key of the template to export."
+                        }
+                      ]
+                    },
+                    "description": "Export a template as JSON."
+                  },
+                  "response": [
+                    {
+                      "id": "379bc26b-a608-4d5d-bc64-634d0dc03552",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"CUSTOM_REGEX\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"SSN_UNMASKED\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-379bc26b-a608-4d5d-bc64-634d0dc03552"
+                    },
+                    {
+                      "id": "0f54a34c-f45d-4b47-9e3e-28f3bb6091a1",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-0f54a34c-f45d-4b47-9e3e-28f3bb6091a1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-7eb66c8d-1d37-486f-99bd-0378408ace1c"
+                },
+                {
+                  "name": "Update a template",
+                  "id": "86d94dec-7b46-492f-8061-35f73f892a74",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"CUSTOM_REGEX\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"SSN_UNMASKED\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/templates/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "templates",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f29a129e-ed84-4a20-9ec9-216118619707",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) The key of the template to update."
+                        }
+                      ]
+                    },
+                    "description": "Update a template."
+                  },
+                  "response": [
+                    {
+                      "id": "d120d1d5-da3d-4190-8e8c-66565c542b31",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"CUSTOM_REGEX\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"SSN_UNMASKED\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"CUSTOM_REGEX\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"SSN_UNMASKED\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-d120d1d5-da3d-4190-8e8c-66565c542b31"
+                    },
+                    {
+                      "id": "eedb99b7-2cac-4e70-9c79-6b28e312505a",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"CUSTOM_REGEX\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"SSN_UNMASKED\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/templates/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "templates",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:30.000Z",
+                      "updatedAt": "2026-07-28T02:26:30.000Z",
+                      "uid": "35240-eedb99b7-2cac-4e70-9c79-6b28e312505a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-86d94dec-7b46-492f-8061-35f73f892a74"
+                }
+              ],
+              "id": "bfc13592-8067-4aac-b42c-a3cd05da6a61",
+              "createdAt": "2026-07-28T02:26:30.000Z",
+              "updatedAt": "2026-07-28T02:26:30.000Z",
+              "uid": "35240-bfc13592-8067-4aac-b42c-a3cd05da6a61"
+            },
+            {
+              "name": "List templates",
+              "id": "159dd984-8a99-46c6-b4ac-ab74784c0d66",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/templates?offset=<integer>&count=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "templates"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip before starting to collect the result set",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The numbers of items to return",
+                      "key": "count",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of templates for the organization. Supports pagination via `offset` and `count` parameters."
+              },
+              "response": [
+                {
+                  "id": "3a0e5578-245a-4cf1-8957-c96390ab5894",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/templates?offset=<integer>&count=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "templates"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The numbers of items to return",
+                          "key": "count",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"templates\": [\n    {\n      \"name\": \"<string>\",\n      \"template_key\": \"<string>\",\n      \"columns\": [\n        {\n          \"label\": \"<string>\",\n          \"key\": \"<string>\",\n          \"data_type\": \"PERCENTAGE\",\n          \"description\": \"<string>\",\n          \"must_exist\": false,\n          \"is_required\": false,\n          \"is_unique\": false,\n          \"is_custom\": false,\n          \"is_locked\": false,\n          \"is_multi_mappable\": false,\n          \"is_hidden\": false,\n          \"is_unmappable\": false,\n          \"validation_options\": {},\n          \"letter_case\": \"LETTER_CASE_UPPER\",\n          \"min_char_limit\": \"<integer>\",\n          \"max_char_limit\": \"<integer>\",\n          \"delimiter\": \"<string>\",\n          \"default_value\": \"<string>\",\n          \"mapping_hints\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"label\": \"<string>\",\n          \"key\": \"<string>\",\n          \"data_type\": \"FULL_NAME\",\n          \"description\": \"<string>\",\n          \"must_exist\": false,\n          \"is_required\": false,\n          \"is_unique\": false,\n          \"is_custom\": false,\n          \"is_locked\": false,\n          \"is_multi_mappable\": false,\n          \"is_hidden\": false,\n          \"is_unmappable\": false,\n          \"validation_options\": {},\n          \"letter_case\": \"LETTER_CASE_TITLE\",\n          \"min_char_limit\": \"<integer>\",\n          \"max_char_limit\": \"<integer>\",\n          \"delimiter\": \"<string>\",\n          \"default_value\": \"<string>\",\n          \"mapping_hints\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"description\": \"<string>\",\n      \"validation_hooks\": [\n        {\n          \"name\": \"<string>\",\n          \"url\": \"<string>\",\n          \"secret_key\": \"<string>\",\n          \"include_unmapped\": false,\n          \"hook_type\": \"row\",\n          \"batch_size\": 1000\n        },\n        {\n          \"name\": \"<string>\",\n          \"url\": \"<string>\",\n          \"secret_key\": \"<string>\",\n          \"include_unmapped\": false,\n          \"hook_type\": \"row\",\n          \"batch_size\": 1000\n        }\n      ],\n      \"code_hooks\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hooks\": {\n        \"preparsing\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"postupload\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"postmapping\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"validation\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"template_key\": \"<string>\",\n      \"columns\": [\n        {\n          \"label\": \"<string>\",\n          \"key\": \"<string>\",\n          \"data_type\": \"CURRENCY_CODE\",\n          \"description\": \"<string>\",\n          \"must_exist\": false,\n          \"is_required\": false,\n          \"is_unique\": false,\n          \"is_custom\": false,\n          \"is_locked\": false,\n          \"is_multi_mappable\": false,\n          \"is_hidden\": false,\n          \"is_unmappable\": false,\n          \"validation_options\": {},\n          \"letter_case\": \"LETTER_CASE_TITLE\",\n          \"min_char_limit\": \"<integer>\",\n          \"max_char_limit\": \"<integer>\",\n          \"delimiter\": \"<string>\",\n          \"default_value\": \"<string>\",\n          \"mapping_hints\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"label\": \"<string>\",\n          \"key\": \"<string>\",\n          \"data_type\": \"IMEI\",\n          \"description\": \"<string>\",\n          \"must_exist\": false,\n          \"is_required\": false,\n          \"is_unique\": false,\n          \"is_custom\": false,\n          \"is_locked\": false,\n          \"is_multi_mappable\": false,\n          \"is_hidden\": false,\n          \"is_unmappable\": false,\n          \"validation_options\": {},\n          \"letter_case\": \"LETTER_CASE_UPPER\",\n          \"min_char_limit\": \"<integer>\",\n          \"max_char_limit\": \"<integer>\",\n          \"delimiter\": \"<string>\",\n          \"default_value\": \"<string>\",\n          \"mapping_hints\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"description\": \"<string>\",\n      \"validation_hooks\": [\n        {\n          \"name\": \"<string>\",\n          \"url\": \"<string>\",\n          \"secret_key\": \"<string>\",\n          \"include_unmapped\": false,\n          \"hook_type\": \"row\",\n          \"batch_size\": 1000\n        },\n        {\n          \"name\": \"<string>\",\n          \"url\": \"<string>\",\n          \"secret_key\": \"<string>\",\n          \"include_unmapped\": false,\n          \"hook_type\": \"row\",\n          \"batch_size\": 1000\n        }\n      ],\n      \"code_hooks\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hooks\": {\n        \"preparsing\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"postupload\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"postmapping\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"validation\": [\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-3a0e5578-245a-4cf1-8957-c96390ab5894"
+                },
+                {
+                  "id": "8ad7ca1b-f60e-4965-889c-3549e6d476f8",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/templates?offset=<integer>&count=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "templates"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The numbers of items to return",
+                          "key": "count",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-8ad7ca1b-f60e-4965-889c-3549e6d476f8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:26:30.000Z",
+              "updatedAt": "2026-07-28T02:26:30.000Z",
+              "uid": "35240-159dd984-8a99-46c6-b4ac-ab74784c0d66"
+            },
+            {
+              "name": "Import a template as JSON",
+              "id": "08ee5607-6f2a-4828-ad51-7414d1c5f7b7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"ENUM_COUNTRY\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_UPPER\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"ALPHABETICAL\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"push_to_environments\": [\n    \"fugiat sed\",\n    \"cillum proident\"\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/templates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "templates"
+                  ]
+                },
+                "description": "Import a template as JSON."
+              },
+              "response": [
+                {
+                  "id": "b36312c2-190a-4243-9365-a8724e21a1c8",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"ENUM_COUNTRY\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_UPPER\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"ALPHABETICAL\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"push_to_environments\": [\n    \"fugiat sed\",\n    \"cillum proident\"\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "templates"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<number>\"\n}",
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-b36312c2-190a-4243-9365-a8724e21a1c8"
+                },
+                {
+                  "id": "24120778-723d-415c-bd49-b20f27472b0f",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"columns\": [\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"ENUM_COUNTRY\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_UPPER\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"key\": \"<string>\",\n      \"data_type\": \"ALPHABETICAL\",\n      \"description\": \"<string>\",\n      \"must_exist\": false,\n      \"is_required\": false,\n      \"is_unique\": false,\n      \"is_custom\": false,\n      \"is_locked\": false,\n      \"is_multi_mappable\": false,\n      \"is_hidden\": false,\n      \"is_unmappable\": false,\n      \"validation_options\": {},\n      \"letter_case\": \"LETTER_CASE_TITLE\",\n      \"min_char_limit\": \"<integer>\",\n      \"max_char_limit\": \"<integer>\",\n      \"delimiter\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"mapping_hints\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"push_to_environments\": [\n    \"fugiat sed\",\n    \"cillum proident\"\n  ],\n  \"description\": \"<string>\",\n  \"validation_hooks\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"secret_key\": \"<string>\",\n      \"include_unmapped\": false,\n      \"hook_type\": \"row\",\n      \"batch_size\": 1000\n    }\n  ],\n  \"code_hooks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hooks\": {\n    \"preparsing\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postupload\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"postmapping\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"validation\": [\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "templates"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:26:30.000Z",
+                  "updatedAt": "2026-07-28T02:26:30.000Z",
+                  "uid": "35240-24120778-723d-415c-bd49-b20f27472b0f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:26:30.000Z",
+              "updatedAt": "2026-07-28T02:26:30.000Z",
+              "uid": "35240-08ee5607-6f2a-4828-ad51-7414d1c5f7b7"
+            }
+          ],
+          "id": "4ddc0a74-9f6f-420e-b210-1f9cf519e8fe",
+          "createdAt": "2026-07-28T02:26:30.000Z",
+          "updatedAt": "2026-07-28T02:26:30.000Z",
+          "uid": "35240-4ddc0a74-9f6f-420e-b210-1f9cf519e8fe"
+        }
+      ],
+      "id": "860ada07-3fb2-46ea-bf28-4ae0c0e01443",
+      "createdAt": "2026-07-28T02:26:30.000Z",
+      "updatedAt": "2026-07-28T02:26:30.000Z",
+      "uid": "35240-860ada07-3fb2-46ea-bf28-4ae0c0e01443"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

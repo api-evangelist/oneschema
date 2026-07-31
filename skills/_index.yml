@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/*.yml (operationIds verified against harvested OpenAPI)
+skills:
+- file: oneschema-headless-import.md
+  name: Run a headless OneSchema import
+  api: openapi/oneschema-importer-embeds-openapi.yml
+  operations: [create-embed, upload-a-csv-or-excel-file, set-header-row-on-an-embed-file, set-column-mapping-on-an-embed-file, import-embed-file, get-imported-rows-for-embed]
+- file: oneschema-manage-templates.md
+  name: Manage OneSchema templates
+  api: openapi/oneschema-templates-openapi.yml
+  operations: [get-templates, import-template, export-template, update-template, push-template-environment, delete-template]
+- file: oneschema-multi-filefeed-import.md
+  name: Automate a Multi FileFeed import
+  api: openapi/oneschema-multi-filefeeds-openapi.yml
+  operations: [create-multi-file-feed, create-multi-file-feed-import, create-direct-upload-multi-file-feed-import-file, submit-direct-upload-multi-file-feed-import-file, submit-multi-file-feed-import, get-multi-file-feed-import-files]

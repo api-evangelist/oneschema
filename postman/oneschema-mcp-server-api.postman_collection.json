@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "6e101185-fce2-49c2-9e75-9ad4cde28f6d",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts MCP Server API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:58.000Z",
+    "updatedAt": "2026-07-28T02:25:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6e101185-fce2-49c2-9e75-9ad4cde28f6d"
+  },
+  "item": [
+    {
+      "name": "mcp",
+      "item": [
+        {
+          "name": "Send an MCP JSON-RPC request",
+          "id": "fb899fb6-c201-4ad1-962f-61d7e8a5d1f8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/mcp",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mcp"
+              ]
+            },
+            "description": "Send a JSON-RPC 2.0 request to the OneSchema MCP server. MCP clients use\nthis endpoint to initialize the connection, list available tools and\nresources, call read-only tools, and read resources.\n\nNotifications that do not require a response return `202 Accepted` with\nan empty body. Requests return a JSON-RPC response object."
+          },
+          "response": [
+            {
+              "id": "84ab62e5-f5a3-428c-849f-039361ba0415",
+              "name": "JSON-RPC response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/mcp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "mcp"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": \"<string>\",\n  \"result\": {},\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {\n      \"description\": \"Optional method-specific error details.\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:25:58.000Z",
+              "updatedAt": "2026-07-28T02:25:58.000Z",
+              "uid": "35240-84ab62e5-f5a3-428c-849f-039361ba0415"
+            },
+            {
+              "id": "e83c53dd-71ed-44e7-808c-1b15cd49d8aa",
+              "name": "Notification accepted; no response body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/mcp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "mcp"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:25:58.000Z",
+              "updatedAt": "2026-07-28T02:25:58.000Z",
+              "uid": "35240-e83c53dd-71ed-44e7-808c-1b15cd49d8aa"
+            },
+            {
+              "id": "ce268373-bdd5-4861-845e-9d2bfe957916",
+              "name": "Unauthorized (missing or invalid API key)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/mcp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "mcp"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:25:58.000Z",
+              "updatedAt": "2026-07-28T02:25:58.000Z",
+              "uid": "35240-ce268373-bdd5-4861-845e-9d2bfe957916"
+            },
+            {
+              "id": "1ffcc085-5943-4a23-ad0a-7516a64321d9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/mcp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "mcp"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:25:58.000Z",
+              "updatedAt": "2026-07-28T02:25:58.000Z",
+              "uid": "35240-1ffcc085-5943-4a23-ad0a-7516a64321d9"
+            },
+            {
+              "id": "b95ffa56-b839-4a3e-a552-d046e57b3803",
+              "name": "Request could not be processed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/mcp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "mcp"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:25:58.000Z",
+              "updatedAt": "2026-07-28T02:25:58.000Z",
+              "uid": "35240-b95ffa56-b839-4a3e-a552-d046e57b3803"
+            }
+          ],
+          "createdAt": "2026-07-28T02:25:58.000Z",
+          "updatedAt": "2026-07-28T02:25:58.000Z",
+          "uid": "35240-fb899fb6-c201-4ad1-962f-61d7e8a5d1f8"
+        }
+      ],
+      "id": "5e07b074-8c11-424f-a674-c33f5cdb3234",
+      "createdAt": "2026-07-28T02:25:58.000Z",
+      "updatedAt": "2026-07-28T02:25:58.000Z",
+      "uid": "35240-5e07b074-8c11-424f-a674-c33f5cdb3234"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

@@ -1,0 +1,1371 @@
+{
+  "info": {
+    "_postman_id": "52994a70-40e5-48e4-8f60-ee70db5f93ea",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Transforms API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:26:17.000Z",
+    "updatedAt": "2026-07-28T02:26:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52994a70-40e5-48e4-8f60-ee70db5f93ea"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "multi-file-feeds",
+          "item": [
+            {
+              "name": "{multi_file_feed_id}",
+              "item": [
+                {
+                  "name": "head",
+                  "item": [
+                    {
+                      "name": "Get HEAD state",
+                      "id": "60d25461-7658-47a4-94da-ef8e60bfe863",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/head",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id",
+                            "head"
+                          ],
+                          "variable": [
+                            {
+                              "id": "62c93aba-4b2a-4b42-ac57-af7eba0dc634",
+                              "key": "multi_file_feed_id",
+                              "value": "<integer>",
+                              "description": "(Required) ID of the Multi FileFeed"
+                            }
+                          ]
+                        },
+                        "description": "Returns the current HEAD (draft) flowgraph state along with its\ndirty status. The HEAD is the mutable, editable version of the\nflowgraph \u2014 it may differ from the latest commit if edits have\nbeen made but not yet committed.\n\nThe `is_dirty` flag indicates whether the HEAD has changes that\nare newer than the latest commit. If `true`, `POST /commits`\nwill reject requests to prevent overwriting in-progress UI edits.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "e869232d-89f1-44aa-9817-8e7043a78fdc",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/head",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "head"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"is_dirty\": \"<boolean>\",\n  \"transforms\": {\n    \"version\": \"<integer>\",\n    \"exported_at\": \"<dateTime>\",\n    \"flowgraph\": {\n      \"nodes\": [\n        {\n          \"node_key\": \"<string>\",\n          \"type\": \"<string>\",\n          \"config\": {},\n          \"position_x\": \"<number>\",\n          \"position_y\": \"<number>\",\n          \"pipeline\": {}\n        },\n        {\n          \"node_key\": \"<string>\",\n          \"type\": \"<string>\",\n          \"config\": {},\n          \"position_x\": \"<number>\",\n          \"position_y\": \"<number>\",\n          \"pipeline\": {}\n        }\n      ],\n      \"edges\": [\n        {\n          \"from_node_key\": \"<string>\",\n          \"to_node_key\": \"<string>\"\n        },\n        {\n          \"from_node_key\": \"<string>\",\n          \"to_node_key\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-e869232d-89f1-44aa-9817-8e7043a78fdc"
+                        },
+                        {
+                          "id": "35e32278-1bb3-4fcf-b239-071e74e45a90",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/head",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "head"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-35e32278-1bb3-4fcf-b239-071e74e45a90"
+                        },
+                        {
+                          "id": "e4385892-9e2f-40a4-a29c-53d7f78ee8e3",
+                          "name": "Unauthorized (missing or invalid API key)",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/head",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "head"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-e4385892-9e2f-40a4-a29c-53d7f78ee8e3"
+                        },
+                        {
+                          "id": "5826cc4e-2fc2-4ea9-bc35-1dbaac852ce8",
+                          "name": "Forbidden (wrong organization or required feature not enabled)",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/head",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "head"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-5826cc4e-2fc2-4ea9-bc35-1dbaac852ce8"
+                        },
+                        {
+                          "id": "03dca1a7-feec-42e8-bf76-c0f5f7cad8b4",
+                          "name": "Unprocessable entity (e.g. workflow has no recurring flowgraph)",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/head",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "head"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-03dca1a7-feec-42e8-bf76-c0f5f7cad8b4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:18.000Z",
+                      "updatedAt": "2026-07-28T02:26:18.000Z",
+                      "uid": "35240-60d25461-7658-47a4-94da-ef8e60bfe863"
+                    }
+                  ],
+                  "id": "849bac41-dbb0-44b5-926b-a13b14f21718",
+                  "createdAt": "2026-07-28T02:26:18.000Z",
+                  "updatedAt": "2026-07-28T02:26:18.000Z",
+                  "uid": "35240-849bac41-dbb0-44b5-926b-a13b14f21718"
+                },
+                {
+                  "name": "transforms",
+                  "item": [
+                    {
+                      "name": "history",
+                      "item": [
+                        {
+                          "name": "Get transforms history",
+                          "id": "b1263fc4-69eb-4da8-a26c-67b86228ccde",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms/history?offset=0&limit=20",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms",
+                                "history"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of commits to skip (for pagination)",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of commits to return (1\u2013100)",
+                                  "key": "limit",
+                                  "value": "20"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d92867b3-1c97-45ba-a811-1291e320cda6",
+                                  "key": "multi_file_feed_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) ID of the Multi FileFeed"
+                                }
+                              ]
+                            },
+                            "description": "Returns the paginated commit history for the Multi FileFeed's transforms,\nordered by most recent first.\n\nEach entry includes the commit ID, timestamp, and optional creator label\nand change descriptions.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "2a8099f1-6b1b-4d77-877d-ff46336cc163",
+                              "name": "Successful response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms/history?offset=0&limit=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "transforms",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of commits to skip (for pagination)",
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of commits to return (1\u2013100)",
+                                      "key": "limit",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "multi_file_feed_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"history\": [\n    {\n      \"commit_id\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"creator_label\": \"<string>\",\n      \"change_descriptions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"commit_id\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"creator_label\": \"<string>\",\n      \"change_descriptions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:26:18.000Z",
+                              "updatedAt": "2026-07-28T02:26:18.000Z",
+                              "uid": "35240-2a8099f1-6b1b-4d77-877d-ff46336cc163"
+                            },
+                            {
+                              "id": "41eef3a9-7ade-4ab5-89be-8e051d4de276",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms/history?offset=0&limit=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "transforms",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of commits to skip (for pagination)",
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of commits to return (1\u2013100)",
+                                      "key": "limit",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "multi_file_feed_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:26:18.000Z",
+                              "updatedAt": "2026-07-28T02:26:18.000Z",
+                              "uid": "35240-41eef3a9-7ade-4ab5-89be-8e051d4de276"
+                            },
+                            {
+                              "id": "f447c5cb-24e3-44f3-8fdd-88f6391f8b74",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms/history?offset=0&limit=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "transforms",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of commits to skip (for pagination)",
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of commits to return (1\u2013100)",
+                                      "key": "limit",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "multi_file_feed_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:26:18.000Z",
+                              "updatedAt": "2026-07-28T02:26:18.000Z",
+                              "uid": "35240-f447c5cb-24e3-44f3-8fdd-88f6391f8b74"
+                            },
+                            {
+                              "id": "ecbe2eeb-2bc2-4a58-8fec-1845b4e530a5",
+                              "name": "Forbidden (feature not enabled)",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms/history?offset=0&limit=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "transforms",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of commits to skip (for pagination)",
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of commits to return (1\u2013100)",
+                                      "key": "limit",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "multi_file_feed_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:26:18.000Z",
+                              "updatedAt": "2026-07-28T02:26:18.000Z",
+                              "uid": "35240-ecbe2eeb-2bc2-4a58-8fec-1845b4e530a5"
+                            },
+                            {
+                              "id": "972355d7-e03e-455e-b68d-5ec9ae5ed2dc",
+                              "name": "Workflow has no recurring flowgraph",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms/history?offset=0&limit=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "multi-file-feeds",
+                                    ":multi_file_feed_id",
+                                    "transforms",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of commits to skip (for pagination)",
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of commits to return (1\u2013100)",
+                                      "key": "limit",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "multi_file_feed_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:26:18.000Z",
+                              "updatedAt": "2026-07-28T02:26:18.000Z",
+                              "uid": "35240-972355d7-e03e-455e-b68d-5ec9ae5ed2dc"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-b1263fc4-69eb-4da8-a26c-67b86228ccde"
+                        }
+                      ],
+                      "id": "41aa9941-422d-45e2-a05f-78da7193942e",
+                      "createdAt": "2026-07-28T02:26:18.000Z",
+                      "updatedAt": "2026-07-28T02:26:18.000Z",
+                      "uid": "35240-41aa9941-422d-45e2-a05f-78da7193942e"
+                    },
+                    {
+                      "name": "Get transforms",
+                      "id": "69b7ce79-58fd-4a2b-a922-e48556ad3190",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id",
+                            "transforms"
+                          ],
+                          "variable": [
+                            {
+                              "id": "395466a3-ea96-4b90-b20e-428e4c14176d",
+                              "key": "multi_file_feed_id",
+                              "value": "<integer>",
+                              "description": "(Required) ID of the Multi FileFeed"
+                            }
+                          ]
+                        },
+                        "description": "Returns the current HEAD flowgraph state using the v1 transforms format.\n\nThe response includes the portable flowgraph export (nodes, edges, pipelines),\nthe dirty status (and the last commit ID if there is at least one commit) \nfor optimistic locking.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "bef427b0-d1e1-4415-bfe4-7cb616befd6b",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"is_dirty\": \"<boolean>\",\n  \"transforms\": {\n    \"version\": \"<integer>\",\n    \"flowgraph\": {},\n    \"workflow\": {\n      \"name\": \"<string>\",\n      \"workspace_key\": \"<string>\",\n      \"workflow_event_webhook_key\": \"<string>\",\n      \"workflow_code_action_key\": \"<string>\",\n      \"custom_metadata\": {}\n    },\n    \"templates\": [\n      {\n        \"template_key\": \"<string>\",\n        \"is_required\": \"<boolean>\"\n      },\n      {\n        \"template_key\": \"<string>\",\n        \"is_required\": \"<boolean>\"\n      }\n    ]\n  },\n  \"last_commit_id\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-bef427b0-d1e1-4415-bfe4-7cb616befd6b"
+                        },
+                        {
+                          "id": "2c56a9b1-bfb7-4fea-9cad-10ca0eeae303",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-2c56a9b1-bfb7-4fea-9cad-10ca0eeae303"
+                        },
+                        {
+                          "id": "b2ffb817-ffab-4e3f-8c0e-747c5b517aaf",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-b2ffb817-ffab-4e3f-8c0e-747c5b517aaf"
+                        },
+                        {
+                          "id": "6f743df3-c02f-4d6e-b741-0b62fdb2ffb2",
+                          "name": "Forbidden (feature not enabled)",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-6f743df3-c02f-4d6e-b741-0b62fdb2ffb2"
+                        },
+                        {
+                          "id": "612515c1-cdf0-453b-8389-3ec3e2cb8c61",
+                          "name": "Workflow has no recurring flowgraph",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-612515c1-cdf0-453b-8389-3ec3e2cb8c61"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:18.000Z",
+                      "updatedAt": "2026-07-28T02:26:18.000Z",
+                      "uid": "35240-69b7ce79-58fd-4a2b-a922-e48556ad3190"
+                    },
+                    {
+                      "name": "Patch transforms",
+                      "id": "7de39080-4f05-4fea-85ea-873be21c7f87",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": {}\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id",
+                            "transforms"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c420d6b4-4b43-41ed-ac7b-c040a69c146d",
+                              "key": "multi_file_feed_id",
+                              "value": "<integer>",
+                              "description": "(Required) ID of the Multi FileFeed"
+                            }
+                          ]
+                        },
+                        "description": "Replaces the Multi FileFeed's HEAD flowgraph with the supplied state.\n\nThe `flowgraph.nodes` and `flowgraph.edges` arrays represent the complete\ndesired state \u2014 nodes absent from the payload are deleted, and edges are\nfully replaced. Every call must include a `source` node and an `import` or\n`import-v2` node or the request will be rejected. Represent the complete\nworkflow as a single graph.\n\nWithin an individual node, `config` uses merge semantics:\n\nIf a key is not specified, the current value is left unchanged.\nIf a key takes a scalar value\n- a supplied value replaces the current value\n- a null value deletes the key\nIf a key takes an array value\n- supplied value replaces the current array\n- a null value deletes the key\nIf a key takes a hash/object value\n- the supplied hash is recursively merged with the current hash (same rules apply at each nested level)\n- a null value deletes the key\n\nAuto-commits by default. Use `commit_now: false` to defer committing.\n\nConcurrency guards:\n  - `last_known_commit_id` \u2014 optimistic lock; 409 if commits changed\n  - Dirty-state check \u2014 409 if HEAD has uncommitted UI edits (override with `force: true`)\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "87d39745-d4fd-4bcc-b857-0c5a408c7e29",
+                          "name": "Successfully patched transforms",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": {}\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"transforms\": {},\n  \"commit_id\": \"<integer>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-87d39745-d4fd-4bcc-b857-0c5a408c7e29"
+                        },
+                        {
+                          "id": "c6140347-7d25-464b-8da1-a8d2db67a6f5",
+                          "name": "Bad request (invalid JSON or not an object)",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": {}\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-c6140347-7d25-464b-8da1-a8d2db67a6f5"
+                        },
+                        {
+                          "id": "22750ac5-3b4d-448b-a2e5-f647ca6a1350",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": {}\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-22750ac5-3b4d-448b-a2e5-f647ca6a1350"
+                        },
+                        {
+                          "id": "95612563-f98e-4ec3-b99f-9329ed9068ea",
+                          "name": "Forbidden (feature not enabled or wrong org)",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": {}\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-95612563-f98e-4ec3-b99f-9329ed9068ea"
+                        },
+                        {
+                          "id": "033288d8-3388-4671-9c6d-854a854a6b81",
+                          "name": "Conflict \u2014 concurrent modification detected",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": {}\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {\n    \"last_known_commit_id\": \"<integer>\",\n    \"current_commit_id\": \"<integer>\",\n    \"is_dirty\": \"<boolean>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-033288d8-3388-4671-9c6d-854a854a6b81"
+                        },
+                        {
+                          "id": "86060328-fca6-4ca8-848e-b54a9a406769",
+                          "name": "Validation failed (schema, references, or graph errors)",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": {},\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": {},\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": {}\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "transforms"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:26:18.000Z",
+                          "updatedAt": "2026-07-28T02:26:18.000Z",
+                          "uid": "35240-86060328-fca6-4ca8-848e-b54a9a406769"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:18.000Z",
+                      "updatedAt": "2026-07-28T02:26:18.000Z",
+                      "uid": "35240-7de39080-4f05-4fea-85ea-873be21c7f87"
+                    }
+                  ],
+                  "id": "8cf6b967-8de0-486f-8191-d318451aed3b",
+                  "createdAt": "2026-07-28T02:26:18.000Z",
+                  "updatedAt": "2026-07-28T02:26:18.000Z",
+                  "uid": "35240-8cf6b967-8de0-486f-8191-d318451aed3b"
+                }
+              ],
+              "id": "b11cf586-5141-4fe4-b3f4-626dcf450b89",
+              "createdAt": "2026-07-28T02:26:18.000Z",
+              "updatedAt": "2026-07-28T02:26:18.000Z",
+              "uid": "35240-b11cf586-5141-4fe4-b3f4-626dcf450b89"
+            }
+          ],
+          "id": "c135e929-059a-470a-9c65-544fdccc824c",
+          "createdAt": "2026-07-28T02:26:18.000Z",
+          "updatedAt": "2026-07-28T02:26:18.000Z",
+          "uid": "35240-c135e929-059a-470a-9c65-544fdccc824c"
+        }
+      ],
+      "id": "570961fd-c081-4da6-a073-b7186a6fe4a9",
+      "createdAt": "2026-07-28T02:26:18.000Z",
+      "updatedAt": "2026-07-28T02:26:18.000Z",
+      "uid": "35240-570961fd-c081-4da6-a073-b7186a6fe4a9"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

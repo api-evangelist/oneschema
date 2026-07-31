@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.oneschema.co/docs/javascript, https://www.npmjs.com/org/oneschema, https://github.com/oneschema/sdk
+note: First-party client-side SDKs for embedding the OneSchema Importer. Server-side use is via the REST
+  API (X-API-KEY); no first-party backend SDK is published.
+packages:
+- language: javascript
+  registry: npm
+  name: '@oneschema/importer'
+  version: 0.7.5
+  url: https://www.npmjs.com/package/@oneschema/importer
+  install: npm install @oneschema/importer
+  repo: https://github.com/oneschema/sdk
+  official: true
+  description: Vanilla JS library for embedding the OneSchema Importer
+- language: javascript
+  registry: npm
+  name: '@oneschema/react'
+  version: 0.7.5
+  url: https://www.npmjs.com/package/@oneschema/react
+  install: npm install @oneschema/react
+  repo: https://github.com/oneschema/sdk
+  official: true
+  description: React component for embedding the OneSchema Importer
+- language: javascript
+  registry: npm
+  name: '@oneschema/angular'
+  version: 0.7.5
+  url: https://www.npmjs.com/package/@oneschema/angular
+  install: npm install @oneschema/angular
+  repo: https://github.com/oneschema/sdk
+  official: true
+  description: Angular module for embedding the OneSchema Importer
+- language: javascript
+  registry: npm
+  name: '@oneschema/vue'
+  version: 0.7.5
+  url: https://www.npmjs.com/package/@oneschema/vue
+  install: npm install @oneschema/vue
+  repo: https://github.com/oneschema/sdk
+  official: true
+  description: Vue plugin for embedding the OneSchema Importer

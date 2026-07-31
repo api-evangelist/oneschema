@@ -1,0 +1,831 @@
+{
+  "info": {
+    "_postman_id": "aa8cca1d-c5b3-432f-9b91-cab6f1d2ffcc",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Template Hooks API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:26:28.000Z",
+    "updatedAt": "2026-07-28T02:26:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aa8cca1d-c5b3-432f-9b91-cab6f1d2ffcc"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "template-hooks",
+          "item": [
+            {
+              "name": "{key}",
+              "item": [
+                {
+                  "name": "Delete a template hook",
+                  "id": "ca82c454-afb3-4db3-9d64-91cc52744a6f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "template-hooks",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "340eab23-ca63-4c8d-9fb9-ae30b8be9665",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a template hook. A template hook attached to a template cannot be deleted."
+                  },
+                  "response": [
+                    {
+                      "id": "e8aafdc1-01a7-4891-a500-134ec1d79a89",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:26:29.000Z",
+                      "updatedAt": "2026-07-28T02:26:29.000Z",
+                      "uid": "35240-e8aafdc1-01a7-4891-a500-134ec1d79a89"
+                    },
+                    {
+                      "id": "b2495e36-ff4c-4642-8427-234058e0c683",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:29.000Z",
+                      "updatedAt": "2026-07-28T02:26:29.000Z",
+                      "uid": "35240-b2495e36-ff4c-4642-8427-234058e0c683"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:29.000Z",
+                  "updatedAt": "2026-07-28T02:26:29.000Z",
+                  "uid": "35240-ca82c454-afb3-4db3-9d64-91cc52744a6f"
+                },
+                {
+                  "name": "Get a template hook",
+                  "id": "a9f26f13-571b-496b-81c8-2fc7ccdce710",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "template-hooks",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a7b7b896-b098-4607-8765-838805da525d",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Get a template hook."
+                  },
+                  "response": [
+                    {
+                      "id": "649f4c9d-60da-4001-babc-599b0ba972e3",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:26:29.000Z",
+                      "updatedAt": "2026-07-28T02:26:29.000Z",
+                      "uid": "35240-649f4c9d-60da-4001-babc-599b0ba972e3"
+                    },
+                    {
+                      "id": "10466daa-32fb-4728-835e-07d9440a9624",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:29.000Z",
+                      "updatedAt": "2026-07-28T02:26:29.000Z",
+                      "uid": "35240-10466daa-32fb-4728-835e-07d9440a9624"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:29.000Z",
+                  "updatedAt": "2026-07-28T02:26:29.000Z",
+                  "uid": "35240-a9f26f13-571b-496b-81c8-2fc7ccdce710"
+                },
+                {
+                  "name": "Update an existing template hook",
+                  "id": "a11b8d80-bde0-4711-a79c-bfc6217053b8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "template-hooks",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "df2be3f5-207b-42ab-adc0-cc9e267d8bd2",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update an existing template hook. Note that updates to template hooks are live instantly."
+                  },
+                  "response": [
+                    {
+                      "id": "a8fa9aa0-39f6-4972-8d9a-12273f7d4682",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:26:29.000Z",
+                      "updatedAt": "2026-07-28T02:26:29.000Z",
+                      "uid": "35240-a8fa9aa0-39f6-4972-8d9a-12273f7d4682"
+                    },
+                    {
+                      "id": "c652533b-b129-4d46-b38e-b573c07816d2",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:29.000Z",
+                      "updatedAt": "2026-07-28T02:26:29.000Z",
+                      "uid": "35240-c652533b-b129-4d46-b38e-b573c07816d2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:29.000Z",
+                  "updatedAt": "2026-07-28T02:26:29.000Z",
+                  "uid": "35240-a11b8d80-bde0-4711-a79c-bfc6217053b8"
+                }
+              ],
+              "id": "a9f4beee-faef-47bc-a38f-2f4e1a3a0145",
+              "createdAt": "2026-07-28T02:26:29.000Z",
+              "updatedAt": "2026-07-28T02:26:29.000Z",
+              "uid": "35240-a9f4beee-faef-47bc-a38f-2f4e1a3a0145"
+            },
+            {
+              "name": "Create a new template hook",
+              "id": "8f59b9c8-252a-46df-a2de-c60875e28fdf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/template-hooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "template-hooks"
+                  ]
+                },
+                "description": "Create a new template hook."
+              },
+              "response": [
+                {
+                  "id": "92aa9069-1b61-4f06-a17e-b50c92b8ad32",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/template-hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "template-hooks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:26:29.000Z",
+                  "updatedAt": "2026-07-28T02:26:29.000Z",
+                  "uid": "35240-92aa9069-1b61-4f06-a17e-b50c92b8ad32"
+                },
+                {
+                  "id": "e50095ba-9dba-4f0c-8458-33444774e284",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"<string>\",\n  \"stage\": \"preparsing\",\n  \"type\": \"json-to-csv\",\n  \"params\": {\n    \"fileExts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"entryPath\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/template-hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "template-hooks"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:26:29.000Z",
+                  "updatedAt": "2026-07-28T02:26:29.000Z",
+                  "uid": "35240-e50095ba-9dba-4f0c-8458-33444774e284"
+                }
+              ],
+              "createdAt": "2026-07-28T02:26:29.000Z",
+              "updatedAt": "2026-07-28T02:26:29.000Z",
+              "uid": "35240-8f59b9c8-252a-46df-a2de-c60875e28fdf"
+            },
+            {
+              "name": "List template hooks",
+              "id": "14bb35eb-1f4c-4a75-bedb-63c46677446a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/template-hooks?offset=0&count=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "template-hooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip before starting to collect the result set",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The numbers of items to return",
+                      "key": "count",
+                      "value": "100"
+                    }
+                  ]
+                },
+                "description": "Returns a list of template hooks for the organization. Supports pagination via `offset` and `count` parameters."
+              },
+              "response": [
+                {
+                  "id": "1847ec1d-94ae-4dca-9761-6cbe2d479030",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/template-hooks?offset=0&count=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "template-hooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The numbers of items to return",
+                          "key": "count",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hooks\": [\n    {\n      \"key\": \"<string>\",\n      \"stage\": \"preparsing\",\n      \"type\": \"json-to-csv\",\n      \"params\": {\n        \"fileExts\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"entryPath\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"stage\": \"preparsing\",\n      \"type\": \"json-to-csv\",\n      \"params\": {\n        \"fileExts\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"entryPath\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:26:29.000Z",
+                  "updatedAt": "2026-07-28T02:26:29.000Z",
+                  "uid": "35240-1847ec1d-94ae-4dca-9761-6cbe2d479030"
+                },
+                {
+                  "id": "9851fd90-e23d-407b-a12e-d2e6405e4782",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/template-hooks?offset=0&count=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "template-hooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The numbers of items to return",
+                          "key": "count",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:26:29.000Z",
+                  "updatedAt": "2026-07-28T02:26:29.000Z",
+                  "uid": "35240-9851fd90-e23d-407b-a12e-d2e6405e4782"
+                }
+              ],
+              "createdAt": "2026-07-28T02:26:29.000Z",
+              "updatedAt": "2026-07-28T02:26:29.000Z",
+              "uid": "35240-14bb35eb-1f4c-4a75-bedb-63c46677446a"
+            }
+          ],
+          "id": "21fc3946-8465-4ab5-8835-a390d8ef58c6",
+          "createdAt": "2026-07-28T02:26:29.000Z",
+          "updatedAt": "2026-07-28T02:26:29.000Z",
+          "uid": "35240-21fc3946-8465-4ab5-8835-a390d8ef58c6"
+        }
+      ],
+      "id": "2eaa1c8d-6d82-4377-9225-a074fa92d4a4",
+      "createdAt": "2026-07-28T02:26:29.000Z",
+      "updatedAt": "2026-07-28T02:26:29.000Z",
+      "uid": "35240-2eaa1c8d-6d82-4377-9225-a074fa92d4a4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.oneschema.co/docs/mcp-server
+server:
+  name: oneschema
+  transport: http
+  transport_detail: Streamable HTTP
+  url: https://api.oneschema.co/mcp
+  auth: OneSchema API key (X-API-KEY), same as the REST API
+  clients:
+  - Claude
+  - Codex
+  - Cursor
+  - Windsurf
+  - Devin
+description: Hosted, read-only MCP server that gives AI coding assistants direct access to OneSchema API
+  specifications and product guides.
+tools:
+- name: list_api_groups
+  description: Lists all available API spec groups (e.g. importer, templates, filefeeds) with descriptions
+    and endpoint counts
+- name: get_api_spec
+  description: Retrieves the full OpenAPI spec for a specific API group, including a summary of all endpoints
+- name: list_guides
+  description: Lists available product guides (setup, quickstart, how-to) with titles and product area
+    tags
+- name: get_guide
+  description: Retrieves the full markdown content of a specific guide by slug
+resources:
+- uri_template: oneschema://api/{group}
+  description: OpenAPI spec for an API group
+- uri_template: oneschema://guides/{slug}
+  description: Product guide markdown by slug

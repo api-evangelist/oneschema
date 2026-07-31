@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.oneschema.co/docs/environments, https://docs.oneschema.co/docs/generating-jwts
+model: environments
+note: OneSchema separates test from live via Environments (Production, Staging, Development), each with
+  its own Client ID + Client Secret and Allowed Domains. Custom environments are supported.
+environments:
+- Production
+- Staging
+- Development
+test_credentials:
+  dev_sample_jwt: A sample JWT is automatically included in the provided importer code snippet for development
+    use (production requires a server-generated HS256 JWT signed with the Client Secret).
+embed_host: embed.oneschema.co
+no_test_cards: Not a payments provider; no test card/bank fixtures.

@@ -1,0 +1,4 @@
+Contact: mailto:security@oneschema.co
+Preferred-Languages: en
+Canonical: https://www.oneschema.co/.well-known/security.txt
+Policy: https://www.oneschema.co/security

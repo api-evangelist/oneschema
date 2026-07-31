@@ -1,7 +1,27 @@
 aid: oneschema
 name: Oneschema
-description: Oneschema is a company surfaced as a portfolio company of general-catalyst and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: OneSchema is an embeddable data onboarding and file-import platform for developers. Its core
+  Importer embeds a guided CSV and spreadsheet upload experience — file upload, header detection, AI-assisted
+  column mapping, and row-level validation against reusable Templates — directly inside a customer-facing
+  product, so end users import clean, schema-compliant data in minutes. Beyond the embedded Importer,
+  OneSchema offers Multi FileFeeds for automating recurring, transformation-heavy file ingestion pipelines
+  (SFTP, S3, Google Drive/Sheets, Salesforce, SQL sources; AI file and PDF transforms; validation and
+  delivery), a REST API at api.oneschema.co for headless importer sessions, templates, sheets, webhooks
+  and connections, first-party JavaScript/React/Angular/Vue SDKs, and a hosted MCP server for AI coding
+  assistants.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/62902d243ad8aef519be0d3e/62902d243ad8ae4014be0e97_oneschema-256.png
 url: https://raw.githubusercontent.com/api-evangelist/oneschema/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +31,406 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Data Onboarding
+- CSV Import
+- Data Validation
+- File Processing
+- ETL
+- Data Integration
+- Embeddable UI
+- Spreadsheets
+- Developer Tools
+- AI Data Transformation
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: oneschema:oneschema-aws-secrets-manager-accounts-api
+  name: Oneschema AWS Secrets Manager Accounts API
+  description: Manage AWS Secrets Manager account connections
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - AWS Secrets Manager Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-aws-secrets-manager-accounts-api-openapi.yml
+- aid: oneschema:oneschema-aws-secrets-manager-secrets-api
+  name: Oneschema AWS Secrets Manager Secrets API
+  description: Manage secret references within AWS Secrets Manager accounts
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - AWS Secrets Manager Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-aws-secrets-manager-secrets-api-openapi.yml
+- aid: oneschema:oneschema-azure-key-vault-accounts-api
+  name: Oneschema Azure Key Vault Accounts API
+  description: Manage Azure Key Vault account connections
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Azure Key Vault Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-azure-key-vault-accounts-api-openapi.yml
+- aid: oneschema:oneschema-azure-key-vault-secrets-api
+  name: Oneschema Azure Key Vault Secrets API
+  description: Manage secret references within Azure Key Vault accounts
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Azure Key Vault Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-azure-key-vault-secrets-api-openapi.yml
+- aid: oneschema:oneschema-code-hooks-legacy-api
+  name: Oneschema Code Hooks (Legacy) API
+  description: Legacy Code Hook operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Code Hooks (Legacy)
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-code-hooks-legacy-api-openapi.yml
+- aid: oneschema:oneschema-event-webhooks-api
+  name: Oneschema Event Webhooks API
+  description: Event webhook operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Event Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-event-webhooks-api-openapi.yml
+- aid: oneschema:oneschema-filefeed-folders-api
+  name: Oneschema FileFeed Folders API
+  description: FileFeed Folder operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - FileFeed Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-filefeed-folders-api-openapi.yml
+- aid: oneschema:oneschema-filefeed-mappings-api
+  name: Oneschema FileFeed Mappings API
+  description: Saved column mappings for FileFeeds
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - FileFeed Mappings
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-filefeed-mappings-api-openapi.yml
+- aid: oneschema:oneschema-filefeeds-api
+  name: Oneschema FileFeeds API
+  description: FileFeeds operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - FileFeeds
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-filefeeds-api-openapi.yml
+- aid: oneschema:oneschema-filefeeds-embed-sessions-api
+  name: Oneschema FileFeeds Embed Sessions API
+  description: FileFeeds Embed Sessions operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - FileFeeds Embed Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-filefeeds-embed-sessions-api-openapi.yml
+- aid: oneschema:oneschema-filefeeds-imports-api
+  name: Oneschema FileFeeds Imports API
+  description: FileFeeds Imports operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - FileFeeds Imports
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-filefeeds-imports-api-openapi.yml
+- aid: oneschema:oneschema-headless-importer-api
+  name: Oneschema Headless Importer API
+  description: Headless Importer operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Headless Importer
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-headless-importer-api-openapi.yml
+- aid: oneschema:oneschema-importer-embed-events-api
+  name: Oneschema Importer Embed Events API
+  description: Importer Embed Event operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Importer Embed Events
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-importer-embed-events-api-openapi.yml
+- aid: oneschema:oneschema-importer-embeds-api
+  name: Oneschema Importer Embeds API
+  description: Importer Embed operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Importer Embeds
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-importer-embeds-api-openapi.yml
+- aid: oneschema:oneschema-importer-webhooks-api
+  name: Oneschema Importer Webhooks API
+  description: Importer Webhook operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Importer Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-importer-webhooks-api-openapi.yml
+- aid: oneschema:oneschema-mcp-server-api
+  name: Oneschema MCP Server API
+  description: Read-only MCP operations for API specs and product guides
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - MCP Server
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-mcp-server-api-openapi.yml
+- aid: oneschema:oneschema-multi-filefeed-commits-api
+  name: Oneschema Multi FileFeed Commits API
+  description: >-
+    Manage immutable commit snapshots of a Multi FileFeed's transforms.
+
+
+    Commits are created by sending a transforms payload. The endpoint
+
+    atomically replaces the HEAD and creates an immutable snapshot.
+
+    Imports run against the latest commit.
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Multi FileFeed Commits
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-multi-filefeed-commits-api-openapi.yml
+- aid: oneschema:oneschema-multi-filefeed-folders-api
+  name: Oneschema Multi FileFeed Folders API
+  description: Multi FileFeed Folder operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Multi FileFeed Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-multi-filefeed-folders-api-openapi.yml
+- aid: oneschema:oneschema-multi-filefeed-imports-api
+  name: Oneschema Multi FileFeed Imports API
+  description: >-
+    Multi FileFeed Imports operations.
+
+
+    NOTE: These endpoints are served under the `/v0/multi-file-feeds/` path prefix.
+
+    The legacy `/v0/workflows/` prefix is still supported for backward compatibility
+
+    but is deprecated and should not be used for new integrations.
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Multi FileFeed Imports
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-multi-filefeed-imports-api-openapi.yml
+- aid: oneschema:oneschema-multi-filefeed-transforms-api
+  name: Oneschema Multi FileFeed Transforms API
+  description: >-
+    Manage the transforms (flowgraph nodes) of a Multi FileFeed.
+
+
+    The HEAD is the mutable, editable version of the flowgraph.
+
+    Commits are immutable snapshots of the HEAD at a point in time.
+
+    Imports run against the latest commit.
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Multi FileFeed Transforms
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-multi-filefeed-transforms-api-openapi.yml
+- aid: oneschema:oneschema-multi-filefeeds-api
+  name: Oneschema Multi FileFeeds API
+  description: Multi FileFeed operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Multi FileFeeds
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-multi-filefeeds-api-openapi.yml
+- aid: oneschema:oneschema-s3-accounts-api
+  name: Oneschema S3 Accounts API
+  description: S3 Accounts connected to OneSchema
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - S3 Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-s3-accounts-api-openapi.yml
+- aid: oneschema:oneschema-sftp-accounts-api
+  name: Oneschema SFTP Accounts API
+  description: SFTP Accounts
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - SFTP Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-sftp-accounts-api-openapi.yml
+- aid: oneschema:oneschema-sheets-api
+  name: Oneschema Sheets API
+  description: Sheets operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Sheets
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-sheets-api-openapi.yml
+- aid: oneschema:oneschema-template-hooks-api
+  name: Oneschema Template Hooks API
+  description: Template Hooks operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Template Hooks
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-template-hooks-api-openapi.yml
+- aid: oneschema:oneschema-templates-api
+  name: Oneschema Templates API
+  description: Template operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-templates-api-openapi.yml
+- aid: oneschema:oneschema-workspace-sheets-api
+  name: Oneschema Workspace Sheets API
+  description: Sheet operations within Workspaces
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Workspace Sheets
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-workspace-sheets-api-openapi.yml
+- aid: oneschema:oneschema-workspaces-api
+  name: Oneschema Workspaces API
+  description: Workspace operations
+  humanURL: https://docs.oneschema.co/reference/create-embed
+  baseURL: https://api.oneschema.co
+  tags:
+  - Workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/oneschema-workspaces-api-openapi.yml
+common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/oneschema/overview
+- type: DomainSecurity
+  url: security/oneschema-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/oneschema-agentic-access.yml
+- type: Authentication
+  url: authentication/oneschema-authentication.yml
+- type: DeveloperPortal
+  url: https://docs.oneschema.co/
+- type: Documentation
+  url: https://docs.oneschema.co/
+- type: APIReference
+  url: https://docs.oneschema.co/reference
+- type: GettingStarted
+  url: https://docs.oneschema.co/docs/getting-started
+- type: Blog
+  url: https://www.oneschema.co/blog
+- type: Support
+  url: mailto:support@oneschema.co
+- type: GitHubOrganization
+  url: https://github.com/oneschema
+- type: Pricing
+  url: https://www.oneschema.co/pricing
+- type: SignUp
+  url: https://app.oneschema.co/signup
+- type: Login
+  url: https://app.oneschema.co/login
+- type: TermsOfService
+  url: https://www.oneschema.co/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.oneschema.co/privacy-notice
+- type: Packages
+  url: packages/oneschema-packages.yml
+- type: SDKs
+  url: packages/oneschema-packages.yml
+- type: WellKnown
+  url: well-known/oneschema-well-known.yml
+- type: SecurityTxt
+  url: well-known/oneschema-security.txt
+- type: MCPServer
+  url: mcp/oneschema-mcp.yml
+- type: LLMsTxt
+  url: llms/oneschema-llms.txt
+- type: Conformance
+  url: conformance/oneschema-conformance.yml
+- type: Compliance
+  url: https://www.oneschema.co/security
+- type: ErrorCatalog
+  url: errors/oneschema-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/oneschema-lifecycle.yml
+- type: StatusPage
+  url: https://status.oneschema.co
+- type: Conventions
+  url: conventions/oneschema-conventions.yml
+- type: ChangeLog
+  url: changelog/oneschema-changelog.yml
+- type: Components
+  url: components/oneschema-components.yml
+- type: DataModel
+  url: data-model/oneschema-data-model.yml
+- type: Sandbox
+  url: sandbox/oneschema-sandbox.yml
+- type: Webhooks
+  url: asyncapi/oneschema-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: VulnerabilityDisclosure
+  url: security/oneschema-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.oneschema.co/security
+- type: TrustCenter
+  url: security/oneschema-trust-center.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 51
+  pass: local-v1

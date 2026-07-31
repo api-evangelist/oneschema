@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+url: https://trust.oneschema.co
+certifications:
+- SOC 2 Type II
+- SOC 3
+- HIPAA
+- GDPR
+- CCPA
+auditor: Insight Assurance
+baa: https://www.oneschema.co/baa-page
+evidence:
+- source: https://trust.oneschema.co
+  kind: trust-center
+  status: 200
+- source: https://www.oneschema.co/security
+  keywords:
+  - soc 2
+  - soc 3
+  - hipaa
+  - gdpr
+  - ccpa
+- source: https://docs.oneschema.co/docs/soc-2
+  note: SOC 2 Type II compliant, auditor Insight Assurance, report on request

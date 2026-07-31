@@ -1,0 +1,1163 @@
+{
+  "info": {
+    "_postman_id": "cfbfa909-1371-4e50-899a-289386609215",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Importer Embeds API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:56.000Z",
+    "updatedAt": "2026-07-28T02:25:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cfbfa909-1371-4e50-899a-289386609215"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "embeds",
+          "item": [
+            {
+              "name": "{embed_id}",
+              "item": [
+                {
+                  "name": "error-summary",
+                  "item": [
+                    {
+                      "name": "Get error summary for an embed file",
+                      "id": "e71dc4cb-1669-4c07-a8fa-3180d784563c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id/error-summary?row_filter=all&file_format=excel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id",
+                            "error-summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "Which rows should be included in the export.",
+                              "key": "row_filter",
+                              "value": "all"
+                            },
+                            {
+                              "description": "(Required) The type of file that should be generated with an error summary",
+                              "key": "file_format",
+                              "value": "excel"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "6fa1e0cb-4eec-49d5-aaff-824ff9ce9717",
+                              "key": "embed_id"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve an error summary for an embed file."
+                      },
+                      "response": [
+                        {
+                          "id": "c9b1d830-46ff-459c-9ede-a31c8b80009c",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/error-summary?row_filter=all&file_format=excel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "error-summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Which rows should be included in the export.",
+                                  "key": "row_filter",
+                                  "value": "all"
+                                },
+                                {
+                                  "description": "(Required) The type of file that should be generated with an error summary",
+                                  "key": "file_format",
+                                  "value": "excel"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-c9b1d830-46ff-459c-9ede-a31c8b80009c"
+                        },
+                        {
+                          "id": "45a56911-2d94-4915-9f67-aa9c1a221a75",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/error-summary?row_filter=all&file_format=excel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "error-summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Which rows should be included in the export.",
+                                  "key": "row_filter",
+                                  "value": "all"
+                                },
+                                {
+                                  "description": "(Required) The type of file that should be generated with an error summary",
+                                  "key": "file_format",
+                                  "value": "excel"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-45a56911-2d94-4915-9f67-aa9c1a221a75"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-e71dc4cb-1669-4c07-a8fa-3180d784563c"
+                    }
+                  ],
+                  "id": "774dc0fa-7476-48de-98e7-9d7180d7722c",
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-774dc0fa-7476-48de-98e7-9d7180d7722c"
+                },
+                {
+                  "name": "imported-file-url",
+                  "item": [
+                    {
+                      "name": "Get imported file url for an embed",
+                      "id": "8859cd21-ec6b-4d65-9dd5-9cf839173cd6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id/imported-file-url?row_filter=all&file_format=csv",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id",
+                            "imported-file-url"
+                          ],
+                          "query": [
+                            {
+                              "description": "Which rows should be included",
+                              "key": "row_filter",
+                              "value": "all"
+                            },
+                            {
+                              "description": "Format of exported file.",
+                              "key": "file_format",
+                              "value": "csv"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "16d4c748-2f33-4654-a72f-65b9992ca90f",
+                              "key": "embed_id"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a URL linking to the imported csv file for an embed. The returned URL is valid for 15 minutes."
+                      },
+                      "response": [
+                        {
+                          "id": "6b6aa5b2-8b57-4082-a805-ea591717fcb6",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/imported-file-url?row_filter=all&file_format=csv",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "imported-file-url"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Which rows should be included",
+                                  "key": "row_filter",
+                                  "value": "all"
+                                },
+                                {
+                                  "description": "Format of exported file.",
+                                  "key": "file_format",
+                                  "value": "csv"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-6b6aa5b2-8b57-4082-a805-ea591717fcb6"
+                        },
+                        {
+                          "id": "163da1d2-424e-4b15-bef1-d5848ae5a1c1",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/imported-file-url?row_filter=all&file_format=csv",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "imported-file-url"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Which rows should be included",
+                                  "key": "row_filter",
+                                  "value": "all"
+                                },
+                                {
+                                  "description": "Format of exported file.",
+                                  "key": "file_format",
+                                  "value": "csv"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-163da1d2-424e-4b15-bef1-d5848ae5a1c1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-8859cd21-ec6b-4d65-9dd5-9cf839173cd6"
+                    }
+                  ],
+                  "id": "1f251435-791c-44ee-a47a-19a214231873",
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-1f251435-791c-44ee-a47a-19a214231873"
+                },
+                {
+                  "name": "imported-rows",
+                  "item": [
+                    {
+                      "name": "Get imported rows for an embed file",
+                      "id": "6cc99a20-6f47-46b0-b719-aa010f48c4c8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id/imported-rows?start_row=0&count=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id",
+                            "imported-rows"
+                          ],
+                          "query": [
+                            {
+                              "description": "The (0-based) row index of the first row to include.",
+                              "key": "start_row",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The number of rows to retrieve (default is all rows).",
+                              "key": "count",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "1d34e0f2-4220-49d2-bf35-d2a109588154",
+                              "key": "embed_id"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve validated data from an embed file with optional pagination."
+                      },
+                      "response": [
+                        {
+                          "id": "e475466d-a965-49a7-9091-b59661ea284f",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/imported-rows?start_row=0&count=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "imported-rows"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The (0-based) row index of the first row to include.",
+                                  "key": "start_row",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "The number of rows to retrieve (default is all rows).",
+                                  "key": "count",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"template_key\": \"<string>\",\n  \"workspace_id\": 0,\n  \"workspace_metadata\": {},\n  \"sheet_id\": 0,\n  \"sheet_metadata\": {\n    \"original_file_name\": \"<string>\"\n  },\n  \"columns\": [\n    {\n      \"sheet_column_name\": \"<string>\",\n      \"template_column_name\": \"<string>\",\n      \"template_column_key\": \"<string>\"\n    },\n    {\n      \"sheet_column_name\": \"<string>\",\n      \"template_column_name\": \"<string>\",\n      \"template_column_key\": \"<string>\"\n    }\n  ],\n  \"count\": 0,\n  \"records\": [\n    {\n      \"account_name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"lead_source\": \"<string>\",\n      \"date_added\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"mailing_address\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"market_segment\": \"<string>\",\n      \"title\": \"<string>\",\n      \"email_opt_out\": \"<string>\",\n      \"primary_phone\": \"<string>\",\n      \"average_spend\": \"<string>\"\n    },\n    {\n      \"account_name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"lead_source\": \"<string>\",\n      \"date_added\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"mailing_address\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"market_segment\": \"<string>\",\n      \"title\": \"<string>\",\n      \"email_opt_out\": \"<string>\",\n      \"primary_phone\": \"<string>\",\n      \"average_spend\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-e475466d-a965-49a7-9091-b59661ea284f"
+                        },
+                        {
+                          "id": "8524f7fe-8b2c-4974-a958-b429271c7de5",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/imported-rows?start_row=0&count=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "imported-rows"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The (0-based) row index of the first row to include.",
+                                  "key": "start_row",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "The number of rows to retrieve (default is all rows).",
+                                  "key": "count",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-8524f7fe-8b2c-4974-a958-b429271c7de5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-6cc99a20-6f47-46b0-b719-aa010f48c4c8"
+                    }
+                  ],
+                  "id": "9392099c-befa-44d6-8d45-99930d74d206",
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-9392099c-befa-44d6-8d45-99930d74d206"
+                },
+                {
+                  "name": "uploaded-file-url",
+                  "item": [
+                    {
+                      "name": "Get uploaded file url for an embed",
+                      "id": "67db1af0-c2af-4dbc-ae11-63ef81977a90",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id/uploaded-file-url",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id",
+                            "uploaded-file-url"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4c0785a5-4503-49ee-bdf1-43ca2b4f5e37",
+                              "key": "embed_id"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a URL linking to the uploaded file for an embed.  The returned URL is valid for 15 minutes."
+                      },
+                      "response": [
+                        {
+                          "id": "42132b94-2e39-4d6b-a9ee-83050beeeccf",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/uploaded-file-url",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "uploaded-file-url"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-42132b94-2e39-4d6b-a9ee-83050beeeccf"
+                        },
+                        {
+                          "id": "a08239b4-e056-4653-9aef-c4768fb14f5c",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/embeds/:embed_id/uploaded-file-url",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "embeds",
+                                ":embed_id",
+                                "uploaded-file-url"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:56.000Z",
+                          "updatedAt": "2026-07-28T02:25:56.000Z",
+                          "uid": "35240-a08239b4-e056-4653-9aef-c4768fb14f5c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-67db1af0-c2af-4dbc-ae11-63ef81977a90"
+                    }
+                  ],
+                  "id": "57fb7ea9-5ab7-4ab2-88f1-b8ccfedc6649",
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-57fb7ea9-5ab7-4ab2-88f1-b8ccfedc6649"
+                },
+                {
+                  "name": "Delete an embed",
+                  "id": "466b40c7-0e6d-408d-81cc-eaa285faa35c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/embeds/:embed_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "embeds",
+                        ":embed_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cfe1fd58-c219-43c3-ac2c-3240942d4654",
+                          "key": "embed_id"
+                        }
+                      ]
+                    },
+                    "description": "Deletes an embed from OneSchema."
+                  },
+                  "response": [
+                    {
+                      "id": "4c21660c-494c-413b-bb04-53d2fb2a37b0",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "embed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-4c21660c-494c-413b-bb04-53d2fb2a37b0"
+                    },
+                    {
+                      "id": "c5d2827b-14d1-45fd-a83f-319ac9fb1c36",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "embed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-c5d2827b-14d1-45fd-a83f-319ac9fb1c36"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-466b40c7-0e6d-408d-81cc-eaa285faa35c"
+                },
+                {
+                  "name": "Get embed",
+                  "id": "17186488-12b6-453e-9c34-45932ad951fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/embeds/:embed_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "embeds",
+                        ":embed_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0248d179-64bc-4bcc-9866-ed702747f7b9",
+                          "key": "embed_id"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a detailed representation of the embed resource."
+                  },
+                  "response": [
+                    {
+                      "id": "647cc432-d265-4e6e-b2b9-1a05a0a8b8b6",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "embed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": 0,\n  \"token\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"status\": \"<string>\",\n  \"user_jwt\": \"<string>\",\n  \"imported_row_count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-647cc432-d265-4e6e-b2b9-1a05a0a8b8b6"
+                    },
+                    {
+                      "id": "868a8dc2-d8de-4137-8ffc-dac197485a28",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/embeds/:embed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "embeds",
+                            ":embed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "embed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:25:56.000Z",
+                      "updatedAt": "2026-07-28T02:25:56.000Z",
+                      "uid": "35240-868a8dc2-d8de-4137-8ffc-dac197485a28"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-17186488-12b6-453e-9c34-45932ad951fa"
+                }
+              ],
+              "id": "4a0de082-d494-4215-959e-2f9624c3bb2e",
+              "createdAt": "2026-07-28T02:25:56.000Z",
+              "updatedAt": "2026-07-28T02:25:56.000Z",
+              "uid": "35240-4a0de082-d494-4215-959e-2f9624c3bb2e"
+            },
+            {
+              "name": "List embeds",
+              "id": "681e7e91-07e6-461d-838d-79d872feebd8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/embeds",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "embeds"
+                  ]
+                },
+                "description": "Returns a list of Importer embed sessions for the organization in a summarized representation."
+              },
+              "response": [
+                {
+                  "id": "41e21caf-125f-4217-865b-263ab3bf834d",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/embeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "embeds"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": 0,\n    \"token\": \"<string>\",\n    \"template_key\": \"<string>\",\n    \"status\": \"<string>\",\n    \"user_jwt\": \"<string>\",\n    \"imported_row_count\": \"<integer>\"\n  },\n  {\n    \"id\": 0,\n    \"token\": \"<string>\",\n    \"template_key\": \"<string>\",\n    \"status\": \"<string>\",\n    \"user_jwt\": \"<string>\",\n    \"imported_row_count\": \"<integer>\"\n  }\n]",
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-41e21caf-125f-4217-865b-263ab3bf834d"
+                },
+                {
+                  "id": "09e996a7-f362-4c9d-bf49-d5f1ccd3fee5",
+                  "name": "422",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/embeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "embeds"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:25:56.000Z",
+                  "updatedAt": "2026-07-28T02:25:56.000Z",
+                  "uid": "35240-09e996a7-f362-4c9d-bf49-d5f1ccd3fee5"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:56.000Z",
+              "updatedAt": "2026-07-28T02:25:56.000Z",
+              "uid": "35240-681e7e91-07e6-461d-838d-79d872feebd8"
+            }
+          ],
+          "id": "7e6f0762-f661-4d71-a82a-866013ca2b0f",
+          "createdAt": "2026-07-28T02:25:56.000Z",
+          "updatedAt": "2026-07-28T02:25:56.000Z",
+          "uid": "35240-7e6f0762-f661-4d71-a82a-866013ca2b0f"
+        }
+      ],
+      "id": "11f6d0d4-eb90-42d2-8cb9-e98bd3abe11c",
+      "createdAt": "2026-07-28T02:25:56.000Z",
+      "updatedAt": "2026-07-28T02:25:56.000Z",
+      "uid": "35240-11f6d0d4-eb90-42d2-8cb9-e98bd3abe11c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

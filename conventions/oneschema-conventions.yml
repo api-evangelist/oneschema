@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.oneschema.co/reference, https://docs.oneschema.co/docs/generating-jwts, openapi/*.yml
+authentication:
+  api: API key in X-API-KEY header (ApiKeyAuth)
+  end_user: HS256 JWT signed with Client Secret; claims iss=Client ID, user_id=opaque user identifier
+  docs: https://docs.oneschema.co/docs/generating-jwts
+idempotency:
+  supported: false
+  note: No request-level Idempotency-Key header is documented. Some flows enforce uniqueness (e.g. Multi
+    FileFeed import object_uri/basename -> 409) and transforms use optimistic locking (last_known_commit_id).
+pagination:
+  style: offset
+  params:
+  - offset
+  - count
+  variant: FileFeed imports use start_row + count
+  note: Offset/count on list endpoints (templates, embeds, workspaces); Multi FileFeed import lists capped
+    at 200.
+concurrency:
+  style: optimistic-lock
+  mechanism: last_known_commit_id on Multi FileFeed transforms; dirty-HEAD check returns 409; override
+    with force:true
+regions:
+  style: regional-hosts
+  hosts:
+  - api.oneschema.co (US)
+  - api.eu.oneschema.co (EU)
+  - api.ca.oneschema.co (CA)
+  - api.au.oneschema.co (AU)
+file_uploads:
+  multipart: multipart/form-data for direct uploads
+  direct_upload: presigned-URL flow (create -> PUT to presigned_url with returned content_type -> submit)
+  presigned_url_ttl: download/imported-file URLs valid for 15 minutes
+errors:
+  envelope: ErrorResponse (custom JSON)
+  ref: errors/oneschema-problem-types.yml
+webhooks:
+  ref: asyncapi/oneschema-webhooks.yml
+  types:
+  - Importer Webhooks
+  - Event Webhooks
+  - Validation Webhooks

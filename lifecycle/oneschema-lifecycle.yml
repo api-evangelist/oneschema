@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.oneschema.co/reference, https://status.oneschema.co, https://docs.oneschema.co/changelog
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.oneschema.co/reference
+status_page: https://status.oneschema.co
+changelog: https://docs.oneschema.co/changelog
+legacy:
+  note: Code Hooks are marked "(Legacy)"; a v2 import node (import-node-v2) supersedes v1 in Multi FileFeeds.
+  no_formal_sunset_policy_found: true
+regions:
+- US (api.oneschema.co)
+- EU (api.eu.oneschema.co)
+- Canada (api.ca.oneschema.co)
+- Australia (api.au.oneschema.co)

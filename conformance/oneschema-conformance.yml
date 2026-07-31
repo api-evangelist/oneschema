@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.oneschema.co/security, https://docs.oneschema.co/docs/soc-2, https://docs.oneschema.co/docs/hipaa
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses static API key (X-API-KEY header), not OAuth2
+- id: apikey-auth
+  conforms: true
+  evidence: ApiKeyAuth securityScheme (X-API-KEY header) across all OpenAPI groups
+- id: jwt-end-user-auth
+  conforms: true
+  evidence: HS256 JWT signed with Client Secret authenticates embedded end-user sessions (iss, user_id
+    claims)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom ErrorResponse envelope, not application/problem+json
+- id: openapi-3.1
+  conforms: true
+  evidence: All API groups documented as OpenAPI 3.1.0
+- id: soc2-type-ii
+  conforms: true
+  evidence: SOC 2 Type II compliant (auditor Insight Assurance); report on request
+- id: soc3
+  conforms: true
+  evidence: SOC 3 listed on trust center
+- id: hipaa
+  conforms: true
+  evidence: Standard BAA meets HIPAA requirements (https://www.oneschema.co/baa-page)
+- id: gdpr
+  conforms: true
+  evidence: GDPR listed on security/trust pages
+- id: ccpa
+  conforms: true
+  evidence: CCPA listed on security/trust pages
+certifications:
+- SOC 2 Type II
+- SOC 3
+- HIPAA
+- GDPR
+- CCPA
+compliance_page: https://www.oneschema.co/security

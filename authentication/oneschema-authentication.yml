@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/oneschema-aws-secrets-manager-openapi.yml, openapi/oneschema-azure-key-vault-openapi.yml,
+  openapi/oneschema-code-hooks-legacy-openapi.yml, openapi/oneschema-event-webhooks-openapi.yml,
+  openapi/oneschema-filefeeds-openapi.yml, openapi/oneschema-importer-embeds-openapi.yml, openapi/oneschema-importer-webhooks-openapi.yml,
+  openapi/oneschema-mcp-server-openapi.yml, openapi/oneschema-multi-filefeeds-openapi.yml, openapi/oneschema-s3-accounts-openapi.yml,
+  openapi/oneschema-sftp-accounts-openapi.yml, openapi/oneschema-sheets-openapi.yml ...
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-KEY
+  sources:
+  - openapi/oneschema-aws-secrets-manager-openapi.yml
+  - openapi/oneschema-azure-key-vault-openapi.yml
+  - openapi/oneschema-code-hooks-legacy-openapi.yml
+  - openapi/oneschema-event-webhooks-openapi.yml
+  - openapi/oneschema-filefeeds-openapi.yml
+  - openapi/oneschema-importer-embeds-openapi.yml
+  - openapi/oneschema-importer-webhooks-openapi.yml
+  - openapi/oneschema-mcp-server-openapi.yml
+  - openapi/oneschema-multi-filefeeds-openapi.yml
+  - openapi/oneschema-s3-accounts-openapi.yml
+  - openapi/oneschema-sftp-accounts-openapi.yml
+  - openapi/oneschema-sheets-openapi.yml
+  - openapi/oneschema-templates-openapi.yml
+  - openapi/oneschema-workspaces-openapi.yml

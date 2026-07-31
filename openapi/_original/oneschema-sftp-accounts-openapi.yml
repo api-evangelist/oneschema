@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: OneSchema SFTP Accounts API
+  version: '1'
+  description: Configure SFTP account connections used as Multi FileFeed sources and destinations.
+  contact:
+    name: OneSchema Support
+    email: support@oneschema.co
+  termsOfService: https://www.oneschema.co/terms-and-conditions
+  license:
+    name: proprietary
+    url: https://www.oneschema.co/terms-and-conditions
+servers:
+- url: https://api.oneschema.co
+  description: Production server (hosted in the US)
+- url: https://api.eu.oneschema.co
+  description: Production server (hosted in the EU)
+- url: https://api.ca.oneschema.co
+  description: Production server (hosted in Canada)
+- url: https://api.au.oneschema.co
+  description: Production server (hosted in Australia)
+security:
+- ApiKeyAuth: []
+tags:
+- name: SFTP Accounts
+  description: SFTP Accounts
+paths:
+  /v0/sftp-accounts:
+    post:
+      operationId: create-sftp-account
+      summary: Create SFTP Account
+      description: Create a new SFTP Account.
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sftp-account-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - SFTP Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sftp-account-post-request'
+    get:
+      operationId: list-sftp-accounts
+      summary: List SFTP Accounts
+      description: Returns a list of SFTP Accounts for the organization.
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sftp-account-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - SFTP Accounts
+  /v0/sftp-accounts/{sftp-account-id}:
+    delete:
+      operationId: delete-sftp-account
+      summary: Delete SFTP Account
+      description: Delete a specific SFTP Account.
+      parameters:
+      - name: sftp-account-id
+        in: path
+        required: true
+        description: The ID of the SFTP Account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: 'Successful response. The primary way to verify the request''s success or failure
+            is the response status code.
+
+            In a future API version this endpoint may not return any response body at all.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/delete-sftp-account-response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - SFTP Accounts
+    get:
+      operationId: get-sftp-account
+      summary: Get SFTP Account
+      description: Get a specific SFTP Account.
+      parameters:
+      - name: sftp-account-id
+        in: path
+        required: true
+        description: The ID of the SFTP Account
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sftp-account-resource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+      tags:
+      - SFTP Accounts
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    error-response:
+      type: object
+      properties:
+        error:
+          type: string
+    sftp-account-password:
+      type: object
+      required:
+      - password
+      properties:
+        password:
+          type: string
+    sftp-account-post-request:
+      type: object
+      required:
+      - name
+      - host
+      - username
+      - credentials
+      properties:
+        name:
+          type: string
+          description: The name of the SFTP Account
+        host:
+          type: string
+          description: The SFTP server host address
+        port:
+          type: integer
+          minimum: 1
+          maximum: 65535
+          description: The SFTP server port number (defaults to 22)
+          default: 22
+        username:
+          type: string
+          description: The user that should be used to connect to the SFTP server
+        credentials:
+          oneOf:
+          - $ref: '#/components/schemas/sftp-account-password'
+          - $ref: '#/components/schemas/sftp-account-ssh-private-key'
+          description: One of password or ssh_private_key is required
+          type: object
+    sftp-account-resource:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the SFTP Account
+        host:
+          type: string
+          description: The SFTP server host address
+        port:
+          type: integer
+          minimum: 1
+          maximum: 65535
+          description: The SFTP server port number (defaults to 22)
+          default: 22
+        username:
+          type: string
+          description: The user that should be used to connect to the SFTP server
+        id:
+          type: integer
+        has_password:
+          type: boolean
+        has_ssh_private_key:
+          type: boolean
+    sftp-account-ssh-private-key:
+      type: object
+      required:
+      - ssh_private_key
+      properties:
+        ssh_private_key:
+          type: string
+    delete-sftp-account-response:
+      type: object
+      properties:
+        success:
+          type: boolean

@@ -1,0 +1,1074 @@
+{
+  "info": {
+    "_postman_id": "2c4579f3-5753-46b4-ba04-78f97f5c14bc",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeeds API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:26:21.000Z",
+    "updatedAt": "2026-07-28T02:26:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2c4579f3-5753-46b4-ba04-78f97f5c14bc"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "multi-file-feeds",
+          "item": [
+            {
+              "name": "{multi_file_feed_id}",
+              "item": [
+                {
+                  "name": "duplicate",
+                  "item": [
+                    {
+                      "name": "Duplicate a Multi FileFeed",
+                      "id": "0ba39ad8-7015-4ce0-9b07-8db69d572971",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/duplicate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id",
+                            "duplicate"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cda59cde-7e9e-4d2b-af90-4ffe19b40223",
+                              "key": "multi_file_feed_id",
+                              "value": "<integer>",
+                              "description": "(Required) ID of the Multi FileFeed that's being duplicated"
+                            }
+                          ]
+                        },
+                        "description": "Duplicates a Multi FileFeed and returns the new Multi FileFeed. The copy includes both the builder (editable) version and the source's latest saved version, so the duplicate can run user imports immediately rather than only builder imports. The carried-over saved version's change history notes that it came from duplicating the source Multi FileFeed and when that source's latest version was saved."
+                      },
+                      "response": [
+                        {
+                          "id": "a4dd207e-2299-4d72-bd1b-c5d62cd811db",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id/duplicate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "multi-file-feeds",
+                                ":multi_file_feed_id",
+                                "duplicate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "multi_file_feed_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": {},\n  \"templates\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ],\n  \"source\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"daily\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"hourly\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destination\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    }\n  ],\n  \"event_webhooks\": [\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"post_validation_transform_key\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:26:22.000Z",
+                          "updatedAt": "2026-07-28T02:26:22.000Z",
+                          "uid": "35240-a4dd207e-2299-4d72-bd1b-c5d62cd811db"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-0ba39ad8-7015-4ce0-9b07-8db69d572971"
+                    }
+                  ],
+                  "id": "2502adb8-b696-40ae-be05-a2b45b555932",
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-2502adb8-b696-40ae-be05-a2b45b555932"
+                },
+                {
+                  "name": "Delete a Multi FileFeed",
+                  "id": "a6212661-21a6-4d8f-9b22-0389549fca2b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds",
+                        ":multi_file_feed_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1e71c717-338d-48c9-9f8a-a7408fe61129",
+                          "key": "multi_file_feed_id",
+                          "value": "<integer>",
+                          "description": "(Required) ID of the Multi FileFeed"
+                        }
+                      ]
+                    },
+                    "description": "Permanently deletes a Multi FileFeed"
+                  },
+                  "response": [
+                    {
+                      "id": "52f952c1-a7b8-4353-a54a-ca5f88ff5e56",
+                      "name": "Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "multi_file_feed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-52f952c1-a7b8-4353-a54a-ca5f88ff5e56"
+                    },
+                    {
+                      "id": "a8b8cc58-06ad-417c-b1e6-2577504e58c5",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "multi_file_feed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-a8b8cc58-06ad-417c-b1e6-2577504e58c5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-a6212661-21a6-4d8f-9b22-0389549fca2b"
+                },
+                {
+                  "name": "Get a Multi FileFeed",
+                  "id": "cd6a29cb-50ad-41b5-ad8e-bcb86fd2d812",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds",
+                        ":multi_file_feed_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "95e123a1-8d87-4806-bb44-8be8542ff717",
+                          "key": "multi_file_feed_id",
+                          "value": "<integer>",
+                          "description": "(Required) ID of the Multi FileFeed"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a single Multi FileFeed by ID, including its source and destination connections, and attached event webhooks."
+                  },
+                  "response": [
+                    {
+                      "id": "8aa4f809-0b50-4767-a241-7dc34ca62144",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "multi_file_feed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": {},\n  \"templates\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ],\n  \"source\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"daily\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"hourly\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destination\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    }\n  ],\n  \"event_webhooks\": [\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"post_validation_transform_key\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-8aa4f809-0b50-4767-a241-7dc34ca62144"
+                    },
+                    {
+                      "id": "9eaf7ade-60f5-457c-90a9-5e2539b5aab3",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "multi_file_feed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-9eaf7ade-60f5-457c-90a9-5e2539b5aab3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-cd6a29cb-50ad-41b5-ad8e-bcb86fd2d812"
+                },
+                {
+                  "name": "Update a Multi FileFeed",
+                  "id": "6355080b-38e8-46a0-9b37-a404c3e1c248",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"post_validation_transform_key\": \"<string>\",\n  \"multi_filefeed_event_webhook_key\": \"<string,null>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": null,\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"consequat\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds",
+                        ":multi_file_feed_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "83314c20-b6b0-40dd-8e57-1bd45eb3d6ed",
+                          "key": "multi_file_feed_id",
+                          "value": "<integer>",
+                          "description": "(Required) ID of the Multi FileFeed"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing Multi FileFeed's configuration"
+                  },
+                  "response": [
+                    {
+                      "id": "a4a0bddf-0d67-4b06-a75e-13a3e50adb52",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"post_validation_transform_key\": \"<string>\",\n  \"multi_filefeed_event_webhook_key\": \"<string,null>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": null,\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"consequat\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "multi_file_feed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": {},\n  \"templates\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ],\n  \"source\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"daily\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"hourly\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destination\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    }\n  ],\n  \"event_webhooks\": [\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"post_validation_transform_key\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-a4a0bddf-0d67-4b06-a75e-13a3e50adb52"
+                    },
+                    {
+                      "id": "91e18692-a1f7-4929-a7db-2545e9636a1e",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"post_validation_transform_key\": \"<string>\",\n  \"multi_filefeed_event_webhook_key\": \"<string,null>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": null,\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"consequat\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "multi_file_feed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-91e18692-a1f7-4929-a7db-2545e9636a1e"
+                    },
+                    {
+                      "id": "f7908da3-2655-4066-a106-833983d51db3",
+                      "name": "Forbidden (the required feature is not enabled for this organization)",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"post_validation_transform_key\": \"<string>\",\n  \"multi_filefeed_event_webhook_key\": \"<string,null>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": null,\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"consequat\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/multi-file-feeds/:multi_file_feed_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "multi-file-feeds",
+                            ":multi_file_feed_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "multi_file_feed_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:26:22.000Z",
+                      "updatedAt": "2026-07-28T02:26:22.000Z",
+                      "uid": "35240-f7908da3-2655-4066-a106-833983d51db3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-6355080b-38e8-46a0-9b37-a404c3e1c248"
+                }
+              ],
+              "id": "55363813-fb03-4a14-9040-629621c5b537",
+              "createdAt": "2026-07-28T02:26:22.000Z",
+              "updatedAt": "2026-07-28T02:26:22.000Z",
+              "uid": "35240-55363813-fb03-4a14-9040-629621c5b537"
+            },
+            {
+              "name": "Create a Multi FileFeed",
+              "id": "bf7d7549-c590-4855-8904-899e071c7d47",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"fugiat occaecat eu\"\n    }\n  ],\n  \"folder_id\": \"<integer>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"multi_filefeed_event_webhook_key\": \"<string>\",\n  \"post_validation_transform_key\": \"<string>\",\n  \"custom_metadata\": null\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/multi-file-feeds",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "multi-file-feeds"
+                  ]
+                },
+                "description": "Creates a new Multi FileFeed with the specified templates.\nAt least one template must be provided. Template keys must be unique\nwithin the request.\n\nOptional parameters allow configuring a source (SFTP or S3), destination (SFTP or S3),\nevent webhook, post-validation transform, and custom metadata at creation time.\n\nIf `folder_id` is not provided, the Multi FileFeed is placed in the\norganization's default Multi FileFeed folder.\n"
+              },
+              "response": [
+                {
+                  "id": "1f629dce-6fa5-4009-b0f2-7c4b54422ae3",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"fugiat occaecat eu\"\n    }\n  ],\n  \"folder_id\": \"<integer>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"multi_filefeed_event_webhook_key\": \"<string>\",\n  \"post_validation_transform_key\": \"<string>\",\n  \"custom_metadata\": null\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"folder_id\": \"<integer>\",\n  \"custom_metadata\": {},\n  \"templates\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ],\n  \"source\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"daily\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"hourly\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destination\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<string>\"\n      }\n    }\n  ],\n  \"event_webhooks\": [\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"webhook_key\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"post_validation_transform_key\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-1f629dce-6fa5-4009-b0f2-7c4b54422ae3"
+                },
+                {
+                  "id": "0179080d-1f3f-4d24-8df4-0d8b16eb4d67",
+                  "name": "Bad request (e.g. missing name, empty templates, duplicate template keys, invalid webhook key)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"fugiat occaecat eu\"\n    }\n  ],\n  \"folder_id\": \"<integer>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"multi_filefeed_event_webhook_key\": \"<string>\",\n  \"post_validation_transform_key\": \"<string>\",\n  \"custom_metadata\": null\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-0179080d-1f3f-4d24-8df4-0d8b16eb4d67"
+                },
+                {
+                  "id": "f8a0458b-1fb8-47ba-be9c-0a34c1803e86",
+                  "name": "Forbidden (the required feature is not enabled for this organization)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"workflow_templates\": [\n    {\n      \"template_key\": \"fugiat occaecat eu\"\n    }\n  ],\n  \"folder_id\": \"<integer>\",\n  \"source\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\",\n      \"options\": {\n        \"schedule\": {\n          \"frequency\": \"hourly\",\n          \"hour_utc\": \"<integer>\",\n          \"minute_utc\": \"<integer>\"\n        }\n      }\n    }\n  },\n  \"destination\": {\n    \"type\": \"sftp\",\n    \"data\": {\n      \"sftp_account_id\": \"<integer>\",\n      \"path\": \"<string>\"\n    }\n  },\n  \"multi_filefeed_event_webhook_key\": \"<string>\",\n  \"post_validation_transform_key\": \"<string>\",\n  \"custom_metadata\": null\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-f8a0458b-1fb8-47ba-be9c-0a34c1803e86"
+                }
+              ],
+              "createdAt": "2026-07-28T02:26:22.000Z",
+              "updatedAt": "2026-07-28T02:26:22.000Z",
+              "uid": "35240-bf7d7549-c590-4855-8904-899e071c7d47"
+            },
+            {
+              "name": "List Multi FileFeeds",
+              "id": "0cd7f481-dcaf-4aaf-b19c-f77b057777a2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/multi-file-feeds?folder_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "multi-file-feeds"
+                  ],
+                  "query": [
+                    {
+                      "description": "Optional folder ID to filter Multi FileFeeds by folder",
+                      "key": "folder_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of Multi FileFeeds for the organization. Optionally filter by folder ID."
+              },
+              "response": [
+                {
+                  "id": "42682cb5-ee9a-47fc-b851-c6f05ca3fa90",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds?folder_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional folder ID to filter Multi FileFeeds by folder",
+                          "key": "folder_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"folder\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"templates\": [\n      {\n        \"template_key\": \"<string>\",\n        \"is_required\": \"<boolean>\"\n      },\n      {\n        \"template_key\": \"<string>\",\n        \"is_required\": \"<boolean>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"folder\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"templates\": [\n      {\n        \"template_key\": \"<string>\",\n        \"is_required\": \"<boolean>\"\n      },\n      {\n        \"template_key\": \"<string>\",\n        \"is_required\": \"<boolean>\"\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-42682cb5-ee9a-47fc-b851-c6f05ca3fa90"
+                },
+                {
+                  "id": "312326af-13dc-4072-a918-9a141deebabd",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/multi-file-feeds?folder_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "multi-file-feeds"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional folder ID to filter Multi FileFeeds by folder",
+                          "key": "folder_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:26:22.000Z",
+                  "updatedAt": "2026-07-28T02:26:22.000Z",
+                  "uid": "35240-312326af-13dc-4072-a918-9a141deebabd"
+                }
+              ],
+              "createdAt": "2026-07-28T02:26:22.000Z",
+              "updatedAt": "2026-07-28T02:26:22.000Z",
+              "uid": "35240-0cd7f481-dcaf-4aaf-b19c-f77b057777a2"
+            }
+          ],
+          "id": "5f9cc661-90ff-491e-b70f-0871ac9f041d",
+          "createdAt": "2026-07-28T02:26:22.000Z",
+          "updatedAt": "2026-07-28T02:26:22.000Z",
+          "uid": "35240-5f9cc661-90ff-491e-b70f-0871ac9f041d"
+        }
+      ],
+      "id": "6496f218-4237-49a8-a977-7e37b347e7f6",
+      "createdAt": "2026-07-28T02:26:22.000Z",
+      "updatedAt": "2026-07-28T02:26:22.000Z",
+      "uid": "35240-6496f218-4237-49a8-a977-7e37b347e7f6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}

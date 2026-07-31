@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+spec_type: Webhooks
+source: https://docs.oneschema.co/docs/importer-webhook, https://docs.oneschema.co/docs/using-events,
+  https://docs.oneschema.co/docs/validation-webhook
+note: OneSchema documents webhooks but publishes no AsyncAPI document.
+webhook_types:
+- name: Importer Webhook
+  purpose: Push validated import data from OneSchema into your database after an import completes.
+  docs: https://docs.oneschema.co/docs/importer-webhook
+  managed_via_api: openapi/oneschema-importer-webhooks-openapi.yml
+- name: Event Webhook
+  purpose: Notify your systems when events occur in OneSchema processing pipelines (per product area).
+  docs: https://docs.oneschema.co/docs/using-events
+  managed_via_api: openapi/oneschema-event-webhooks-openapi.yml
+- name: Validation Webhook
+  purpose: Call your own endpoint to implement a custom column validator during import.
+  docs: https://docs.oneschema.co/docs/validation-webhook
+delivery:
+  auth: The signed JWT is included in validation, importer, and event webhook requests to identify the
+    user.

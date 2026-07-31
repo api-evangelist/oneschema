@@ -1,0 +1,1507 @@
+{
+  "info": {
+    "_postman_id": "76f9d080-8031-4cf1-a3c3-23528cf16918",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Code Hooks (Legacy) API",
+    "description": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:44.000Z",
+    "updatedAt": "2026-07-28T02:25:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-76f9d080-8031-4cf1-a3c3-23528cf16918"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "template-hooks",
+          "item": [
+            {
+              "name": "post-mapping",
+              "item": [
+                {
+                  "name": "code",
+                  "item": [
+                    {
+                      "name": "{key}",
+                      "item": [
+                        {
+                          "name": "Delete post-mapping code hook",
+                          "id": "5806be10-3c0a-4fb1-a80a-6cea3ba65f5a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-mapping",
+                                "code",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "73662688-d5b9-4513-a881-ac5bc58b903d",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete a post-mapping code hook by key."
+                          },
+                          "response": [
+                            {
+                              "id": "87e68a92-d245-41c1-8473-f999e491f92e",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-mapping",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-87e68a92-d245-41c1-8473-f999e491f92e"
+                            },
+                            {
+                              "id": "de1298f9-659f-492e-8f07-f51131aa0c82",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-mapping",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-de1298f9-659f-492e-8f07-f51131aa0c82"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-5806be10-3c0a-4fb1-a80a-6cea3ba65f5a"
+                        },
+                        {
+                          "name": "Get post-mapping code hook",
+                          "id": "dd9b5c41-758a-4581-9cbb-b2d37180af67",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-mapping",
+                                "code",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9e3332b7-bf6b-4104-916c-8ac5f44cce26",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get a post-mapping code hook by key."
+                          },
+                          "response": [
+                            {
+                              "id": "1f347314-52aa-40af-a971-e0a757870990",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-mapping",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-1f347314-52aa-40af-a971-e0a757870990"
+                            },
+                            {
+                              "id": "a93406f8-f6f1-408f-ad66-141d9256dbac",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-mapping",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-a93406f8-f6f1-408f-ad66-141d9256dbac"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-dd9b5c41-758a-4581-9cbb-b2d37180af67"
+                        }
+                      ],
+                      "id": "32f46cb6-6c04-4224-a904-f36e634f0f18",
+                      "createdAt": "2026-07-28T02:25:45.000Z",
+                      "updatedAt": "2026-07-28T02:25:45.000Z",
+                      "uid": "35240-32f46cb6-6c04-4224-a904-f36e634f0f18"
+                    },
+                    {
+                      "name": "Create post-mapping code hook",
+                      "id": "273d094c-6a12-4e3a-a211-4eb9d041fef3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"code\": \"<string>\",\n  \"idempotent\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            "post-mapping",
+                            "code"
+                          ]
+                        },
+                        "description": "Create a post-mapping code hook."
+                      },
+                      "response": [
+                        {
+                          "id": "87c8f6e8-19fb-46e8-8306-7c6a5f43a95d",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"code\": \"<string>\",\n  \"idempotent\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-mapping",
+                                "code"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-87c8f6e8-19fb-46e8-8306-7c6a5f43a95d"
+                        },
+                        {
+                          "id": "4a68ae24-abc5-4a2d-b12f-86f56fbb5484",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"code\": \"<string>\",\n  \"idempotent\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-mapping/code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-mapping",
+                                "code"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-4a68ae24-abc5-4a2d-b12f-86f56fbb5484"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:45.000Z",
+                      "updatedAt": "2026-07-28T02:25:45.000Z",
+                      "uid": "35240-273d094c-6a12-4e3a-a211-4eb9d041fef3"
+                    }
+                  ],
+                  "id": "bf77e4a4-9d3f-49dd-9e6d-ae91efb411ab",
+                  "createdAt": "2026-07-28T02:25:45.000Z",
+                  "updatedAt": "2026-07-28T02:25:45.000Z",
+                  "uid": "35240-bf77e4a4-9d3f-49dd-9e6d-ae91efb411ab"
+                }
+              ],
+              "id": "c47d58cb-816d-4008-8b90-2c92c851b440",
+              "createdAt": "2026-07-28T02:25:45.000Z",
+              "updatedAt": "2026-07-28T02:25:45.000Z",
+              "uid": "35240-c47d58cb-816d-4008-8b90-2c92c851b440"
+            },
+            {
+              "name": "post-upload",
+              "item": [
+                {
+                  "name": "code",
+                  "item": [
+                    {
+                      "name": "{key}",
+                      "item": [
+                        {
+                          "name": "Delete post-upload code hook",
+                          "id": "dc9d666c-1843-4209-841b-c8bf22f4f07c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-upload",
+                                "code",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6a09d8be-3db6-4ebf-a465-e261a205e50f",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete a post-upload code hook by key."
+                          },
+                          "response": [
+                            {
+                              "id": "5ea60f49-f919-46d3-b903-f61db8b51fe3",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-upload",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-5ea60f49-f919-46d3-b903-f61db8b51fe3"
+                            },
+                            {
+                              "id": "ad9a128e-061b-4c5b-b80d-fa8395f3cba0",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-upload",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-ad9a128e-061b-4c5b-b80d-fa8395f3cba0"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-dc9d666c-1843-4209-841b-c8bf22f4f07c"
+                        },
+                        {
+                          "name": "Get post-upload code hook",
+                          "id": "080b377f-da1f-4ebd-a1c1-2fa81544bc33",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-upload",
+                                "code",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8efd99b9-a772-4ed0-92e4-d79610eb82ee",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get a post-upload code hook by key."
+                          },
+                          "response": [
+                            {
+                              "id": "e075677c-561c-4376-86dc-2a59789abf62",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-upload",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-e075677c-561c-4376-86dc-2a59789abf62"
+                            },
+                            {
+                              "id": "66b034b8-6c95-4727-977e-20599e5ce819",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "post-upload",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-66b034b8-6c95-4727-977e-20599e5ce819"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-080b377f-da1f-4ebd-a1c1-2fa81544bc33"
+                        }
+                      ],
+                      "id": "a7ccb1ad-2193-4392-8d55-11ff99824b03",
+                      "createdAt": "2026-07-28T02:25:45.000Z",
+                      "updatedAt": "2026-07-28T02:25:45.000Z",
+                      "uid": "35240-a7ccb1ad-2193-4392-8d55-11ff99824b03"
+                    },
+                    {
+                      "name": "Create post-upload code hook",
+                      "id": "a3b7d353-8185-45e0-b898-6c8a775497ea",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            "post-upload",
+                            "code"
+                          ]
+                        },
+                        "description": "Create a post-upload code hook."
+                      },
+                      "response": [
+                        {
+                          "id": "5dcdd106-ccb1-426b-8579-b02c5ae52ab7",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-upload",
+                                "code"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-5dcdd106-ccb1-426b-8579-b02c5ae52ab7"
+                        },
+                        {
+                          "id": "120ed62b-15e8-4403-a0ab-37523751689d",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/post-upload/code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "post-upload",
+                                "code"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-120ed62b-15e8-4403-a0ab-37523751689d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:45.000Z",
+                      "updatedAt": "2026-07-28T02:25:45.000Z",
+                      "uid": "35240-a3b7d353-8185-45e0-b898-6c8a775497ea"
+                    }
+                  ],
+                  "id": "e61f644f-bdef-4610-8f8b-e24120a8bb77",
+                  "createdAt": "2026-07-28T02:25:45.000Z",
+                  "updatedAt": "2026-07-28T02:25:45.000Z",
+                  "uid": "35240-e61f644f-bdef-4610-8f8b-e24120a8bb77"
+                }
+              ],
+              "id": "ae62151e-113c-4327-9c78-41ed8bffc39f",
+              "createdAt": "2026-07-28T02:25:45.000Z",
+              "updatedAt": "2026-07-28T02:25:45.000Z",
+              "uid": "35240-ae62151e-113c-4327-9c78-41ed8bffc39f"
+            },
+            {
+              "name": "validation",
+              "item": [
+                {
+                  "name": "code",
+                  "item": [
+                    {
+                      "name": "{key}",
+                      "item": [
+                        {
+                          "name": "Delete validation code hook",
+                          "id": "28467d3b-c0ee-4152-b378-ddeb5610790a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/validation/code/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "validation",
+                                "code",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1ab0287a-1843-4735-b790-a5debd110109",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete a validation code hook by key."
+                          },
+                          "response": [
+                            {
+                              "id": "27e192c5-6ac7-401f-b5a8-d92880215162",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/validation/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "validation",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-27e192c5-6ac7-401f-b5a8-d92880215162"
+                            },
+                            {
+                              "id": "825fa67e-9119-438e-94c0-495057b54135",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/validation/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "validation",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-825fa67e-9119-438e-94c0-495057b54135"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-28467d3b-c0ee-4152-b378-ddeb5610790a"
+                        },
+                        {
+                          "name": "Get validation code hook",
+                          "id": "77817179-aadc-48d4-9031-3b141336a9e2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/validation/code/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "validation",
+                                "code",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "35da20fe-a133-4fb1-8a14-bb564321bd37",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get a validation code hook by key."
+                          },
+                          "response": [
+                            {
+                              "id": "bd307d3e-05d9-468f-b2ad-7e0e19f89009",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/validation/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "validation",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-bd307d3e-05d9-468f-b2ad-7e0e19f89009"
+                            },
+                            {
+                              "id": "6306bde3-20c1-46ca-9e71-addd5f60e5b1",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-KEY",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/template-hooks/validation/code/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "template-hooks",
+                                    "validation",
+                                    "code",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:25:45.000Z",
+                              "updatedAt": "2026-07-28T02:25:45.000Z",
+                              "uid": "35240-6306bde3-20c1-46ca-9e71-addd5f60e5b1"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-77817179-aadc-48d4-9031-3b141336a9e2"
+                        }
+                      ],
+                      "id": "e52a4e53-9f9d-4241-b300-d21d73ffd414",
+                      "createdAt": "2026-07-28T02:25:45.000Z",
+                      "updatedAt": "2026-07-28T02:25:45.000Z",
+                      "uid": "35240-e52a4e53-9f9d-4241-b300-d21d73ffd414"
+                    },
+                    {
+                      "name": "Create validation code hook",
+                      "id": "f74a994d-a517-44a1-b18b-2a7029c53ce6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"code\": \"<string>\",\n  \"validation_type\": \"row\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/template-hooks/validation/code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "template-hooks",
+                            "validation",
+                            "code"
+                          ]
+                        },
+                        "description": "Create a validation code hook."
+                      },
+                      "response": [
+                        {
+                          "id": "4315acf1-d3bc-424e-baac-faad83aa81d7",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"code\": \"<string>\",\n  \"validation_type\": \"row\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/validation/code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "validation",
+                                "code"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-4315acf1-d3bc-424e-baac-faad83aa81d7"
+                        },
+                        {
+                          "id": "8588dcbe-780f-475f-800b-d929a78e0af0",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-KEY",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"code\": \"<string>\",\n  \"validation_type\": \"row\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/template-hooks/validation/code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "template-hooks",
+                                "validation",
+                                "code"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T02:25:45.000Z",
+                          "updatedAt": "2026-07-28T02:25:45.000Z",
+                          "uid": "35240-8588dcbe-780f-475f-800b-d929a78e0af0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:45.000Z",
+                      "updatedAt": "2026-07-28T02:25:45.000Z",
+                      "uid": "35240-f74a994d-a517-44a1-b18b-2a7029c53ce6"
+                    }
+                  ],
+                  "id": "8ec3eaad-e405-4a0e-8242-1f63f3c2e7d1",
+                  "createdAt": "2026-07-28T02:25:45.000Z",
+                  "updatedAt": "2026-07-28T02:25:45.000Z",
+                  "uid": "35240-8ec3eaad-e405-4a0e-8242-1f63f3c2e7d1"
+                }
+              ],
+              "id": "64a1d4be-8d3e-4d6e-b991-a7f79349dbba",
+              "createdAt": "2026-07-28T02:25:45.000Z",
+              "updatedAt": "2026-07-28T02:25:45.000Z",
+              "uid": "35240-64a1d4be-8d3e-4d6e-b991-a7f79349dbba"
+            }
+          ],
+          "id": "65cd1e08-a4e4-48f1-8849-01cef74604cf",
+          "createdAt": "2026-07-28T02:25:45.000Z",
+          "updatedAt": "2026-07-28T02:25:45.000Z",
+          "uid": "35240-65cd1e08-a4e4-48f1-8849-01cef74604cf"
+        }
+      ],
+      "id": "0cdb1acd-99b4-4fdb-ad79-66560fb0533e",
+      "createdAt": "2026-07-28T02:25:45.000Z",
+      "updatedAt": "2026-07-28T02:25:45.000Z",
+      "uid": "35240-0cdb1acd-99b4-4fdb-ad79-66560fb0533e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.oneschema.co"
+    }
+  ]
+}
