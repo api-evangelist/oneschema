@@ -355,6 +355,8 @@ apis:
   - type: OpenAPI
     url: openapi/oneschema-workspaces-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/oneschema-aws-secrets-manager-overlay.yaml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/oneschema/overview
 - type: DomainSecurity
