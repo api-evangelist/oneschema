@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Importer Embed Events API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Importer Embed Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get file URL for an embed event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/events/:embed_event_id/file-url",
+            "params": [
+              {
+                "name": "file_format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a pre-signed URL for the specified embed event file."
+        },
+        {
+          "info": {
+            "name": "Get an embed event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/events/:embed_event_id"
+          },
+          "docs": "Retrieve a single event that occurred for an embed."
+        },
+        {
+          "info": {
+            "name": "List events for an embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/events"
+          },
+          "docs": "Returns a list of events that occurred for the specified embed session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

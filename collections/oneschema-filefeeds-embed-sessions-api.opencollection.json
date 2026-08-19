@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds Embed Sessions API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FileFeeds Embed Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create FileFeed embed session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/file-feed-embed-sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new embed session for a FileFeed"
+        },
+        {
+          "info": {
+            "name": "Upload file to the FileFeed embed session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/file-feed-embed-sessions/files",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "session_token",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a file to a FileFeed embed session, to be used as a sample file\nwhen editing the FileFeed transforms.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

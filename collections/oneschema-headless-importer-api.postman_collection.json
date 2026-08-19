@@ -1,0 +1,847 @@
+{
+  "item": [
+    {
+      "id": "ad5f938b-d45a-421a-9398-1bb946454ca7",
+      "name": "Headless Importer",
+      "description": {
+        "content": "Headless Importer operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd7b4fb3-ec1a-4a2c-aa85-825a0f0a19b3",
+          "name": "Create an embed session",
+          "request": {
+            "name": "Create an embed session",
+            "description": {
+              "content": "Create an Importer embed session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"embed_client_id\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"embed_user_jwt\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"event_webhook_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dev_mode\": false,\n  \"customization_key\": \"<string>\",\n  \"customization_overrides\": {\n    \"primary_color\": \"<string>\",\n    \"background_primary_color\": \"<string>\",\n    \"background_secondary_color\": \"<string>\",\n    \"header_color\": \"<string>\",\n    \"footer_color\": \"<string>\",\n    \"border_color\": \"<string>\",\n    \"success_color\": \"<string>\",\n    \"warning_color\": \"<string>\",\n    \"error_color\": \"<string>\",\n    \"modal_fullscreen\": \"<boolean>\",\n    \"modal_mask_color\": \"<string>\",\n    \"modal_border_radius\": \"<string>\",\n    \"button_border_radius\": \"<string>\",\n    \"button_primary_fill_color\": \"<string>\",\n    \"button_primary_stroke_color\": \"<string>\",\n    \"button_primary_text_color\": \"<string>\",\n    \"button_secondary_fill_color\": \"<string>\",\n    \"button_secondary_stroke_color\": \"<string>\",\n    \"button_secondary_text_color\": \"<string>\",\n    \"button_tertiary_fill_color\": \"<string>\",\n    \"button_tertiary_stroke_color\": \"<string>\",\n    \"button_tertiary_text_color\": \"<string>\",\n    \"button_alert_fill_color\": \"<string>\",\n    \"button_alert_stroke_color\": \"<string>\",\n    \"button_alert_text_color\": \"<string>\",\n    \"font_url\": \"<string>\",\n    \"font_family\": \"<string>\",\n    \"font_color_primary\": \"<string>\",\n    \"font_color_secondary\": \"<string>\",\n    \"font_color_placeholder\": \"<string>\",\n    \"hide_logo\": \"<boolean>\",\n    \"illustration_url\": \"<string>\",\n    \"uploader_header_text\": \"<string>\",\n    \"uploader_subheader_text\": \"<string>\",\n    \"uploader_show_sidebar\": \"<boolean>\",\n    \"uploader_sidebar_details\": \"<string>\",\n    \"uploader_show_sidebar_banner\": \"<boolean>\",\n    \"uploader_sidebar_banner_text\": \"<string>\",\n    \"include_excel_template\": \"<boolean>\",\n    \"import_experience\": \"<string>\",\n    \"import_unmapped_columns\": \"<boolean>\",\n    \"mapping_strategy\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"skip_mapping\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"accept_code_hook_suggestions\": \"<boolean>\",\n    \"autofix_after_mapping\": \"<boolean>\",\n    \"file_size_limit\": \"<integer>\"\n  },\n  \"template_overrides\": {\n    \"columns\": [\n      {\n        \"key\": \"<string>\",\n        \"label\": \"<string>\",\n        \"data_type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"is_custom\": \"<boolean>\",\n        \"is_required\": \"<boolean>\",\n        \"is_unique\": \"<boolean>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_multi_mappable\": \"<boolean>\",\n        \"is_hidden\": \"<boolean>\",\n        \"is_unmappable\": \"<boolean>\",\n        \"letter_case\": \"<string>\",\n        \"min_char_limit\": \"<integer>\",\n        \"max_char_limit\": \"<integer>\",\n        \"delimiter\": \"<string>\",\n        \"must_exist\": \"<boolean>\",\n        \"default_value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"label\": \"<string>\",\n        \"data_type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"is_custom\": \"<boolean>\",\n        \"is_required\": \"<boolean>\",\n        \"is_unique\": \"<boolean>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_multi_mappable\": \"<boolean>\",\n        \"is_hidden\": \"<boolean>\",\n        \"is_unmappable\": \"<boolean>\",\n        \"letter_case\": \"<string>\",\n        \"min_char_limit\": \"<integer>\",\n        \"max_char_limit\": \"<integer>\",\n        \"delimiter\": \"<string>\",\n        \"must_exist\": \"<boolean>\",\n        \"default_value\": \"<string>\"\n      }\n    ]\n  },\n  \"import_config\": {\n    \"type\": \"<string>\",\n    \"key\": \"<string>\",\n    \"metadata_only\": \"<boolean>\",\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": {},\n    \"format_options\": {\n      \"header_style\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7436e1bc-d303-484b-bdca-4f69d6ab0d58",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"embed_client_id\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"embed_user_jwt\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"event_webhook_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dev_mode\": false,\n  \"customization_key\": \"<string>\",\n  \"customization_overrides\": {\n    \"primary_color\": \"string\",\n    \"background_primary_color\": \"string\",\n    \"background_secondary_color\": \"string\",\n    \"header_color\": \"string\",\n    \"footer_color\": \"string\",\n    \"border_color\": \"string\",\n    \"success_color\": \"string\",\n    \"warning_color\": \"string\",\n    \"error_color\": \"string\",\n    \"modal_fullscreen\": true,\n    \"modal_mask_color\": \"string\",\n    \"modal_border_radius\": \"string\",\n    \"button_border_radius\": \"string\",\n    \"button_primary_fill_color\": \"string\",\n    \"button_primary_stroke_color\": \"string\",\n    \"button_primary_text_color\": \"string\",\n    \"button_secondary_fill_color\": \"string\",\n    \"button_secondary_stroke_color\": \"string\",\n    \"button_secondary_text_color\": \"string\",\n    \"button_tertiary_fill_color\": \"string\",\n    \"button_tertiary_stroke_color\": \"string\",\n    \"button_tertiary_text_color\": \"string\",\n    \"button_alert_fill_color\": \"string\",\n    \"button_alert_stroke_color\": \"string\",\n    \"button_alert_text_color\": \"string\",\n    \"font_url\": \"string\",\n    \"font_family\": \"string\",\n    \"font_color_primary\": \"string\",\n    \"font_color_secondary\": \"string\",\n    \"font_color_placeholder\": \"string\",\n    \"hide_logo\": false,\n    \"illustration_url\": \"string\",\n    \"uploader_header_text\": \"string\",\n    \"uploader_subheader_text\": \"string\",\n    \"uploader_show_sidebar\": false,\n    \"uploader_sidebar_details\": \"string\",\n    \"uploader_show_sidebar_banner\": false,\n    \"uploader_sidebar_banner_text\": \"string\",\n    \"include_excel_template\": false,\n    \"import_experience\": \"string\",\n    \"import_unmapped_columns\": false,\n    \"mapping_strategy\": [\n      \"string\",\n      \"string\"\n    ],\n    \"skip_mapping\": [\n      \"string\",\n      \"string\"\n    ],\n    \"accept_code_hook_suggestions\": true,\n    \"autofix_after_mapping\": false,\n    \"file_size_limit\": 6506\n  },\n  \"template_overrides\": {\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"data_type\": \"string\",\n        \"description\": \"string\",\n        \"is_custom\": false,\n        \"is_required\": true,\n        \"is_unique\": true,\n        \"is_locked\": true,\n        \"is_multi_mappable\": false,\n        \"is_hidden\": true,\n        \"is_unmappable\": true,\n        \"letter_case\": \"string\",\n        \"min_char_limit\": 6559,\n        \"max_char_limit\": 1255,\n        \"delimiter\": \"string\",\n        \"must_exist\": false,\n        \"default_value\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"data_type\": \"string\",\n        \"description\": \"string\",\n        \"is_custom\": false,\n        \"is_required\": true,\n        \"is_unique\": false,\n        \"is_locked\": false,\n        \"is_multi_mappable\": false,\n        \"is_hidden\": false,\n        \"is_unmappable\": false,\n        \"letter_case\": \"string\",\n        \"min_char_limit\": 94,\n        \"max_char_limit\": 7051,\n        \"delimiter\": \"string\",\n        \"must_exist\": false,\n        \"default_value\": \"string\"\n      }\n    ]\n  },\n  \"import_config\": {\n    \"type\": \"string\",\n    \"key\": \"string\",\n    \"metadata_only\": false,\n    \"url\": \"string\",\n    \"format\": \"string\",\n    \"headers\": {},\n    \"format_options\": {\n      \"header_style\": \"names\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 42197,\n  \"token\": \"3f82e2c1-7657-441a-a93d-5e8f25c7ac61\",\n  \"status\": \"initialized\",\n  \"user_jwt\": \"REPLACE_WITH_JWT\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e12cebf0-7c56-4869-9aa4-cff292b955ad",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"embed_client_id\": \"<string>\",\n  \"template_key\": \"<string>\",\n  \"embed_user_jwt\": \"<string>\",\n  \"webhook_key\": \"<string>\",\n  \"event_webhook_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dev_mode\": false,\n  \"customization_key\": \"<string>\",\n  \"customization_overrides\": {\n    \"primary_color\": \"string\",\n    \"background_primary_color\": \"string\",\n    \"background_secondary_color\": \"string\",\n    \"header_color\": \"string\",\n    \"footer_color\": \"string\",\n    \"border_color\": \"string\",\n    \"success_color\": \"string\",\n    \"warning_color\": \"string\",\n    \"error_color\": \"string\",\n    \"modal_fullscreen\": true,\n    \"modal_mask_color\": \"string\",\n    \"modal_border_radius\": \"string\",\n    \"button_border_radius\": \"string\",\n    \"button_primary_fill_color\": \"string\",\n    \"button_primary_stroke_color\": \"string\",\n    \"button_primary_text_color\": \"string\",\n    \"button_secondary_fill_color\": \"string\",\n    \"button_secondary_stroke_color\": \"string\",\n    \"button_secondary_text_color\": \"string\",\n    \"button_tertiary_fill_color\": \"string\",\n    \"button_tertiary_stroke_color\": \"string\",\n    \"button_tertiary_text_color\": \"string\",\n    \"button_alert_fill_color\": \"string\",\n    \"button_alert_stroke_color\": \"string\",\n    \"button_alert_text_color\": \"string\",\n    \"font_url\": \"string\",\n    \"font_family\": \"string\",\n    \"font_color_primary\": \"string\",\n    \"font_color_secondary\": \"string\",\n    \"font_color_placeholder\": \"string\",\n    \"hide_logo\": false,\n    \"illustration_url\": \"string\",\n    \"uploader_header_text\": \"string\",\n    \"uploader_subheader_text\": \"string\",\n    \"uploader_show_sidebar\": false,\n    \"uploader_sidebar_details\": \"string\",\n    \"uploader_show_sidebar_banner\": false,\n    \"uploader_sidebar_banner_text\": \"string\",\n    \"include_excel_template\": false,\n    \"import_experience\": \"string\",\n    \"import_unmapped_columns\": false,\n    \"mapping_strategy\": [\n      \"string\",\n      \"string\"\n    ],\n    \"skip_mapping\": [\n      \"string\",\n      \"string\"\n    ],\n    \"accept_code_hook_suggestions\": true,\n    \"autofix_after_mapping\": false,\n    \"file_size_limit\": 6506\n  },\n  \"template_overrides\": {\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"data_type\": \"string\",\n        \"description\": \"string\",\n        \"is_custom\": false,\n        \"is_required\": true,\n        \"is_unique\": true,\n        \"is_locked\": true,\n        \"is_multi_mappable\": false,\n        \"is_hidden\": true,\n        \"is_unmappable\": true,\n        \"letter_case\": \"string\",\n        \"min_char_limit\": 6559,\n        \"max_char_limit\": 1255,\n        \"delimiter\": \"string\",\n        \"must_exist\": false,\n        \"default_value\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"data_type\": \"string\",\n        \"description\": \"string\",\n        \"is_custom\": false,\n        \"is_required\": true,\n        \"is_unique\": false,\n        \"is_locked\": false,\n        \"is_multi_mappable\": false,\n        \"is_hidden\": false,\n        \"is_unmappable\": false,\n        \"letter_case\": \"string\",\n        \"min_char_limit\": 94,\n        \"max_char_limit\": 7051,\n        \"delimiter\": \"string\",\n        \"must_exist\": false,\n        \"default_value\": \"string\"\n      }\n    ]\n  },\n  \"import_config\": {\n    \"type\": \"string\",\n    \"key\": \"string\",\n    \"metadata_only\": false,\n    \"url\": \"string\",\n    \"format\": \"string\",\n    \"headers\": {},\n    \"format_options\": {\n      \"header_style\": \"names\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e95b02b1-7dbe-4eeb-9854-18ac1f77f757",
+          "name": "Import an embed file",
+          "request": {
+            "name": "Import an embed file",
+            "description": {
+              "content": "Import the validated embed file. The import behavior is defined by the [import_config](https://docs.oneschema.co/docs/importing-validated-data) object used to initialized the embed. An embed must be in the `columns_mapped` state to enable import, and an embed is returned in one of the following states depending on import config: `import-pending` or `imported`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embeds",
+                ":embed_id",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "329e1aa8-643a-4b16-9eca-cd63b545fe12",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"columns\": [\n    {\n      \"id\": 227897,\n      \"name\": \"DD/MM/YYYY\",\n      \"template_column_key\": \"ddmmyyyy\",\n      \"is_custom\": false\n    },\n    {\n      \"id\": 227897,\n      \"name\": \"DD/MM/YYYY\",\n      \"template_column_key\": \"ddmmyyyy\",\n      \"is_custom\": false\n    }\n  ],\n  \"id\": 41559,\n  \"token\": \"5fd6a161-86f1-4514-9e92-0660e19ad5c2\",\n  \"template_key\": \"employees\",\n  \"status\": \"columns_mapped\",\n  \"user_jwt\": \"REPLACE_WITH_JWT\",\n  \"imported_row_count\": 995\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3688e8bc-25b0-4cca-8f07-c392e01dd493",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8486a40-7de4-4be3-adb4-6e560a97e98c",
+          "name": "Set column mapping on an embed file",
+          "request": {
+            "name": "Set column mapping on an embed file",
+            "description": {
+              "content": "Set column mapping for an embed file. Mapping strategy can be defined in customizations. An embed must be in the `headers_set` state to support column mapping, and an embed is returned in `columns_mapped` state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embeds",
+                ":embed_id",
+                "map"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"overrides\": [\n    {\n      \"template_column_key\": \"<string>\",\n      \"column_id\": \"<integer>\",\n      \"column_name\": \"<string>\"\n    },\n    {\n      \"template_column_key\": \"<string>\",\n      \"column_id\": \"<integer>\",\n      \"column_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef9b52e8-24e7-4507-9261-c7091fc0fbb3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "map"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"overrides\": [\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 2890,\n      \"column_name\": \"string\"\n    },\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 1312,\n      \"column_name\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"columns\": [\n    {\n      \"id\": 227897,\n      \"name\": \"DD/MM/YYYY\",\n      \"template_column_key\": \"ddmmyyyy\",\n      \"is_custom\": false\n    },\n    {\n      \"id\": 227897,\n      \"name\": \"DD/MM/YYYY\",\n      \"template_column_key\": \"ddmmyyyy\",\n      \"is_custom\": false\n    }\n  ],\n  \"id\": 41559,\n  \"token\": \"5fd6a161-86f1-4514-9e92-0660e19ad5c2\",\n  \"template_key\": \"employees\",\n  \"status\": \"columns_mapped\",\n  \"user_jwt\": \"REPLACE_WITH_JWT\",\n  \"imported_row_count\": 995\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f47c18e-0e02-4eb9-9481-24f0d0ed92f8",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "map"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"overrides\": [\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 2890,\n      \"column_name\": \"string\"\n    },\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 1312,\n      \"column_name\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d93e5919-032f-465e-8fe7-3ab8705c19a9",
+          "name": "Set header row on an embed file",
+          "request": {
+            "name": "Set header row on an embed file",
+            "description": {
+              "content": "Set the header row either automatically or by index on an embed file. An embed must be in the `uploaded` state to enable setting headers, and an embed is returned in one of the following states: `headers_set` or `columns_mapped`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embeds",
+                ":embed_id",
+                "set-header"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2122e3c6-7d10-4515-a3a8-cf54c2597809",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "set-header"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"index\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"columns\": [\n    {\n      \"id\": 227897,\n      \"name\": \"DD/MM/YYYY\",\n      \"template_column_key\": \"ddmmyyyy\",\n      \"is_custom\": false\n    },\n    {\n      \"id\": 227897,\n      \"name\": \"DD/MM/YYYY\",\n      \"template_column_key\": \"ddmmyyyy\",\n      \"is_custom\": false\n    }\n  ],\n  \"id\": 41559,\n  \"token\": \"5fd6a161-86f1-4514-9e92-0660e19ad5c2\",\n  \"template_key\": \"employees\",\n  \"status\": \"columns_mapped\",\n  \"user_jwt\": \"REPLACE_WITH_JWT\",\n  \"imported_row_count\": 995\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c42d274b-6aab-4536-b601-839dc5cf5bee",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "set-header"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"index\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cf461a8-006d-4a48-bcb3-c170cdd3a903",
+          "name": "Upload a CSV or excel file to an embed",
+          "request": {
+            "name": "Upload a CSV or excel file to an embed",
+            "description": {
+              "content": "Upload a CSV (.csv) or Excel (.xlsx) file into OneSchema. An embed must be in the `initialized` state to support an upload, and an embed is returned in one of the following states: `uploaded`, `headers_set`, or `columns_mapped`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embeds",
+                ":embed_id",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "contentType": "application/octet-stream",
+                  "description": "(Required) The contents of the file to be imported."
+                },
+                {
+                  "key": "sheet_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The name of the sheet that should be imported if you are uploading a spreadsheet with multiple tabs."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f245e24-a481-4769-ae9d-c27232da5f42",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The contents of the file to be imported.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "application/octet-stream"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the sheet that should be imported if you are uploading a spreadsheet with multiple tabs.",
+                        "type": "text/plain"
+                      },
+                      "key": "sheet_name",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 41963,\n  \"token\": \"812f66e4-76c3-4e1e-9e85-5c1374f15c6a\",\n  \"status\": \"uploaded\",\n  \"user_jwt\": \"REPLACE_WITH_JWT\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21a81212-a015-4e4d-b005-9738493c01ef",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embeds",
+                    ":embed_id",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The contents of the file to be imported.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "application/octet-stream"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the sheet that should be imported if you are uploading a spreadsheet with multiple tabs.",
+                        "type": "text/plain"
+                      },
+                      "key": "sheet_name",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.oneschema.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "56098cea-9709-46e1-aa0e-754e53eabd6a",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Headless Importer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FileFeeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List FileFeeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/file-feeds"
+          },
+          "docs": "Returns a list of FileFeeds for the organization."
+        },
+        {
+          "info": {
+            "name": "Create FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/file-feeds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new FileFeed"
+        },
+        {
+          "info": {
+            "name": "Get FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the FileFeed"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific FileFeed by ID"
+        },
+        {
+          "info": {
+            "name": "Update FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the FileFeed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific FileFeed by ID. Only the fields that need to be updated should be provided."
+        },
+        {
+          "info": {
+            "name": "Delete FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the FileFeed"
+              }
+            ]
+          },
+          "docs": "Delete a specific FileFeed by ID"
+        },
+        {
+          "info": {
+            "name": "Duplicate FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/duplicate",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of the duplicated FileFeed"
+              },
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "query",
+                "description": "Template id for the duplicated FileFeed"
+              }
+            ]
+          },
+          "docs": "Duplicate an existing FileFeed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

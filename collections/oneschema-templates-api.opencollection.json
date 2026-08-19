@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Templates API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download the template's sample file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/templates/:key/sample-file",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the template to download the sample file from."
+              }
+            ]
+          },
+          "docs": "Download the template's sample file. If a custom file has been uploaded via `POST /v1/templates/{key}/sample-file` it is returned verbatim; otherwise OneSchema generates a sample file on the fly from the template's columns."
+        },
+        {
+          "info": {
+            "name": "Upload a custom sample file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/templates/:key/sample-file",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the template to attach the sample file to."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload a file to serve as the downloadable sample file shown to end users in the importer's upload pane. When set, this file replaces the sample file that OneSchema otherwise auto-generates from the template's columns. Subject to a 5 MiB file size limit. Accepted extensions: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv`. Requires `multipart/form-data` with a single `file` field."
+        },
+        {
+          "info": {
+            "name": "Clear the custom sample file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/templates/:key/sample-file",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the template whose sample file should be cleared."
+              }
+            ]
+          },
+          "docs": "Remove the custom sample file previously attached to the template. After removal, the importer falls back to the sample file that OneSchema auto-generates from the template's columns."
+        },
+        {
+          "info": {
+            "name": "Export a template as JSON",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/templates/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the template to export."
+              }
+            ]
+          },
+          "docs": "Export a template as JSON."
+        },
+        {
+          "info": {
+            "name": "Update a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.oneschema.co/v1/templates/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the template to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a template."
+        },
+        {
+          "info": {
+            "name": "Delete a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/templates/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the template to delete."
+              }
+            ]
+          },
+          "docs": "Delete a template."
+        },
+        {
+          "info": {
+            "name": "List templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/templates",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return"
+              }
+            ]
+          },
+          "docs": "Returns a list of templates for the organization. Supports pagination via `offset` and `count` parameters."
+        },
+        {
+          "info": {
+            "name": "Import a template as JSON",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a template as JSON."
+        },
+        {
+          "info": {
+            "name": "Push template to environment(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/templates/:key/environment-push",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the template to push."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push template to environment(s)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeeds API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multi FileFeeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Multi FileFeeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional folder ID to filter Multi FileFeeds by folder"
+              }
+            ]
+          },
+          "docs": "Returns a list of Multi FileFeeds for the organization. Optionally filter by folder ID."
+        },
+        {
+          "info": {
+            "name": "Create a Multi FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Multi FileFeed with the specified templates.\nAt least one template must be provided. Template keys must be unique\nwithin the request.\n\nOptional parameters allow configuring a source (SFTP or S3), destination (SFTP or S3),\nevent webhook, post-validation transform, and custom metadata at creation time.\n\nIf `folder_id` is not provided, the Multi FileFeed is placed in the\norganization's default Multi FileFeed folder.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Multi FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ]
+          },
+          "docs": "Retrieves a single Multi FileFeed by ID, including its source and destination connections, and attached event webhooks."
+        },
+        {
+          "info": {
+            "name": "Update a Multi FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Multi FileFeed's configuration"
+        },
+        {
+          "info": {
+            "name": "Delete a Multi FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a Multi FileFeed"
+        },
+        {
+          "info": {
+            "name": "Duplicate a Multi FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/duplicate",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed that's being duplicated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplicates a Multi FileFeed and returns the new Multi FileFeed. The copy includes both the builder (editable) version and the source's latest saved version, so the duplicate can run user imports immediately rather than only builder imports. The carried-over saved version's change history notes that it came from duplicating the source Multi FileFeed and when that source's latest version was saved."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,993 @@
+{
+  "item": [
+    {
+      "id": "e59bd2b6-3ee5-47f0-8a7f-da4ff34e65f4",
+      "name": "FileFeeds",
+      "description": {
+        "content": "FileFeeds operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d4f276b-eed0-425d-85ea-44ab2a3b7527",
+          "name": "Create FileFeed",
+          "request": {
+            "name": "Create FileFeed",
+            "description": {
+              "content": "Create a new FileFeed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<object_key>\",\n  \"is_active\": \"<boolean>\",\n  \"config\": {\n    \"export_format\": \"<string>\",\n    \"file_filter\": \"<string>\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\"\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\"\n      }\n    }\n  ],\n  \"custom_metadata\": \"<object>\",\n  \"event_webhook_key\": \"<object_key>\",\n  \"folder_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78344f49-1c3b-46fc-9a0f-388e51543a37",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"is_active\": true,\n  \"config\": {\n    \"export_format\": \"csv\",\n    \"file_filter\": \"string\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 743,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 6117,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 6129,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 8235,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": {},\n  \"event_webhook_key\": \"string\",\n  \"folder_id\": 7101\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"is_active\": false,\n  \"config\": {\n    \"export_format\": \"csv\",\n    \"file_filter\": \"string\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 4452,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 8636,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 1367,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 5248,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": {},\n  \"event_webhook_key\": \"string\",\n  \"folder_id\": 5410\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e457831b-2aee-443e-bea9-f842490df911",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"is_active\": true,\n  \"config\": {\n    \"export_format\": \"csv\",\n    \"file_filter\": \"string\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 743,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 6117,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 6129,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 8235,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": {},\n  \"event_webhook_key\": \"string\",\n  \"folder_id\": 7101\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48ec4378-3606-4188-b282-32a74cb9cd23",
+          "name": "List FileFeeds",
+          "request": {
+            "name": "List FileFeeds",
+            "description": {
+              "content": "Returns a list of FileFeeds for the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab76f620-670b-4233-a908-5358fa828c93",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"template_key\": \"string\",\n    \"is_active\": false,\n    \"config\": {\n      \"export_format\": \"csv\",\n      \"file_filter\": \"string\"\n    },\n    \"sources\": [\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"destinations\": [\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"custom_metadata\": {},\n    \"event_webhook_key\": \"string\",\n    \"folder_id\": 7352\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"template_key\": \"string\",\n    \"is_active\": true,\n    \"config\": {\n      \"export_format\": \"csv\",\n      \"file_filter\": \"string\"\n    },\n    \"sources\": [\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"destinations\": [\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"custom_metadata\": {},\n    \"event_webhook_key\": \"string\",\n    \"folder_id\": 7401\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "727780ec-eae4-4a0e-8232-f0026c308678",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cce3c3f-a28a-4471-a3d8-1581a82173e2",
+          "name": "Delete FileFeed",
+          "request": {
+            "name": "Delete FileFeed",
+            "description": {
+              "content": "Delete a specific FileFeed by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds",
+                ":file_feed_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "file_feed_id",
+                  "description": "(Required) The ID of the FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d30a329-884a-4e79-b607-5a7cdabba3c9",
+              "name": "Successful response. The primary way to verify the request's success or failure is the response status code. In a future API version this endpoint may not return any response body at all.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The ID of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4869e1e1-c94d-4915-8c93-d65e1f060421",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The ID of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ca3888c-e90c-4b0d-838b-c72e5c804385",
+          "name": "Get FileFeed",
+          "request": {
+            "name": "Get FileFeed",
+            "description": {
+              "content": "Retrieve a specific FileFeed by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds",
+                ":file_feed_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "file_feed_id",
+                  "description": "(Required) The ID of the FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50bb09a2-eabb-435f-a01b-0e9da539b1c3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The ID of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"is_active\": false,\n  \"config\": {\n    \"export_format\": \"csv\",\n    \"file_filter\": \"string\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 4452,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 8636,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 1367,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 5248,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": {},\n  \"event_webhook_key\": \"string\",\n  \"folder_id\": 5410\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42552457-7510-40c5-9201-a8ea6d43499a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The ID of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc69ecf3-45b4-4892-81b5-273468b7a9c5",
+          "name": "Update FileFeed",
+          "request": {
+            "name": "Update FileFeed",
+            "description": {
+              "content": "Update a specific FileFeed by ID. Only the fields that need to be updated should be provided.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds",
+                ":file_feed_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "file_feed_id",
+                  "description": "(Required) The ID of the FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<object_key>\",\n  \"is_active\": \"<boolean>\",\n  \"config\": {\n    \"export_format\": \"<string>\",\n    \"file_filter\": \"<string>\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"<string>\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"<string>\",\n            \"hour_utc\": \"<integer>\",\n            \"minute_utc\": \"<integer>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\"\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"data\": {\n        \"sftp_account_id\": \"<integer>\",\n        \"path\": \"<path>\"\n      }\n    }\n  ],\n  \"custom_metadata\": \"<object>\",\n  \"event_webhook_key\": \"<object_key>\",\n  \"folder_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82cdc120-512e-4a36-ad1e-71829e409d85",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The ID of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<object_key>\",\n  \"is_active\": \"<boolean>\",\n  \"config\": {\n    \"export_format\": \"<string>\",\n    \"file_filter\": \"<string>\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 3062,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"daily\",\n            \"hour_utc\": 19,\n            \"minute_utc\": 15\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 7361,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"hourly\",\n            \"hour_utc\": 5,\n            \"minute_utc\": 33\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 1031,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 3835,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": \"<object>\",\n  \"event_webhook_key\": \"<object_key>\",\n  \"folder_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"is_active\": false,\n  \"config\": {\n    \"export_format\": \"csv\",\n    \"file_filter\": \"string\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 4452,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 8636,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 1367,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 5248,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": {},\n  \"event_webhook_key\": \"string\",\n  \"folder_id\": 5410\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36fa71bb-8e76-4752-98e4-e94b6185aa1b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The ID of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"template_key\": \"<object_key>\",\n  \"is_active\": \"<boolean>\",\n  \"config\": {\n    \"export_format\": \"<string>\",\n    \"file_filter\": \"<string>\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 3062,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"daily\",\n            \"hour_utc\": 19,\n            \"minute_utc\": 15\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 7361,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"frequency\": \"hourly\",\n            \"hour_utc\": 5,\n            \"minute_utc\": 33\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 1031,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 3835,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": \"<object>\",\n  \"event_webhook_key\": \"<object_key>\",\n  \"folder_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4b5e8b9-78e4-40cf-835d-15d816b3f912",
+          "name": "Duplicate FileFeed",
+          "request": {
+            "name": "Duplicate FileFeed",
+            "description": {
+              "content": "Duplicate an existing FileFeed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds",
+                ":file_feed_id",
+                "duplicate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Unique name of the duplicated FileFeed"
+                },
+                {
+                  "disabled": false,
+                  "key": "template_id",
+                  "value": "<integer>",
+                  "description": "Template id for the duplicated FileFeed"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "file_feed_id",
+                  "description": "(Required) The id of the FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6da31f7-4433-426b-994e-2a3ca738335d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id",
+                    "duplicate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "template_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The id of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"is_active\": false,\n  \"config\": {\n    \"export_format\": \"csv\",\n    \"file_filter\": \"string\"\n  },\n  \"sources\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 4452,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 8636,\n        \"path\": \"string\",\n        \"options\": {\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 1367,\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"type\": \"sftp\",\n      \"data\": {\n        \"sftp_account_id\": 5248,\n        \"path\": \"string\"\n      }\n    }\n  ],\n  \"custom_metadata\": {},\n  \"event_webhook_key\": \"string\",\n  \"folder_id\": 5410\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05662c69-3cfe-44c9-8ab3-3d3b1583c43d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id",
+                    "duplicate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "template_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The id of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.oneschema.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "978f4205-8fb3-449b-80e6-4995159de3f5",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+      "type": "text/plain"
+    }
+  }
+}

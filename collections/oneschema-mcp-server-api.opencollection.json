@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts MCP Server API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MCP Server",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send an MCP JSON-RPC request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/mcp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a JSON-RPC 2.0 request to the OneSchema MCP server. MCP clients use\nthis endpoint to initialize the connection, list available tools and\nresources, call read-only tools, and read resources.\n\nNotifications that do not require a response return `202 Accepted` with\nan empty body. Requests return a JSON-RPC response object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

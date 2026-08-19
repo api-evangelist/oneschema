@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "edc7391b-7658-4688-8e10-b62a28cb24ac",
+      "name": "FileFeeds Embed Sessions",
+      "description": {
+        "content": "FileFeeds Embed Sessions operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db2ceb21-3cd0-4fa8-9164-9e55576b2a25",
+          "name": "Create FileFeed embed session",
+          "request": {
+            "name": "Create FileFeed embed session",
+            "description": {
+              "content": "Create a new embed session for a FileFeed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feed-embed-sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<uuid>\",\n  \"file_feed_id\": \"<integer>\",\n  \"user_jwt\": \"<jwt>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "393933f9-e3df-4ac0-acde-18158b2b306d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feed-embed-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<uuid>\",\n  \"file_feed_id\": \"<integer>\",\n  \"user_jwt\": \"<jwt>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8167,\n  \"file_feed_id\": 4827,\n  \"created_at\": \"2022-04-18T13:38:03.008Z\",\n  \"token\": \"string\",\n  \"template_key\": \"string\",\n  \"files\": [\n    {\n      \"id\": 6051,\n      \"created_at\": \"1997-12-01T19:07:37.559Z\",\n      \"original_file_name\": \"string\"\n    },\n    {\n      \"id\": 2745,\n      \"created_at\": \"2009-02-22T01:24:45.872Z\",\n      \"original_file_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d88f0dd-814e-4820-a58f-15ffbd17e2a8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feed-embed-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<uuid>\",\n  \"file_feed_id\": \"<integer>\",\n  \"user_jwt\": \"<jwt>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b018a9bc-e08b-4d6c-9104-ab6f484470d8",
+          "name": "Upload file to the FileFeed embed session",
+          "request": {
+            "name": "Upload file to the FileFeed embed session",
+            "description": {
+              "content": "Upload a file to a FileFeed embed session, to be used as a sample file\nwhen editing the FileFeed transforms.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feed-embed-sessions",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "session_token",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The token of the FileFeed embed session"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The contents of the file to be imported."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b369412-7aa4-494c-9b73-8fdca324b968",
+              "name": "Accepted.\nThe file is scheduled to be processed and added to the session.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feed-embed-sessions",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The token of the FileFeed embed session",
+                        "type": "text/plain"
+                      },
+                      "key": "session_token",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The contents of the file to be imported.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8167,\n  \"file_feed_id\": 4827,\n  \"created_at\": \"2022-04-18T13:38:03.008Z\",\n  \"token\": \"string\",\n  \"template_key\": \"string\",\n  \"files\": [\n    {\n      \"id\": 6051,\n      \"created_at\": \"1997-12-01T19:07:37.559Z\",\n      \"original_file_name\": \"string\"\n    },\n    {\n      \"id\": 2745,\n      \"created_at\": \"2009-02-22T01:24:45.872Z\",\n      \"original_file_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34917e7a-b1eb-4f73-80c2-d8ca5d02f7cb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feed-embed-sessions",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The token of the FileFeed embed session",
+                        "type": "text/plain"
+                      },
+                      "key": "session_token",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The contents of the file to be imported.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.oneschema.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c5e38c8-a590-4ef5-ac19-5fbd8c0cf550",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds Embed Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+      "type": "text/plain"
+    }
+  }
+}

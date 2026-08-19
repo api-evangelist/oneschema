@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Folders API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multi FileFeed Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Multi FileFeed Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feed-folders",
+            "params": [
+              {
+                "name": "containing_folder_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter folders by the ID of the folder that contains them. Omit to return all folders."
+              }
+            ]
+          },
+          "docs": "Returns a list of all Multi FileFeed folders for the organization."
+        },
+        {
+          "info": {
+            "name": "Create a Multi FileFeed Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feed-folders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Multi FileFeed folder."
+        },
+        {
+          "info": {
+            "name": "Get a Multi FileFeed Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feed-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed folder"
+              }
+            ]
+          },
+          "docs": "Retrieves a single Multi FileFeed folder by ID."
+        },
+        {
+          "info": {
+            "name": "Update a Multi FileFeed Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.oneschema.co/v0/multi-file-feed-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific Multi FileFeed folder by ID. Only the fields that need to be updated should be provided."
+        },
+        {
+          "info": {
+            "name": "Delete a Multi FileFeed Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v0/multi-file-feed-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed folder"
+              }
+            ]
+          },
+          "docs": "Delete a specific Multi FileFeed folder by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

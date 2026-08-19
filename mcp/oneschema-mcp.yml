@@ -32,3 +32,10 @@ resources:
   description: OpenAPI spec for an API group
 - uri_template: oneschema://guides/{slug}
   description: Product guide markdown by slug
+deployment:
+  mode: remote
+  endpoint: https://api.oneschema.co/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

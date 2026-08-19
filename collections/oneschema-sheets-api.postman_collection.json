@@ -1,0 +1,2835 @@
+{
+  "item": [
+    {
+      "id": "e2f29f2a-4c58-481f-bf42-5098a03cdf41",
+      "name": "Sheets",
+      "description": {
+        "content": "Sheets operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43a9fde5-6227-4541-ab85-2813da2efcaf",
+          "name": "Delete a sheet",
+          "request": {
+            "name": "Delete a sheet",
+            "description": {
+              "content": "Delete a sheet with the given sheet_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4e1dd0e-81e8-4860-b2a4-d191cf44c325",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "349f33cf-0374-4e7e-950d-acc59b0f6756",
+          "name": "Get a sheet",
+          "request": {
+            "name": "Get a sheet",
+            "description": {
+              "content": "Retrieve a sheet with the given sheet_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a04976f-0acb-42d1-9a54-c66db7da6955",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2382,\n  \"workspace_id\": 9135,\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"custom_metadata\": {},\n  \"columns\": [\n    {\n      \"id\": 8423,\n      \"name\": \"string\",\n      \"template_column_key\": \"string\",\n      \"is_custom\": true\n    },\n    {\n      \"id\": 4301,\n      \"name\": \"string\",\n      \"template_column_key\": \"string\",\n      \"is_custom\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c53b0de5-c7be-438e-909a-0d8c26d161f9",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a27b2a06-6959-4913-bf49-a674202097b6",
+          "name": "Update a sheet",
+          "request": {
+            "name": "Update a sheet",
+            "description": {
+              "content": "Update the name and/or custom_metadata of a sheet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5c7a9f5-fe4a-46d8-b35b-00c5d1d44f57",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2382,\n  \"workspace_id\": 9135,\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"custom_metadata\": {},\n  \"columns\": [\n    {\n      \"id\": 8423,\n      \"name\": \"string\",\n      \"template_column_key\": \"string\",\n      \"is_custom\": true\n    },\n    {\n      \"id\": 4301,\n      \"name\": \"string\",\n      \"template_column_key\": \"string\",\n      \"is_custom\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f77faec9-c5ca-465c-83c6-f93910111255",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f34580d4-4b22-4c34-a22e-961f6a2e00a7",
+          "name": "Export as file (async)",
+          "request": {
+            "name": "Export as file (async)",
+            "description": {
+              "content": "Create an asynchronous job to export the sheet in the given format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "export-file-async",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "row_filter",
+                  "value": "all",
+                  "description": "Which rows should be included in the export."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unmapped",
+                  "value": "false",
+                  "description": "If unmapped columns should be included in the exported file."
+                },
+                {
+                  "disabled": false,
+                  "key": "warning_behavior",
+                  "value": "importAsError",
+                  "description": "How warnings should be treated during export."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "format",
+                  "description": "(Required) The format of the exported file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e23a9af-1bbf-4685-aab1-809197032240",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file-async",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "row_filter",
+                      "value": "all"
+                    },
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "warning_behavior",
+                      "value": "importAsError"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "format",
+                      "description": "(Required) The format of the exported file."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6599,\n  \"status\": \"ERROR\",\n  \"sheet_export_id\": 6775\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a643c05c-5afa-49ff-8528-e8f6966f0f63",
+          "name": "Export as CSV file",
+          "request": {
+            "name": "Export as CSV file",
+            "description": {
+              "content": "Create a CSV file with the contents of the sheet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "export-file",
+                "csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "row_filter",
+                  "value": "all",
+                  "description": "Which rows should be included in the export."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unmapped",
+                  "value": "false",
+                  "description": "If unmapped columns should be included in the exported file."
+                },
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "(Required) [importer only] The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d94ee13e-c0a1-4f99-85c3-cbcc8ada9db7",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "row_filter",
+                      "value": "all"
+                    },
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"download_url\": \"https://s3.amazonaws.com/XXX\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3547a7d7-aac7-4030-b912-f9a439f44600",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "row_filter",
+                      "value": "all"
+                    },
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06417cb6-e3a5-4884-8fd8-8d101ffdef4f",
+          "name": "Export as Excel file",
+          "request": {
+            "name": "Export as Excel file",
+            "description": {
+              "content": "Create an Excel file with the contents of the sheet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "export-file",
+                "excel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "row_filter",
+                  "value": "all",
+                  "description": "Which rows should be included in the export."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unmapped",
+                  "value": "false",
+                  "description": "If unmapped columns should be included in the exported file."
+                },
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "(Required) [importer only] The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e93a5b6a-3669-435c-a606-57e8b462850d",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "excel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "row_filter",
+                      "value": "all"
+                    },
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"download_url\": \"https://s3.amazonaws.com/XXX\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25778309-3bc5-4ac1-a606-fc3756bb0a50",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "excel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "row_filter",
+                      "value": "all"
+                    },
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9da4b76-20f7-4d55-bd66-29a9348fedb3",
+          "name": "Export as JSON file",
+          "request": {
+            "name": "Export as JSON file",
+            "description": {
+              "content": "Create a JSON file with the contents of the sheet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "export-file",
+                "json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_unmapped",
+                  "value": "false",
+                  "description": "If unmapped columns should be included in the exported file."
+                },
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "(Required) [importer only] The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66375f6a-bfdb-4bde-a2b6-3318489afa35",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"download_url\": \"https://s3.amazonaws.com/XXX\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e286f70-8dfb-4143-90e9-5c953a111e0b",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4de1a03e-944e-4f05-b9ba-748a95aee08e",
+          "name": "Export as JSONL file",
+          "request": {
+            "name": "Export as JSONL file",
+            "description": {
+              "content": "Create a JSONL file with the contents of the sheet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "export-file",
+                "jsonlines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_unmapped",
+                  "value": "false",
+                  "description": "If unmapped columns should be included in the exported file."
+                },
+                {
+                  "disabled": false,
+                  "key": "row_filter",
+                  "value": "all",
+                  "description": "Which rows should be included in the export."
+                },
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "[importer only] The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "532b1967-437b-48f6-88a2-2e048dd2b800",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "jsonlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "row_filter",
+                      "value": "all"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"download_url\": \"https://s3.amazonaws.com/XXX\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b74f6763-5a9d-48a9-9414-8e18456be109",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file",
+                    "jsonlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "row_filter",
+                      "value": "all"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "260ccb92-fa6c-41e1-b543-7893e77fbea9",
+          "name": "Get export download URL",
+          "request": {
+            "name": "Get export download URL",
+            "description": {
+              "content": "Retrieve a pre-signed download URL for an exported file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "exports",
+                ":export_file_id",
+                "download-url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "export_file_id",
+                  "description": "(Required) The id of the export file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a88df03-e2b1-4b8b-ad21-22ca98b273b7",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "exports",
+                    ":export_file_id",
+                    "download-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "export_file_id",
+                      "description": "(Required) The id of the export file."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"download_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd9c01f3-f8b3-47e6-b817-e49056d23aed",
+          "name": "Get export job status",
+          "request": {
+            "name": "Get export job status",
+            "description": {
+              "content": "Retrieve the status of an asynchronous export job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "export-file-async",
+                "jobs",
+                ":export_job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "export_job_id",
+                  "description": "(Required) The id of the export job."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a512640-32d8-4f48-b8b3-2a316b8c47e9",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "export-file-async",
+                    "jobs",
+                    ":export_job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "export_job_id",
+                      "description": "(Required) The id of the export job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6599,\n  \"status\": \"ERROR\",\n  \"sheet_export_id\": 6775\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d2c9cf3-49c8-4825-9ba6-08cf5ee65787",
+          "name": "Get a sheet's mapping",
+          "request": {
+            "name": "Get a sheet's mapping",
+            "description": {
+              "content": "Retrieve the current mapping of the sheet's columns to the template's columns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "mapping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79cc3a1e-cf90-4b91-bfea-2da7e2047162",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "mapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"template_key\": \"string\",\n  \"sheet_columns\": [\n    {\n      \"id\": 5205,\n      \"template_column_key\": \"string\"\n    },\n    {\n      \"id\": 3974,\n      \"template_column_key\": \"string\"\n    }\n  ],\n  \"template_columns\": [\n    {\n      \"key\": \"string\",\n      \"mapped_to\": [\n        7056,\n        247\n      ]\n    },\n    {\n      \"key\": \"string\",\n      \"mapped_to\": [\n        7517,\n        2428\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "802535bc-d4bf-4c36-a51f-1d590173aa33",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "mapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28926a99-48f1-43db-ac31-9a0a6eae5dca",
+          "name": "Map sheet columns",
+          "request": {
+            "name": "Map sheet columns",
+            "description": {
+              "content": "Map the sheet columns to template columns and trigger validation for the mapped columns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "mapping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"overrides\": [\n    {\n      \"template_column_key\": \"<string>\",\n      \"column_id\": \"<integer>\",\n      \"column_name\": \"<string>\"\n    },\n    {\n      \"template_column_key\": \"<string>\",\n      \"column_id\": \"<integer>\",\n      \"column_name\": \"<string>\"\n    }\n  ],\n  \"autofix\": false,\n  \"strategies\": [\n    \"exact\",\n    \"hint\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d2a8122-00f4-45ee-84ce-705cca1f128b",
+              "name": "Successful response. The primary way to verify the request's success or failure is the response status code.\nIn a future API version this endpoint may not return any response body at all.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "mapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"overrides\": [\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 650,\n      \"column_name\": \"string\"\n    },\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 1861,\n      \"column_name\": \"string\"\n    }\n  ],\n  \"autofix\": false,\n  \"strategies\": [\n    \"exact\",\n    \"hint\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ea4a9c8-de96-4cd8-8b4a-ced713031d49",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "mapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"overrides\": [\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 650,\n      \"column_name\": \"string\"\n    },\n    {\n      \"template_column_key\": \"string\",\n      \"column_id\": 1861,\n      \"column_name\": \"string\"\n    }\n  ],\n  \"autofix\": false,\n  \"strategies\": [\n    \"exact\",\n    \"hint\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2797f960-f28d-49de-abee-321a230758fd",
+          "name": "Get rows",
+          "request": {
+            "name": "Get rows",
+            "description": {
+              "content": "Return paginated rows from the sheet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "rows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_row",
+                  "value": "0",
+                  "description": "The (0-based) row index of the first row to include."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "The number of rows to retrieve (default is all rows)."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unmapped",
+                  "value": "false",
+                  "description": "If unmapped columns should be included in the exported file."
+                },
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e0bdebc-0e69-4a07-9856-4de9177dc858",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "rows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_row",
+                      "value": "0"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc318bc0-e202-4e7a-bba3-8130d688630d",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "rows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_row",
+                      "value": "0"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include_unmapped",
+                      "value": "false"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7244a031-b8f7-4838-b403-961a454bd00a",
+          "name": "Set the header row",
+          "request": {
+            "name": "Set the header row",
+            "description": {
+              "content": "Set which row of the sheet contains column headers, or use auto-detection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "header-row"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index\": \"auto\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5bc4106-7279-45f1-9df8-8bdcf9d72c27",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "header-row"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"index\": \"auto\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "309833d7-a445-4473-a91d-be16a4e641f6",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "header-row"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"index\": \"auto\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34a3cd02-42b7-41f8-af8c-12dfd2e83a6b",
+          "name": "Unmap a sheet",
+          "request": {
+            "name": "Unmap a sheet",
+            "description": {
+              "content": "Entirely unmap the sheet from its template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "unmap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "The id of the embed which contains the sheet."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93c58fdf-dd42-4fe0-81e2-e6d9daa4312b",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "unmap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91f77c8f-337c-42e0-89ce-25b9f3684cdd",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "unmap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "559e3f73-99a6-48ee-b934-8cc6e252b738",
+          "name": "Upload a CSV or Excel file",
+          "request": {
+            "name": "Upload a CSV or Excel file",
+            "description": {
+              "content": "Upload a CSV (.csv) or Excel (.xlsx) file into OneSchema.\nThe file should be sent as `multipart/form-data` and include the filename and the file's media type.\n\nIf no `embed_id` is provided, the file is uploaded into the Workspaces product. Without a `workspace_id`, it goes into your default team workspace; pass a `workspace_id` to target a specific workspace. Provide `embed_id` only when you want to import the file into a specific Embed instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sheet_name",
+                  "value": "<string>",
+                  "description": "If importing an Excel spreadsheet, the name of the sheet that should be imported."
+                },
+                {
+                  "disabled": false,
+                  "key": "workspace_id",
+                  "value": "<integer>",
+                  "description": "[Legacy] The OneSchema id of the workspace to import into. If no workspace id is specified, the default team workspace is used."
+                },
+                {
+                  "disabled": false,
+                  "key": "embed_id",
+                  "value": "<integer>",
+                  "description": "The id of the Embed which the file will be imported into. Omit this to upload into the Workspaces product instead of an Embed."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "contentType": "application/octet-stream",
+                  "description": "(Required) The contents of the file you are importing."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4c1b0e8a-bf6c-453c-8221-7ba589d6560f",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sheet_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "workspace_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The contents of the file you are importing.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "application/octet-stream"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sheets\": [\n    {\n      \"id\": 457,\n      \"workspace_id\": 9897,\n      \"name\": \"string\",\n      \"template_key\": \"string\",\n      \"custom_metadata\": {},\n      \"columns\": [\n        {\n          \"id\": 9067,\n          \"name\": \"string\",\n          \"template_column_key\": \"string\",\n          \"is_custom\": true\n        },\n        {\n          \"id\": 3808,\n          \"name\": \"string\",\n          \"template_column_key\": \"string\",\n          \"is_custom\": false\n        }\n      ]\n    },\n    {\n      \"id\": 12,\n      \"workspace_id\": 7570,\n      \"name\": \"string\",\n      \"template_key\": \"string\",\n      \"custom_metadata\": {},\n      \"columns\": [\n        {\n          \"id\": 453,\n          \"name\": \"string\",\n          \"template_column_key\": \"string\",\n          \"is_custom\": true\n        },\n        {\n          \"id\": 9048,\n          \"name\": \"string\",\n          \"template_column_key\": \"string\",\n          \"is_custom\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd786cbc-7251-47ce-be56-f559c282bc75",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sheet_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "workspace_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "embed_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The contents of the file you are importing.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "application/octet-stream"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.oneschema.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "484255ce-2204-4196-a7de-8f47cbe814f0",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Sheets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+      "type": "text/plain"
+    }
+  }
+}

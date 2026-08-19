@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Headless Importer API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Headless Importer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an embed session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/embeds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Importer embed session."
+        },
+        {
+          "info": {
+            "name": "Import an embed file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/import"
+          },
+          "docs": "Import the validated embed file. The import behavior is defined by the [import_config](https://docs.oneschema.co/docs/importing-validated-data) object used to initialized the embed. An embed must be in the `columns_mapped` state to enable import, and an embed is returned in one of the following states depending on import config: `import-pending` or `imported`."
+        },
+        {
+          "info": {
+            "name": "Set column mapping on an embed file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/map",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set column mapping for an embed file. Mapping strategy can be defined in customizations. An embed must be in the `headers_set` state to support column mapping, and an embed is returned in `columns_mapped` state."
+        },
+        {
+          "info": {
+            "name": "Set header row on an embed file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/set-header",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the header row either automatically or by index on an embed file. An embed must be in the `uploaded` state to enable setting headers, and an embed is returned in one of the following states: `headers_set` or `columns_mapped`."
+        },
+        {
+          "info": {
+            "name": "Upload a CSV or excel file to an embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload a CSV (.csv) or Excel (.xlsx) file into OneSchema. An embed must be in the `initialized` state to support an upload, and an embed is returned in one of the following states: `uploaded`, `headers_set`, or `columns_mapped`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

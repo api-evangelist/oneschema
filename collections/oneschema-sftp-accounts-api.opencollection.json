@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts SFTP Accounts API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SFTP Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SFTP Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/sftp-accounts"
+          },
+          "docs": "Returns a list of SFTP Accounts for the organization."
+        },
+        {
+          "info": {
+            "name": "Create SFTP Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/sftp-accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SFTP Account."
+        },
+        {
+          "info": {
+            "name": "Get SFTP Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/sftp-accounts/:sftp-account-id",
+            "params": [
+              {
+                "name": "sftp-account-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the SFTP Account"
+              }
+            ]
+          },
+          "docs": "Get a specific SFTP Account."
+        },
+        {
+          "info": {
+            "name": "Delete SFTP Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v0/sftp-accounts/:sftp-account-id",
+            "params": [
+              {
+                "name": "sftp-account-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the SFTP Account"
+              }
+            ]
+          },
+          "docs": "Delete a specific SFTP Account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

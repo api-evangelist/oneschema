@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Event Webhooks API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List event webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/event-webhooks",
+            "params": [
+              {
+                "name": "product_area",
+                "value": "",
+                "type": "query",
+                "description": "Filter event webhooks by product area."
+              }
+            ]
+          },
+          "docs": "Lists event webhooks for the organization."
+        },
+        {
+          "info": {
+            "name": "Create an event webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/event-webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an event webhook for a supported product area."
+        },
+        {
+          "info": {
+            "name": "Get an event webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/event-webhooks/:webhook_key",
+            "params": [
+              {
+                "name": "webhook_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the event webhook."
+              },
+              {
+                "name": "product_area",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a single event webhook by key."
+        },
+        {
+          "info": {
+            "name": "Update an event webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.oneschema.co/v1/event-webhooks/:webhook_key",
+            "params": [
+              {
+                "name": "webhook_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the event webhook."
+              },
+              {
+                "name": "product_area",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates selected fields on an existing event webhook."
+        },
+        {
+          "info": {
+            "name": "Delete an event webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/event-webhooks/:webhook_key",
+            "params": [
+              {
+                "name": "webhook_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the event webhook."
+              },
+              {
+                "name": "product_area",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes an event webhook. Multi FileFeed event webhooks cannot be deleted while attached to a Multi FileFeed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

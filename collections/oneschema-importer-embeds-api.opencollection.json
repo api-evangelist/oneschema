@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Importer Embeds API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Importer Embeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List embeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds"
+          },
+          "docs": "Returns a list of Importer embed sessions for the organization in a summarized representation."
+        },
+        {
+          "info": {
+            "name": "Get embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id"
+          },
+          "docs": "Retrieve a detailed representation of the embed resource."
+        },
+        {
+          "info": {
+            "name": "Delete an embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id"
+          },
+          "docs": "Deletes an embed from OneSchema."
+        },
+        {
+          "info": {
+            "name": "Get error summary for an embed file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/error-summary",
+            "params": [
+              {
+                "name": "row_filter",
+                "value": "",
+                "type": "query",
+                "description": "Which rows should be included in the export."
+              },
+              {
+                "name": "file_format",
+                "value": "",
+                "type": "query",
+                "description": "The type of file that should be generated with an error summary"
+              }
+            ]
+          },
+          "docs": "Retrieve an error summary for an embed file."
+        },
+        {
+          "info": {
+            "name": "Get imported file url for an embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/imported-file-url",
+            "params": [
+              {
+                "name": "row_filter",
+                "value": "",
+                "type": "query",
+                "description": "Which rows should be included"
+              },
+              {
+                "name": "file_format",
+                "value": "",
+                "type": "query",
+                "description": "Format of exported file."
+              }
+            ]
+          },
+          "docs": "Retrieve a URL linking to the imported csv file for an embed. The returned URL is valid for 15 minutes."
+        },
+        {
+          "info": {
+            "name": "Get imported rows for an embed file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/imported-rows",
+            "params": [
+              {
+                "name": "start_row",
+                "value": "",
+                "type": "query",
+                "description": "The (0-based) row index of the first row to include."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of rows to retrieve (default is all rows)."
+              }
+            ]
+          },
+          "docs": "Retrieve validated data from an embed file with optional pagination."
+        },
+        {
+          "info": {
+            "name": "Get uploaded file url for an embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/embeds/:embed_id/uploaded-file-url"
+          },
+          "docs": "Retrieve a URL linking to the uploaded file for an embed.  The returned URL is valid for 15 minutes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

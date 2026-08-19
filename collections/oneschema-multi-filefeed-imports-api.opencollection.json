@@ -1,0 +1,331 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Imports API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multi FileFeed Imports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a direct file upload for a Multi FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a direct upload for a Multi FileFeed import. Returns an `upload_id`,\na `presigned_url`, and a `content_type`. The client must PUT the file directly\nto the `presigned_url`, setting the returned `content_type` as the `Content-Type`\nheader on the PUT request (the file store will reject the upload otherwise).\n\nThe direct upload flow consists of three steps:\n1. **Create** (this endpoint): creates a tracking record and returns the presigned URL, content type, and upload ID.\n2. **Upload**: the "
+        },
+        {
+          "info": {
+            "name": "List Multi FileFeed imports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Optional status filter to return only imports with this status"
+              }
+            ]
+          },
+          "docs": "Returns a list of imports for the specified Multi FileFeed, ordered by\nmost recent first. At most 200 imports are returned.\n\nBuilder and workflow-called imports are excluded from the results.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Multi FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ]
+          },
+          "docs": "Creates a new Multi FileFeed import for the specified Multi FileFeed"
+        },
+        {
+          "info": {
+            "name": "Get Multi FileFeed import errors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/errors",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              }
+            ]
+          },
+          "docs": "Returns all errors for a completed Multi FileFeed import as a unified,\nnode-centric payload. Each errored node in the workflow is represented as\nan entry in `node_errors` with per-list error details and presigned CSV\ndownload URLs.\n\nFor v1 flowgraphs (import node), errors are synthesized from the\nflowgraph run's validation_result. For v2 flowgraphs\n(validate-against-template node), errors come directly from the node\nrun's details.\n"
+        },
+        {
+          "info": {
+            "name": "Get download URL for imported file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files/:imported_file_id/download-url",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              },
+              {
+                "name": "imported_file_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the imported file"
+              }
+            ]
+          },
+          "docs": "Retrieves a download URL for a specific imported file"
+        },
+        {
+          "info": {
+            "name": "Get imported files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/imported-files",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of imported files for a Multi FileFeed import"
+        },
+        {
+          "info": {
+            "name": "Get a Multi FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              }
+            ]
+          },
+          "docs": "Retrieves details about a specific Multi FileFeed import"
+        },
+        {
+          "info": {
+            "name": "Submit a direct file upload for a Multi FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/direct-uploads/:upload_id/submit",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the direct upload (returned from the create endpoint)"
+              }
+            ]
+          },
+          "docs": "Submits (finalizes) a direct upload that was previously created via the\n`direct-uploads` endpoint. The `upload_id` is provided as a path parameter.\nThe server verifies that the file was actually uploaded to the file store,\nupdates the file size from storage metadata, and creates the record linking\nthe file to this import.\n\nThe direct upload flow consists of three steps:\n1. **Create** (`direct-uploads`): creates a tracking record and returns the presigned URL, content type, and upload ID.\n2. **Up"
+        },
+        {
+          "info": {
+            "name": "Submit a Multi FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/submit",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              },
+              {
+                "name": "prioritize",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, this import's run is placed at the front of the processing queue so it is picked up ahead of other Multi FileFeed imports already waiting in the queue. Omit it or send `false` to use the default first-in, first-out ordering.\n\nThis option must be enabled for your organization. If it is not enabled and you send `true`, the request is rejected with a `403` and no run is scheduled.\n\nFront-of-queue ordering only affects imports that are still waiting. It does not preempt runs that are already executing and does not bypass concurrency limits, so a prepended run still waits its turn against any active throttle.\n"
+              }
+            ]
+          },
+          "docs": "Submits the Multi FileFeed import for processing"
+        },
+        {
+          "info": {
+            "name": "Upload a file from S3 to a Multi FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/upload-from-s3",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a file from a customer's S3 bucket into a Multi FileFeed import.\nThe server assumes an IAM role to read the specified S3 object, verifies\nit exists and is within the file size limit, downloads it, and stores it\nas an uploaded file on the import.\n\nThe `object_uri` must be a valid S3 URI in the format `s3://bucket/key`.\nThe `s3_account_id` identifies which S3 account credentials (role ARN and\nexternal ID) to use for the STS AssumeRole call. The referenced bucket\nand object must be accessib"
+        },
+        {
+          "info": {
+            "name": "Upload a file for Multi FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/imports/:multi_file_feed_import_id/uploaded-files",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "multi_file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed import"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a file to be used in the Multi FileFeed import"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

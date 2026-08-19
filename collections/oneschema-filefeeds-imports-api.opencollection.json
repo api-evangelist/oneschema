@@ -1,0 +1,263 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds Imports API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FileFeeds Imports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List FileFeed imports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed"
+              },
+              {
+                "name": "start_row",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of imports for the specified FileFeed. Supports pagination via `start_row` and `count` parameters."
+        },
+        {
+          "info": {
+            "name": "Create FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Client ID for the environment the import is being initiated from"
+              },
+              {
+                "name": "user_jwt",
+                "value": "",
+                "type": "query",
+                "description": "Encoded JWT for the user initiating the import"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a new import for a FileFeed"
+        },
+        {
+          "info": {
+            "name": "Get FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports/:file_feed_import_id",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed"
+              },
+              {
+                "name": "file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed import"
+              }
+            ]
+          },
+          "docs": "Get the FileFeed imports for a given FileFeed"
+        },
+        {
+          "info": {
+            "name": "Delete FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports/:file_feed_import_id",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed"
+              },
+              {
+                "name": "file_feed_import_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed import"
+              }
+            ]
+          },
+          "docs": "Delete a specific FileFeed import for a given FileFeed"
+        },
+        {
+          "info": {
+            "name": "Generate error details report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports/:file_feed_import_id/attempts/:file_feed_import_attempt_id/error-details",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_feed_import_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_feed_import_attempt_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate a CSV of every cell error remaining in the import, broken down by row. Returns a presigned URL to download the file."
+        },
+        {
+          "info": {
+            "name": "Get import download url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports/:file_feed_import_id/import-download-url",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_feed_import_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a download url for a successful FileFeed import"
+        },
+        {
+          "info": {
+            "name": "Get imported rows for a given FileFeed attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports/:file_feed_import_id/attempts/:file_feed_import_attempt_id/imported-rows",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_feed_import_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_feed_import_attempt_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start_row",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get imported JSON rows for a successful FileFeed import attempt"
+        },
+        {
+          "info": {
+            "name": "Retry FileFeed import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/imports/:file_feed_import_id/retry",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_feed_import_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retry a failed import for a FileFeed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

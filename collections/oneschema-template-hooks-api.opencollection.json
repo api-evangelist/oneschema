@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Template Hooks API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Template Hooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List template hooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/template-hooks",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return"
+              }
+            ]
+          },
+          "docs": "Returns a list of template hooks for the organization. Supports pagination via `offset` and `count` parameters."
+        },
+        {
+          "info": {
+            "name": "Create a new template hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/template-hooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new template hook."
+        },
+        {
+          "info": {
+            "name": "Get a template hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/template-hooks/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a template hook."
+        },
+        {
+          "info": {
+            "name": "Update an existing template hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.oneschema.co/v1/template-hooks/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing template hook. Note that updates to template hooks are live instantly."
+        },
+        {
+          "info": {
+            "name": "Delete a template hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/template-hooks/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a template hook. A template hook attached to a template cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

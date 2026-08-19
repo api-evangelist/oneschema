@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Workspaces API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/workspaces",
+            "params": [
+              {
+                "name": "containing_workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter Workspaces by the ID of the containing Workspace. Pass `null` or an empty value to return only root-level Workspaces (those with no containing Workspace); omitting the parameter returns all accessible Workspaces."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of Workspaces to skip before starting to collect the result set. Must be non-negative. Defaults to 0."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of Workspaces to return. Must be non-negative. Defaults to and is capped at 100."
+              }
+            ]
+          },
+          "docs": "Returns a list of all Workspaces that the authenticated user can access. Supports pagination via `offset` and `count` query parameters."
+        },
+        {
+          "info": {
+            "name": "Create a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/workspaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Workspace in the organization."
+        },
+        {
+          "info": {
+            "name": "Get a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the Workspace."
+              }
+            ]
+          },
+          "docs": "Retrieve a single Workspace by its id, including the sheets it contains."
+        },
+        {
+          "info": {
+            "name": "Update a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.oneschema.co/v1/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the Workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Workspace's name, description, color, custom metadata, or containing workspace."
+        },
+        {
+          "info": {
+            "name": "Delete a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the Workspace."
+              }
+            ]
+          },
+          "docs": "Delete a Workspace. The default Workspace cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Code Hooks (Legacy) API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Code Hooks (Legacy)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create post-mapping code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/template-hooks/post-mapping/code",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a post-mapping code hook."
+        },
+        {
+          "info": {
+            "name": "Create post-upload code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/template-hooks/post-upload/code",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a post-upload code hook."
+        },
+        {
+          "info": {
+            "name": "Create validation code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/template-hooks/validation/code",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a validation code hook."
+        },
+        {
+          "info": {
+            "name": "Get post-mapping code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/template-hooks/post-mapping/code/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a post-mapping code hook by key."
+        },
+        {
+          "info": {
+            "name": "Delete post-mapping code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/template-hooks/post-mapping/code/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a post-mapping code hook by key."
+        },
+        {
+          "info": {
+            "name": "Get post-upload code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/template-hooks/post-upload/code/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a post-upload code hook by key."
+        },
+        {
+          "info": {
+            "name": "Delete post-upload code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/template-hooks/post-upload/code/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a post-upload code hook by key."
+        },
+        {
+          "info": {
+            "name": "Get validation code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/template-hooks/validation/code/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a validation code hook by key."
+        },
+        {
+          "info": {
+            "name": "Delete validation code hook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/template-hooks/validation/code/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a validation code hook by key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

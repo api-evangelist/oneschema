@@ -1,0 +1,440 @@
+{
+  "item": [
+    {
+      "id": "59383776-917c-488a-925a-b87ad84d959d",
+      "name": "FileFeed Mappings",
+      "description": {
+        "content": "Saved column mappings for FileFeeds",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b99f8e10-c5e9-4a46-ac2e-806cfe5efe6c",
+          "name": "Get saved mappings for a FileFeed",
+          "request": {
+            "name": "Get saved mappings for a FileFeed",
+            "description": {
+              "content": "Get the saved mappings for a given FileFeed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds",
+                ":file_feed_id",
+                "saved-mappings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "file_feed_id",
+                  "description": "(Required) The id of the FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9411bcf3-de73-452e-9348-ec4892c4500d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id",
+                    "saved-mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The id of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mappings\": [\n    {\n      \"uploaded_column_name\": \"string\",\n      \"target_column_name\": \"string\"\n    },\n    {\n      \"uploaded_column_name\": \"string\",\n      \"target_column_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "090ff947-cedc-4652-ae60-337a87aef2f3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id",
+                    "saved-mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The id of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05fe6939-12a9-4168-8a27-7b1f12edb8e5",
+              "name": "Unprocessable Entity — the file feed's pipeline is missing commits or required configuration steps.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id",
+                    "saved-mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The id of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d007c4df-f1d9-48cc-922e-6b25a990679a",
+          "name": "Update FileFeed saved mappings",
+          "request": {
+            "name": "Update FileFeed saved mappings",
+            "description": {
+              "content": "Update saved mappings for a given FileFeed. Note that any uncommitted changes to FileFeed transforms will be overwritten.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "file-feeds",
+                ":file_feed_id",
+                "saved-mappings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "file_feed_id",
+                  "description": "(Required) The id of the FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mappings\": [\n    {\n      \"uploaded_column_name\": \"<string>\",\n      \"target_column_name\": \"<string>\"\n    },\n    {\n      \"uploaded_column_name\": \"<string>\",\n      \"target_column_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d81cbc46-788d-48ee-b065-9eb23dbd1b93",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id",
+                    "saved-mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The id of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mappings\": [\n    {\n      \"uploaded_column_name\": \"<string>\",\n      \"target_column_name\": \"<string>\"\n    },\n    {\n      \"uploaded_column_name\": \"<string>\",\n      \"target_column_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mappings\": [\n    {\n      \"uploaded_column_name\": \"string\",\n      \"target_column_name\": \"string\"\n    },\n    {\n      \"uploaded_column_name\": \"string\",\n      \"target_column_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf8a0e5e-56f7-4bde-8d35-0347fbf78246",
+              "name": "Bad request — invalid mappings or the file feed's pipeline is missing commits or required configuration steps.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "file-feeds",
+                    ":file_feed_id",
+                    "saved-mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "file_feed_id",
+                      "description": "(Required) The id of the FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mappings\": [\n    {\n      \"uploaded_column_name\": \"<string>\",\n      \"target_column_name\": \"<string>\"\n    },\n    {\n      \"uploaded_column_name\": \"<string>\",\n      \"target_column_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.oneschema.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c8ca1a2d-d6b3-41a3-90c5-e511b715fcef",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeed Mappings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+      "type": "text/plain"
+    }
+  }
+}

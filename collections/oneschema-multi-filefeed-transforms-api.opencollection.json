@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Transforms API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multi FileFeed Transforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get HEAD state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/head",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ]
+          },
+          "docs": "Returns the current HEAD (draft) flowgraph state along with its\ndirty status. The HEAD is the mutable, editable version of the\nflowgraph — it may differ from the latest commit if edits have\nbeen made but not yet committed.\n\nThe `is_dirty` flag indicates whether the HEAD has changes that\nare newer than the latest commit. If `true`, `POST /commits`\nwill reject requests to prevent overwriting in-progress UI edits.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+        },
+        {
+          "info": {
+            "name": "Get transforms history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/transforms/history",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of commits to skip (for pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of commits to return (1–100)"
+              }
+            ]
+          },
+          "docs": "Returns the paginated commit history for the Multi FileFeed's transforms,\nordered by most recent first.\n\nEach entry includes the commit ID, timestamp, and optional creator label\nand change descriptions.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+        },
+        {
+          "info": {
+            "name": "Get transforms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ]
+          },
+          "docs": "Returns the current HEAD flowgraph state using the v1 transforms format.\n\nThe response includes the portable flowgraph export (nodes, edges, pipelines),\nthe dirty status (and the last commit ID if there is at least one commit) \nfor optimistic locking.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+        },
+        {
+          "info": {
+            "name": "Patch transforms",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/transforms",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the Multi FileFeed's HEAD flowgraph with the supplied state.\n\nThe `flowgraph.nodes` and `flowgraph.edges` arrays represent the complete\ndesired state — nodes absent from the payload are deleted, and edges are\nfully replaced. Every call must include a `source` node and an `import` or\n`import-v2` node or the request will be rejected. Represent the complete\nworkflow as a single graph.\n\nWithin an individual node, `config` uses merge semantics:\n\nIf a key is not specified, the current value i"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

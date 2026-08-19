@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Commits API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multi FileFeed Commits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List commits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/commits",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return (default 20, max 100)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of commits (immutable snapshots) for the\nMulti FileFeed, ordered newest-first.\n\nEach entry contains the commit ID and creation timestamp.\nTo retrieve a commit's full transforms, use\n`GET /commits/{commit_id}`.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+        },
+        {
+          "info": {
+            "name": "Create a commit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/commits",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an immutable commit (snapshot) of the Multi FileFeed's transforms.\nA request body with the transforms payload is required.\n\nThe endpoint atomically:\n1. Checks that the HEAD is not dirty (rejects with 422 if it is)\n2. Replaces all nodes on the HEAD with the supplied payload\n3. Creates an immutable commit snapshot\n\nThe dirty check prevents accidentally overwriting in-progress UI edits.\nIf the HEAD has uncommitted changes, the API consumer must coordinate\nwith the UI user before proceeding."
+        },
+        {
+          "info": {
+            "name": "Get a commit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/commits/:commit_id",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "commit_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the commit"
+              }
+            ]
+          },
+          "docs": "Returns the transforms for a specific commit. The commit must\nbelong to this Multi FileFeed's recurring flowgraph.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+        },
+        {
+          "info": {
+            "name": "Revert to a commit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v0/multi-file-feeds/:multi_file_feed_id/commits/:commit_id/revert",
+            "params": [
+              {
+                "name": "multi_file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Multi FileFeed"
+              },
+              {
+                "name": "commit_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the commit to revert to"
+              }
+            ]
+          },
+          "docs": "Reverts the HEAD flowgraph to the state of a specific commit,\nthen creates a new commit from the reverted HEAD.\n\nThe target commit must belong to this Multi FileFeed's recurring\nflowgraph. The response contains the newly created commit (not\nthe original target commit).\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

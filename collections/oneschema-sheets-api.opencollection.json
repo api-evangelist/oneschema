@@ -1,0 +1,514 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Sheets API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sheets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a sheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              }
+            ]
+          },
+          "docs": "Retrieve a sheet with the given sheet_id."
+        },
+        {
+          "info": {
+            "name": "Update a sheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the name and/or custom_metadata of a sheet."
+        },
+        {
+          "info": {
+            "name": "Delete a sheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Delete a sheet with the given sheet_id."
+        },
+        {
+          "info": {
+            "name": "Export as file (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/export-file-async/:format",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "The format of the exported file."
+              },
+              {
+                "name": "row_filter",
+                "value": "",
+                "type": "query",
+                "description": "Which rows should be included in the export."
+              },
+              {
+                "name": "include_unmapped",
+                "value": "",
+                "type": "query",
+                "description": "If unmapped columns should be included in the exported file."
+              },
+              {
+                "name": "warning_behavior",
+                "value": "",
+                "type": "query",
+                "description": "How warnings should be treated during export."
+              }
+            ]
+          },
+          "docs": "Create an asynchronous job to export the sheet in the given format."
+        },
+        {
+          "info": {
+            "name": "Export as CSV file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/export-file/csv",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "row_filter",
+                "value": "",
+                "type": "query",
+                "description": "Which rows should be included in the export."
+              },
+              {
+                "name": "include_unmapped",
+                "value": "",
+                "type": "query",
+                "description": "If unmapped columns should be included in the exported file."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "[importer only] The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Create a CSV file with the contents of the sheet."
+        },
+        {
+          "info": {
+            "name": "Export as Excel file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/export-file/excel",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "row_filter",
+                "value": "",
+                "type": "query",
+                "description": "Which rows should be included in the export."
+              },
+              {
+                "name": "include_unmapped",
+                "value": "",
+                "type": "query",
+                "description": "If unmapped columns should be included in the exported file."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "[importer only] The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Create an Excel file with the contents of the sheet."
+        },
+        {
+          "info": {
+            "name": "Export as JSON file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/export-file/json",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "include_unmapped",
+                "value": "",
+                "type": "query",
+                "description": "If unmapped columns should be included in the exported file."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "[importer only] The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Create a JSON file with the contents of the sheet."
+        },
+        {
+          "info": {
+            "name": "Export as JSONL file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/export-file/jsonlines",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "include_unmapped",
+                "value": "",
+                "type": "query",
+                "description": "If unmapped columns should be included in the exported file."
+              },
+              {
+                "name": "row_filter",
+                "value": "",
+                "type": "query",
+                "description": "Which rows should be included in the export."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "[importer only] The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Create a JSONL file with the contents of the sheet."
+        },
+        {
+          "info": {
+            "name": "Get export download URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/exports/:export_file_id/download-url",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "export_file_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the export file."
+              }
+            ]
+          },
+          "docs": "Retrieve a pre-signed download URL for an exported file."
+        },
+        {
+          "info": {
+            "name": "Get export job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/export-file-async/jobs/:export_job_id",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "export_job_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the export job."
+              }
+            ]
+          },
+          "docs": "Retrieve the status of an asynchronous export job."
+        },
+        {
+          "info": {
+            "name": "Get a sheet's mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/mapping",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Retrieve the current mapping of the sheet's columns to the template's columns."
+        },
+        {
+          "info": {
+            "name": "Map sheet columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/mapping",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the embed which contains the sheet."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Map the sheet columns to template columns and trigger validation for the mapped columns."
+        },
+        {
+          "info": {
+            "name": "Get rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/rows",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "start_row",
+                "value": "",
+                "type": "query",
+                "description": "The (0-based) row index of the first row to include."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of rows to retrieve (default is all rows)."
+              },
+              {
+                "name": "include_unmapped",
+                "value": "",
+                "type": "query",
+                "description": "If unmapped columns should be included in the exported file."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Return paginated rows from the sheet."
+        },
+        {
+          "info": {
+            "name": "Set the header row",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/header-row",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet"
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the embed which contains the sheet."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set which row of the sheet contains column headers, or use auto-detection."
+        },
+        {
+          "info": {
+            "name": "Unmap a sheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets/:sheet_id/unmap",
+            "params": [
+              {
+                "name": "sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sheet."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the embed which contains the sheet."
+              }
+            ]
+          },
+          "docs": "Entirely unmap the sheet from its template."
+        },
+        {
+          "info": {
+            "name": "Upload a CSV or Excel file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.oneschema.co/v1/sheets",
+            "params": [
+              {
+                "name": "sheet_name",
+                "value": "",
+                "type": "query",
+                "description": "If importing an Excel spreadsheet, the name of the sheet that should be imported."
+              },
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "[Legacy] The OneSchema id of the workspace to import into. If no workspace id is specified, the default team workspace is used."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the Embed which the file will be imported into. Omit this to upload into the Workspaces product instead of an Embed."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload a CSV (.csv) or Excel (.xlsx) file into OneSchema.\nThe file should be sent as `multipart/form-data` and include the filename and the file's media type.\n\nIf no `embed_id` is provided, the file is uploaded into the Workspaces product. Without a `workspace_id`, it goes into your default team workspace; pass a `workspace_id` to target a specific workspace. Provide `embed_id` only when you want to import the file into a specific Embed instead."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

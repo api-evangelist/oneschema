@@ -1,0 +1,232 @@
+{
+  "item": [
+    {
+      "id": "7f7fff42-3082-458e-af73-4cc3af92479b",
+      "name": "Workspace Sheets",
+      "description": {
+        "content": "Sheet operations within Workspaces",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96e7de69-ff8e-4d7b-8491-9b65b071b5d0",
+          "name": "Assign a template to a Workspace sheet",
+          "request": {
+            "name": "Assign a template to a Workspace sheet",
+            "description": {
+              "content": "Assign or unassign a template for a Workspace sheet. Pass `template_key: null` to unassign the current template.\n\nSet `auto_set_header_row` to `true` to automatically detect and set the header row before applying the template. If the sheet's headers are already set, `auto_set_header_row` is ignored.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sheets",
+                ":sheet_id",
+                "template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sheet_id",
+                  "description": "(Required) The id of the sheet."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template_key\": \"<string,null>\",\n  \"auto_set_header_row\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e3025a4-4387-401f-bd3e-ece594652a45",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template_key\": \"<string,null>\",\n  \"auto_set_header_row\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5122,\n  \"workspace_id\": 9735,\n  \"name\": \"string\",\n  \"template_key\": \"string\",\n  \"custom_metadata\": {},\n  \"columns\": [\n    {\n      \"id\": 6942,\n      \"name\": \"string\",\n      \"template_column_key\": \"string\",\n      \"is_custom\": true\n    },\n    {\n      \"id\": 24,\n      \"name\": \"string\",\n      \"template_column_key\": \"string\",\n      \"is_custom\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f7afaa4-7dee-4634-99a7-e064941e96e0",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sheets",
+                    ":sheet_id",
+                    "template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sheet_id",
+                      "description": "(Required) The id of the sheet."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template_key\": \"<string,null>\",\n  \"auto_set_header_row\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.oneschema.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "24e328c8-101c-48d7-8b64-c7254bf6ab86",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Workspace Sheets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeed Mappings API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FileFeed Mappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get saved mappings for a FileFeed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/saved-mappings",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed"
+              }
+            ]
+          },
+          "docs": "Get the saved mappings for a given FileFeed"
+        },
+        {
+          "info": {
+            "name": "Update FileFeed saved mappings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.oneschema.co/v0/file-feeds/:file_feed_id/saved-mappings",
+            "params": [
+              {
+                "name": "file_feed_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the FileFeed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update saved mappings for a given FileFeed. Note that any uncommitted changes to FileFeed transforms will be overwritten."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

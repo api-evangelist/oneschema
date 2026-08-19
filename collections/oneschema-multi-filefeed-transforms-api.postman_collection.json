@@ -1,0 +1,1440 @@
+{
+  "item": [
+    {
+      "id": "15b28fc1-bd3e-4e47-841a-85dfa281ca37",
+      "name": "Multi FileFeed Transforms",
+      "description": {
+        "content": "Manage the transforms (flowgraph nodes) of a Multi FileFeed.\n\nThe HEAD is the mutable, editable version of the flowgraph.\nCommits are immutable snapshots of the HEAD at a point in time.\nImports run against the latest commit.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f4d8642-bdcf-42d9-a2ba-d753b9dd168c",
+          "name": "Get HEAD state",
+          "request": {
+            "name": "Get HEAD state",
+            "description": {
+              "content": "Returns the current HEAD (draft) flowgraph state along with its\ndirty status. The HEAD is the mutable, editable version of the\nflowgraph — it may differ from the latest commit if edits have\nbeen made but not yet committed.\n\nThe `is_dirty` flag indicates whether the HEAD has changes that\nare newer than the latest commit. If `true`, `POST /commits`\nwill reject requests to prevent overwriting in-progress UI edits.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "multi-file-feeds",
+                ":multi_file_feed_id",
+                "head"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "multi_file_feed_id",
+                  "description": "(Required) ID of the Multi FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f9d6d93-950e-4da9-9743-742d48871cad",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "head"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_dirty\": true,\n  \"transforms\": {\n    \"version\": 0,\n    \"exported_at\": \"1997-04-27T15:22:32.077Z\",\n    \"flowgraph\": {\n      \"nodes\": [\n        {\n          \"node_key\": \"string\",\n          \"type\": \"string\",\n          \"config\": {},\n          \"position_x\": 4011.9220727259362,\n          \"position_y\": 9468.621959457294,\n          \"pipeline\": {}\n        },\n        {\n          \"node_key\": \"string\",\n          \"type\": \"string\",\n          \"config\": {},\n          \"position_x\": 8746.478221382144,\n          \"position_y\": 3797.090503200301,\n          \"pipeline\": {}\n        }\n      ],\n      \"edges\": [\n        {\n          \"from_node_key\": \"string\",\n          \"to_node_key\": \"string\"\n        },\n        {\n          \"from_node_key\": \"string\",\n          \"to_node_key\": \"string\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15dab694-5f68-45e7-b5d1-5bfada8466da",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "head"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27c71b26-9e72-4436-bdfc-5835f98501cb",
+              "name": "Unauthorized (missing or invalid API key)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "head"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "215dfda6-cb73-4864-9039-6410db219c88",
+              "name": "Forbidden (wrong organization or required feature not enabled)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "head"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "293cdd63-785e-45e9-b130-3e5d6c542b61",
+              "name": "Unprocessable entity (e.g. workflow has no recurring flowgraph)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "head"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ce980e8-eeec-4a78-9c1d-cd314556072f",
+          "name": "Get transforms history",
+          "request": {
+            "name": "Get transforms history",
+            "description": {
+              "content": "Returns the paginated commit history for the Multi FileFeed's transforms,\nordered by most recent first.\n\nEach entry includes the commit ID, timestamp, and optional creator label\nand change descriptions.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "multi-file-feeds",
+                ":multi_file_feed_id",
+                "transforms",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of commits to skip (for pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of commits to return (1–100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "multi_file_feed_id",
+                  "description": "(Required) ID of the Multi FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d3c00c0-36ca-49d9-84af-45c07bb78627",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"history\": [\n    {\n      \"commit_id\": 1327,\n      \"created_at\": \"2003-04-24T15:37:33.987Z\",\n      \"creator_label\": \"string\",\n      \"change_descriptions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"commit_id\": 4442,\n      \"created_at\": \"1975-07-03T12:08:55.542Z\",\n      \"creator_label\": \"string\",\n      \"change_descriptions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"total_count\": 1537\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bece29fa-1663-4fbf-86fb-6aed1cff4294",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7bac2834-9955-47c3-8434-75071bf22006",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89412b06-791a-4095-98f5-425148bd9d09",
+              "name": "Forbidden (feature not enabled)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "143e2c14-e452-4e1e-9c75-e809c5f7b8c8",
+              "name": "Workflow has no recurring flowgraph",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0feb06d6-535f-4d76-ba2d-fa3aea6424e0",
+          "name": "Get transforms",
+          "request": {
+            "name": "Get transforms",
+            "description": {
+              "content": "Returns the current HEAD flowgraph state using the v1 transforms format.\n\nThe response includes the portable flowgraph export (nodes, edges, pipelines),\nthe dirty status (and the last commit ID if there is at least one commit) \nfor optimistic locking.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "multi-file-feeds",
+                ":multi_file_feed_id",
+                "transforms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "multi_file_feed_id",
+                  "description": "(Required) ID of the Multi FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "203fd472-8f26-4308-bfec-419831302d96",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_dirty\": true,\n  \"transforms\": {\n    \"version\": 1,\n    \"flowgraph\": {},\n    \"workflow\": {\n      \"name\": \"string\",\n      \"workspace_key\": \"string\",\n      \"workflow_event_webhook_key\": \"string\",\n      \"workflow_code_action_key\": \"string\",\n      \"custom_metadata\": {}\n    },\n    \"templates\": [\n      {\n        \"template_key\": \"string\",\n        \"is_required\": false\n      },\n      {\n        \"template_key\": \"string\",\n        \"is_required\": true\n      }\n    ]\n  },\n  \"last_commit_id\": 5661\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad1b2c4e-bb28-4023-b264-54268dcd477d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2111baa0-c3f6-47d6-a97b-32a310853e58",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0fec329d-a6f6-4c02-9ab2-57822122c5c2",
+              "name": "Forbidden (feature not enabled)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c32939a6-bace-4274-b6cb-0ab2af943ab1",
+              "name": "Workflow has no recurring flowgraph",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6116f3d1-8cb0-4db7-b968-c7e9ebac9293",
+          "name": "Patch transforms",
+          "request": {
+            "name": "Patch transforms",
+            "description": {
+              "content": "Replaces the Multi FileFeed's HEAD flowgraph with the supplied state.\n\nThe `flowgraph.nodes` and `flowgraph.edges` arrays represent the complete\ndesired state — nodes absent from the payload are deleted, and edges are\nfully replaced. Every call must include a `source` node and an `import` or\n`import-v2` node or the request will be rejected. Represent the complete\nworkflow as a single graph.\n\nWithin an individual node, `config` uses merge semantics:\n\nIf a key is not specified, the current value is left unchanged.\nIf a key takes a scalar value\n- a supplied value replaces the current value\n- a null value deletes the key\nIf a key takes an array value\n- supplied value replaces the current array\n- a null value deletes the key\nIf a key takes a hash/object value\n- the supplied hash is recursively merged with the current hash (same rules apply at each nested level)\n- a null value deletes the key\n\nAuto-commits by default. Use `commit_now: false` to defer committing.\n\nConcurrency guards:\n  - `last_known_commit_id` — optimistic lock; 409 if commits changed\n  - Dirty-state check — 409 if HEAD has uncommitted UI edits (override with `force: true`)\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "multi-file-feeds",
+                ":multi_file_feed_id",
+                "transforms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "multi_file_feed_id",
+                  "description": "(Required) ID of the Multi FileFeed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": \"<object>\",\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": \"<object>\",\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"node_key\": \"<string>\",\n        \"type\": \"<string>\",\n        \"config\": \"<object>\",\n        \"position_x\": \"<number>\",\n        \"position_y\": \"<number>\",\n        \"pipeline\": {\n          \"template_key\": \"<string>\",\n          \"config\": \"<object>\",\n          \"prompt_generated_code_actions\": [\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"label\": \"<string>\",\n              \"user_prompt\": \"<string>\",\n              \"code\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      },\n      {\n        \"from_node_key\": \"<string>\",\n        \"to_node_key\": \"<string>\"\n      }\n    ]\n  },\n  \"commit_now\": true,\n  \"force\": false,\n  \"last_known_commit_id\": \"<integer>\",\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"workflow_event_webhook_key\": \"<string>\",\n    \"workflow_code_action_key\": \"<string>\",\n    \"custom_metadata\": \"<object>\"\n  },\n  \"templates\": [\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    },\n    {\n      \"template_key\": \"<string>\",\n      \"is_required\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b51c1737-9c4e-4318-bb0a-22108de187ec",
+              "name": "Successfully patched transforms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": 1,\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"source\",\n        \"type\": \"source\",\n        \"config\": {}\n      },\n      {\n        \"node_key\": \"import\",\n        \"type\": \"import-v2\",\n        \"config\": {}\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"source\",\n        \"to_node_key\": \"import\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transforms\": {},\n  \"commit_id\": 7406,\n  \"created_at\": \"1993-12-22T14:34:59.946Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97617c0d-7998-454c-96f6-c37b8543dd8f",
+              "name": "Bad request (invalid JSON or not an object)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": 1,\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"source\",\n        \"type\": \"source\",\n        \"config\": {}\n      },\n      {\n        \"node_key\": \"import\",\n        \"type\": \"import-v2\",\n        \"config\": {}\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"source\",\n        \"to_node_key\": \"import\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ad8f7c6-b534-480a-b19b-1de2fdfe758a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": 1,\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"source\",\n        \"type\": \"source\",\n        \"config\": {}\n      },\n      {\n        \"node_key\": \"import\",\n        \"type\": \"import-v2\",\n        \"config\": {}\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"source\",\n        \"to_node_key\": \"import\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82be7947-7889-4954-97c1-b00d15751d99",
+              "name": "Forbidden (feature not enabled or wrong org)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": 1,\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"source\",\n        \"type\": \"source\",\n        \"config\": {}\n      },\n      {\n        \"node_key\": \"import\",\n        \"type\": \"import-v2\",\n        \"config\": {}\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"source\",\n        \"to_node_key\": \"import\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e72e13c-50f6-4f0e-af6d-4e860ff48ade",
+              "name": "Conflict — concurrent modification detected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": 1,\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"source\",\n        \"type\": \"source\",\n        \"config\": {}\n      },\n      {\n        \"node_key\": \"import\",\n        \"type\": \"import-v2\",\n        \"config\": {}\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"source\",\n        \"to_node_key\": \"import\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {\n    \"last_known_commit_id\": 3403,\n    \"current_commit_id\": 258,\n    \"is_dirty\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb2e1376-3b51-424d-b5c0-c6aa297559a4",
+              "name": "Validation failed (schema, references, or graph errors)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "multi-file-feeds",
+                    ":multi_file_feed_id",
+                    "transforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "multi_file_feed_id",
+                      "description": "(Required) ID of the Multi FileFeed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": 1,\n  \"flowgraph\": {\n    \"nodes\": [\n      {\n        \"node_key\": \"source\",\n        \"type\": \"source\",\n        \"config\": {}\n      },\n      {\n        \"node_key\": \"import\",\n        \"type\": \"import-v2\",\n        \"config\": {}\n      }\n    ],\n    \"edges\": [\n      {\n        \"from_node_key\": \"source\",\n        \"to_node_key\": \"import\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {\n    \"errors\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.oneschema.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "38733926-1bef-4cc8-a8a3-bb1625fc029b",
+    "name": "OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Transforms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.\n\nContact Support:\n Name: OneSchema Support\n Email: support@oneschema.co",
+      "type": "text/plain"
+    }
+  }
+}
