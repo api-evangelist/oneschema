@@ -364,6 +364,8 @@ apis:
   humanURL: https://docs.oneschema.co/reference/create-embed
   baseURL: https://api.oneschema.co
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
