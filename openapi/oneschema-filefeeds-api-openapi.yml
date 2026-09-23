@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds API
+  title: OneSchema File Feeds API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: 'Manage OneSchema (legacy) FileFeeds: folders, feeds, imports, embed sessions, and saved mappings for automated recurring file ingestion.'
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -237,78 +237,15 @@ components:
           required:
           - sftp_account_id
           - path
-    file-feed-source:
-      oneOf:
-      - $ref: '#/components/schemas/source-sftp'
     file-feed-post-request:
       allOf:
       - $ref: '#/components/schemas/file-feed-base'
       required:
       - name
       - template_key
-    file-feed-resource:
-      allOf:
-      - $ref: '#/components/schemas/file-feed-base'
-      type: object
-      properties:
-        id:
-          type: string
-    destination-webhook:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - import_webhook
-        data:
-          type: object
-          properties:
-            webhook_key:
-              type: string
-              format: object_key
-          required:
-          - webhook_key
-    file-feed-destination:
-      type: object
+    file-feed-source:
       oneOf:
-      - $ref: '#/components/schemas/destination-sftp'
-      - $ref: '#/components/schemas/destination-webhook'
-    file-feed-base:
-      type: object
-      properties:
-        name:
-          type: string
-        template_key:
-          type: string
-          format: object_key
-        is_active:
-          type: boolean
-        config:
-          type: object
-          properties:
-            export_format:
-              type: string
-              enum:
-              - csv
-              - json
-            file_filter:
-              type: string
-        sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/file-feed-source'
-        destinations:
-          type: array
-          items:
-            $ref: '#/components/schemas/file-feed-destination'
-        custom_metadata:
-          type: object
-        event_webhook_key:
-          type: string
-          format: object_key
-        folder_id:
-          type: integer
-          description: ID of the folder containing this FileFeed
+      - $ref: '#/components/schemas/source-sftp'
     source-sftp:
       type: object
       properties:
@@ -348,6 +285,69 @@ components:
           required:
           - sftp_account_id
           - path
+    destination-webhook:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - import_webhook
+        data:
+          type: object
+          properties:
+            webhook_key:
+              type: string
+              format: object_key
+          required:
+          - webhook_key
+    file-feed-resource:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-base'
+      type: object
+      properties:
+        id:
+          type: string
+    file-feed-base:
+      type: object
+      properties:
+        name:
+          type: string
+        template_key:
+          type: string
+          format: object_key
+        is_active:
+          type: boolean
+        config:
+          type: object
+          properties:
+            export_format:
+              type: string
+              enum:
+              - csv
+              - json
+            file_filter:
+              type: string
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-source'
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-destination'
+        custom_metadata:
+          type: object
+        event_webhook_key:
+          type: string
+          format: object_key
+        folder_id:
+          type: integer
+          description: ID of the folder containing this FileFeed
+    file-feed-destination:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/destination-sftp'
+      - $ref: '#/components/schemas/destination-webhook'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

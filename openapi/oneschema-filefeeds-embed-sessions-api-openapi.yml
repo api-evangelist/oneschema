@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts FileFeeds Embed Sessions API
+  title: OneSchema FileFeeds FileFeeds Embed Sessions API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: 'Manage OneSchema (legacy) FileFeeds: folders, feeds, imports, embed sessions, and saved mappings for automated recurring file ingestion.'
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -74,9 +74,7 @@ paths:
       summary: Upload file to the FileFeed embed session
       description: 'Upload a file to a FileFeed embed session, to be used as a sample file
 
-        when editing the FileFeed transforms.
-
-        '
+        when editing the FileFeed transforms.'
       operationId: upload-file-to-embed-session
       tags:
       - FileFeeds Embed Sessions

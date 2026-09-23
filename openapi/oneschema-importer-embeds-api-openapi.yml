@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Importer Embeds API
+  title: OneSchema Importer Embeds API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: Manage OneSchema Importer embed sessions, including headless importer operations (upload, set header, map columns, import) and embed events.
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -220,7 +220,7 @@ paths:
     get:
       operationId: get-uploaded-file-url-for-an-embed
       summary: Get uploaded file url for an embed
-      description: Retrieve a URL linking to the uploaded file for an embed.  The returned URL is valid for 15 minutes.
+      description: Retrieve a URL linking to the uploaded file for an embed. The returned URL is valid for 15 minutes.
       parameters:
       - $ref: '#/components/parameters/EmbedIdPath'
       responses:
@@ -240,6 +240,24 @@ paths:
       - Importer Embeds
 components:
   schemas:
+    EmbedDetail:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbedColumn'
+      allOf:
+      - $ref: '#/components/schemas/EmbedSummary'
+    UrlResponse:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          examples:
+          - https://my-bucket.s3.us-west-2.amazonaws.com
     SheetMetadata:
       type: object
       properties:
@@ -306,6 +324,79 @@ components:
           type: string
           examples:
           - $7,937.18
+    ImportedRowsColumn:
+      type: object
+      properties:
+        sheet_column_name:
+          type: string
+          examples:
+          - First Name
+        template_column_name:
+          type: string
+          examples:
+          - First Name
+        template_column_key:
+          type: string
+          examples:
+          - first_name
+    empty-response:
+      type: object
+      properties: {}
+    EmbedColumn:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 227897
+          default: 0
+        name:
+          type: string
+          examples:
+          - DD/MM/YYYY
+        template_column_key:
+          type: string
+          examples:
+          - ddmmyyyy
+        is_custom:
+          type: boolean
+          examples:
+          - false
+          default: true
+    DeleteEmbedResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    EmbedSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 41559
+          default: 0
+        token:
+          type: string
+          examples:
+          - 5fd6a161-86f1-4514-9e92-0660e19ad5c2
+        template_key:
+          type: string
+          examples:
+          - employees
+        status:
+          type: string
+          examples:
+          - columns_mapped
+        user_jwt:
+          type: string
+          examples:
+          - REPLACE_WITH_JWT
+        imported_row_count:
+          type: integer
+          description: Total number of imported rows. Only present when the embed status is "imported".
+          examples:
+          - 995
     ImportedRowsResponse:
       type: object
       properties:
@@ -344,97 +435,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/empty-response'
-    EmbedDetail:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmbedColumn'
-      allOf:
-      - $ref: '#/components/schemas/EmbedSummary'
-    EmbedSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-          examples:
-          - 41559
-          default: 0
-        token:
-          type: string
-          examples:
-          - 5fd6a161-86f1-4514-9e92-0660e19ad5c2
-        template_key:
-          type: string
-          examples:
-          - employees
-        status:
-          type: string
-          examples:
-          - columns_mapped
-        user_jwt:
-          type: string
-          examples:
-          - REPLACE_WITH_JWT
-        imported_row_count:
-          type: integer
-          description: Total number of imported rows. Only present when the embed status is "imported".
-          examples:
-          - 995
-    DeleteEmbedResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-    EmbedColumn:
-      type: object
-      properties:
-        id:
-          type: integer
-          examples:
-          - 227897
-          default: 0
-        name:
-          type: string
-          examples:
-          - DD/MM/YYYY
-        template_column_key:
-          type: string
-          examples:
-          - ddmmyyyy
-        is_custom:
-          type: boolean
-          examples:
-          - false
-          default: true
-    empty-response:
-      type: object
-      properties: {}
-    ImportedRowsColumn:
-      type: object
-      properties:
-        sheet_column_name:
-          type: string
-          examples:
-          - First Name
-        template_column_name:
-          type: string
-          examples:
-          - First Name
-        template_column_key:
-          type: string
-          examples:
-          - first_name
-    UrlResponse:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          examples:
-          - https://my-bucket.s3.us-west-2.amazonaws.com
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

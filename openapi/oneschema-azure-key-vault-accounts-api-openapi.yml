@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Azure Key Vault Accounts API
+  title: OneSchema Azure Key Vault Azure Key Vault Accounts API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: Configure Azure Key Vault account connections and managed secret references for use in Multi FileFeeds.
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -292,6 +292,29 @@ components:
         client_secret:
           type: string
           description: The Azure AD application client secret
+    empty-response:
+      type: object
+      additionalProperties: false
+    azure-key-vault-account-base:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Azure Key Vault account connection
+        tenant_id:
+          type: string
+          description: The Azure AD (Microsoft Entra) tenant ID
+        client_id:
+          type: string
+          description: The Azure AD application (client) ID
+        client_secret:
+          type: string
+          description: The Azure AD application client secret
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: An optional description of the account connection
     azure-key-vault-account-resource:
       type: object
       properties:
@@ -321,85 +344,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    error-response:
-      type: object
-      required:
-      - message
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        param:
-          type: string
-          description: The parameter that caused the error
-        message:
-          type: string
-          description: A human-readable error message
-        data:
-          type: object
-          description: Additional error context
-    azure-key-vault-account-post-request:
-      type: object
-      required:
-      - name
-      - tenant_id
-      - client_id
-      - client_secret
-      properties:
-        name:
-          type: string
-          description: The name of the Azure Key Vault account connection
-        tenant_id:
-          type: string
-          description: The Azure AD (Microsoft Entra) tenant ID
-        client_id:
-          type: string
-          description: The Azure AD application (client) ID
-        client_secret:
-          type: string
-          description: The Azure AD application client secret
-      allOf:
-      - $ref: '#/components/schemas/azure-key-vault-account-base'
-    azure-key-vault-account-base:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the Azure Key Vault account connection
-        tenant_id:
-          type: string
-          description: The Azure AD (Microsoft Entra) tenant ID
-        client_id:
-          type: string
-          description: The Azure AD application (client) ID
-        client_secret:
-          type: string
-          description: The Azure AD application client secret
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: An optional description of the account connection
-    azure-test-connection-request:
-      type: object
-      required:
-      - secret_identifier
-      - vault
-      properties:
-        secret_identifier:
-          type: string
-          description: The identifier of the secret to test retrieval for
-        vault:
-          type: string
-          description: The full Azure Key Vault URL (e.g. https://myvault.vault.azure.net)
-        secret_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: A specific version to test (omit for latest)
-    empty-response:
-      type: object
-      additionalProperties: false
     test-connection-response:
       type: object
       properties:
@@ -422,6 +366,62 @@ components:
           type: string
         transaction_id:
           type: string
+    azure-key-vault-account-post-request:
+      type: object
+      required:
+      - name
+      - tenant_id
+      - client_id
+      - client_secret
+      properties:
+        name:
+          type: string
+          description: The name of the Azure Key Vault account connection
+        tenant_id:
+          type: string
+          description: The Azure AD (Microsoft Entra) tenant ID
+        client_id:
+          type: string
+          description: The Azure AD application (client) ID
+        client_secret:
+          type: string
+          description: The Azure AD application client secret
+      allOf:
+      - $ref: '#/components/schemas/azure-key-vault-account-base'
+    azure-test-connection-request:
+      type: object
+      required:
+      - secret_identifier
+      - vault
+      properties:
+        secret_identifier:
+          type: string
+          description: The identifier of the secret to test retrieval for
+        vault:
+          type: string
+          description: The full Azure Key Vault URL (e.g. https://myvault.vault.azure.net)
+        secret_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: A specific version to test (omit for latest)
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        param:
+          type: string
+          description: The parameter that caused the error
+        message:
+          type: string
+          description: A human-readable error message
+        data:
+          type: object
+          description: Additional error context
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

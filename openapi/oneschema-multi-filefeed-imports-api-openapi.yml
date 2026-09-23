@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Imports API
+  title: OneSchema Multi FileFeeds Multi FileFeed Imports API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: 'Manage OneSchema Multi FileFeeds: folders, feeds, imports, direct/S3 uploads, and versioned transform flowgraphs (HEAD, commits, history, revert).'
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -30,9 +30,7 @@ tags:
 
     The legacy `/v0/workflows/` prefix is still supported for backward compatibility
 
-    but is deprecated and should not be used for new integrations.
-
-    '
+    but is deprecated and should not be used for new integrations.'
 paths:
   /v0/multi-file-feeds/{multi_file_feed_id}/imports/{multi_file_feed_import_id}/direct-uploads:
     post:
@@ -52,9 +50,7 @@ paths:
 
         2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.
 
-        3. **Submit** (`direct-uploads/{upload_id}/submit`): verifies the upload succeeded and links the file to the import.
-
-        '
+        3. **Submit** (`direct-uploads/{upload_id}/submit`): verifies the upload succeeded and links the file to the import.'
       operationId: create-direct-upload-multi-file-feed-import-file
       tags:
       - Multi FileFeed Imports
@@ -145,9 +141,7 @@ paths:
         most recent first. At most 200 imports are returned.
 
 
-        Builder and workflow-called imports are excluded from the results.
-
-        '
+        Builder and workflow-called imports are excluded from the results.'
       operationId: list-multi-file-feed-imports
       tags:
       - Multi FileFeed Imports
@@ -205,9 +199,7 @@ paths:
 
         (validate-against-template node), errors come directly from the node
 
-        run''s details.
-
-        '
+        run''s details.'
       operationId: get-multi-file-feed-import-errors
       tags:
       - Multi FileFeed Imports
@@ -436,9 +428,7 @@ paths:
 
         2. **Upload**: the client uploads the file directly to cloud storage using the presigned URL.
 
-        3. **Submit** (this endpoint): verifies the upload succeeded and links the file to the import.
-
-        '
+        3. **Submit** (this endpoint): verifies the upload succeeded and links the file to the import.'
       operationId: submit-direct-upload-multi-file-feed-import-file
       tags:
       - Multi FileFeed Imports
@@ -567,9 +557,7 @@ paths:
 
         be unique within the import. If either already exists, a 409 Conflict is
 
-        returned.
-
-        '
+        returned.'
       operationId: upload-from-s3-multi-file-feed-import
       tags:
       - Multi FileFeed Imports

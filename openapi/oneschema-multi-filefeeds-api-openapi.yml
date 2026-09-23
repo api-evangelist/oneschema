@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeeds API
+  title: OneSchema Multi FileFeeds API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: 'Manage OneSchema Multi FileFeeds: folders, feeds, imports, direct/S3 uploads, and versioned transform flowgraphs (HEAD, commits, history, revert).'
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -44,9 +44,7 @@ paths:
 
         If `folder_id` is not provided, the Multi FileFeed is placed in the
 
-        organization''s default Multi FileFeed folder.
-
-        '
+        organization''s default Multi FileFeed folder.'
       operationId: create-multi-file-feed
       tags:
       - Multi FileFeeds
@@ -315,6 +313,24 @@ paths:
                 $ref: '#/components/schemas/MultiFileFeed'
 components:
   schemas:
+    DestinationSftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+          required:
+          - sftp_account_id
+          - path
     SourceSftp:
       type: object
       properties:
@@ -355,34 +371,6 @@ components:
           required:
           - sftp_account_id
           - path
-    WorkflowTemplateInput:
-      type: object
-      description: 'A template to associate with a Multi FileFeed.
-
-        At least one of `template_key` or `template_id` must be provided.
-
-        If both are provided, they must refer to the same template;
-
-        otherwise the request is rejected with a validation error.
-
-        '
-      anyOf:
-      - required:
-        - template_key
-      - required:
-        - template_id
-      properties:
-        template_key:
-          type: string
-          description: The unique key of the template to associate
-        template_id:
-          type: integer
-          description: The numeric ID of the template to associate
-        is_required:
-          type: boolean
-          description: Whether this template is required for the Multi FileFeed
-      required:
-      - is_required
     SourceS3:
       type: object
       properties:
@@ -440,53 +428,6 @@ components:
           required:
           - s3_account_id
           - bucket
-    MultiFileFeed:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        folder_id:
-          type: integer
-          description: ID of the folder containing this Multi FileFeed
-        custom_metadata:
-          type: object
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/MultiFileFeedTemplate'
-        source:
-          type: array
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/SourceSftp'
-            - $ref: '#/components/schemas/SourceS3'
-        destination:
-          type: array
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/DestinationSftp'
-            - $ref: '#/components/schemas/DestinationS3'
-        event_webhooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventWebhook'
-        post_validation_transform_key:
-          type: string
-          nullable: true
-          description: Key of the post-validation transform applied to this Multi FileFeed
-    EventWebhook:
-      type: object
-      properties:
-        webhook_key:
-          type: string
-          description: Unique key identifying the webhook
-        events:
-          type: array
-          items:
-            type: string
-          description: List of event types the webhook is subscribed to
     MultiFileFeedSummary:
       type: object
       properties:
@@ -528,6 +469,81 @@ components:
         is_required:
           type: boolean
           description: Whether this template is required for the Multi FileFeed
+    EventWebhook:
+      type: object
+      properties:
+        webhook_key:
+          type: string
+          description: Unique key identifying the webhook
+        events:
+          type: array
+          items:
+            type: string
+          description: List of event types the webhook is subscribed to
+    WorkflowTemplateInput:
+      type: object
+      description: 'A template to associate with a Multi FileFeed.
+
+        At least one of `template_key` or `template_id` must be provided.
+
+        If both are provided, they must refer to the same template;
+
+        otherwise the request is rejected with a validation error.
+
+        '
+      anyOf:
+      - required:
+        - template_key
+      - required:
+        - template_id
+      properties:
+        template_key:
+          type: string
+          description: The unique key of the template to associate
+        template_id:
+          type: integer
+          description: The numeric ID of the template to associate
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+      required:
+      - is_required
+    MultiFileFeed:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        folder_id:
+          type: integer
+          description: ID of the folder containing this Multi FileFeed
+        custom_metadata:
+          type: object
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiFileFeedTemplate'
+        source:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/SourceSftp'
+            - $ref: '#/components/schemas/SourceS3'
+        destination:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/DestinationSftp'
+            - $ref: '#/components/schemas/DestinationS3'
+        event_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventWebhook'
+        post_validation_transform_key:
+          type: string
+          nullable: true
+          description: Key of the post-validation transform applied to this Multi FileFeed
     DestinationS3:
       type: object
       properties:
@@ -549,24 +565,6 @@ components:
           required:
           - s3_account_id
           - bucket
-    DestinationSftp:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - sftp
-        data:
-          type: object
-          properties:
-            sftp_account_id:
-              type: integer
-            path:
-              type: string
-              format: path
-          required:
-          - sftp_account_id
-          - path
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Transforms API
+  title: OneSchema Multi FileFeeds Multi FileFeed Transforms API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: 'Manage OneSchema Multi FileFeeds: folders, feeds, imports, direct/S3 uploads, and versioned transform flowgraphs (HEAD, commits, history, revert).'
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -30,9 +30,7 @@ tags:
 
     Commits are immutable snapshots of the HEAD at a point in time.
 
-    Imports run against the latest commit.
-
-    '
+    Imports run against the latest commit.'
 paths:
   /v0/multi-file-feeds/{multi_file_feed_id}/head:
     parameters:
@@ -62,9 +60,7 @@ paths:
         will reject requests to prevent overwriting in-progress UI edits.
 
 
-        Requires Multi FileFeed transforms to be enabled for the organization.
-
-        '
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: get-multi-file-feed-head
       tags:
       - Multi FileFeed Transforms
@@ -180,9 +176,7 @@ paths:
         and change descriptions.
 
 
-        Requires Multi FileFeed transforms to be enabled for the organization.
-
-        '
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: get-multi-file-feed-transforms-history
       tags:
       - Multi FileFeed Transforms
@@ -242,7 +236,17 @@ paths:
       description: ID of the Multi FileFeed
     get:
       summary: Get transforms
-      description: "Returns the current HEAD flowgraph state using the v1 transforms format.\n\nThe response includes the portable flowgraph export (nodes, edges, pipelines),\nthe dirty status (and the last commit ID if there is at least one commit) \nfor optimistic locking.\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+      description: 'Returns the current HEAD flowgraph state using the v1 transforms format.
+
+
+        The response includes the portable flowgraph export (nodes, edges, pipelines),
+
+        the dirty status (and the last commit ID if there is at least one commit)
+
+        for optimistic locking.
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: get-multi-file-feed-transforms
       tags:
       - Multi FileFeed Transforms
@@ -333,7 +337,55 @@ paths:
           description: Workflow has no recurring flowgraph
     patch:
       summary: Patch transforms
-      description: "Replaces the Multi FileFeed's HEAD flowgraph with the supplied state.\n\nThe `flowgraph.nodes` and `flowgraph.edges` arrays represent the complete\ndesired state — nodes absent from the payload are deleted, and edges are\nfully replaced. Every call must include a `source` node and an `import` or\n`import-v2` node or the request will be rejected. Represent the complete\nworkflow as a single graph.\n\nWithin an individual node, `config` uses merge semantics:\n\nIf a key is not specified, the current value is left unchanged.\nIf a key takes a scalar value\n- a supplied value replaces the current value\n- a null value deletes the key\nIf a key takes an array value\n- supplied value replaces the current array\n- a null value deletes the key\nIf a key takes a hash/object value\n- the supplied hash is recursively merged with the current hash (same rules apply at each nested level)\n- a null value deletes the key\n\nAuto-commits by default. Use `commit_now: false` to defer committing.\n\nConcurrency guards:\n  - `last_known_commit_id` — optimistic lock; 409 if commits changed\n  - Dirty-state check — 409 if HEAD has uncommitted UI edits (override with `force: true`)\n\nRequires Multi FileFeed transforms to be enabled for the organization.\n"
+      description: 'Replaces the Multi FileFeed''s HEAD flowgraph with the supplied state.
+
+
+        The `flowgraph.nodes` and `flowgraph.edges` arrays represent the complete
+
+        desired state — nodes absent from the payload are deleted, and edges are
+
+        fully replaced. Every call must include a `source` node and an `import` or
+
+        `import-v2` node or the request will be rejected. Represent the complete
+
+        workflow as a single graph.
+
+
+        Within an individual node, `config` uses merge semantics:
+
+
+        If a key is not specified, the current value is left unchanged.
+
+        If a key takes a scalar value
+
+        - a supplied value replaces the current value
+
+        - a null value deletes the key
+
+        If a key takes an array value
+
+        - supplied value replaces the current array
+
+        - a null value deletes the key
+
+        If a key takes a hash/object value
+
+        - the supplied hash is recursively merged with the current hash (same rules apply at each nested level)
+
+        - a null value deletes the key
+
+
+        Auto-commits by default. Use `commit_now: false` to defer committing.
+
+
+        Concurrency guards:
+
+        - `last_known_commit_id` — optimistic lock; 409 if commits changed
+
+        - Dirty-state check — 409 if HEAD has uncommitted UI edits (override with `force: true`)
+
+
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: patch-multi-file-feed-transforms
       tags:
       - Multi FileFeed Transforms

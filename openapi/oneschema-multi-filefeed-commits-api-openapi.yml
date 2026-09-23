@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Multi FileFeed Commits API
+  title: OneSchema Multi FileFeeds Multi FileFeed Commits API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: 'Manage OneSchema Multi FileFeeds: folders, feeds, imports, direct/S3 uploads, and versioned transform flowgraphs (HEAD, commits, history, revert).'
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -30,9 +30,7 @@ tags:
 
     atomically replaces the HEAD and creates an immutable snapshot.
 
-    Imports run against the latest commit.
-
-    '
+    Imports run against the latest commit.'
 paths:
   /v0/multi-file-feeds/{multi_file_feed_id}/commits:
     parameters:
@@ -76,9 +74,7 @@ paths:
         created before `POST /imports`.
 
 
-        Requires Multi FileFeed transforms to be enabled for the organization.
-
-        '
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: create-multi-file-feed-commit
       tags:
       - Multi FileFeed Commits
@@ -214,9 +210,7 @@ paths:
         `GET /commits/{commit_id}`.
 
 
-        Requires Multi FileFeed transforms to be enabled for the organization.
-
-        '
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: list-multi-file-feed-commits
       tags:
       - Multi FileFeed Commits
@@ -309,9 +303,7 @@ paths:
         belong to this Multi FileFeed''s recurring flowgraph.
 
 
-        Requires Multi FileFeed transforms to be enabled for the organization.
-
-        '
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: get-multi-file-feed-commit
       tags:
       - Multi FileFeed Commits
@@ -409,9 +401,7 @@ paths:
         the original target commit).
 
 
-        Requires Multi FileFeed transforms to be enabled for the organization.
-
-        '
+        Requires Multi FileFeed transforms to be enabled for the organization.'
       operationId: revert-multi-file-feed-commit
       tags:
       - Multi FileFeed Commits

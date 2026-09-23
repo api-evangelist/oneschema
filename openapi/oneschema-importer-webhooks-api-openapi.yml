@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Importer Webhooks API
+  title: OneSchema Importer Webhooks API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: Create, list, read, update, and delete Importer Webhooks that push validated data from OneSchema into your database.
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -223,6 +223,11 @@ paths:
         hidden: true
 components:
   schemas:
+    delete-importer-webhook-response:
+      type: object
+      properties:
+        success:
+          type: boolean
     list-importer-webhooks-response:
       type: object
       properties:
@@ -230,64 +235,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/importer-webhook-resource'
-    error-response:
-      type: object
-      required:
-      - message
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        param:
-          type: string
-          description: The parameter that caused the error.
-        message:
-          type: string
-          description: A human-readable error message.
-        data:
-          type: object
-          description: Additional error context.
-    importer-webhook-resource:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the importer webhook.
-        webhook_key:
-          type: string
-          description: The org-unique key identifying this webhook.
-        type:
-          type: string
-          enum:
-          - batch
-          - metadata
-          description: The delivery mode for the webhook. `batch` delivers rows in batches; `metadata` delivers only the import metadata.
-        url:
-          type: string
-          description: The URL that the importer will POST to.
-        auth_type:
-          anyOf:
-          - type: string
-            enum:
-            - basic
-            - bearer_user_jwt
-          - type: 'null'
-          description: The authentication mode for requests to the webhook URL. `basic` requires a `secret_key`. `bearer_user_jwt` attaches the end-user JWT as a bearer token. Omit (`null`) for unauthenticated delivery.
-        secret_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The shared secret used for `basic` auth. Only returned to admin and developer API key users.
-        batch_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
-    delete-importer-webhook-response:
-      type: object
-      properties:
-        success:
-          type: boolean
     importer-webhook-create-request:
       type: object
       required:
@@ -358,6 +305,59 @@ components:
           - type: integer
           - type: 'null'
       description: All fields are optional. Only fields provided in the request body are updated; unspecified fields retain their existing values.
+    importer-webhook-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the importer webhook.
+        webhook_key:
+          type: string
+          description: The org-unique key identifying this webhook.
+        type:
+          type: string
+          enum:
+          - batch
+          - metadata
+          description: The delivery mode for the webhook. `batch` delivers rows in batches; `metadata` delivers only the import metadata.
+        url:
+          type: string
+          description: The URL that the importer will POST to.
+        auth_type:
+          anyOf:
+          - type: string
+            enum:
+            - basic
+            - bearer_user_jwt
+          - type: 'null'
+          description: The authentication mode for requests to the webhook URL. `basic` requires a `secret_key`. `bearer_user_jwt` attaches the end-user JWT as a bearer token. Omit (`null`) for unauthenticated delivery.
+        secret_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The shared secret used for `basic` auth. Only returned to admin and developer API key users.
+        batch_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        param:
+          type: string
+          description: The parameter that caused the error.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

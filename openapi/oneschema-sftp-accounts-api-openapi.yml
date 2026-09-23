@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts SFTP Accounts API
+  title: OneSchema SFTP Accounts API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: Configure SFTP account connections used as Multi FileFeed sources and destinations.
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -131,46 +131,19 @@ paths:
       - SFTP Accounts
 components:
   schemas:
-    sftp-account-post-request:
+    sftp-account-password:
       type: object
       required:
-      - name
-      - host
-      - username
-      - credentials
+      - password
       properties:
-        name:
+        password:
           type: string
-          description: The name of the SFTP Account
-        host:
-          type: string
-          description: The SFTP server host address
-        port:
-          type: integer
-          minimum: 1
-          maximum: 65535
-          description: The SFTP server port number (defaults to 22)
-          default: 22
-        username:
-          type: string
-          description: The user that should be used to connect to the SFTP server
-        credentials:
-          oneOf:
-          - $ref: '#/components/schemas/sftp-account-password'
-          - $ref: '#/components/schemas/sftp-account-ssh-private-key'
-          description: One of password or ssh_private_key is required
-          type: object
     sftp-account-ssh-private-key:
       type: object
       required:
       - ssh_private_key
       properties:
         ssh_private_key:
-          type: string
-    error-response:
-      type: object
-      properties:
-        error:
           type: string
     sftp-account-resource:
       type: object
@@ -201,12 +174,39 @@ components:
       properties:
         success:
           type: boolean
-    sftp-account-password:
+    sftp-account-post-request:
       type: object
       required:
-      - password
+      - name
+      - host
+      - username
+      - credentials
       properties:
-        password:
+        name:
+          type: string
+          description: The name of the SFTP Account
+        host:
+          type: string
+          description: The SFTP server host address
+        port:
+          type: integer
+          minimum: 1
+          maximum: 65535
+          description: The SFTP server port number (defaults to 22)
+          default: 22
+        username:
+          type: string
+          description: The user that should be used to connect to the SFTP server
+        credentials:
+          oneOf:
+          - $ref: '#/components/schemas/sftp-account-password'
+          - $ref: '#/components/schemas/sftp-account-ssh-private-key'
+          description: One of password or ssh_private_key is required
+          type: object
+    error-response:
+      type: object
+      properties:
+        error:
           type: string
   securitySchemes:
     ApiKeyAuth:

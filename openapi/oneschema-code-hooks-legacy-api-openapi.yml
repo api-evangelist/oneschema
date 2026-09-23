@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OneSchema AWS Secrets Manager AWS Secrets Manager Accounts Code Hooks (Legacy) API
+  title: OneSchema Code Hooks (Legacy) Code Hooks (Legacy) API
   version: '1'
-  description: Configure AWS Secrets Manager account connections and managed secret references for use in Multi FileFeeds.
+  description: 'Legacy code hooks: post-upload, post-mapping, and validation code hooks and template hooks.'
   contact:
     name: OneSchema Support
     email: support@oneschema.co
@@ -261,6 +261,18 @@ paths:
       - Code Hooks (Legacy)
 components:
   schemas:
+    empty-response:
+      type: object
+    code-hook-request:
+      type: object
+      required:
+      - key
+      - code
+      properties:
+        key:
+          type: string
+        code:
+          type: string
     validation-code-hook-request:
       type: object
       required:
@@ -282,8 +294,6 @@ components:
           default: row
         code:
           type: string
-    empty-response:
-      type: object
     post-mapping-code-hook-request:
       type: object
       required:
@@ -297,16 +307,6 @@ components:
         idempotent:
           type: boolean
           default: false
-    code-hook-request:
-      type: object
-      required:
-      - key
-      - code
-      properties:
-        key:
-          type: string
-        code:
-          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
