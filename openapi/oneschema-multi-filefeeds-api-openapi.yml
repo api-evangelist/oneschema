@@ -313,24 +313,6 @@ paths:
                 $ref: '#/components/schemas/MultiFileFeed'
 components:
   schemas:
-    DestinationSftp:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - sftp
-        data:
-          type: object
-          properties:
-            sftp_account_id:
-              type: integer
-            path:
-              type: string
-              format: path
-          required:
-          - sftp_account_id
-          - path
     SourceSftp:
       type: object
       properties:
@@ -371,104 +353,6 @@ components:
           required:
           - sftp_account_id
           - path
-    SourceS3:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - s3
-        data:
-          type: object
-          properties:
-            s3_account_id:
-              type: integer
-            bucket:
-              type: string
-            prefix:
-              type: string
-              nullable: true
-              description: Key prefix within the bucket to scope listing/pulling to. Defaults to empty (whole bucket).
-            file_filter:
-              type: string
-              nullable: true
-              description: 'Optional regular expression applied to object keys. When set, only matching keys are ingested.
-
-                Note: changing `file_filter` does not retroactively re-ingest objects that already passed the
-
-                cursor watermark; only newly listed objects are evaluated against the new pattern. Changing
-
-                `bucket` or `prefix`, by contrast, resets the cursor and dedupe ledger because they reference
-
-                a different object namespace.
-
-                '
-            options:
-              type: object
-              properties:
-                schedule:
-                  type: object
-                  properties:
-                    frequency:
-                      type: string
-                      enum:
-                      - hourly
-                      - daily
-                    hour_utc:
-                      type: integer
-                      minimum: 0
-                      maximum: 23
-                      description: Hour in UTC for daily frequency
-                    minute_utc:
-                      type: integer
-                      minimum: 0
-                      maximum: 55
-                      multipleOf: 5
-                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
-          required:
-          - s3_account_id
-          - bucket
-    MultiFileFeedSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the Multi FileFeed
-        name:
-          type: string
-          description: The name of the Multi FileFeed
-        folder:
-          type: object
-          properties:
-            id:
-              type: integer
-              description: The ID of the folder containing this Multi FileFeed
-            name:
-              type: string
-              description: The name of the folder
-        templates:
-          type: array
-          items:
-            type: object
-            properties:
-              template_key:
-                type: string
-                description: The unique key of the template
-              is_required:
-                type: boolean
-                description: Whether this template is required for the Multi FileFeed
-    MultiFileFeedTemplate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        key:
-          type: string
-        is_required:
-          type: boolean
-          description: Whether this template is required for the Multi FileFeed
     EventWebhook:
       type: object
       properties:
@@ -480,34 +364,6 @@ components:
           items:
             type: string
           description: List of event types the webhook is subscribed to
-    WorkflowTemplateInput:
-      type: object
-      description: 'A template to associate with a Multi FileFeed.
-
-        At least one of `template_key` or `template_id` must be provided.
-
-        If both are provided, they must refer to the same template;
-
-        otherwise the request is rejected with a validation error.
-
-        '
-      anyOf:
-      - required:
-        - template_key
-      - required:
-        - template_id
-      properties:
-        template_key:
-          type: string
-          description: The unique key of the template to associate
-        template_id:
-          type: integer
-          description: The numeric ID of the template to associate
-        is_required:
-          type: boolean
-          description: Whether this template is required for the Multi FileFeed
-      required:
-      - is_required
     MultiFileFeed:
       type: object
       properties:
@@ -565,6 +421,150 @@ components:
           required:
           - s3_account_id
           - bucket
+    MultiFileFeedTemplate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        key:
+          type: string
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+    SourceS3:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - s3
+        data:
+          type: object
+          properties:
+            s3_account_id:
+              type: integer
+            bucket:
+              type: string
+            prefix:
+              type: string
+              nullable: true
+              description: Key prefix within the bucket to scope listing/pulling to. Defaults to empty (whole bucket).
+            file_filter:
+              type: string
+              nullable: true
+              description: 'Optional regular expression applied to object keys. When set, only matching keys are ingested.
+
+                Note: changing `file_filter` does not retroactively re-ingest objects that already passed the
+
+                cursor watermark; only newly listed objects are evaluated against the new pattern. Changing
+
+                `bucket` or `prefix`, by contrast, resets the cursor and dedupe ledger because they reference
+
+                a different object namespace.
+
+                '
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      multipleOf: 5
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
+          required:
+          - s3_account_id
+          - bucket
+    WorkflowTemplateInput:
+      type: object
+      description: 'A template to associate with a Multi FileFeed.
+
+        At least one of `template_key` or `template_id` must be provided.
+
+        If both are provided, they must refer to the same template;
+
+        otherwise the request is rejected with a validation error.
+
+        '
+      anyOf:
+      - required:
+        - template_key
+      - required:
+        - template_id
+      properties:
+        template_key:
+          type: string
+          description: The unique key of the template to associate
+        template_id:
+          type: integer
+          description: The numeric ID of the template to associate
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+      required:
+      - is_required
+    DestinationSftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+          required:
+          - sftp_account_id
+          - path
+    MultiFileFeedSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed
+        name:
+          type: string
+          description: The name of the Multi FileFeed
+        folder:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The ID of the folder containing this Multi FileFeed
+            name:
+              type: string
+              description: The name of the folder
+        templates:
+          type: array
+          items:
+            type: object
+            properties:
+              template_key:
+                type: string
+                description: The unique key of the template
+              is_required:
+                type: boolean
+                description: Whether this template is required for the Multi FileFeed
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -240,90 +240,14 @@ paths:
       - Importer Embeds
 components:
   schemas:
-    EmbedDetail:
+    empty-response:
+      type: object
+      properties: {}
+    DeleteEmbedResponse:
       type: object
       properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmbedColumn'
-      allOf:
-      - $ref: '#/components/schemas/EmbedSummary'
-    UrlResponse:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          examples:
-          - https://my-bucket.s3.us-west-2.amazonaws.com
-    SheetMetadata:
-      type: object
-      properties:
-        original_file_name:
-          type: string
-          examples:
-          - original-file.csv
-    ImportedRowRecord:
-      type: object
-      properties:
-        account_name:
-          type: string
-          examples:
-          - Box
-        first_name:
-          type: string
-          examples:
-          - Aditi
-        last_name:
-          type: string
-          examples:
-          - Goel
-        owner:
-          type: string
-          examples:
-          - Akshay Goel
-        lead_source:
-          type: string
-          examples:
-          - website
-        date_added:
-          type: string
-          examples:
-          - 11/15/2020
-        country_code:
-          type: string
-          examples:
-          - US
-        mailing_address:
-          type: string
-          examples:
-          - 925 N Rossiter Blvd, Mount Dora, FL, 32757
-        timezone:
-          type: string
-          examples:
-          - America/New_York
-        market_segment:
-          type: string
-          examples:
-          - SMB
-        title:
-          type: string
-          examples:
-          - Information Systems Manager
-        email_opt_out:
-          type: string
-          examples:
-          - 'FALSE'
-        primary_phone:
-          type: string
-          examples:
-          - ''
-        average_spend:
-          type: string
-          examples:
-          - $7,937.18
+        success:
+          type: boolean
     ImportedRowsColumn:
       type: object
       properties:
@@ -339,35 +263,6 @@ components:
           type: string
           examples:
           - first_name
-    empty-response:
-      type: object
-      properties: {}
-    EmbedColumn:
-      type: object
-      properties:
-        id:
-          type: integer
-          examples:
-          - 227897
-          default: 0
-        name:
-          type: string
-          examples:
-          - DD/MM/YYYY
-        template_column_key:
-          type: string
-          examples:
-          - ddmmyyyy
-        is_custom:
-          type: boolean
-          examples:
-          - false
-          default: true
-    DeleteEmbedResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     EmbedSummary:
       type: object
       properties:
@@ -435,6 +330,111 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/empty-response'
+    SheetMetadata:
+      type: object
+      properties:
+        original_file_name:
+          type: string
+          examples:
+          - original-file.csv
+    UrlResponse:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          examples:
+          - https://my-bucket.s3.us-west-2.amazonaws.com
+    EmbedDetail:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbedColumn'
+      allOf:
+      - $ref: '#/components/schemas/EmbedSummary'
+    EmbedColumn:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 227897
+          default: 0
+        name:
+          type: string
+          examples:
+          - DD/MM/YYYY
+        template_column_key:
+          type: string
+          examples:
+          - ddmmyyyy
+        is_custom:
+          type: boolean
+          examples:
+          - false
+          default: true
+    ImportedRowRecord:
+      type: object
+      properties:
+        account_name:
+          type: string
+          examples:
+          - Box
+        first_name:
+          type: string
+          examples:
+          - Aditi
+        last_name:
+          type: string
+          examples:
+          - Goel
+        owner:
+          type: string
+          examples:
+          - Akshay Goel
+        lead_source:
+          type: string
+          examples:
+          - website
+        date_added:
+          type: string
+          examples:
+          - 11/15/2020
+        country_code:
+          type: string
+          examples:
+          - US
+        mailing_address:
+          type: string
+          examples:
+          - 925 N Rossiter Blvd, Mount Dora, FL, 32757
+        timezone:
+          type: string
+          examples:
+          - America/New_York
+        market_segment:
+          type: string
+          examples:
+          - SMB
+        title:
+          type: string
+          examples:
+          - Information Systems Manager
+        email_opt_out:
+          type: string
+          examples:
+          - 'FALSE'
+        primary_phone:
+          type: string
+          examples:
+          - ''
+        average_spend:
+          type: string
+          examples:
+          - $7,937.18
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

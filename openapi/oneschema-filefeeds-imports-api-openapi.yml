@@ -434,11 +434,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    presigned-url:
-      type: object
-      properties:
-        url:
-          type: string
     file-feed-import:
       type: object
       properties:
@@ -465,6 +460,11 @@ components:
               format: date-time
             imported_row_count:
               type: integer
+    presigned-url:
+      type: object
+      properties:
+        url:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -187,6 +187,23 @@ paths:
         hidden: true
 components:
   schemas:
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        param:
+          type: string
+          description: The parameter that caused the error
+        message:
+          type: string
+          description: A human-readable error message
+        data:
+          type: object
+          description: Additional error context
     s3-account-post-request:
       type: object
       required:
@@ -218,23 +235,6 @@ components:
     delete-s3-account-response:
       type: object
       additionalProperties: false
-    error-response:
-      type: object
-      required:
-      - message
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        param:
-          type: string
-          description: The parameter that caused the error
-        message:
-          type: string
-          description: A human-readable error message
-        data:
-          type: object
-          description: Additional error context
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

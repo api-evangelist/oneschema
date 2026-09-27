@@ -154,31 +154,6 @@ paths:
                 type: object
 components:
   schemas:
-    MultiFileFeedFolder:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the Multi FileFeed folder
-        name:
-          type: string
-          description: The name of the Multi FileFeed folder
-        description:
-          type: string
-          nullable: true
-          description: The description of the Multi FileFeed folder
-        color:
-          type: string
-          nullable: true
-          description: Color associated with the folder
-        custom_metadata:
-          type: object
-          nullable: true
-          description: Custom metadata associated with the folder
-        containing_folder_id:
-          type: integer
-          nullable: true
-          description: ID of the folder that contains this folder. Null for root folders.
     MultiFileFeedFolderRequest:
       type: object
       properties:
@@ -206,6 +181,31 @@ components:
       - $ref: '#/components/schemas/MultiFileFeedFolderRequest'
       required:
       - name
+    MultiFileFeedFolder:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed folder
+        name:
+          type: string
+          description: The name of the Multi FileFeed folder
+        description:
+          type: string
+          nullable: true
+          description: The description of the Multi FileFeed folder
+        color:
+          type: string
+          nullable: true
+          description: Color associated with the folder
+        custom_metadata:
+          type: object
+          nullable: true
+          description: Custom metadata associated with the folder
+        containing_folder_id:
+          type: integer
+          nullable: true
+          description: ID of the folder that contains this folder. Null for root folders.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

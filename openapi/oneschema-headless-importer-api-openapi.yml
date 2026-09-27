@@ -163,6 +163,9 @@ paths:
                 contentType: application/octet-stream
 components:
   schemas:
+    empty-response:
+      type: object
+      properties: {}
     TemplateColumnOverride:
       type: object
       required:
@@ -218,148 +221,6 @@ components:
           items:
             type: string
           default: []
-    EmbedCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-          examples:
-          - 42197
-          default: 0
-        token:
-          type: string
-          examples:
-          - 3f82e2c1-7657-441a-a93d-5e8f25c7ac61
-        status:
-          type: string
-          examples:
-          - initialized
-        user_jwt:
-          type: string
-          examples:
-          - REPLACE_WITH_JWT
-    EmbedDetail:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmbedColumn'
-      allOf:
-      - $ref: '#/components/schemas/EmbedSummary'
-    UploadFileRequest:
-      type: object
-      properties:
-        file:
-          description: The contents of the file to be imported.
-          format: binary
-          type: string
-        sheet_name:
-          type: string
-          description: The name of the sheet that should be imported if you are uploading a spreadsheet with multiple tabs.
-      required:
-      - file
-    empty-response:
-      type: object
-      properties: {}
-    SetColumnMappingRequest:
-      type: object
-      properties:
-        overrides:
-          type: array
-          items:
-            $ref: '#/components/schemas/MappingOverride'
-          description: These mappings will override detected mappings. Either column_id or column_name must be specified. If template_column_key is null, the column will not be mapped.
-    EmbedColumn:
-      type: object
-      properties:
-        id:
-          type: integer
-          examples:
-          - 227897
-          default: 0
-        name:
-          type: string
-          examples:
-          - DD/MM/YYYY
-        template_column_key:
-          type: string
-          examples:
-          - ddmmyyyy
-        is_custom:
-          type: boolean
-          examples:
-          - false
-          default: true
-    ImportConfigFormatOptions:
-      type: object
-      properties:
-        header_style:
-          type: string
-          enum:
-          - names
-          - keys
-          description: Whether uploaded csv file should have the uploaded template column names as headers or template column keys.
-    import-config-headers:
-      type: object
-      properties: {}
-    SetHeaderRequest:
-      type: object
-      required:
-      - index
-      properties:
-        index:
-          oneOf:
-          - type: integer
-            format: int32
-          - type: string
-            enum:
-            - auto
-          description: Set to the 0-based index of the header row, or "auto" to automatically detect and set the header row.
-    ImportConfig:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of OneSchema import that should be triggered for the embed
-        key:
-          type: string
-          description: Only applicable for "webhook" import type. Specifies the key for the importer webhook that should be called with import data.
-        metadata_only:
-          type: boolean
-          description: Only applicable for the "local" import type. Specifies whether the import should only include metadata.
-        url:
-          type: string
-          description: Only applicable for "file-upload" import type. This is the URL the importer data will be sent to.
-        format:
-          type: string
-          description: Only applicable for "file-upload" import type. This is the file format in which the importer data will be sent as. Either `csv` or `json`.
-        headers:
-          allOf:
-          - $ref: '#/components/schemas/import-config-headers'
-          description: Only applicable for the "file-upload" import type. The provided object should specify header keys and values.
-        format_options:
-          $ref: '#/components/schemas/ImportConfigFormatOptions'
-    EmbedUploadResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-          examples:
-          - 41963
-          default: 0
-        token:
-          type: string
-          examples:
-          - 812f66e4-76c3-4e1e-9e85-5c1374f15c6a
-        status:
-          type: string
-          examples:
-          - uploaded
-        user_jwt:
-          type: string
-          examples:
-          - REPLACE_WITH_JWT
     CreateEmbedRequest:
       type: object
       required:
@@ -432,6 +293,160 @@ components:
           description: Total number of imported rows. Only present when the embed status is "imported".
           examples:
           - 995
+    MappingOverride:
+      type: object
+      required:
+      - template_column_key
+      properties:
+        column_id:
+          type: integer
+          format: int32
+          description: The id of the sheet column.
+        column_name:
+          type: string
+          description: The label of the sheet column.
+        template_column_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The key of the template column, or null to unmap the column.
+    EmbedUploadResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 41963
+          default: 0
+        token:
+          type: string
+          examples:
+          - 812f66e4-76c3-4e1e-9e85-5c1374f15c6a
+        status:
+          type: string
+          examples:
+          - uploaded
+        user_jwt:
+          type: string
+          examples:
+          - REPLACE_WITH_JWT
+    TemplateOverrides:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateColumnOverride'
+    SetHeaderRequest:
+      type: object
+      required:
+      - index
+      properties:
+        index:
+          oneOf:
+          - type: integer
+            format: int32
+          - type: string
+            enum:
+            - auto
+          description: Set to the 0-based index of the header row, or "auto" to automatically detect and set the header row.
+    SetColumnMappingRequest:
+      type: object
+      properties:
+        overrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/MappingOverride'
+          description: These mappings will override detected mappings. Either column_id or column_name must be specified. If template_column_key is null, the column will not be mapped.
+    EmbedDetail:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbedColumn'
+      allOf:
+      - $ref: '#/components/schemas/EmbedSummary'
+    ImportConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of OneSchema import that should be triggered for the embed
+        key:
+          type: string
+          description: Only applicable for "webhook" import type. Specifies the key for the importer webhook that should be called with import data.
+        metadata_only:
+          type: boolean
+          description: Only applicable for the "local" import type. Specifies whether the import should only include metadata.
+        url:
+          type: string
+          description: Only applicable for "file-upload" import type. This is the URL the importer data will be sent to.
+        format:
+          type: string
+          description: Only applicable for "file-upload" import type. This is the file format in which the importer data will be sent as. Either `csv` or `json`.
+        headers:
+          allOf:
+          - $ref: '#/components/schemas/import-config-headers'
+          description: Only applicable for the "file-upload" import type. The provided object should specify header keys and values.
+        format_options:
+          $ref: '#/components/schemas/ImportConfigFormatOptions'
+    EmbedColumn:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 227897
+          default: 0
+        name:
+          type: string
+          examples:
+          - DD/MM/YYYY
+        template_column_key:
+          type: string
+          examples:
+          - ddmmyyyy
+        is_custom:
+          type: boolean
+          examples:
+          - false
+          default: true
+    EmbedCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 42197
+          default: 0
+        token:
+          type: string
+          examples:
+          - 3f82e2c1-7657-441a-a93d-5e8f25c7ac61
+        status:
+          type: string
+          examples:
+          - initialized
+        user_jwt:
+          type: string
+          examples:
+          - REPLACE_WITH_JWT
+    UploadFileRequest:
+      type: object
+      properties:
+        file:
+          description: The contents of the file to be imported.
+          format: binary
+          type: string
+        sheet_name:
+          type: string
+          description: The name of the sheet that should be imported if you are uploading a spreadsheet with multiple tabs.
+      required:
+      - file
+    import-config-headers:
+      type: object
+      properties: {}
     CustomizationOverrides:
       type: object
       properties:
@@ -536,30 +551,15 @@ components:
         file_size_limit:
           type: integer
           format: int32
-    MappingOverride:
+    ImportConfigFormatOptions:
       type: object
-      required:
-      - template_column_key
       properties:
-        column_id:
-          type: integer
-          format: int32
-          description: The id of the sheet column.
-        column_name:
+        header_style:
           type: string
-          description: The label of the sheet column.
-        template_column_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The key of the template column, or null to unmap the column.
-    TemplateOverrides:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/TemplateColumnOverride'
+          enum:
+          - names
+          - keys
+          description: Whether uploaded csv file should have the uploaded template column names as headers or template column keys.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
