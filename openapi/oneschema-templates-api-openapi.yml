@@ -315,6 +315,72 @@ paths:
         description: Environment push configuration.
 components:
   schemas:
+    TemplatesListResponse:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+    ValidationHook:
+      type: object
+      required:
+      - name
+      - url
+      properties:
+        name:
+          type: string
+          examples:
+          - validation_hook_name
+        url:
+          type: string
+          description: The endpoint for the validation hook.
+          examples:
+          - https://example.com
+        secret_key:
+          type: string
+          description: An optional secret for authenticating the validation hook.
+        column_keys:
+          type: array
+          items:
+            type: string
+          description: The keys for the columns that are being validated by the validation hook.
+          default: []
+        custom_column_keys:
+          type: array
+          items:
+            type: string
+          description: The keys for the custom columns that are being validated by the validation hook.
+          default: []
+        include_unmapped:
+          type: boolean
+          description: Include columns that were not mapped to the template.
+          default: false
+        hook_type:
+          type: string
+          enum:
+          - row
+          - column
+          description: Whether to send the data by row or by column. See [docs](https://docs.oneschema.co/docs/validation-webhook) for more information on hook type.
+          default: row
+        batch_size:
+          type: integer
+          description: The number of rows of data to include in each call; only applicable for validation webhooks with a `row` hook_type.
+          default: 1000
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+    TemplateSampleFileUploadRequest:
+      type: object
+      properties:
+        file:
+          description: The file that end users will download when the `includeExcelTemplate` importer customization is enabled. Must be one of `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv` and at most 5 MiB.
+          format: binary
+          type: string
+      required:
+      - file
     TemplateColumn:
       type: object
       required:
@@ -432,16 +498,6 @@ components:
           items:
             type: string
           description: Array of sheet column names to automatically map this column to.
-    PostTemplateRequest:
-      type: object
-      properties:
-        push_to_environments:
-          type: array
-          items:
-            type: string
-          description: Optional array of environment names that the template is pushed to. If this param is not set, the template will be pushed to all environments by default.
-      allOf:
-      - $ref: '#/components/schemas/Template'
     EnvironmentPushRequest:
       type: object
       required:
@@ -452,11 +508,25 @@ components:
           items:
             type: string
           description: Pushing to `Production` will trigger a push to all other environments.
-    ImportTemplateResponse:
+    UploadTemplateSampleFileResponse:
       type: object
       properties:
-        id:
-          type: number
+        template_key:
+          type: string
+          description: The key of the template the file was attached to.
+        sample_file_name:
+          type: string
+          description: The original filename of the uploaded file.
+    PostTemplateRequest:
+      type: object
+      properties:
+        push_to_environments:
+          type: array
+          items:
+            type: string
+          description: Optional array of environment names that the template is pushed to. If this param is not set, the template will be pushed to all environments by default.
+      allOf:
+      - $ref: '#/components/schemas/Template'
     TemplateHookSummary:
       type: object
       required:
@@ -471,15 +541,33 @@ components:
           type: string
           examples:
           - code-postmapping
-    TemplateSampleFileUploadRequest:
+    SuccessResponse:
       type: object
       properties:
-        file:
-          description: The file that end users will download when the `includeExcelTemplate` importer customization is enabled. Must be one of `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv` and at most 5 MiB.
-          format: binary
-          type: string
-      required:
-      - file
+        success:
+          type: boolean
+    TemplateHooksByStage:
+      type: object
+      properties:
+        preparsing:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+        postupload:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+        postmapping:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+        validation:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHookSummary'
+    BinaryString:
+      type: string
+      format: binary
     Template:
       type: object
       required:
@@ -516,99 +604,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/TemplateHooksByStage'
           description: Template hooks attached to the template. Note this format will take precedence over the `code_hooks` field.
-    ValidationHook:
-      type: object
-      required:
-      - name
-      - url
-      properties:
-        name:
-          type: string
-          examples:
-          - validation_hook_name
-        url:
-          type: string
-          description: The endpoint for the validation hook.
-          examples:
-          - https://example.com
-        secret_key:
-          type: string
-          description: An optional secret for authenticating the validation hook.
-        column_keys:
-          type: array
-          items:
-            type: string
-          description: The keys for the columns that are being validated by the validation hook.
-          default: []
-        custom_column_keys:
-          type: array
-          items:
-            type: string
-          description: The keys for the custom columns that are being validated by the validation hook.
-          default: []
-        include_unmapped:
-          type: boolean
-          description: Include columns that were not mapped to the template.
-          default: false
-        hook_type:
-          type: string
-          enum:
-          - row
-          - column
-          description: Whether to send the data by row or by column. See [docs](https://docs.oneschema.co/docs/validation-webhook) for more information on hook type.
-          default: row
-        batch_size:
-          type: integer
-          description: The number of rows of data to include in each call; only applicable for validation webhooks with a `row` hook_type.
-          default: 1000
-    TemplateHooksByStage:
+    ImportTemplateResponse:
       type: object
       properties:
-        preparsing:
-          type: array
-          items:
-            $ref: '#/components/schemas/TemplateHookSummary'
-        postupload:
-          type: array
-          items:
-            $ref: '#/components/schemas/TemplateHookSummary'
-        postmapping:
-          type: array
-          items:
-            $ref: '#/components/schemas/TemplateHookSummary'
-        validation:
-          type: array
-          items:
-            $ref: '#/components/schemas/TemplateHookSummary'
-    BinaryString:
-      type: string
-      format: binary
-    UploadTemplateSampleFileResponse:
-      type: object
-      properties:
-        template_key:
-          type: string
-          description: The key of the template the file was attached to.
-        sample_file_name:
-          type: string
-          description: The original filename of the uploaded file.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-    TemplatesListResponse:
-      type: object
-      properties:
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template'
+        id:
+          type: number
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

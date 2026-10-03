@@ -121,9 +121,22 @@ paths:
                       version: 1.0.0
 components:
   schemas:
-    JsonRpcResult:
+    JsonRpcParams:
       type: object
       unevaluatedProperties: {}
+    JsonRpcError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          description: Optional method-specific error details.
+      additionalProperties: false
     JsonRpcResponse:
       type: object
       required:
@@ -146,22 +159,9 @@ components:
         error:
           $ref: '#/components/schemas/JsonRpcError'
       additionalProperties: false
-    JsonRpcParams:
+    JsonRpcResult:
       type: object
       unevaluatedProperties: {}
-    JsonRpcError:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          description: Optional method-specific error details.
-      additionalProperties: false
     JsonRpcRequest:
       type: object
       required:

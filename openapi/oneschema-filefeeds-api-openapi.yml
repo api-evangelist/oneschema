@@ -219,12 +219,14 @@ paths:
                     type: string
 components:
   schemas:
-    file-feed-post-request:
-      allOf:
-      - $ref: '#/components/schemas/file-feed-base'
-      required:
-      - name
-      - template_key
+    file-feed-destination:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/destination-sftp'
+      - $ref: '#/components/schemas/destination-webhook'
+    file-feed-source:
+      oneOf:
+      - $ref: '#/components/schemas/source-sftp'
     destination-sftp:
       type: object
       properties:
@@ -250,6 +252,42 @@ components:
       properties:
         id:
           type: string
+    file-feed-base:
+      type: object
+      properties:
+        name:
+          type: string
+        template_key:
+          type: string
+          format: object_key
+        is_active:
+          type: boolean
+        config:
+          type: object
+          properties:
+            export_format:
+              type: string
+              enum:
+              - csv
+              - json
+            file_filter:
+              type: string
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-source'
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/file-feed-destination'
+        custom_metadata:
+          type: object
+        event_webhook_key:
+          type: string
+          format: object_key
+        folder_id:
+          type: integer
+          description: ID of the folder containing this FileFeed
     destination-webhook:
       type: object
       properties:
@@ -304,50 +342,12 @@ components:
           required:
           - sftp_account_id
           - path
-    file-feed-destination:
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/destination-sftp'
-      - $ref: '#/components/schemas/destination-webhook'
-    file-feed-source:
-      oneOf:
-      - $ref: '#/components/schemas/source-sftp'
-    file-feed-base:
-      type: object
-      properties:
-        name:
-          type: string
-        template_key:
-          type: string
-          format: object_key
-        is_active:
-          type: boolean
-        config:
-          type: object
-          properties:
-            export_format:
-              type: string
-              enum:
-              - csv
-              - json
-            file_filter:
-              type: string
-        sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/file-feed-source'
-        destinations:
-          type: array
-          items:
-            $ref: '#/components/schemas/file-feed-destination'
-        custom_metadata:
-          type: object
-        event_webhook_key:
-          type: string
-          format: object_key
-        folder_id:
-          type: integer
-          description: ID of the folder containing this FileFeed
+    file-feed-post-request:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-base'
+      required:
+      - name
+      - template_key
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

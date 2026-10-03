@@ -690,6 +690,15 @@ paths:
                 type: object
 components:
   schemas:
+    ImportedFile:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the imported file
+        name:
+          type: string
+          description: The name of the imported file
     MultiFileFeedImport:
       type: object
       properties:
@@ -709,15 +718,6 @@ components:
           type: string
           format: date-time
           description: When the Multi FileFeed import was created
-    ImportedFile:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the imported file
-        name:
-          type: string
-          description: The name of the imported file
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

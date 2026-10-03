@@ -741,69 +741,15 @@ components:
           items:
             type: integer
             format: int32
-    empty-response:
-      type: object
-      properties: {}
-    map-columns-request:
+    sheet-file-upload-request:
       type: object
       properties:
-        overrides:
-          type: array
-          items:
-            $ref: '#/components/schemas/ColumnOverride'
-          description: These mappings will override mappings created automatically. Either column_id or column_name must be specified. If template_column_key is null, the sheet column will not be mapped.
-        autofix:
-          type: boolean
-          description: Whether to autofix errors after the mapping step. This is akin to clicking the "Fix all formatting errors" button.
-          default: false
-        strategies:
-          type: array
-          items:
-            type: string
-          description: Which mapping strategies to use in which order. Values are `exact`, `hint` (Alternative column names for mapping), `fuzzy`, `historical_user`, and `historical_org`. If `historical_user` and `historical_org` should be used it's preferred to provide `historical` instead.
-          default:
-          - exact
-          - hint
-    map-columns-response:
-      type: object
-      properties:
-        success:
-          type: boolean
-          examples:
-          - true
-          default: true
-    export-job-response:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The id of the export job.
-        status:
+        file:
+          description: The contents of the file you are importing.
+          format: binary
           type: string
-          enum:
-          - RUNNING
-          - SUCCESS
-          - ERROR
-          description: The status of the export job.
-        sheet_export_id:
-          type: integer
-          description: The id of the resulting export file (available when status is SUCCESS).
-    set-header-row-request:
-      type: object
       required:
-      - index
-      properties:
-        index:
-          type: string
-          description: Set this to the (0-based) index of the row which includes the headers, or "auto" to automatically detect and set the header row.
-          default: auto
-    download-url-response:
-      type: object
-      properties:
-        download_url:
-          type: string
-          examples:
-          - https://s3.amazonaws.com/XXX
+      - file
     sheet-mapping:
       type: object
       properties:
@@ -822,30 +768,18 @@ components:
           description: The template columns and the sheet columns mapped to each one.
           items:
             $ref: '#/components/schemas/mapping-template-column'
-    upload-file-response:
+    empty-response:
       type: object
-      properties:
-        sheets:
-          type: array
-          items:
-            $ref: '#/components/schemas/sheet-resource'
-    ColumnOverride:
+      properties: {}
+    set-header-row-request:
       type: object
       required:
-      - template_column_key
+      - index
       properties:
-        column_id:
-          type: integer
-          format: int32
-          description: The id of the sheet column.
-        column_name:
+        index:
           type: string
-          description: The label of the sheet column.
-        template_column_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The key of the template column.
+          description: Set this to the (0-based) index of the row which includes the headers, or "auto" to automatically detect and set the header row.
+          default: auto
     sheet-resource:
       type: object
       required:
@@ -879,20 +813,87 @@ components:
           description: The columns of the sheet, included when the sheet's headers have been set.
           items:
             $ref: '#/components/schemas/sheet-column'
-    mapping-sheet-column:
+    success-response:
       type: object
-      required:
-      - id
+      properties:
+        success:
+          type: boolean
+          examples:
+          - true
+          default: true
+    export-job-response:
+      type: object
       properties:
         id:
           type: integer
+          description: The id of the export job.
+        status:
+          type: string
+          enum:
+          - RUNNING
+          - SUCCESS
+          - ERROR
+          description: The status of the export job.
+        sheet_export_id:
+          type: integer
+          description: The id of the resulting export file (available when status is SUCCESS).
+    download-url-response:
+      type: object
+      properties:
+        download_url:
+          type: string
+          examples:
+          - https://s3.amazonaws.com/XXX
+    ColumnOverride:
+      type: object
+      required:
+      - template_column_key
+      properties:
+        column_id:
+          type: integer
           format: int32
-          description: The unique identifier of the sheet column.
+          description: The id of the sheet column.
+        column_name:
+          type: string
+          description: The label of the sheet column.
         template_column_key:
-          type:
-          - string
-          - 'null'
-          description: The key of the template column this sheet column is mapped to, if any.
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The key of the template column.
+    upload-file-response:
+      type: object
+      properties:
+        sheets:
+          type: array
+          items:
+            $ref: '#/components/schemas/sheet-resource'
+    map-columns-request:
+      type: object
+      properties:
+        overrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnOverride'
+          description: These mappings will override mappings created automatically. Either column_id or column_name must be specified. If template_column_key is null, the sheet column will not be mapped.
+        autofix:
+          type: boolean
+          description: Whether to autofix errors after the mapping step. This is akin to clicking the "Fix all formatting errors" button.
+          default: false
+        strategies:
+          type: array
+          items:
+            type: string
+          description: Which mapping strategies to use in which order. Values are `exact`, `hint` (Alternative column names for mapping), `fuzzy`, `historical_user`, and `historical_org`. If `historical_user` and `historical_org` should be used it's preferred to provide `historical` instead.
+          default:
+          - exact
+          - hint
+    export-download-url-response:
+      type: object
+      properties:
+        download_url:
+          type: string
+          description: The pre-signed URL to download the exported file.
     sheet-column:
       type: object
       required:
@@ -914,16 +915,7 @@ components:
         is_custom:
           type: boolean
           description: Whether the column is a custom column not present in the assigned template.
-    sheet-file-upload-request:
-      type: object
-      properties:
-        file:
-          description: The contents of the file you are importing.
-          format: binary
-          type: string
-      required:
-      - file
-    success-response:
+    map-columns-response:
       type: object
       properties:
         success:
@@ -931,12 +923,20 @@ components:
           examples:
           - true
           default: true
-    export-download-url-response:
+    mapping-sheet-column:
       type: object
+      required:
+      - id
       properties:
-        download_url:
-          type: string
-          description: The pre-signed URL to download the exported file.
+        id:
+          type: integer
+          format: int32
+          description: The unique identifier of the sheet column.
+        template_column_key:
+          type:
+          - string
+          - 'null'
+          description: The key of the template column this sheet column is mapped to, if any.
     sheet-update-request:
       type: object
       anyOf:

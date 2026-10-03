@@ -154,6 +154,11 @@ paths:
                 type: object
 components:
   schemas:
+    MultiFileFeedFolderPostRequest:
+      allOf:
+      - $ref: '#/components/schemas/MultiFileFeedFolderRequest'
+      required:
+      - name
     MultiFileFeedFolderRequest:
       type: object
       properties:
@@ -176,11 +181,6 @@ components:
           type: integer
           nullable: true
           description: ID of the folder that should contain this folder. Null for root folders.
-    MultiFileFeedFolderPostRequest:
-      allOf:
-      - $ref: '#/components/schemas/MultiFileFeedFolderRequest'
-      required:
-      - name
     MultiFileFeedFolder:
       type: object
       properties:

@@ -240,58 +240,6 @@ paths:
       - Importer Embeds
 components:
   schemas:
-    empty-response:
-      type: object
-      properties: {}
-    DeleteEmbedResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-    ImportedRowsColumn:
-      type: object
-      properties:
-        sheet_column_name:
-          type: string
-          examples:
-          - First Name
-        template_column_name:
-          type: string
-          examples:
-          - First Name
-        template_column_key:
-          type: string
-          examples:
-          - first_name
-    EmbedSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-          examples:
-          - 41559
-          default: 0
-        token:
-          type: string
-          examples:
-          - 5fd6a161-86f1-4514-9e92-0660e19ad5c2
-        template_key:
-          type: string
-          examples:
-          - employees
-        status:
-          type: string
-          examples:
-          - columns_mapped
-        user_jwt:
-          type: string
-          examples:
-          - REPLACE_WITH_JWT
-        imported_row_count:
-          type: integer
-          description: Total number of imported rows. Only present when the embed status is "imported".
-          examples:
-          - 995
     ImportedRowsResponse:
       type: object
       properties:
@@ -330,6 +278,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/empty-response'
+    empty-response:
+      type: object
+      properties: {}
+    DeleteEmbedResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
     SheetMetadata:
       type: object
       properties:
@@ -337,24 +293,6 @@ components:
           type: string
           examples:
           - original-file.csv
-    UrlResponse:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          examples:
-          - https://my-bucket.s3.us-west-2.amazonaws.com
-    EmbedDetail:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmbedColumn'
-      allOf:
-      - $ref: '#/components/schemas/EmbedSummary'
     EmbedColumn:
       type: object
       properties:
@@ -376,6 +314,30 @@ components:
           examples:
           - false
           default: true
+    EmbedDetail:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbedColumn'
+      allOf:
+      - $ref: '#/components/schemas/EmbedSummary'
+    ImportedRowsColumn:
+      type: object
+      properties:
+        sheet_column_name:
+          type: string
+          examples:
+          - First Name
+        template_column_name:
+          type: string
+          examples:
+          - First Name
+        template_column_key:
+          type: string
+          examples:
+          - first_name
     ImportedRowRecord:
       type: object
       properties:
@@ -435,6 +397,44 @@ components:
           type: string
           examples:
           - $7,937.18
+    UrlResponse:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          examples:
+          - https://my-bucket.s3.us-west-2.amazonaws.com
+    EmbedSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+          - 41559
+          default: 0
+        token:
+          type: string
+          examples:
+          - 5fd6a161-86f1-4514-9e92-0660e19ad5c2
+        template_key:
+          type: string
+          examples:
+          - employees
+        status:
+          type: string
+          examples:
+          - columns_mapped
+        user_jwt:
+          type: string
+          examples:
+          - REPLACE_WITH_JWT
+        imported_row_count:
+          type: integer
+          description: Total number of imported rows. Only present when the embed status is "imported".
+          examples:
+          - 995
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

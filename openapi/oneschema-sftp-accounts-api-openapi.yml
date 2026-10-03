@@ -131,11 +131,20 @@ paths:
       - SFTP Accounts
 components:
   schemas:
-    delete-sftp-account-response:
+    sftp-account-password:
       type: object
+      required:
+      - password
       properties:
-        success:
-          type: boolean
+        password:
+          type: string
+    sftp-account-ssh-private-key:
+      type: object
+      required:
+      - ssh_private_key
+      properties:
+        ssh_private_key:
+          type: string
     sftp-account-resource:
       type: object
       properties:
@@ -160,25 +169,11 @@ components:
           type: boolean
         has_ssh_private_key:
           type: boolean
-    error-response:
+    delete-sftp-account-response:
       type: object
       properties:
-        error:
-          type: string
-    sftp-account-ssh-private-key:
-      type: object
-      required:
-      - ssh_private_key
-      properties:
-        ssh_private_key:
-          type: string
-    sftp-account-password:
-      type: object
-      required:
-      - password
-      properties:
-        password:
-          type: string
+        success:
+          type: boolean
     sftp-account-post-request:
       type: object
       required:
@@ -208,6 +203,11 @@ components:
           - $ref: '#/components/schemas/sftp-account-ssh-private-key'
           description: One of password or ssh_private_key is required
           type: object
+    error-response:
+      type: object
+      properties:
+        error:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

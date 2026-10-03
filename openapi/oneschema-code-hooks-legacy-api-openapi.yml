@@ -261,31 +261,6 @@ paths:
       - Code Hooks (Legacy)
 components:
   schemas:
-    post-mapping-code-hook-request:
-      type: object
-      required:
-      - key
-      - code
-      properties:
-        key:
-          type: string
-        code:
-          type: string
-        idempotent:
-          type: boolean
-          default: false
-    code-hook-request:
-      type: object
-      required:
-      - key
-      - code
-      properties:
-        key:
-          type: string
-        code:
-          type: string
-    empty-response:
-      type: object
     validation-code-hook-request:
       type: object
       required:
@@ -307,6 +282,31 @@ components:
           default: row
         code:
           type: string
+    code-hook-request:
+      type: object
+      required:
+      - key
+      - code
+      properties:
+        key:
+          type: string
+        code:
+          type: string
+    post-mapping-code-hook-request:
+      type: object
+      required:
+      - key
+      - code
+      properties:
+        key:
+          type: string
+        code:
+          type: string
+        idempotent:
+          type: boolean
+          default: false
+    empty-response:
+      type: object
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

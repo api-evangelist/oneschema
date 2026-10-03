@@ -265,160 +265,6 @@ paths:
         hidden: true
 components:
   schemas:
-    event-webhook-resource:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the event webhook.
-        webhook_key:
-          type: string
-          description: The org-unique key identifying this event webhook.
-        product_area:
-          $ref: '#/components/schemas/event-webhook-product-area'
-        url:
-          type: string
-          description: The HTTPS URL that OneSchema will POST event payloads to.
-        description:
-          type: string
-          description: Optional human-readable description.
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/event-webhook-event-type'
-          description: Event types subscribed to by this webhook.
-    event-webhook-importer-event-type:
-      type: string
-      enum:
-      - embed_initialized
-      - embed_resumed
-      - embed_closed
-      - file_uploaded
-      - header_selected
-      - columns_mapped
-      - sheet_operation_performed
-      - import_submitted
-      description: Importer event type delivered to the webhook URL.
-    event-webhook-update-multi-file-feeds-request:
-      type: object
-      properties:
-        product_area:
-          type: string
-          enum:
-          - multi_file_feeds
-          description: Product area that owns the event webhook.
-        new_webhook_key:
-          type: string
-          description: Optional new value for `webhook_key`. The path parameter identifies the existing webhook; this field renames it.
-        url:
-          type: string
-          description: The HTTPS URL that OneSchema will POST event payloads to.
-        description:
-          type: string
-          description: Optional human-readable description. Passing `null` stores an empty string.
-          nullable: true
-        secret_key:
-          type: string
-          description: Optional shared secret sent using HTTP Basic authentication. Passing `null` clears the secret.
-          nullable: true
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/event-webhook-multi-file-feed-event-type'
-          description: Multi FileFeed event types to subscribe to.
-      description: Updates selected fields on a Multi FileFeed event webhook. Only fields provided in the request body are updated; unspecified fields retain their existing values.
-    event-webhook-list-response:
-      type: object
-      properties:
-        event_webhooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/event-webhook-resource'
-    event-webhook-product-area:
-      type: string
-      enum:
-      - importer
-      - multi_file_feeds
-      description: Product area that owns the event webhook.
-    error-response:
-      type: object
-      required:
-      - message
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        param:
-          type: string
-          description: The parameter that caused the error.
-        message:
-          type: string
-          description: A human-readable error message.
-        data:
-          type: object
-          description: Additional error context.
-    event-webhook-create-importer-request:
-      type: object
-      required:
-      - webhook_key
-      - product_area
-      - url
-      properties:
-        webhook_key:
-          type: string
-          description: A unique (per-org) key identifying this event webhook.
-        product_area:
-          type: string
-          enum:
-          - importer
-          description: Product area that owns the event webhook.
-        url:
-          type: string
-          description: The HTTPS URL that OneSchema will POST event payloads to.
-        description:
-          type: string
-          description: Optional human-readable description. Defaults to an empty string.
-          nullable: true
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/event-webhook-importer-event-type'
-          description: Importer event types to subscribe to. Defaults to an empty array.
-        secret_key:
-          type: string
-          description: Optional shared secret sent using HTTP Basic authentication.
-          nullable: true
-    event-webhook-create-multi-file-feeds-request:
-      type: object
-      required:
-      - webhook_key
-      - product_area
-      - url
-      properties:
-        webhook_key:
-          type: string
-          description: A unique (per-org) key identifying this event webhook.
-        product_area:
-          type: string
-          enum:
-          - multi_file_feeds
-          description: Product area that owns the event webhook.
-        url:
-          type: string
-          description: The HTTPS URL that OneSchema will POST event payloads to.
-        description:
-          type: string
-          description: Optional human-readable description. Defaults to an empty string.
-          nullable: true
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/event-webhook-multi-file-feed-event-type'
-          description: Multi FileFeed event types to subscribe to. Defaults to an empty array.
-        secret_key:
-          type: string
-          description: Optional shared secret sent using HTTP Basic authentication.
-          nullable: true
     event-webhook-multi-file-feed-event-type:
       type: string
       enum:
@@ -429,11 +275,6 @@ components:
       - multi_file_feed_s3_write_success
       - multi_file_feed_s3_write_error
       description: Multi FileFeed event type delivered to the webhook URL.
-    event-webhook-delete-response:
-      type: object
-      properties:
-        success:
-          type: boolean
     event-webhook-update-existing-product-area-request:
       type: object
       properties:
@@ -488,6 +329,44 @@ components:
             $ref: '#/components/schemas/event-webhook-importer-event-type'
           description: Importer event types to subscribe to.
       description: Updates selected fields on an Importer event webhook. Only fields provided in the request body are updated; unspecified fields retain their existing values.
+    event-webhook-list-response:
+      type: object
+      properties:
+        event_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-resource'
+    event-webhook-create-importer-request:
+      type: object
+      required:
+      - webhook_key
+      - product_area
+      - url
+      properties:
+        webhook_key:
+          type: string
+          description: A unique (per-org) key identifying this event webhook.
+        product_area:
+          type: string
+          enum:
+          - importer
+          description: Product area that owns the event webhook.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Defaults to an empty string.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-importer-event-type'
+          description: Importer event types to subscribe to. Defaults to an empty array.
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication.
+          nullable: true
     event-webhook-event-type:
       type: string
       enum:
@@ -506,6 +385,127 @@ components:
       - multi_file_feed_s3_write_success
       - multi_file_feed_s3_write_error
       description: Event type delivered to the webhook URL.
+    event-webhook-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the event webhook.
+        webhook_key:
+          type: string
+          description: The org-unique key identifying this event webhook.
+        product_area:
+          $ref: '#/components/schemas/event-webhook-product-area'
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description.
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-event-type'
+          description: Event types subscribed to by this webhook.
+    event-webhook-importer-event-type:
+      type: string
+      enum:
+      - embed_initialized
+      - embed_resumed
+      - embed_closed
+      - file_uploaded
+      - header_selected
+      - columns_mapped
+      - sheet_operation_performed
+      - import_submitted
+      description: Importer event type delivered to the webhook URL.
+    event-webhook-product-area:
+      type: string
+      enum:
+      - importer
+      - multi_file_feeds
+      description: Product area that owns the event webhook.
+    event-webhook-delete-response:
+      type: object
+      properties:
+        success:
+          type: boolean
+    event-webhook-create-multi-file-feeds-request:
+      type: object
+      required:
+      - webhook_key
+      - product_area
+      - url
+      properties:
+        webhook_key:
+          type: string
+          description: A unique (per-org) key identifying this event webhook.
+        product_area:
+          type: string
+          enum:
+          - multi_file_feeds
+          description: Product area that owns the event webhook.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Defaults to an empty string.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-multi-file-feed-event-type'
+          description: Multi FileFeed event types to subscribe to. Defaults to an empty array.
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication.
+          nullable: true
+    event-webhook-update-multi-file-feeds-request:
+      type: object
+      properties:
+        product_area:
+          type: string
+          enum:
+          - multi_file_feeds
+          description: Product area that owns the event webhook.
+        new_webhook_key:
+          type: string
+          description: Optional new value for `webhook_key`. The path parameter identifies the existing webhook; this field renames it.
+        url:
+          type: string
+          description: The HTTPS URL that OneSchema will POST event payloads to.
+        description:
+          type: string
+          description: Optional human-readable description. Passing `null` stores an empty string.
+          nullable: true
+        secret_key:
+          type: string
+          description: Optional shared secret sent using HTTP Basic authentication. Passing `null` clears the secret.
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/event-webhook-multi-file-feed-event-type'
+          description: Multi FileFeed event types to subscribe to.
+      description: Updates selected fields on a Multi FileFeed event webhook. Only fields provided in the request body are updated; unspecified fields retain their existing values.
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        param:
+          type: string
+          description: The parameter that caused the error.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

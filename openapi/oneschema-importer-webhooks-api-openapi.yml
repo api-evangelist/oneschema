@@ -223,6 +223,43 @@ paths:
         hidden: true
 components:
   schemas:
+    importer-webhook-create-request:
+      type: object
+      required:
+      - url
+      - webhook_key
+      - type
+      properties:
+        url:
+          type: string
+          description: The URL that the importer will POST to.
+        webhook_key:
+          type: string
+          description: A unique (per-org) key identifying this webhook.
+        type:
+          type: string
+          enum:
+          - batch
+          - metadata
+          description: The delivery mode for the webhook. `batch` delivers rows in batches; `metadata` delivers only the import metadata.
+        auth_type:
+          anyOf:
+          - type: string
+            enum:
+            - basic
+            - bearer_user_jwt
+          - type: 'null'
+          description: The authentication mode for requests to the webhook URL. `basic` requires a `secret_key`. `bearer_user_jwt` attaches the end-user JWT as a bearer token. Omit (`null`) for unauthenticated delivery.
+        secret_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Required when `auth_type` is `basic`. Ignored for other auth types.
+        batch_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
     importer-webhook-update-request:
       type: object
       properties:
@@ -292,6 +329,18 @@ components:
           - type: integer
           - type: 'null'
           description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
+    delete-importer-webhook-response:
+      type: object
+      properties:
+        success:
+          type: boolean
+    list-importer-webhooks-response:
+      type: object
+      properties:
+        importer_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/importer-webhook-resource'
     error-response:
       type: object
       required:
@@ -309,55 +358,6 @@ components:
         data:
           type: object
           description: Additional error context.
-    delete-importer-webhook-response:
-      type: object
-      properties:
-        success:
-          type: boolean
-    importer-webhook-create-request:
-      type: object
-      required:
-      - url
-      - webhook_key
-      - type
-      properties:
-        url:
-          type: string
-          description: The URL that the importer will POST to.
-        webhook_key:
-          type: string
-          description: A unique (per-org) key identifying this webhook.
-        type:
-          type: string
-          enum:
-          - batch
-          - metadata
-          description: The delivery mode for the webhook. `batch` delivers rows in batches; `metadata` delivers only the import metadata.
-        auth_type:
-          anyOf:
-          - type: string
-            enum:
-            - basic
-            - bearer_user_jwt
-          - type: 'null'
-          description: The authentication mode for requests to the webhook URL. `basic` requires a `secret_key`. `bearer_user_jwt` attaches the end-user JWT as a bearer token. Omit (`null`) for unauthenticated delivery.
-        secret_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Required when `auth_type` is `basic`. Ignored for other auth types.
-        batch_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
-    list-importer-webhooks-response:
-      type: object
-      properties:
-        importer_webhooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/importer-webhook-resource'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
