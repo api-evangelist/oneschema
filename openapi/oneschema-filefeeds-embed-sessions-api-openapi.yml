@@ -114,6 +114,17 @@ paths:
                 properties: {}
 components:
   schemas:
+    file-feed-embed-session-file:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        original_file_name:
+          type: string
+          format: file_name
     file-feed-embed-session:
       type: object
       properties:
@@ -132,17 +143,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/file-feed-embed-session-file'
-    file-feed-embed-session-file:
-      type: object
-      properties:
-        id:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        original_file_name:
-          type: string
-          format: file_name
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

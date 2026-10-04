@@ -282,16 +282,6 @@ components:
           default: row
         code:
           type: string
-    code-hook-request:
-      type: object
-      required:
-      - key
-      - code
-      properties:
-        key:
-          type: string
-        code:
-          type: string
     post-mapping-code-hook-request:
       type: object
       required:
@@ -307,6 +297,16 @@ components:
           default: false
     empty-response:
       type: object
+    code-hook-request:
+      type: object
+      required:
+      - key
+      - code
+      properties:
+        key:
+          type: string
+        code:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

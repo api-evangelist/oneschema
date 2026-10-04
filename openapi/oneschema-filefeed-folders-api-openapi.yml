@@ -181,11 +181,6 @@ components:
           type: string
         custom_metadata:
           type: object
-    file-feed-folder-post-request:
-      allOf:
-      - $ref: '#/components/schemas/file-feed-folder-base'
-      required:
-      - name
     file-feed-folder-resource:
       allOf:
       - $ref: '#/components/schemas/file-feed-folder-base'
@@ -194,6 +189,11 @@ components:
         id:
           type: integer
           description: ID of the folder
+    file-feed-folder-post-request:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-folder-base'
+      required:
+      - name
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

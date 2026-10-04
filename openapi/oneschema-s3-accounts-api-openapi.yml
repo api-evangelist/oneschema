@@ -187,9 +187,6 @@ paths:
         hidden: true
 components:
   schemas:
-    delete-s3-account-response:
-      type: object
-      additionalProperties: false
     s3-account-post-request:
       type: object
       required:
@@ -206,18 +203,6 @@ components:
         external_id:
           type: string
           description: The external ID used for secure cross-account role assumption
-    s3-account-resource:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the S3 Account
-        name:
-          type: string
-          description: The name of the S3 Account
-        role_arn:
-          type: string
-          description: The IAM role ARN used to access S3 buckets via STS AssumeRole
     error-response:
       type: object
       required:
@@ -235,6 +220,21 @@ components:
         data:
           type: object
           description: Additional error context
+    s3-account-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the S3 Account
+        name:
+          type: string
+          description: The name of the S3 Account
+        role_arn:
+          type: string
+          description: The IAM role ARN used to access S3 buckets via STS AssumeRole
+    delete-s3-account-response:
+      type: object
+      additionalProperties: false
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

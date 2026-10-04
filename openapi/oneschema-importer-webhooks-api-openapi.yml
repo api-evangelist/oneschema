@@ -223,6 +223,23 @@ paths:
         hidden: true
 components:
   schemas:
+    error-response:
+      type: object
+      required:
+      - message
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        param:
+          type: string
+          description: The parameter that caused the error.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
     importer-webhook-create-request:
       type: object
       required:
@@ -260,6 +277,18 @@ components:
           - type: integer
           - type: 'null'
           description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
+    list-importer-webhooks-response:
+      type: object
+      properties:
+        importer_webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/importer-webhook-resource'
+    delete-importer-webhook-response:
+      type: object
+      properties:
+        success:
+          type: boolean
     importer-webhook-update-request:
       type: object
       properties:
@@ -329,35 +358,6 @@ components:
           - type: integer
           - type: 'null'
           description: Optional batch size (number of rows per webhook request) for `batch`-type webhooks.
-    delete-importer-webhook-response:
-      type: object
-      properties:
-        success:
-          type: boolean
-    list-importer-webhooks-response:
-      type: object
-      properties:
-        importer_webhooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/importer-webhook-resource'
-    error-response:
-      type: object
-      required:
-      - message
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        param:
-          type: string
-          description: The parameter that caused the error.
-        message:
-          type: string
-          description: A human-readable error message.
-        data:
-          type: object
-          description: Additional error context.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

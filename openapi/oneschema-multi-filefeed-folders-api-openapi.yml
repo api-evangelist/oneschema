@@ -159,28 +159,6 @@ components:
       - $ref: '#/components/schemas/MultiFileFeedFolderRequest'
       required:
       - name
-    MultiFileFeedFolderRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the Multi FileFeed folder
-        description:
-          type: string
-          nullable: true
-          description: The description of the Multi FileFeed folder
-        color:
-          type: string
-          nullable: true
-          description: Color associated with the folder
-        custom_metadata:
-          type: object
-          nullable: true
-          description: Custom metadata associated with the folder
-        containing_folder_id:
-          type: integer
-          nullable: true
-          description: ID of the folder that should contain this folder. Null for root folders.
     MultiFileFeedFolder:
       type: object
       properties:
@@ -206,6 +184,28 @@ components:
           type: integer
           nullable: true
           description: ID of the folder that contains this folder. Null for root folders.
+    MultiFileFeedFolderRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Multi FileFeed folder
+        description:
+          type: string
+          nullable: true
+          description: The description of the Multi FileFeed folder
+        color:
+          type: string
+          nullable: true
+          description: Color associated with the folder
+        custom_metadata:
+          type: object
+          nullable: true
+          description: Custom metadata associated with the folder
+        containing_folder_id:
+          type: integer
+          nullable: true
+          description: ID of the folder that should contain this folder. Null for root folders.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

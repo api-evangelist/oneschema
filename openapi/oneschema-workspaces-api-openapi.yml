@@ -171,6 +171,39 @@ paths:
                 type: object
 components:
   schemas:
+    WorkspaceSheet:
+      type: object
+      required:
+      - id
+      - workspace_id
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique identifier of the sheet.
+        workspace_id:
+          type: integer
+          format: int32
+          description: The ID of the Workspace that contains the sheet.
+        name:
+          type: string
+          description: The name of the sheet.
+        template_key:
+          type:
+          - string
+          - 'null'
+          description: The unique key of the template assigned to the sheet, if any.
+        custom_metadata:
+          type:
+          - object
+          - 'null'
+          description: Custom metadata associated with the sheet.
+        columns:
+          type: array
+          description: The columns of the sheet, included when the sheet's headers have been set.
+          items:
+            $ref: '#/components/schemas/WorkspaceSheetColumn'
     WorkspaceUpdateRequest:
       type: object
       properties:
@@ -200,32 +233,6 @@ components:
           - 'null'
           format: int32
           description: The ID of the Workspace to move this Workspace under. Pass `null` to move it to the root.
-    WorkspaceSheetColumn:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          format: int32
-          description: The unique identifier of the column.
-        name:
-          type: string
-          description: The label of the column.
-        template_column_key:
-          type:
-          - string
-          - 'null'
-          description: The key of the template column this sheet column is mapped to, if any.
-        is_custom:
-          type: boolean
-          description: Whether the column is a custom column not present in the assigned template.
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     Workspace:
       type: object
       properties:
@@ -262,39 +269,6 @@ components:
           description: The sheets contained in the Workspace, included when retrieving a single Workspace.
           items:
             $ref: '#/components/schemas/WorkspaceSheet'
-    WorkspaceSheet:
-      type: object
-      required:
-      - id
-      - workspace_id
-      - name
-      properties:
-        id:
-          type: integer
-          format: int32
-          description: The unique identifier of the sheet.
-        workspace_id:
-          type: integer
-          format: int32
-          description: The ID of the Workspace that contains the sheet.
-        name:
-          type: string
-          description: The name of the sheet.
-        template_key:
-          type:
-          - string
-          - 'null'
-          description: The unique key of the template assigned to the sheet, if any.
-        custom_metadata:
-          type:
-          - object
-          - 'null'
-          description: Custom metadata associated with the sheet.
-        columns:
-          type: array
-          description: The columns of the sheet, included when the sheet's headers have been set.
-          items:
-            $ref: '#/components/schemas/WorkspaceSheetColumn'
     WorkspaceCreateRequest:
       type: object
       required:
@@ -334,6 +308,32 @@ components:
         total_count:
           type: integer
           description: The total number of Workspaces available for the current filter.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    WorkspaceSheetColumn:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique identifier of the column.
+        name:
+          type: string
+          description: The label of the column.
+        template_column_key:
+          type:
+          - string
+          - 'null'
+          description: The key of the template column this sheet column is mapped to, if any.
+        is_custom:
+          type: boolean
+          description: Whether the column is a custom column not present in the assigned template.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

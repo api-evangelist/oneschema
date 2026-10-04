@@ -313,6 +313,114 @@ paths:
                 $ref: '#/components/schemas/MultiFileFeed'
 components:
   schemas:
+    MultiFileFeedTemplate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        key:
+          type: string
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+    DestinationSftp:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - sftp
+        data:
+          type: object
+          properties:
+            sftp_account_id:
+              type: integer
+            path:
+              type: string
+              format: path
+          required:
+          - sftp_account_id
+          - path
+    MultiFileFeedSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the Multi FileFeed
+        name:
+          type: string
+          description: The name of the Multi FileFeed
+        folder:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The ID of the folder containing this Multi FileFeed
+            name:
+              type: string
+              description: The name of the folder
+        templates:
+          type: array
+          items:
+            type: object
+            properties:
+              template_key:
+                type: string
+                description: The unique key of the template
+              is_required:
+                type: boolean
+                description: Whether this template is required for the Multi FileFeed
+    WorkflowTemplateInput:
+      type: object
+      description: 'A template to associate with a Multi FileFeed.
+
+        At least one of `template_key` or `template_id` must be provided.
+
+        If both are provided, they must refer to the same template;
+
+        otherwise the request is rejected with a validation error.
+
+        '
+      anyOf:
+      - required:
+        - template_key
+      - required:
+        - template_id
+      properties:
+        template_key:
+          type: string
+          description: The unique key of the template to associate
+        template_id:
+          type: integer
+          description: The numeric ID of the template to associate
+        is_required:
+          type: boolean
+          description: Whether this template is required for the Multi FileFeed
+      required:
+      - is_required
+    DestinationS3:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - s3
+        data:
+          type: object
+          properties:
+            s3_account_id:
+              type: integer
+            bucket:
+              type: string
+            prefix:
+              type: string
+              nullable: true
+              description: Key prefix within the bucket. Output files are written to `{prefix}/{file_name}`. Defaults to empty (write to bucket root).
+          required:
+          - s3_account_id
+          - bucket
     MultiFileFeed:
       type: object
       properties:
@@ -349,103 +457,6 @@ components:
           type: string
           nullable: true
           description: Key of the post-validation transform applied to this Multi FileFeed
-    EventWebhook:
-      type: object
-      properties:
-        webhook_key:
-          type: string
-          description: Unique key identifying the webhook
-        events:
-          type: array
-          items:
-            type: string
-          description: List of event types the webhook is subscribed to
-    SourceSftp:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - sftp
-        data:
-          type: object
-          properties:
-            sftp_account_id:
-              type: integer
-            path:
-              type: string
-              format: path
-            options:
-              type: object
-              properties:
-                schedule:
-                  type: object
-                  properties:
-                    frequency:
-                      type: string
-                      enum:
-                      - hourly
-                      - daily
-                    hour_utc:
-                      type: integer
-                      minimum: 0
-                      maximum: 23
-                      description: Hour in UTC for daily frequency
-                    minute_utc:
-                      type: integer
-                      minimum: 0
-                      maximum: 55
-                      multipleOf: 5
-                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
-          required:
-          - sftp_account_id
-          - path
-    DestinationSftp:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - sftp
-        data:
-          type: object
-          properties:
-            sftp_account_id:
-              type: integer
-            path:
-              type: string
-              format: path
-          required:
-          - sftp_account_id
-          - path
-    WorkflowTemplateInput:
-      type: object
-      description: 'A template to associate with a Multi FileFeed.
-
-        At least one of `template_key` or `template_id` must be provided.
-
-        If both are provided, they must refer to the same template;
-
-        otherwise the request is rejected with a validation error.
-
-        '
-      anyOf:
-      - required:
-        - template_key
-      - required:
-        - template_id
-      properties:
-        template_key:
-          type: string
-          description: The unique key of the template to associate
-        template_id:
-          type: integer
-          description: The numeric ID of the template to associate
-        is_required:
-          type: boolean
-          description: Whether this template is required for the Multi FileFeed
-      required:
-      - is_required
     SourceS3:
       type: object
       properties:
@@ -503,68 +514,57 @@ components:
           required:
           - s3_account_id
           - bucket
-    MultiFileFeedTemplate:
+    EventWebhook:
       type: object
       properties:
-        name:
+        webhook_key:
           type: string
-        description:
-          type: string
-        key:
-          type: string
-        is_required:
-          type: boolean
-          description: Whether this template is required for the Multi FileFeed
-    MultiFileFeedSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the Multi FileFeed
-        name:
-          type: string
-          description: The name of the Multi FileFeed
-        folder:
-          type: object
-          properties:
-            id:
-              type: integer
-              description: The ID of the folder containing this Multi FileFeed
-            name:
-              type: string
-              description: The name of the folder
-        templates:
+          description: Unique key identifying the webhook
+        events:
           type: array
           items:
-            type: object
-            properties:
-              template_key:
-                type: string
-                description: The unique key of the template
-              is_required:
-                type: boolean
-                description: Whether this template is required for the Multi FileFeed
-    DestinationS3:
+            type: string
+          description: List of event types the webhook is subscribed to
+    SourceSftp:
       type: object
       properties:
         type:
           type: string
           enum:
-          - s3
+          - sftp
         data:
           type: object
           properties:
-            s3_account_id:
+            sftp_account_id:
               type: integer
-            bucket:
+            path:
               type: string
-            prefix:
-              type: string
-              nullable: true
-              description: Key prefix within the bucket. Output files are written to `{prefix}/{file_name}`. Defaults to empty (write to bucket root).
+              format: path
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      multipleOf: 5
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
           required:
-          - s3_account_id
-          - bucket
+          - sftp_account_id
+          - path
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

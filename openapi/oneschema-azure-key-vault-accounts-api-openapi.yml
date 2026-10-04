@@ -272,38 +272,6 @@ paths:
               $ref: '#/components/schemas/azure-test-connection-request'
 components:
   schemas:
-    empty-response:
-      type: object
-      additionalProperties: false
-    azure-key-vault-account-resource:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the account connection
-        name:
-          type: string
-          description: The name of the account connection
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: An optional description
-        tenant_id:
-          type: string
-          description: The Azure AD tenant ID
-        client_id:
-          type: string
-          description: The Azure AD application (client) ID
-        has_client_secret:
-          type: boolean
-          description: Whether a client secret is configured (value never exposed)
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
     azure-test-connection-request:
       type: object
       required:
@@ -321,28 +289,23 @@ components:
           - type: string
           - type: 'null'
           description: A specific version to test (omit for latest)
-    test-connection-response:
+    error-response:
       type: object
+      required:
+      - message
       properties:
-        success:
-          type: boolean
-        error_code:
+        code:
           type: string
-          description: Present when success is false
-        error_category:
+          description: A machine-readable error code
+        param:
           type: string
-          enum:
-          - account
-          - secret
-          - provider
-          description: Broad classification of the failure. "account" means the account credentials or permissions are wrong; "secret" means the secret identifier or version could not be found; "provider" means a transient infrastructure issue. Present when success is false.
-        error_message:
+          description: The parameter that caused the error
+        message:
           type: string
-          description: Present when success is false
-        request_id:
-          type: string
-        transaction_id:
-          type: string
+          description: A human-readable error message
+        data:
+          type: object
+          description: Additional error context
     azure-key-vault-account-base:
       type: object
       properties:
@@ -383,6 +346,57 @@ components:
         client_secret:
           type: string
           description: The Azure AD application client secret
+    azure-key-vault-account-resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the account connection
+        name:
+          type: string
+          description: The name of the account connection
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: An optional description
+        tenant_id:
+          type: string
+          description: The Azure AD tenant ID
+        client_id:
+          type: string
+          description: The Azure AD application (client) ID
+        has_client_secret:
+          type: boolean
+          description: Whether a client secret is configured (value never exposed)
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    test-connection-response:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+          description: Present when success is false
+        error_category:
+          type: string
+          enum:
+          - account
+          - secret
+          - provider
+          description: Broad classification of the failure. "account" means the account credentials or permissions are wrong; "secret" means the secret identifier or version could not be found; "provider" means a transient infrastructure issue. Present when success is false.
+        error_message:
+          type: string
+          description: Present when success is false
+        request_id:
+          type: string
+        transaction_id:
+          type: string
     azure-key-vault-account-post-request:
       type: object
       required:
@@ -405,23 +419,9 @@ components:
           description: The Azure AD application client secret
       allOf:
       - $ref: '#/components/schemas/azure-key-vault-account-base'
-    error-response:
+    empty-response:
       type: object
-      required:
-      - message
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        param:
-          type: string
-          description: The parameter that caused the error
-        message:
-          type: string
-          description: A human-readable error message
-        data:
-          type: object
-          description: Additional error context
+      additionalProperties: false
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

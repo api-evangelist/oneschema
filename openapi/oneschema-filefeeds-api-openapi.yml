@@ -219,15 +219,7 @@ paths:
                     type: string
 components:
   schemas:
-    file-feed-destination:
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/destination-sftp'
-      - $ref: '#/components/schemas/destination-webhook'
-    file-feed-source:
-      oneOf:
-      - $ref: '#/components/schemas/source-sftp'
-    destination-sftp:
+    source-sftp:
       type: object
       properties:
         type:
@@ -242,16 +234,38 @@ components:
             path:
               type: string
               format: path
+            options:
+              type: object
+              properties:
+                schedule:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - hourly
+                      - daily
+                    hour_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 23
+                      description: Hour in UTC for daily frequency
+                    minute_utc:
+                      type: integer
+                      minimum: 0
+                      maximum: 55
+                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
           required:
           - sftp_account_id
           - path
-    file-feed-resource:
-      allOf:
-      - $ref: '#/components/schemas/file-feed-base'
+    file-feed-source:
+      oneOf:
+      - $ref: '#/components/schemas/source-sftp'
+    file-feed-destination:
       type: object
-      properties:
-        id:
-          type: string
+      oneOf:
+      - $ref: '#/components/schemas/destination-sftp'
+      - $ref: '#/components/schemas/destination-webhook'
     file-feed-base:
       type: object
       properties:
@@ -303,7 +317,13 @@ components:
               format: object_key
           required:
           - webhook_key
-    source-sftp:
+    file-feed-post-request:
+      allOf:
+      - $ref: '#/components/schemas/file-feed-base'
+      required:
+      - name
+      - template_key
+    destination-sftp:
       type: object
       properties:
         type:
@@ -318,36 +338,16 @@ components:
             path:
               type: string
               format: path
-            options:
-              type: object
-              properties:
-                schedule:
-                  type: object
-                  properties:
-                    frequency:
-                      type: string
-                      enum:
-                      - hourly
-                      - daily
-                    hour_utc:
-                      type: integer
-                      minimum: 0
-                      maximum: 23
-                      description: Hour in UTC for daily frequency
-                    minute_utc:
-                      type: integer
-                      minimum: 0
-                      maximum: 55
-                      description: Minute offset within the hour (must be a multiple of 5, 0-55). Defaults to 0 (top of the hour).
           required:
           - sftp_account_id
           - path
-    file-feed-post-request:
+    file-feed-resource:
       allOf:
       - $ref: '#/components/schemas/file-feed-base'
-      required:
-      - name
-      - template_key
+      type: object
+      properties:
+        id:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

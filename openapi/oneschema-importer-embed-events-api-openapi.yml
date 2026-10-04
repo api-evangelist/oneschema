@@ -105,17 +105,6 @@ paths:
       - Importer Embed Events
 components:
   schemas:
-    FileUrlResponse:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          description: pre-signed url linking to the formatted embed event snapshot data
-    empty-response:
-      type: object
-      properties: {}
     EmbedEventResource:
       type: object
       required:
@@ -163,6 +152,17 @@ components:
         id:
           type: integer
           description: 'embed event id, eg: "id":417836'
+    FileUrlResponse:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          description: pre-signed url linking to the formatted embed event snapshot data
+    empty-response:
+      type: object
+      properties: {}
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

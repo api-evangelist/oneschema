@@ -511,222 +511,6 @@ components:
           - row-uniqueness
         params:
           $ref: '#/components/schemas/RowUniquenessHookParams'
-    AddColumnHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - add_column
-        stage:
-          type: string
-          enum:
-          - postmapping
-        type:
-          type: string
-          enum:
-          - add-column
-        params:
-          $ref: '#/components/schemas/AddColumnHookParams'
-    FindAndReplaceHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - find_and_replace
-        stage:
-          type: string
-          enum:
-          - postmapping
-        type:
-          type: string
-          enum:
-          - find-replace
-        params:
-          $ref: '#/components/schemas/FindAndReplaceHookParams'
-    JsonToCsvHookParams:
-      type: object
-      required:
-      - fileExts
-      - entryPath
-      properties:
-        fileExts:
-          type: array
-          items:
-            type: string
-        entryPath:
-          type: array
-          items:
-            type: string
-    TemplateHooksListResponse:
-      type: object
-      properties:
-        hooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/TemplateHook'
-        total_count:
-          type: integer
-    MultiColumnUniquenessHookParams:
-      type: object
-      required:
-      - columns
-      properties:
-        columns:
-          type: array
-          items:
-            type: string
-    AdvancedExcelParsingHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - advanced_excel_parsing
-        stage:
-          type: string
-          enum:
-          - preparsing
-        type:
-          type: string
-          enum:
-          - advanced-excel-parsing
-        params:
-          $ref: '#/components/schemas/AdvancedExcelParsingHookParams'
-    JsonToCsvHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - json_to_csv
-        stage:
-          type: string
-          enum:
-          - preparsing
-        type:
-          type: string
-          enum:
-          - json-to-csv
-        params:
-          $ref: '#/components/schemas/JsonToCsvHookParams'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-    TransposeFileHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - transpose_file
-        stage:
-          type: string
-          enum:
-          - postupload
-        type:
-          type: string
-          enum:
-          - transpose-file
-        params:
-          $ref: '#/components/schemas/EmptyParams'
-    ValidationCodeHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - validation_code_hook
-        stage:
-          type: string
-          enum:
-          - validation
-        type:
-          type: string
-          enum:
-          - code-validation
-        params:
-          $ref: '#/components/schemas/ValidationCodeHookParams'
-    FixedWidthToCsvHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - fixed_width_to_csv
-        stage:
-          type: string
-          enum:
-          - preparsing
-        type:
-          type: string
-          enum:
-          - fixed-width-to-csv
-        params:
-          $ref: '#/components/schemas/FixedWidthToCsvHookParams'
-    MultiColumnUniquenessHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - multi_column_uniqueness
-        stage:
-          type: string
-          enum:
-          - validation
-        type:
-          type: string
-          enum:
-          - multicolumn-uniqueness
-        params:
-          $ref: '#/components/schemas/MultiColumnUniquenessHookParams'
-    EmptyParams:
-      type: object
-      additionalProperties: false
     SplitColumnHook:
       type: object
       required:
@@ -749,16 +533,78 @@ components:
           - split-column
         params:
           $ref: '#/components/schemas/SplitColumnHookParams'
-    PostMappingCodeHookParams:
+    SplitColumnHookParams:
+      type: object
+      required:
+      - sourceColumn
+      - delimiter
+      - targetColumns
+      properties:
+        sourceColumn:
+          type: string
+        delimiter:
+          type: string
+        targetColumns:
+          type: array
+          items:
+            type: string
+    FixedWidthToCsvHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - fixed_width_to_csv
+        stage:
+          type: string
+          enum:
+          - preparsing
+        type:
+          type: string
+          enum:
+          - fixed-width-to-csv
+        params:
+          $ref: '#/components/schemas/FixedWidthToCsvHookParams'
+    AdvancedExcelParsingHookParams:
+      type: object
+      required:
+      - fileExts
+      - ignoreScientificNotation
+      - extractHyperlinks
+      properties:
+        fileExts:
+          type: array
+          items:
+            type: string
+        ignoreScientificNotation:
+          type: boolean
+        extractHyperlinks:
+          type: boolean
+    CodeHookParams:
       type: object
       required:
       - code
-      - idempotent
       properties:
         code:
           type: string
-        idempotent:
-          type: boolean
+    FixedWidthColumn:
+      type: object
+      required:
+      - label
+      - start
+      - width
+      properties:
+        label:
+          type: string
+        start:
+          type: integer
+        width:
+          type: integer
     PostuploadCodeHook:
       type: object
       required:
@@ -781,100 +627,6 @@ components:
           - code-postupload
         params:
           $ref: '#/components/schemas/CodeHookParams'
-    XmlToCsvHookParams:
-      type: object
-      required:
-      - fileExts
-      - entryPath
-      properties:
-        fileExts:
-          type: array
-          items:
-            type: string
-        entryPath:
-          type: array
-          items:
-            type: string
-    ValidationCodeHookParams:
-      type: object
-      properties:
-        code:
-          type: string
-        validationType:
-          type: string
-          enum:
-          - row
-          - column
-        columns:
-          type: array
-          items:
-            type: string
-    FixedWidthColumn:
-      type: object
-      required:
-      - label
-      - start
-      - width
-      properties:
-        label:
-          type: string
-        start:
-          type: integer
-        width:
-          type: integer
-    CodeHookParams:
-      type: object
-      required:
-      - code
-      properties:
-        code:
-          type: string
-    FillEmptyHookParams:
-      type: object
-      required:
-      - targetColumn
-      - sourceColumn
-      properties:
-        targetColumn:
-          type: string
-        sourceColumn:
-          type: string
-    FixedWidthToCsvHookParams:
-      type: object
-      required:
-      - fileExts
-      - columns
-      properties:
-        fileExts:
-          type: array
-          items:
-            type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/FixedWidthColumn'
-    AddColumnHookParams:
-      type: object
-      required:
-      - column
-      properties:
-        column:
-          type: string
-    AdvancedExcelParsingHookParams:
-      type: object
-      required:
-      - fileExts
-      - ignoreScientificNotation
-      - extractHyperlinks
-      properties:
-        fileExts:
-          type: array
-          items:
-            type: string
-        ignoreScientificNotation:
-          type: boolean
-        extractHyperlinks:
-          type: boolean
     FindAndReplaceHookParams:
       type: object
       required:
@@ -896,7 +648,21 @@ components:
           type: boolean
         replace:
           type: string
-    PostMappingCodeHook:
+    JsonToCsvHookParams:
+      type: object
+      required:
+      - fileExts
+      - entryPath
+      properties:
+        fileExts:
+          type: array
+          items:
+            type: string
+        entryPath:
+          type: array
+          items:
+            type: string
+    TransposeFileHook:
       type: object
       required:
       - key
@@ -907,18 +673,56 @@ components:
         key:
           type: string
           examples:
-          - code_post_mapping
+          - transpose_file
         stage:
           type: string
           enum:
-          - postmapping
+          - postupload
         type:
           type: string
           enum:
-          - code-postmapping
+          - transpose-file
         params:
-          $ref: '#/components/schemas/PostMappingCodeHookParams'
-    XmlToCsvHook:
+          $ref: '#/components/schemas/EmptyParams'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+    MultiColumnUniquenessHookParams:
+      type: object
+      required:
+      - columns
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+    FillEmptyHookParams:
+      type: object
+      required:
+      - targetColumn
+      - sourceColumn
+      properties:
+        targetColumn:
+          type: string
+        sourceColumn:
+          type: string
+    ValidationCodeHookParams:
+      type: object
+      properties:
+        code:
+          type: string
+        validationType:
+          type: string
+          enum:
+          - row
+          - column
+        columns:
+          type: array
+          items:
+            type: string
+    JsonToCsvHook:
       type: object
       required:
       - key
@@ -929,7 +733,7 @@ components:
         key:
           type: string
           examples:
-          - xml_to_csv
+          - json_to_csv
         stage:
           type: string
           enum:
@@ -937,31 +741,9 @@ components:
         type:
           type: string
           enum:
-          - xml-to-csv
+          - json-to-csv
         params:
-          $ref: '#/components/schemas/XmlToCsvHookParams'
-    FillEmptyHook:
-      type: object
-      required:
-      - key
-      - stage
-      - type
-      - params
-      properties:
-        key:
-          type: string
-          examples:
-          - fill_empty
-        stage:
-          type: string
-          enum:
-          - postmapping
-        type:
-          type: string
-          enum:
-          - fill-empty
-        params:
-          $ref: '#/components/schemas/FillEmptyHookParams'
+          $ref: '#/components/schemas/JsonToCsvHookParams'
     MergeColumnsHook:
       type: object
       required:
@@ -984,6 +766,193 @@ components:
           - merge-column
         params:
           $ref: '#/components/schemas/MergeColumnsHookParams'
+    RowUniquenessHookParams:
+      type: object
+      required:
+      - caseSensitive
+      properties:
+        caseSensitive:
+          type: boolean
+          description: Whether the row comparison is case-sensitive.
+    FindAndReplaceHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - find_and_replace
+        stage:
+          type: string
+          enum:
+          - postmapping
+        type:
+          type: string
+          enum:
+          - find-replace
+        params:
+          $ref: '#/components/schemas/FindAndReplaceHookParams'
+    XmlToCsvHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - xml_to_csv
+        stage:
+          type: string
+          enum:
+          - preparsing
+        type:
+          type: string
+          enum:
+          - xml-to-csv
+        params:
+          $ref: '#/components/schemas/XmlToCsvHookParams'
+    PostMappingCodeHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - code_post_mapping
+        stage:
+          type: string
+          enum:
+          - postmapping
+        type:
+          type: string
+          enum:
+          - code-postmapping
+        params:
+          $ref: '#/components/schemas/PostMappingCodeHookParams'
+    TemplateHooksListResponse:
+      type: object
+      properties:
+        hooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateHook'
+        total_count:
+          type: integer
+    XmlToCsvHookParams:
+      type: object
+      required:
+      - fileExts
+      - entryPath
+      properties:
+        fileExts:
+          type: array
+          items:
+            type: string
+        entryPath:
+          type: array
+          items:
+            type: string
+    AddColumnHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - add_column
+        stage:
+          type: string
+          enum:
+          - postmapping
+        type:
+          type: string
+          enum:
+          - add-column
+        params:
+          $ref: '#/components/schemas/AddColumnHookParams'
+    FillEmptyHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - fill_empty
+        stage:
+          type: string
+          enum:
+          - postmapping
+        type:
+          type: string
+          enum:
+          - fill-empty
+        params:
+          $ref: '#/components/schemas/FillEmptyHookParams'
+    AdvancedExcelParsingHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - advanced_excel_parsing
+        stage:
+          type: string
+          enum:
+          - preparsing
+        type:
+          type: string
+          enum:
+          - advanced-excel-parsing
+        params:
+          $ref: '#/components/schemas/AdvancedExcelParsingHookParams'
+    PostMappingCodeHookParams:
+      type: object
+      required:
+      - code
+      - idempotent
+      properties:
+        code:
+          type: string
+        idempotent:
+          type: boolean
+    FixedWidthToCsvHookParams:
+      type: object
+      required:
+      - fileExts
+      - columns
+      properties:
+        fileExts:
+          type: array
+          items:
+            type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/FixedWidthColumn'
     MergeColumnsHookParams:
       type: object
       required:
@@ -999,21 +968,31 @@ components:
           type: string
         delimiter:
           type: string
-    SplitColumnHookParams:
+    EmptyParams:
+      type: object
+      additionalProperties: false
+    MultiColumnUniquenessHook:
       type: object
       required:
-      - sourceColumn
-      - delimiter
-      - targetColumns
+      - key
+      - stage
+      - type
+      - params
       properties:
-        sourceColumn:
+        key:
           type: string
-        delimiter:
+          examples:
+          - multi_column_uniqueness
+        stage:
           type: string
-        targetColumns:
-          type: array
-          items:
-            type: string
+          enum:
+          - validation
+        type:
+          type: string
+          enum:
+          - multicolumn-uniqueness
+        params:
+          $ref: '#/components/schemas/MultiColumnUniquenessHookParams'
     TemplateHook:
       oneOf:
       - $ref: '#/components/schemas/JsonToCsvHook'
@@ -1031,14 +1010,35 @@ components:
       - $ref: '#/components/schemas/ValidationCodeHook'
       - $ref: '#/components/schemas/MultiColumnUniquenessHook'
       - $ref: '#/components/schemas/RowUniquenessHook'
-    RowUniquenessHookParams:
+    AddColumnHookParams:
       type: object
       required:
-      - caseSensitive
+      - column
       properties:
-        caseSensitive:
-          type: boolean
-          description: Whether the row comparison is case-sensitive.
+        column:
+          type: string
+    ValidationCodeHook:
+      type: object
+      required:
+      - key
+      - stage
+      - type
+      - params
+      properties:
+        key:
+          type: string
+          examples:
+          - validation_code_hook
+        stage:
+          type: string
+          enum:
+          - validation
+        type:
+          type: string
+          enum:
+          - code-validation
+        params:
+          $ref: '#/components/schemas/ValidationCodeHookParams'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
