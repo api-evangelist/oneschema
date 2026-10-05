@@ -1,0 +1,25 @@
+slug: oneschema
+provider: Oneschema
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Event Webhooks
+  spec_file: oneschema-event-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: Manage event webhooks that notify your systems when events occur in OneSchema processing pipelines
+  reason: The tag manages the lifecycle of outbound webhook subscriptions and their event types (event-webhook-importer-event-type,
+    event-webhook-resource), which matches Webhook & Event Subscription Management in the developer-platform
+    capability. Edge is a platform integration mechanism rather than an industry business process.
